@@ -1,0 +1,13 @@
+1. buid.xml 为 ant 执行文件
+
+2.先在build.xml里执行copyWeb的脚本，复制web内容
+
+3. toOracle任务:把model里的hbm文件转换成支持oracle数据库的格式
+
+4. toNormal任务:把model里的hbm文件转换成支持MySql,Sql Server数据库的格式
+
+5.再点击"copy-web-depress-js"压缩js和css
+
+6.如果转化了不同的数据类型，还需在classes目录下的conf下找到jdbc.properties文件，修改相应的jbbc数据库连接池内容。
+
+7.最后点击"war-joffice"的脚本，生成war包，然后放在tomcat的webapps目录下，启动tomcat就可以自行解压运行。

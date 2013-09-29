@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="mysql_setup"  basedir=".">
+	<property name="modelPath" value="${basedir}/build/web/WEB-INF/classes/com/htsoft/est/model"/>
+	<property name="convertYui" value="../tools/yui"/>
+	
+	<target name = "copyWeb">
+		<copy todir="build/web">
+			<fileset dir="../../web"/>
+		</copy>
+	</target>
+	
+	<target name="build-toNormal-war">
+		<java classname="com.htsoft.converter.ToNormal" classpath="${basedir}">
+			<arg value="${modelPath}"/>
+			<classpath>
+				<fileset dir="${basedir}/lib" />
+			</classpath>
+		</java>
+		
+	</target>
+	
+	<target name="build-oracle-war">
+		<java classname="com.htsoft.converter.ToOracle" fork="true" >
+			<arg value="${modelPath}"/>
+			<classpath>
+				<fileset dir="${basedir}/lib" />
+			</classpath>
+		</java>
+	
+	</target>
+	<!--  ============================开始压缩js与 css================================ -->
+		
+			<property name="jsDir" value="build/web/js"/> 
+			<property name="cssDir" value="build/web/css"/>
+		    <property name="cssExtDir" value="build/web/ext3"/>
+		    <property name="extUxJsDir" value="build/web/ext3/ux"/>
+		
+			<property name="jsSourceDir" value="build/web/js"/>
+			<property name="cssSourceDir" value="build/web/css"/>
+		    <property name="extUxJsSourceDir" value="build/web/ext3/ux"/>
+		    <property name="cssExtSourceDir" value="build/web/ext3"/>
+			
+		    <path id="yuiClasspath">  
+		        <fileset dir="${convertYui}">  
+		            <include name="yuicompressor-2.4.2.jar"/>  
+		            <include name="YUIAnt.jar"/>  
+		        </fileset>  
+		    </path> 
+			<target name="copy-web-depress-js">
+				<!--
+				<delete dir="build/web"/>
+				-->
+				<copy todir="build/web">
+					<fileset dir="${basedir}/build/web"/>
+				</copy>
+				<delete dir="build/web/attachFiles"/>
+				
+				<taskdef name="uxJsCompress" classname="com.yahoo.platform.yui.compressor.YUICompressTask">  
+		            <classpath>  
+		            	 <path refid="yuiClasspath"/> 
+		            </classpath>
+		        </taskdef>  
+		        <uxJsCompress linebreak="9000000" warn="false" munge="yes"    
+		            preserveallsemicolons="true" outputfolder="${extUxJsDir}">  
+		            <fileset dir="${extUxJsSourceDir}">  
+		                <include name="**/*.js"/>  
+		            </fileset>
+		        </uxJsCompress>
+				
+				<taskdef name="yuicompress" classname="com.yahoo.platform.yui.compressor.YUICompressTask">  
+		            <classpath>  
+		            	 <path refid="yuiClasspath"/> 
+		            </classpath>  
+		        </taskdef>  
+		        <yuicompress linebreak="9000000" warn="false" munge="yes"    
+		            preserveallsemicolons="true" outputfolder="${jsDir}">  
+		            <fileset dir="${jsSourceDir}">  
+		                <include name="**/*.js"/>  
+		            </fileset>
+		        </yuicompress> 
+				
+				<taskdef name="cssYuicompress" classname="com.yahoo.platform.yui.compressor.YUICompressTask">  
+		            <classpath>  
+		            	 <path refid="yuiClasspath"/> 
+		            </classpath>  
+		        </taskdef>
+				
+				<cssYuicompress linebreak="9000000" warn="false" munge="yes"    
+		            preserveallsemicolons="true" outputfolder="${cssDir}">  
+		            <fileset dir="${cssSourceDir}">  
+		                <include name="**/*.css"/>  
+		            </fileset>  
+		        </cssYuicompress>
+				
+				<taskdef name="cssExtYuicompress" classname="com.yahoo.platform.yui.compressor.YUICompressTask">  
+		            <classpath>  
+		            	 <path refid="yuiClasspath"/> 
+		            </classpath>  
+		        </taskdef>
+				
+				<cssExtYuicompress linebreak="9000000" warn="false" munge="yes"    
+		            preserveallsemicolons="true" outputfolder="${cssExtDir}">  
+		            <fileset dir="${cssExtSourceDir}">  
+		                <include name="**/*.css"/>  
+		            </fileset>  
+		        </cssExtYuicompress>
+			</target>
+		<!--  ============================结束压缩js与 css================================-->
+		<target name="war-joffice" depends="copy-web-depress-js">
+			<war destfile="build/joffice20.war" webxml="build/web/WEB-INF/web.xml">
+				<fileset dir="build/web">
+					<exclude name="attachFiles/**"/>
+				</fileset>
+				<!--
+				<lib dir="build/web/WEB-INF/lib">
+					<exclude name="ojdbc5.jar"/>
+				</lib>
+				-->
+				<!--
+				  <classes dir="web/WEB-INF/classes"/>
+				  -->
+			</war>
+		</target>
+		<target name="jarservice-model">
+			<jar destfile="build/ht_cxf_client.jar">
+				<fileset dir="build/web/WEB-INF/classes">
+					<include name="com/htsoft/core/**"/>
+					<include name="com/htsoft/est/service/**"/>
+					<include name="com/htsoft/est/model/**"/>
+					<exclude name="com/htsoft/est/model/**/*.hbm.xml"/>
+				</fileset>
+			</jar>
+		</target>
+		<target name="delete-classfile">
+			<delete>
+				<fileset dir="C:/dev/oracle/model">
+					<exclude name="*/**.hbm.xml"/>
+				</fileset>
+			</delete>
+		</target>
+</project>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.htsoft.est.model.system.PositionSub"
+        table="POSITION_SUB"
+        select-before-update="false"
+        dynamic-update="true"
+        dynamic-insert="true"
+        optimistic-lock="all"
+    >
+		<id
+            name="mainPositionId"
+            column="MAINPOSITIONID"
+            type="java.lang.Long"
+            length="18"
+        >
+        </id>
+        <property
+            name="subPositionId"
+            column="SUBPOSITIONID"
+            type="java.lang.Long"
+            length="18"
+        />
+      <!-- imported bi-directional many-to-one association to Position -->
+		<many-to-one
+			name="position"
+			class="com.htsoft.est.model.system.Position"
+            not-null="false"
+	        update="false"
+	        insert="false"
+		>	
+			<column name="MAINPOSITIONID" />
+		</many-to-one>
+    </class>
+</hibernate-mapping>

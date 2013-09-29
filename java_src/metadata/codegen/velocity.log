@@ -1,0 +1,39 @@
+Mon Aug 29 17:00:23 CST 2011  [debug] AvalonLogSystem initialized using logfile 'velocity.log'
+Mon Aug 29 17:00:23 CST 2011   [info] ************************************************************** 
+Mon Aug 29 17:00:23 CST 2011   [info] Starting Jakarta Velocity v1.4
+Mon Aug 29 17:00:23 CST 2011   [info] RuntimeInstance initializing.
+Mon Aug 29 17:00:23 CST 2011   [info] Default Properties File: org\apache\velocity\runtime\defaults\velocity.properties
+Mon Aug 29 17:00:23 CST 2011   [info] Trying to use logger class org.apache.velocity.runtime.log.AvalonLogSystem
+Mon Aug 29 17:00:23 CST 2011   [info] Using logger class org.apache.velocity.runtime.log.AvalonLogSystem
+Mon Aug 29 17:00:23 CST 2011   [info] Default ResourceManager initializing. (class org.apache.velocity.runtime.resource.ResourceManagerImpl)
+Mon Aug 29 17:00:23 CST 2011   [info] Resource Loader Instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
+Mon Aug 29 17:00:23 CST 2011   [info] FileResourceLoader : initialization starting.
+Mon Aug 29 17:00:23 CST 2011   [info] FileResourceLoader : adding path './templates/struts/'
+Mon Aug 29 17:00:23 CST 2011   [info] FileResourceLoader : initialization complete.
+Mon Aug 29 17:00:23 CST 2011   [info] ResourceCache : initialized. (class org.apache.velocity.runtime.resource.ResourceCacheImpl)
+Mon Aug 29 17:00:23 CST 2011   [info] Default ResourceManager initialization complete.
+Mon Aug 29 17:00:23 CST 2011   [info] Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+Mon Aug 29 17:00:23 CST 2011   [info] Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+Mon Aug 29 17:00:23 CST 2011   [info] Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+Mon Aug 29 17:00:23 CST 2011   [info] Loaded System Directive: org.apache.velocity.runtime.directive.Include
+Mon Aug 29 17:00:23 CST 2011   [info] Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+Mon Aug 29 17:00:23 CST 2011   [info] Created: 20 parsers.
+Mon Aug 29 17:00:23 CST 2011   [info] Velocimacro : initialization starting.
+Mon Aug 29 17:00:23 CST 2011   [info] Velocimacro : adding VMs from VM library template : VM_global_library.vm
+Mon Aug 29 17:00:23 CST 2011  [error] ResourceManager : unable to find resource 'VM_global_library.vm' in any resource loader.
+Mon Aug 29 17:00:23 CST 2011   [info] Velocimacro : error using  VM library template VM_global_library.vm : org.apache.velocity.exception.ResourceNotFoundException: Unable to find resource 'VM_global_library.vm'
+Mon Aug 29 17:00:23 CST 2011   [info] Velocimacro :  VM library template macro registration complete.
+Mon Aug 29 17:00:23 CST 2011   [info] Velocimacro : allowInline = true : VMs can be defined inline in templates
+Mon Aug 29 17:00:23 CST 2011   [info] Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+Mon Aug 29 17:00:23 CST 2011   [info] Velocimacro : allowInlineLocal = false : VMs defined inline will be  global in scope if allowed.
+Mon Aug 29 17:00:23 CST 2011   [info] Velocimacro : messages on  : VM system will output logging messages
+Mon Aug 29 17:00:23 CST 2011   [info] Velocimacro : autoload off  : VM system will not automatically reload global library macros
+Mon Aug 29 17:00:23 CST 2011   [info] Velocimacro : initialization complete.
+Mon Aug 29 17:00:23 CST 2011   [info] Velocity successfully started.
+Mon Aug 29 17:00:23 CST 2011   [info] ResourceManager : found Form.js.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+Mon Aug 29 17:00:23 CST 2011   [warn] org.apache.velocity.runtime.exception.ReferenceException: reference : template = Form.js.vm [line 137,column 33] : $postForm is not a valid reference.
+Mon Aug 29 17:00:23 CST 2011   [info] ResourceManager : found Action.java.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+Mon Aug 29 17:00:24 CST 2011   [info] ResourceManager : found View.js.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+Mon Aug 29 17:00:24 CST 2011   [warn] org.apache.velocity.runtime.exception.ReferenceException: reference : template = View.js.vm [line 189,column 33] : $search is not a valid reference.
+Mon Aug 29 17:00:24 CST 2011   [warn] org.apache.velocity.runtime.exception.ReferenceException: reference : template = View.js.vm [line 206,column 33] : $postDel is not a valid reference.
+Mon Aug 29 17:00:24 CST 2011   [warn] org.apache.velocity.runtime.exception.ReferenceException: reference : template = View.js.vm [line 214,column 33] : $delGridRs is not a valid reference.

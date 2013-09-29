@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Menus id="Mod_Oa" text="协同办公" iconCls="mod-oa" isPublic="true">
+  <Items id="MyDesktop" text="我的桌面" iconCls="menu-desktop" isPublic="false"> 
+   
+    <Item id="ProfileForm" text="修改个人资料" iconCls="menu-customer"/>  
+    <Item id="MessageManageView_1" iconCls="menu-message" text="我的消息"/>  
+    <Item id="PersonalMailBoxView_1" iconCls="menu-mail_box" text="我的邮件"/>  
+    <Item id="MyTaskView_1" iconCls="menu-flowWait" text="我的待办事项"/>  
+    <Item id="MyFileAttachView" text="我的附件" iconCls="menu-attachment"/> 
+  </Items>
+  
+  <Items id="Info" text="信息管理" iconCls="menu-info" isPublic="false"> 
+    <Items id="Section" iconCls="menu-section-manage" text="公司主页管理"> 
+      <Item id="SectionList" iconCls="menu-section-list" text="列表管理"/>  
+      <Item id="SectionView" iconCls="menu-section-view" text="视图管理"/> 
+    </Items>  
+    <Item id="NewsView" iconCls="menu-news" text="新闻管理"> 
+      <Function id="_NewsQuery" text="查看新闻" iconCls="menu-list"> 
+        <url>/info/categoryNews.do</url>  
+        <url>/info/treeNewsType.do</url> 
+      </Function>  
+      <Function id="_NewsAdd" text="添加新闻" iconCls="menu-add"> 
+        <url>/info/categoryNews.do</url>  
+        <url>/info/treeNewsType.do</url>  
+        <url>/info/saveNews.do</url> 
+      </Function>  
+      <Function id="_NewsEdit" text="编辑新闻" iconCls="btn-edit"> 
+        <url>/info/categoryNews.do</url>  
+        <url>/info/treeNewsType.do</url>  
+        <url>/info/saveNews.do</url> 
+      </Function>  
+      <Function id="_NewsDel" text="删除新闻" iconCls="menu-del"> 
+        <url>/info/categoryNews.do</url>  
+        <url>/info/treeNewsType.do</url>  
+        <url>/info/multiDelNews.do</url> 
+      </Function> 
+    </Item>  
+    <Item id="NewsCommentView" iconCls="menu-info" text="评论管理"> 
+      <Function id="_NewsCommentQuery" text="查看评论" iconCls="menu-list"/>  
+      <Function id="_NewsCommentDel" text="删除评论" iconCls="menu-del"> 
+        <url>/info/multiDelNewsComment.do</url> 
+      </Function> 
+    </Item>  
+    <Item id="NoticeView" iconCls="menu-notice" text="公告管理"> 
+      <Function id="_NoticeQuery" text="查看公告" iconCls="menu-list"/>  
+      <Function id="_NoticeAdd" text="添加公告" iconCls="menu-add"> 
+        <url>/info/saveNotice.do</url> 
+      </Function>  
+      <Function id="_NoticeEdit" text="编辑公告" iconCls="btn-edit"> 
+        <url>/info/saveNotice.do</url> 
+      </Function>  
+      <Function id="_NoticeDel" text="删除公告" iconCls="menu-del"> 
+        <url>/info/multiDelNotice.do</url> 
+      </Function> 
+    </Item>
+    <!--     
+    <Item id="JforumView" iconCls="menu-document" text="论坛连接" url="/jforum"/>
+     --> 
+  </Items>  
+  <Items id="Communication" text="通讯管理" iconCls="menu-communicate" isPublic="true"> 
+    <Items id="PhoneBook" iconCls="menu-phonebook" text="通讯簿" > 
+      <Item id="PersonalPhoneBookView" iconCls="menu-personal-phoneBook" text="个人通讯簿"/>  
+      <Item id="SharedPhoneBookView" iconCls="menu-phonebook-shared" text="共享通讯录"/>  
+      <Item id="PublicPhoneBookView" iconCls="menu-sharebook" text="公共通讯簿"/> 
+    </Items>  
+    <Items id="InnerMail" text="内部邮件" iconCls="menu-mail"> 
+      <Items id="MailForm" iconCls="menu-mail_send" text="新建邮件"/>  
+      <Items id="PersonalMailBoxView" iconCls="menu-mail_box" text="个人邮箱"/> 
+    </Items>  
+    <Items id="OutMail" text="外部邮件" iconCls="menu-mail"> 
+      <Items id="OutMailForm" iconCls="menu-mail_send" text="新建邮件"/>  
+      <Items id="OutMailBoxView" iconCls="menu-mail_box" text="外部邮箱"/>  
+      <Item id="OutMailUserSetingForm" iconCls="menu-system" text="邮箱设置"/> 
+    </Items>  
+    <Item id="MessageManageView" iconCls="menu-message" text="内部信息"/>  
+    <Item id="SmsMobileView" iconCls="menu-mobile" text="手机短信"/>  
+
+  </Items>  
+  <Items id="Document" text="文档管理" iconCls="menu-document" isPublic="true"> 
+    <Item id="PrivateDocumentView" iconCls="menu-personal-doc" text="个人文档"/>  
+    <Item id="DocumentSharedView" iconCls="menu-folder-shared" text="共享文档"/>  
+    <Item id="KnowledgeManageView" iconCls="menu-find-doc" text="知识管理"/>  
+    <Item id="OnlineDocumentManageView" iconCls="menu-onlinedoc" text="在线文档管理"/>  
+    <Item id="PaintTemplateView" iconCls="menu-template" text="套红模板管理"/> 
+  </Items>  
+   
+  <Items id="Report" iconCls="mod-report" text="报表管理"> 
+    <Item id="ReportTemplateView" iconCls="menu-report" text="报表设置"/>  
+  </Items> 
+</Menus>

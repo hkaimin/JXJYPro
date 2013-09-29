@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd">      
+	<!-- 为缺省的Action处理 -->
+	<bean id="BaseAction" class="com.htsoft.core.web.action.BaseAction"/>
+	<bean id="LoginAction" class="com.htsoft.est.action.system.LoginAction" scope="prototype"/>
+	<bean id="AppUserAction" class="com.htsoft.est.action.system.AppUserAction" scope="prototype"/>
+	<bean id="CompanyAction" class="com.htsoft.est.action.system.CompanyAction" scope="prototype"/>
+	<bean id="DepartmentAction" class="com.htsoft.est.action.system.DepartmentAction" scope="prototype"/>
+	<bean id="ShortMessageAction" class="com.htsoft.est.action.info.ShortMessageAction" scope="prototype"/>
+	<bean id="InMessageAction" class="com.htsoft.est.action.info.InMessageAction" scope="prototype"/>  
+	<bean id="AppRoleAction" class="com.htsoft.est.action.system.AppRoleAction" scope="prototype"/>
+	<!-- start:  Generated for FileAttach From Template: app-action.xml.beansvm  -->
+	<bean id="FileAttachAction" class="com.htsoft.est.action.system.FileAttachAction" scope="prototype"/>
+	<bean id="FileDetailAction" class="com.htsoft.est.action.document.FileDetailAction" scope="prototype"/>
+	<!-- end:  Generated for FileAttach From Template: app-action.xml.beansvm  -->	
+	<!-- end:  Generated for Diary From Template: app-action.xml.beansvm  -->
+	<!-- start:  Generated for ReportTemplate From Template: app-action.xml.beansvm  -->
+	<bean id="ReportTemplateAction" class="com.htsoft.est.action.system.ReportTemplateAction" scope="prototype"/>
+	<!-- end:  Generated for ReportTemplate From Template: app-action.xml.beansvm  -->
+	<!-- start:  Generated for DocFolder From Template: app-action.xml.beansvm  -->
+	<bean id="DocFolderAction" class="com.htsoft.est.action.document.DocFolderAction" scope="prototype"/>
+	<!-- end:  Generated for DocFolder From Template: app-action.xml.beansvm  -->
+	<!-- start:  Generated for Document From Template: app-action.xml.beansvm  -->
+	<bean id="DocumentAction" class="com.htsoft.est.action.document.DocumentAction" scope="prototype"/>
+	<!-- end:  Generated for Document From Template: app-action.xml.beansvm  -->
+	<!-- start:  Generated for News From Template: app-action.xml.beansvm  -->
+	<bean id="NewsAction" class="com.htsoft.est.action.info.NewsAction" scope="prototype"/>
+	<!-- end:  Generated for News From Template: app-action.xml.beansvm  -->
+	<!-- start:  Generated for MailFolder From Template: app-action.xml.beansvm  -->
+	<bean id="MailFolderAction" class="com.htsoft.est.action.communicate.MailFolderAction" scope="prototype"/>
+	<!-- end:  Generated for MailFolder From Template: app-action.xml.beansvm  -->
+	<!-- start:  Generated for Mail From Template: app-action.xml.beansvm  -->
+	<bean id="MailAction" class="com.htsoft.est.action.communicate.MailAction" scope="prototype"/>
+	<!-- end:  Generated for Mail From Template: app-action.xml.beansvm  -->
+
+	<!-- start:  Generated for PhoneBook From Template: app-action.xml.beansvm  -->
+	<bean id="PhoneBookAction" class="com.htsoft.est.action.communicate.PhoneBookAction" scope="prototype"/>
+	<!-- end:  Generated for PhoneBook From Template: app-action.xml.beansvm  -->
+	<!-- start:  Generated for PhoneGroup From Template: app-action.xml.beansvm  -->
+	<bean id="PhoneGroupAction" class="com.htsoft.est.action.communicate.PhoneGroupAction" scope="prototype"/>
+	<!-- end:  Generated for PhoneGroup From Template: app-action.xml.beansvm  -->
+	<!-- start: Generated for Diary From Template: app-action.xml.beansvm -->
+	<bean id="OutMailSetAction" class="com.htsoft.est.action.system.OutMailSetAction"
+		scope="prototype" />
+	<!-- end: Generated for Diary From Template: app-action.xml.beansvm -->
+	<!-- start:  Generated for ProType From Template: app-action.xml.beansvm  -->
+	<bean id="ProTypeAction" class="com.htsoft.est.action.flow.ProTypeAction" scope="prototype"/>
+	<!-- end:  Generated for ProType From Template: app-action.xml.beansvm  -->
+	<!-- start:  Generated for ProDefinition From Template: app-action.xml.beansvm  -->
+	<bean id="ProDefinitionAction" class="com.htsoft.est.action.flow.ProDefinitionAction" scope="prototype"/>
+	<bean id="ProcessDetailAction" class="com.htsoft.est.action.flow.ProcessDetailAction" scope="prototype"/>
+	<!-- end:  Generated for ProDefinition From Template: app-action.xml.beansvm  -->
+	<!-- start:  Generated for ProUserAssign From Template: app-action.xml.beansvm  -->
+	<bean id="ProUserAssignAction" class="com.htsoft.est.action.flow.ProUserAssignAction" scope="prototype"/>
+	<!-- end:  Generated for ProUserAssign From Template: app-action.xml.beansvm  -->
+	<!-- start:  Generated for ProcessRun From Template: app-action.xml.beansvm  -->
+	<bean id="ProcessRunAction" class="com.htsoft.est.action.flow.ProcessRunAction" scope="prototype"/>
+	<!-- end:  Generated for ProcessRun From Template: app-action.xml.beansvm  -->
+
+	<!-- start:  Generated for ProcessForm From Template: app-action.xml.beansvm  -->
+	<bean id="ProcessFormAction" class="com.htsoft.est.action.flow.ProcessFormAction" scope="prototype"/>
+ 
+	<bean id="ProcessActivityAction" class="com.htsoft.est.action.flow.ProcessActivityAction" scope="prototype"/>
+ 
+	<bean id="TaskAction" class="com.htsoft.est.action.flow.TaskAction" scope="prototype"/>
+ 
+	<bean id="ProcessRunDetailAction" class="com.htsoft.est.action.flow.ProcessRunDetailAction" scope="prototype"/>
+ 
+	<!-- end:  Generated for ProcessForm From Template: app-action.xml.beansvm  -->
+	<!-- start:  Generated for DocPrivilege From Template: app-action.xml.beansvm  -->
+	<bean id="DocPrivilegeAction" class="com.htsoft.est.action.document.DocPrivilegeAction" scope="prototype"/>
+	<!-- end:  Generated for DocPrivilege From Template: app-action.xml.beansvm  -->
+	
+	
+	<bean id="MenuAction" class="com.htsoft.est.action.menu.MenuAction" scope="prototype"/>
+	<!-- start:  Generated for AppFunction From Template: app-action.xml.beansvm  -->
+	<bean id="AppFunctionAction" class="com.htsoft.est.action.system.AppFunctionAction" scope="prototype"/>
+	<!-- end:  Generated for AppFunction From Template: app-action.xml.beansvm  -->
+	<!-- start:  Generated for FunUrl From Template: app-action.xml.beansvm  -->
+	<bean id="FunUrlAction" class="com.htsoft.est.action.system.FunUrlAction" scope="prototype"/>
+	<!-- end:  Generated for FunUrl From Template: app-action.xml.beansvm  -->
+
+	<!-- start:  Generated for SysConfig From Template: app-action.xml.beansvm  -->
+	<bean id="SysConfigAction" class="com.htsoft.est.action.system.SysConfigAction" scope="prototype"/>
+	<!-- end:  Generated for SysConfig From Template: app-action.xml.beansvm  -->
+	<!-- start:  Generated for NewsComment From Template: app-action.xml.beansvm  -->
+	<bean id="NewsCommentAction" class="com.htsoft.est.action.info.NewsCommentAction" scope="prototype"/>
+	<!-- end:  Generated for NewsComment From Template: app-action.xml.beansvm  -->
+	<!-- start:  Generated for ReportParam From Template: app-action.xml.beansvm  -->
+	<bean id="ReportParamAction" class="com.htsoft.est.action.system.ReportParamAction" scope="prototype"/>
+	<!-- end:  Generated for ReportParam From Template: app-action.xml.beansvm  -->
+	<!-- start:  Generated for Dictionary From Template: app-action.xml.beansvm  -->
+	<bean id="DictionaryAction" class="com.htsoft.est.action.system.DictionaryAction" scope="prototype"/>
+	<!-- end:  Generated for Dictionary From Template: app-action.xml.beansvm  -->
+
+	<!-- start:  Generated for FormDef From Template: app-action.xml.beansvm  -->
+	<bean id="FormDefAction" class="com.htsoft.est.action.flow.FormDefAction" scope="prototype"/>
+	<!-- end:  Generated for FormDef From Template: app-action.xml.beansvm  -->
+	<!-- start:  Generated for IndexDisplay From Template: app-action.xml.beansvm  -->
+	<bean id="IndexDisplayAction" class="com.htsoft.est.action.system.IndexDisplayAction" scope="prototype"/>
+	<!-- end:  Generated for IndexDisplay From Template: app-action.xml.beansvm  -->
+	<!-- start:  Generated for SystemLog From Template: app-action.xml.beansvm  -->
+	<bean id="SystemLogAction" class="com.htsoft.est.action.system.SystemLogAction" scope="prototype"/>
+	<!-- end:  Generated for SystemLog From Template: app-action.xml.beansvm  -->
+	<bean id="AppTipsAction" class="com.htsoft.est.action.info.AppTipsAction" scope="prototype"/>
+	<!--Login in action-->
+	<bean id="SignInAction" class="com.htsoft.est.action.mobile.SignInAction" scope="prototype"/>
+  
+	<bean id="IndexPageAction" class="com.htsoft.est.action.mobile.IndexPageAction" scope="prototype"/>
+  
+	<bean id="MobileTaskAction" class="com.htsoft.est.action.mobile.flow.MobileTaskAction" scope="prototype"/>
+  
+	<bean id="MobileProDefAction" class="com.htsoft.est.action.mobile.flow.MobileProDefAction" scope="prototype"/>
+  
+	<!-- start:  Generated for OutMailUserSeting From Template: app-action.xml.beansvm  -->
+	<bean id="OutMailUserSetingAction" class="com.htsoft.est.action.communicate.OutMailUserSetingAction" scope="prototype"/>
+	<!-- end:  Generated for OutMailUserSeting From Template: app-action.xml.beansvm  -->
+	<!-- start:  Generated for OutMail From Template: app-action.xml.beansvm  -->
+	<bean id="OutMailAction" class="com.htsoft.est.action.communicate.OutMailAction" scope="prototype"/>
+	<!-- end:  Generated for OutMail From Template: app-action.xml.beansvm  -->
+	<!-- start:  Generated for OutMailFolder From Template: app-action.xml.beansvm  -->
+	<bean id="OutMailFolderAction" class="com.htsoft.est.action.communicate.OutMailFolderAction" scope="prototype"/>
+	<!-- end:  Generated for OutMailFolder From Template: app-action.xml.beansvm  -->
+	<!-- start:  Generated for SmsMobile From Template: app-action.xml.beansvm  -->
+	<bean id="SmsMobileAction" class="com.htsoft.est.action.communicate.SmsMobileAction" scope="prototype"/>
+	<!-- end:  Generated for SmsMobile From Template: app-action.xml.beansvm  -->
+	<!-- start:  Generated for SmsHistory From Template: app-action.xml.beansvm  -->
+	<bean id="SmsHistoryAction" class="com.htsoft.est.action.communicate.SmsHistoryAction" scope="prototype"/>
+	<!-- end:  Generated for SmsHistory From Template: app-action.xml.beansvm  -->
+	<!-- start:  Generated for GlobalType From Template: app-action.xml.beansvm  -->
+	<bean id="GlobalTypeAction" class="com.htsoft.est.action.system.GlobalTypeAction" scope="prototype"/>
+	<!-- end:  Generated for GlobalType From Template: app-action.xml.beansvm  -->
+	<!-- start:  Generated for TypeKey From Template: app-action.xml.beansvm  -->
+	<bean id="TypeKeyAction" class="com.htsoft.est.action.system.TypeKeyAction" scope="prototype"/>
+	<!-- end:  Generated for TypeKey From Template: app-action.xml.beansvm  -->
+
+	<!-- start:  Generated for PaintTemplate From Template: app-action.xml.beansvm  -->
+	<bean id="PaintTemplateAction" class="com.htsoft.est.action.document.PaintTemplateAction" scope="prototype"/>
+	<!-- end:  Generated for PaintTemplate From Template: app-action.xml.beansvm  -->
+	
+	<!-- start:  Generated for Seal From Template: app-action.xml.beansvm  -->
+	<bean id="SealAction" class="com.htsoft.est.action.document.SealAction" scope="prototype"/>
+	<!-- end:  Generated for Seal From Template: app-action.xml.beansvm  -->
+	
+	<!-- start:  Generated for Section From Template: app-action.xml.beansvm  -->
+	<bean id="SectionAction" class="com.htsoft.est.action.info.SectionAction" scope="prototype"/>
+	<!-- end:  Generated for Section From Template: app-action.xml.beansvm  -->
+	
+	<bean id="FileAttachDetailAction" class="com.htsoft.est.action.system.FileAttachDetailAction" scope="prototype"/>
+	<!-- start:  Generated for FormTable From Template: app-action.xml.beansvm  -->
+	<bean id="FormTableAction" class="com.htsoft.est.action.flow.FormTableAction" scope="prototype"/>
+	<!-- end:  Generated for FormTable From Template: app-action.xml.beansvm  -->
+	<!-- start:  Generated for FormField From Template: app-action.xml.beansvm  -->
+	<bean id="FormFieldAction" class="com.htsoft.est.action.flow.FormFieldAction" scope="prototype"/>
+	<!-- end:  Generated for FormField From Template: app-action.xml.beansvm  -->
+	<!-- start:  Generated for ProDefRights From Template: app-action.xml.beansvm  -->
+	<bean id="ProDefRightsAction" class="com.htsoft.est.action.flow.ProDefRightsAction" scope="prototype"/>
+	<!-- end:  Generated for ProDefRights From Template: app-action.xml.beansvm  -->
+	<!-- start:  Generated for RelativeJob From Template: app-action.xml.beansvm  -->
+	<bean id="RelativeJobAction" class="com.htsoft.est.action.system.RelativeJobAction" scope="prototype"/>
+	<!-- end:  Generated for RelativeJob From Template: app-action.xml.beansvm  -->
+	<!-- start:  Generated for RelativeUser From Template: app-action.xml.beansvm  -->
+	<bean id="RelativeUserAction" class="com.htsoft.est.action.system.RelativeUserAction" scope="prototype"/>
+	<!-- end:  Generated for RelativeUser From Template: app-action.xml.beansvm  -->
+	<!-- start:  Generated for FormDefMapping From Template: app-action.xml.beansvm  -->
+	<bean id="FormDefMappingAction" class="com.htsoft.est.action.flow.FormDefMappingAction" scope="prototype"/>
+	<!-- end:  Generated for FormDefMapping From Template: app-action.xml.beansvm  -->
+	<!-- start:  Generated for FieldRights From Template: app-action.xml.beansvm  -->
+	<bean id="FieldRightsAction" class="com.htsoft.est.action.flow.FieldRightsAction" scope="prototype"/>
+	<!-- end:  Generated for FieldRights From Template: app-action.xml.beansvm  -->
+	<bean id="FlowFormQueryAction" class="com.htsoft.est.action.flow.FlowFormQueryAction" scope="prototype"/>
+	<!-- start:  Generated for TaskSign From Template: app-action.xml.beansvm  -->
+	<bean id="TaskSignAction" class="com.htsoft.est.action.flow.TaskSignAction" scope="prototype"/>
+	<!-- end:  Generated for TaskSign From Template: app-action.xml.beansvm  -->
+	
+	<!-- start:  Generated for UserJob From Template: app-action.xml.beansvm  -->
+	<bean id="JforumAction" class="com.htsoft.est.action.info.JforumAction" scope="prototype"/>
+	<!-- end:  Generated for UserJob From Template: app-action.xml.beansvm  -->
+	<bean id="IconAction" class="com.htsoft.est.action.menu.IconAction" scope="prototype"/>	
+	<bean id="FormTemplateAction" class="com.htsoft.est.action.flow.FormTemplateAction" scope="prototype"/>
+
+	<bean id="BpmXMLAction" class="com.htsoft.est.action.bpm.BpmXMLAction" scope="prototype"/>
+
+	<!-- start:  Generated for ProcessModule From Template: app-action.xml.beansvm  -->
+	<bean id="ProcessModuleAction" class="com.htsoft.est.action.flow.ProcessModuleAction" scope="prototype"/>
+	<!-- end:  Generated for ProcessModule From Template: app-action.xml.beansvm  -->
+	<bean id="BpmDesignAction" class = "com.htsoft.est.action.bpm.BpmDesignAction" scope="prototype" />
+	<!-- start:  Generated for ProHandleComp From Template: app-action.xml.beansvm  -->
+	<bean id="ProHandleCompAction" class="com.htsoft.est.action.flow.ProHandleCompAction" scope="prototype"/>
+	<!-- end:  Generated for ProHandleComp From Template: app-action.xml.beansvm  -->
+	<bean id="FlexPaperAction" class="com.htsoft.est.action.iText.FlexPaperAction" scope="prototype"/>
+		
+	<!-- start:  Generated for Demension From Template: app-action.xml.beansvm  -->
+	<bean id="DemensionAction" class="com.htsoft.est.action.system.DemensionAction" scope="prototype"/>
+	<!-- end:  Generated for Demension From Template: app-action.xml.beansvm  -->
+	<!-- start:  Generated for Organization From Template: app-action.xml.beansvm  -->
+	<bean id="OrganizationAction" class="com.htsoft.est.action.system.OrganizationAction" scope="prototype"/>
+	<!-- end:  Generated for Organization From Template: app-action.xml.beansvm  -->
+	<!-- start:  Generated for UserOrg From Template: app-action.xml.beansvm  -->
+	<bean id="UserOrgAction" class="com.htsoft.est.action.system.UserOrgAction" scope="prototype"/>
+	<!-- end:  Generated for UserOrg From Template: app-action.xml.beansvm  -->
+	<!-- start:  Generated for Position From Template: app-action.xml.beansvm  -->
+	<bean id="PositionAction" class="com.htsoft.est.action.system.PositionAction" scope="prototype"/>
+	<!-- end:  Generated for Position From Template: app-action.xml.beansvm  -->
+	<!-- start:  Generated for UserPosition From Template: app-action.xml.beansvm  -->
+	<bean id="UserPositionAction" class="com.htsoft.est.action.system.UserPositionAction" scope="prototype"/>
+	<!-- end:  Generated for UserPosition From Template: app-action.xml.beansvm  -->
+<!-- start:  Generated for PositionSub From Template: app-action.xml.beansvm  -->
+ <bean id="PositionSubAction" class="com.htsoft.est.action.system.PositionSubAction" scope="prototype"/>
+<!-- end:  Generated for PositionSub From Template: app-action.xml.beansvm  -->
+</beans>

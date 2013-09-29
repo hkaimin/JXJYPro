@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.htsoft.est.model.system.Organization"
+        table="ORGANIZATION"
+        select-before-update="false"
+        dynamic-update="false"
+        dynamic-insert="false"
+        optimistic-lock="version"
+    >
+		<id
+            name="orgId"
+            column="ORG_ID"
+            type="java.lang.Long"
+            length="18"
+        >
+             <generator class="sequence">
+		        <param name="sequence">S_ORGANIZATION</param>
+		     </generator> 
+        </id>
+         <property
+            name="orgName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="ORG_NAME"
+            length="128"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="orgDesc"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="ORG_DESC"
+            length="500"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="orgSupId"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="ORG_SUP_ID"
+            length="18"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="path"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="PATH"
+            length="128"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="depth"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="DEPTH"
+            length="22"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="orgType"
+            type="java.lang.Short"
+            update="true"
+            insert="true"
+            access="property"
+            column="ORG_TYPE"
+            length="11"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="creatorId"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="CREATOR_ID"
+            length="18"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="createtime"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            access="property"
+            column="CREATETIME"
+            length="7"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="updateId"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="UPDATE_ID"
+            length="18"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="updatetime"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            access="property"
+            column="UPDATETIME"
+            length="7"
+            not-null="false"
+            unique="false"
+        />
+     <!-- imported bi-directional many-to-one association to Demension -->
+		<many-to-one
+			name="demension"
+			class="com.htsoft.est.model.system.Demension"
+            not-null="false"
+			fetch="select"
+		>	
+			<column name="DEM_ID" />
+		</many-to-one>
+ <!-- exported bi-directional one-to-many association to AppUser -->
+	<set name="appUsers"
+	     table="app_user"
+	     lazy="true"
+	     inverse="true"
+	     cascade="save-update"
+	     sort="unsorted"
+	>
+		<key>
+			<column name="ORG_ID"/>
+		</key>
+		<one-to-many
+			class="com.htsoft.est.model.system.AppUser"
+		/>
+	</set>     
+ <!-- exported bi-directional one-to-many association to UserOrg -->
+	<set name="userOrgs"
+	     table="user_org"
+	     lazy="true"
+	     inverse="true"
+	     cascade="save-update"
+	     sort="unsorted"
+	>
+		<key>
+			<column name="ORG_ID"/>
+		</key>
+		<one-to-many
+			class="com.htsoft.est.model.system.UserOrg"
+		/>
+	</set>     
+    </class>
+</hibernate-mapping>

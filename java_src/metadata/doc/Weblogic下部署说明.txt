@@ -1,0 +1,6 @@
+说明：
+  由于ESTBPM中使用了JDK1.6，所以需要使用Weblogic10以上版本，同时启动需要去除WEB-INF/lib目录下xml-apis.jar包,
+ 另外，进入Weblogic的管理后台，把<Install dir>/wlserver_10.3/common/deployable-libraries下的jstl-1.1.2.war发布成为一个库。
+ 
+完成以上工作后，即可以重新发布ESTBPM即可。
+ 

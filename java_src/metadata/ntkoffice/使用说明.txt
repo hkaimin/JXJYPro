@@ -1,0 +1,86 @@
+1.授权Key:
+
+	<param name="ProductCaption" value="广州博纳海量信息科技有限公司">
+	<param name="ProductKey" value="617FD40F8483CBDC65AEF4E5065CE832ED21FEA7">
+
+2.使用说明：把以上key，替换至web/js/core/ntkoffice/NtkOfficePanel.js里以下的内容：
+
+	p=document.createElement('param');
+	p.setAttribute('name','ProductCaption');
+	p.setAttribute('value','广州宏天软件有限公司');
+	officeObj.appendChild(p);
+	
+	p=document.createElement('param');
+	p.setAttribute('name','ProductKey');
+	p.setAttribute('value','32B10860DB12537FF0003CC2BFD0FA190CB0407E');
+	officeObj.appendChild(p);
+	
+	
+Office控件的使用说明
+******************************************************
+  版本:V5,0,1,6
+******************************************************
+
+  产品详情:
+------------------------------------------------------
+ 语言:简体中文;
+ 版本:增强企业版;OFFICE印章; 授权方式:开发商产品授权;
+------------------------------------------------------
+
+******************************************************
+  请注意妥善保管此文件,产品以后升级时需要提交,谢谢!
+******************************************************
+
+请注意:
+************************************************************
+如果本文件中的clsid和您代码中的不同,请按照本文件中的进行修改
+如果发行包中的cab文件不是OfficeControl.cab,而是ofctnewclsid.cab,则
+本文件中以下部分信息中的OfficeControl.cab应该修改为ofctnewclsid.cab.
+************************************************************
+
+请注意更新<object codebase后面的部分的version=部分的版本号为5,0,1,6
+
+另外,OfficeControl.cab文件务必和该密钥对应.请勿和另外的cab文件一起使用
+本密钥文件.以免引起不正常的软件表现.
+
+请使用发布包中的OfficeControl.cab替换服务器上的同名文件.
+注意codebase应该指向WEB服务器上OfficeControl.cab文件的URL位置.该URL是
+相对当前网页的相对URL,或者是绝对URL.*注意某些平台的文件名大小写相关*.
+比如:codebase="/path/to/OfficeControl.cab#version=5,0,1,6" 
+
+主密钥:[固定,不能改变]
+------------------------------------------------------
+<param name="MakerCaption" value="广州宏天软件有限公司">
+<param name="MakerKey" value="CF4960BFDB79D36ADDC5493B116D39D6A4E335D9">
+
+标题密钥:[客户自定义名称,可以使用随产品发布的工具软件genKeyExtend.exe产生],比如:
+------------------------------------------------------
+<param name="ProductCaption" value="广州宏天软件有限公司某某测试用户">
+<param name="ProductKey" value="68E8123D65E916BDC49017A32168CFD93CC114AD">
+
+密钥使用方法:
+
+将以上两组,4行密钥,作为param增加到HTML网页的<object>标记中.比如：
+
+<object id="TANGER_OCX" classid="clsid:A39F1330-3322-4a1d-9BF0-0BA2BB90E970" 
+codebase="OfficeControl.cab#version=5,0,1,6" width="100%" height="500">
+......
+<param name="MakerCaption" value="广州宏天软件有限公司">
+<param name="MakerKey" value="CF4960BFDB79D36ADDC5493B116D39D6A4E335D9">
+<param name="ProductCaption" value="广州宏天软件有限公司某某测试用户"> 
+<param name="ProductKey" value="68E8123D65E916BDC49017A32168CFD93CC114AD">
+.....
+<SPAN STYLE="color:red">该网页需要控件浏览.浏览器无法装载所需要的文档控件.请检查浏览器选项中的安全设置.</SPAN>
+</object>
+
+******************************************************
+  有关在C/S环境开发的说明:
+******************************************************
+
+如果您正在开发C/S程序如VB,Delphi,或C# Winform程序[PB及VC需要单独的控件版本],
+您需要在开发工具中引入控件,并通过界面设定其对应的MakerCaption,MakerKey,
+ProductCaption,ProductKey属性.您也可以通过程序设定上述属性.
+
+另外,对于某些开发工具,如果出现因为窗口切换带来的问题,您需要接管/处理
+WM_ACTIVATEAPP或者WM_ACTIVATE消息,并在应用或者窗口非激活时调用控件的
+Activate(false)方法.

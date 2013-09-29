@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.action.extension" value="do" />
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.ui.theme" value="xhtml"/>
+	<!-- 
+	<package name="*" extends="struts-default" namespace="*">
+		<global-results>
+			<result name="input">/error.jsp </result>
+		</global-results>
+	</package>
+	<constant name="struts.custom.i18n.resources" value="conf/message" />
+	 -->
+
+	<package name="system" extends="struts-default" namespace="/system">
+		<action name="*RelativeUser" class="RelativeUserAction" method="{1}">
+			<result>${successResultValue}</result>
+		</action>
+		<action name="*RelativeJob" class="RelativeJobAction" method="{1}">
+			<result>${successResultValue}</result>
+		</action>
+		<action name="fileAttachDetail" class="FileAttachDetailAction" >
+			<result>/pages/system/fileUploadImageDetailView.jsp</result>
+		</action>
+	    <action name="*AppUser" class="AppUserAction" method="{1}">
+			<result>${successResultValue}</result>
+		</action>
+		<action name="grantXmlAppRole" class="AppRoleAction" method="grantXml">
+			<result>/jsonXml.jsp</result>
+		</action>
+		<action name="*AppRole" class="AppRoleAction" method="{1}">
+			<result>${successResultValue}</result>
+		</action>
+		<action name="*Department" class="DepartmentAction" method="{1}">
+	    	<result>${successResultValue}</result>
+	    </action>    
+	    <action name="*FileAttach" class="FileAttachAction" method="{1}">
+	    	<result>${successResultValue}</result>
+	    </action>
+	    <action name="*Company" class="CompanyAction" method="{1}">
+	    	<result>${successResultValue}</result>
+	    </action>
+	   
+	    <action name="*ReportTemplate" class="ReportTemplateAction" method="{1}">
+	    	<result>${successResultValue}</result>
+	    </action>
+	    <action name="*ReportParam" class="ReportParamAction" method="{1}">
+	    	<result>${successResultValue}</result>
+	    </action>
+	   
+	    <action name="*SysConfig" class="SysConfigAction" method="{1}">
+	        <result>${successResultValue}</result>
+	    </action>
+	    <action name="*Dictionary" class="DictionaryAction" method="{1}">
+	        <result>${successResultValue}</result>
+	    </action>
+	    <action name="*IndexDisplay" class="IndexDisplayAction" method="{1}">
+	         <result>${successResultValue}</result>
+	    </action>
+	    <action name="*SystemLog" class="SystemLogAction" method="{1}">
+	        <result>${successResultValue}</result>
+	    </action>
+	    <action name="*GlobalType" class="GlobalTypeAction" method="{1}">
+			<result>${successResultValue}</result>
+		</action>
+		<action name="*TypeKey" class="TypeKeyAction" method="{1}">
+			<result>${successResultValue}</result>
+		</action>
+		
+		<action name="*OutMailSet" class="OutMailSetAction" method="{1}">
+			<result>${successResultValue}</result>
+		</action>
+		
+		<action name="*Demension" class="DemensionAction" method="{1}">
+			<result>${successResultValue}</result>
+		</action>
+		<action name="*Organization" class="OrganizationAction" method="{1}">
+			<result>${successResultValue}</result>
+			<result name="detail">/pages/system/organizationDetail.jsp</result>
+		</action>
+		<action name="*UserOrg" class="UserOrgAction" method="{1}">
+			<result>${successResultValue}</result>
+		</action>
+		<action name="*UserPosition" class="UserPositionAction" method="{1}">
+			<result>${successResultValue}</result>
+		</action>
+		<action name="*Position" class="PositionAction" method="{1}">
+			<result>${successResultValue}</result>
+			<result name="detail">/pages/system/positionDetail.jsp</result>
+		</action>
+		
+	</package>	
+	<package name="communicate" extends="struts-default" namespace="/communicate">
+	    <action name="*PhoneGroup" class="PhoneGroupAction" method="{1}">
+	    	<result>${successResultValue}</result>
+	    </action>
+	    <action name="*PhoneBook" class="PhoneBookAction" method="{1}">
+	    	<result>${successResultValue}</result>
+	    	<result name="detail">/pages/phonebook/PhoneBook.jsp</result>
+	    </action>
+	    <action name="*MailFolder" class="MailFolderAction" method="{1}">
+	    	<result>${successResultValue}</result>
+	    </action>
+	    <action name="*Mail" class="MailAction" method="{1}">
+	    	<result>${successResultValue}</result>
+	    	<result name="detail">/pages/mail/mail.jsp</result>
+	    	<result name="display">/pages/indexpages/mailListPage.jsp</result>
+	    </action>
+	    
+	    <action name="*OutMailUserSeting" class="OutMailUserSetingAction" method="{1}">
+	    	<result>${successResultValue}</result>
+	    </action>
+	    
+	    <action name="*OutMailFolder_" class="OutMailFolderAction" method="{1}">
+	    	<result>${successResultValue}</result>
+	    </action>
+	    
+	    <action name="*OutMail_" class="OutMailAction" method="{1}">
+	    	<result>${successResultValue}</result>
+	    	<result name="detail">/pages/outmail/outmail.jsp</result>
+	    </action>
+	    
+	    <action name="*SmsMobile" class="SmsMobileAction" method="{1}">
+	    	<result>${successResultValue}</result>
+	    </action>
+	    <action name="*SmsHistory" class="SmsHistoryAction" method="{1}">
+	    	<result>${successResultValue}</result>
+	    </action>
+	</package>
+	<package name="info" extends="struts-default" namespace="/info">
+	    <action name="*News" class="NewsAction" method="{1}">
+			<result>${successResultValue}</result>
+			<result name="display">/pages/indexpages/newsListPage.jsp</result>
+			<result name="image">/pages/indexpages/deskNewsListPage.jsp</result>
+		</action>
+		<action name="*ShortMessage" class="ShortMessageAction" method="{1}">
+			<result>${successResultValue}</result>
+		</action>
+		<action name="*InMessage" class="InMessageAction" method="{1}">
+			<result>${successResultValue}</result>
+			<result name="display">/pages/indexpages/messageListPage.jsp</result>
+			<result name="detail">/pages/info/messagedetail.jsp</result>
+		</action>
+		<action name="*NewsComment" class="NewsCommentAction" method="{1}">
+			<result>${successResultValue}</result>
+		</action>
+		<action name="*AppTips" class="AppTipsAction" method="{1}">
+			<result>${successResultValue}</result>
+		</action>
+		<action name="*Section" class="SectionAction" method="{1}">
+			<result>${successResultValue}</result>
+		</action>
+		<action name="jforum" class="JforumAction">
+		    <result>/pages/info/jforum.jsp</result>
+		</action> 
+	</package>
+
+	<package name="document" extends="struts-default" namespace="/document">
+		<action name="*DocFolder" class="DocFolderAction" method="{1}">
+			<result>${successResultValue}</result>
+		</action>
+		<action name="*Document" class="DocumentAction" method="{1}">
+			<result>${successResultValue}</result>
+			<result name="detail">/pages/document/DocumentShared.jsp</result>
+			<result name="publicDetail">/pages/document/PublicDocument.jsp</result>
+			<result name="display">/pages/indexpages/documentListPage.jsp</result>
+		</action>
+		<action name="*DocPrivilege" class="DocPrivilegeAction" method="{1}">
+		   <result>${successResultValue}</result>
+		</action>
+		<action name="*PaintTemplate" class="PaintTemplateAction" method="{1}">
+			<result>${successResultValue}</result>
+		</action>
+		<action name="*Seal" class="SealAction" method="{1}">
+			<result>${successResultValue}</result>
+		</action>
+	</package>
+	
+	<package name="flow" extends="struts-default" namespace="/flow">
+		<action name="*ProType" class="ProTypeAction" method="{1}">
+			<result>${successResultValue}</result>
+		</action>
+		<action name="*ProDefinition" class="ProDefinitionAction" method="{1}">
+			<result>${successResultValue}</result>
+		</action>
+		<action name="*ProUserAssign" class="ProUserAssignAction" method="{1}">
+			<result>${successResultValue}</result>
+		</action>
+		<action name="*ProcessActivity" class="ProcessActivityAction" method="{1}">
+			<result>${successResultValue}</result>
+			<result name="formHtml">/pages/flow/formHtml.jsp</result>
+			<result name="formExt">/pages/flow/formExt.jsp</result>
+			<result name="formUrl">/pages/flow/formUrl.jsp</result>
+			<result name="signList">/pages/flow/signList.jsp</result>
+		</action>
+		<action name="*ProcessRun" class="ProcessRunAction" method="{1}">
+			<result>${successResultValue}</result>
+		</action>
+		<action name="*FormDef" class="FormDefAction" method="{1}">
+			<result>${successResultValue}</result>
+		</action>
+		<action name="*Task" class="TaskAction" method="{1}">
+			<result>${successResultValue}</result>
+			<result name="display">/pages/indexpages/taskListPage.jsp</result>
+		</action>
+		<action name="processRunDetail" class="ProcessRunDetailAction">
+			<result>/pages/flow/processRunDetail.jsp</result>
+		</action>
+		<action name="processDetail" class="ProcessDetailAction">
+			<result>/pages/flow/processDetail.jsp</result>
+		</action>
+		<action name="*FormField" class="FormFieldAction" method="{1}">
+			<result>${successResultValue}</result>
+		</action>
+		<action name="*ProDefRights" class="ProDefRightsAction" method="{1}">
+			<result>${successResultValue}</result>
+		</action>
+		<action name="*FormTable" class="FormTableAction" method="{1}">
+			<result>${successResultValue}</result>
+		</action>
+		<action name="*FieldRights" class="FieldRightsAction" method="{1}">
+			<result>${successResultValue}</result>
+		</action>
+		<action name="*FlowFormQuery" class="FlowFormQueryAction" method="{1}">
+			<result>${successResultValue}</result>
+		</action>
+		<action name="*TaskSign" class="TaskSignAction" method="{1}">
+			<result>${successResultValue}</result>
+		</action>
+		<action name="*FormTemplate" class="FormTemplateAction" method="{1}">
+			<result>${successResultValue}</result>
+		</action>
+		<!-- start:  Generated for ProcessModule From Template: struts-ent.xml.vm  -->
+			<action name="*ProcessModule" class="ProcessModuleAction" method="{1}">
+				<result>${successResultValue}</result>
+			</action>
+		<!-- end:  Generated for ProcessModule From Template: struts-ent.xml.vm  -->
+		<action name="*ProHandleComp" class="ProHandleCompAction" method="{1}">
+			<result>${successResultValue}</result>
+		</action>
+	</package>
+	
+	
+	<package name="mobile" extends="struts-default" namespace="/mobile">
+		<action name="signIn" class="SignInAction">
+			<result type="redirect">/mobile/index.do</result>
+			<result name="input">/mobile/login.jsp</result>
+		</action>
+		<action name="index" class="IndexPageAction">
+			<result>/mobile/index.jsp</result>
+		</action>
+		
+		<action name="*MobileTask" class="MobileTaskAction" method="{1}">
+			<result>/mobile/flow/myTask.jsp</result>
+			<result name="next" type="velocity">/mobile/flow/FlowForm/${vmPath}.vm</result>
+			<result name="start" type="velocity">/mobile/flow/FlowForm/${vmPath}.vm</result>
+			<result name="list" type="redirect">/mobile/listMobileTask.do</result>
+		</action>
+		
+		<action name="*MobileProDef" class="MobileProDefAction" method="{1}">
+			<result>/mobile/flow/flowDefs.jsp</result>
+		</action>
+		
+	</package>
+	
+	<package name="menu" extends="struts-default" namespace="/menu">
+		<action name="*Menu" class="MenuAction" method="{1}">
+			<result>${successResultValue}</result>
+		</action>
+		<action name="*Icon" class="IconAction" method="{1}">
+			<result>${successResultValue}</result>
+		</action>
+	</package>
+	<package name="bpm" extends="struts-default" namespace="/bpm">
+		<action name="*BpmXML" class="BpmXMLAction" method="{1}">
+			<result>${successResultValue}</result>
+		</action>
+		<action name="bpmDesign" class="BpmDesignAction">
+			<result>/pages/bpm/bpmeditor.jsp</result>
+		</action>
+	</package>
+ 	<package name="default" extends="struts-default">
+		<default-action-ref name="defaultAction"/>
+		<action name="defaultAction" class="BaseAction">  
+		    <result>${successResultValue}</result>
+		</action>
+	</package>
+	<package name="iText" extends="struts-default" namespace="/iText">
+		<action name="flexPaper" class="FlexPaperAction">
+			<result>/pages/iText/flexPaper.jsp</result>
+		</action>
+	</package>
+	<package name="/" extends="struts-default" namespace="/">
+		<action name="login" class="LoginAction" method="login">
+			<result>${successResultValue}</result>
+		</action>
+		<action name="checkIn" class="AppUserAction" method="checkIn">
+			<result>${successResultValue}</result>
+		</action>
+		<action name="modelsMenu" class="MenuAction" method="models">
+			<result>${successResultValue}</result>
+		</action>
+		<action name="itemsMenu" class="MenuAction" method="items">
+			<result>/jsonXml.jsp</result>
+		</action>
+		<action name="panelTreeMenu" class="MenuAction" method="panelTree">
+			<result>${successResultValue}</result>
+		</action>
+		<action name="check" class="LoginAction" method="check">
+			<result>${successResultValue}</result>
+		</action>
+		<action name="fileDetail" class="FileDetailAction">
+			<result>/pages/document/fileDetail.jsp</result>
+		</action>
+	</package>
+</struts>
+
+		

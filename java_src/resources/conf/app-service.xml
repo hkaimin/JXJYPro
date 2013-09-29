@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd 
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+   	
+	<aop:aspectj-autoproxy/> 
+	<context:annotation-config/>
+   	
+	<context:component-scan base-package="com.htsoft.est.service"/>
+
+	<tx:annotation-driven transaction-manager="txManager"/>
+    
+	<bean id="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<aop:config>
+		<aop:pointcut id="servicePointCut" expression="execution(* com.htsoft.est.service..*(..))"/>
+		<aop:pointcut id="servicePointCut2" expression="execution(* com.htsoft.core.service..*(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="servicePointCut"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="servicePointCut2"/>
+	</aop:config>
+	
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="get*" read-only="true"/>
+			<tx:method name="is*" read-only="true"/>
+			<tx:method name="find*" read-only="true"/>
+			<tx:method name="*"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	<bean id="jbpmService" class="com.htsoft.est.service.flow.impl.JbpmServiceImpl"/>
+	
+	<bean id="flowFormService" class="com.htsoft.est.service.flow.impl.FlowFormServiceImpl"/>
+	
+	<bean id="processService" class="com.htsoft.est.service.flow.impl.ProcessServiceImpl"/>
+	
+	<!-- add the bean you define here -->
+
+	<bean id="appUserService" class="com.htsoft.est.service.system.impl.AppUserServiceImpl">
+		<constructor-arg index="0" ref="appUserDao"/>
+	</bean>
+  
+	<bean id="appRoleService" class="com.htsoft.est.service.system.impl.AppRoleServiceImpl">
+		<constructor-arg index="0" ref="appRoleDao"/>
+	</bean>
+   	 
+	<bean id="departmentService" class="com.htsoft.est.service.system.impl.DepartmentServiceImpl">
+		<constructor-arg index="0" ref="departmentDao"/>  
+	</bean>
+   	 
+	<bean id="companyService" class="com.htsoft.est.service.system.impl.CompanyServiceImpl">
+		<constructor-arg index="0" ref="companyDao"/>   	 	
+	</bean>
+	<bean id="shortMessageService" class="com.htsoft.est.service.info.impl.ShortMessageServiceImpl">
+		<constructor-arg index="0" ref="shortMessageDao"/>   	 	
+	</bean>
+	<bean id="inMessageService" class="com.htsoft.est.service.info.impl.InMessageServiceImpl">
+		<constructor-arg index="0" ref="inMessageDao"/>
+	</bean>
+
+
+	<!-- start:  Generated for FileAttach From Template: app-service.xml.beansvm  -->
+	<bean id="fileAttachService" class="com.htsoft.est.service.system.impl.FileAttachServiceImpl">
+		<constructor-arg index="0" ref="fileAttachDao"/>
+	</bean>
+	<!-- end:  Generated for FileAttach From Template: app-service.xml.beansvm  -->
+	<!-- start:  Generated for ReportTemplate From Template: app-service.xml.beansvm  -->
+	<bean id="reportTemplateService" class="com.htsoft.est.service.system.impl.ReportTemplateServiceImpl">
+		<constructor-arg index="0" ref="reportTemplateDao"/>
+	</bean>
+	<!-- end:  Generated for ReportTemplate From Template: app-service.xml.beansvm  -->
+	<!-- start:  Generated for DocFolder From Template: app-service.xml.beansvm  -->
+	<bean id="docFolderService" class="com.htsoft.est.service.document.impl.DocFolderServiceImpl">
+		<constructor-arg index="0" ref="docFolderDao"/>
+	</bean>
+	<!-- end:  Generated for DocFolder From Template: app-service.xml.beansvm  -->
+	<!-- start:  Generated for Document From Template: app-service.xml.beansvm  -->
+	<bean id="documentService" class="com.htsoft.est.service.document.impl.DocumentServiceImpl">
+		<constructor-arg index="0" ref="documentDao"/>
+	</bean>
+	<!-- end:  Generated for Document From Template: app-service.xml.beansvm  -->
+	<!-- start:  Generated for News From Template: app-service.xml.beansvm  -->
+	<bean id="newsService" class="com.htsoft.est.service.info.impl.NewsServiceImpl">
+		<constructor-arg index="0" ref="newsDao"/>
+	</bean>
+	<!-- end:  Generated for News From Template: app-service.xml.beansvm  -->
+	<!-- start:  Generated for MailFolder From Template: app-service.xml.beansvm  -->
+	<bean id="mailFolderService" class="com.htsoft.est.service.communicate.impl.MailFolderServiceImpl">
+		<constructor-arg index="0" ref="mailFolderDao"/>
+	</bean>
+	<!-- end:  Generated for MailFolder From Template: app-service.xml.beansvm  -->
+	<!-- start:  Generated for Mail From Template: app-service.xml.beansvm  -->
+	<bean id="mailService" class="com.htsoft.est.service.communicate.impl.MailServiceImpl">
+		<constructor-arg index="0" ref="mailDao"/>
+	</bean>
+	<!-- end:  Generated for Mail From Template: app-service.xml.beansvm  -->
+	<!-- start:  Generated for MailBox From Template: app-service.xml.beansvm  -->
+	<bean id="mailBoxService" class="com.htsoft.est.service.communicate.impl.MailBoxServiceImpl">
+		<constructor-arg index="0" ref="mailBoxDao"/>
+	</bean>
+	<!-- end:  Generated for MailBox From Template: app-service.xml.beansvm  -->
+
+	<!-- start:  Generated for PhoneBook From Template: app-service.xml.beansvm  -->
+	<bean id="phoneBookService" class="com.htsoft.est.service.communicate.impl.PhoneBookServiceImpl">
+		<constructor-arg index="0" ref="phoneBookDao"/>
+	</bean>
+	<!-- end:  Generated for PhoneBook From Template: app-service.xml.beansvm  -->
+	<!-- start:  Generated for PhoneGroup From Template: app-service.xml.beansvm  -->
+	<bean id="phoneGroupService" class="com.htsoft.est.service.communicate.impl.PhoneGroupServiceImpl">
+		<constructor-arg index="0" ref="phoneGroupDao"/>
+	</bean>
+	<!-- end:  Generated for PhoneGroup From Template: app-service.xml.beansvm  -->
+	<!-- start:  Generated for DocPrivilege From Template: app-service.xml.beansvm  -->
+	<bean id="docPrivilegeService" class="com.htsoft.est.service.document.impl.DocPrivilegeServiceImpl">
+		<constructor-arg index="0" ref="docPrivilegeDao"/>
+	</bean>
+	<!-- end:  Generated for DocPrivilege From Template: app-service.xml.beansvm  -->
+	<!-- start:  Generated for ProType From Template: app-service.xml.beansvm  -->
+	<bean id="proTypeService" class="com.htsoft.est.service.flow.impl.ProTypeServiceImpl">
+		<constructor-arg index="0" ref="proTypeDao"/>
+	</bean>
+	<!-- end:  Generated for ProType From Template: app-service.xml.beansvm  -->
+	<!-- start:  Generated for ProDefinition From Template: app-service.xml.beansvm  -->
+	<bean id="proDefinitionService" class="com.htsoft.est.service.flow.impl.ProDefinitionServiceImpl">
+		<constructor-arg index="0" ref="proDefinitionDao"/>
+	</bean>
+	<!-- end:  Generated for ProDefinition From Template: app-service.xml.beansvm  -->
+	<!-- start:  Generated for ProUserAssign From Template: app-service.xml.beansvm  -->
+	<bean id="proUserAssignService" class="com.htsoft.est.service.flow.impl.ProUserAssignServiceImpl">
+		<constructor-arg index="0" ref="proUserAssignDao"/>
+	</bean>
+	<!-- end:  Generated for ProUserAssign From Template: app-service.xml.beansvm  -->
+	<!-- start:  Generated for ProcessRun From Template: app-service.xml.beansvm  -->
+	<bean id="processRunService" class="com.htsoft.est.service.flow.impl.ProcessRunServiceImpl">
+		<constructor-arg index="0" ref="processRunDao"/>
+	</bean>
+	<!-- end:  Generated for ProcessRun From Template: app-service.xml.beansvm  -->
+	<!-- start:  Generated for RunData From Template: app-service.xml.beansvm  -->
+	<bean id="runDataService" class="com.htsoft.est.service.flow.impl.RunDataServiceImpl">
+		<constructor-arg index="0" ref="runDataDao"/>
+	</bean>
+	<!-- end:  Generated for RunData From Template: app-service.xml.beansvm  -->
+	<!-- start:  Generated for ProcessForm From Template: app-service.xml.beansvm  -->
+	<bean id="processFormService" class="com.htsoft.est.service.flow.impl.ProcessFormServiceImpl">
+		<constructor-arg index="0" ref="processFormDao"/>
+	</bean>
+	<!-- end:  Generated for ProcessForm From Template: app-service.xml.beansvm  -->
+
+	<bean id="flowTaskService" class="com.htsoft.est.service.flow.impl.TaskServiceImpl">
+		<constructor-arg index="0" ref="taskDao"/>
+	</bean>
+
+	<!-- start:  Generated for AppFunction From Template: app-service.xml.beansvm  -->
+	<bean id="appFunctionService" class="com.htsoft.est.service.system.impl.AppFunctionServiceImpl">
+		<constructor-arg index="0" ref="appFunctionDao"/>
+	</bean>
+	<!-- end:  Generated for AppFunction From Template: app-service.xml.beansvm  -->
+	<!-- start:  Generated for FunUrl From Template: app-service.xml.beansvm  -->
+	<bean id="funUrlService" class="com.htsoft.est.service.system.impl.FunUrlServiceImpl">
+		<constructor-arg index="0" ref="funUrlDao"/>
+	</bean>
+	<!-- end:  Generated for FunUrl From Template: app-service.xml.beansvm  -->
+
+	<!-- start:  Generated for SysConfig From Template: app-service.xml.beansvm  -->
+	<bean id="sysConfigService" class="com.htsoft.est.service.system.impl.SysConfigServiceImpl">
+		<constructor-arg index="0" ref="sysConfigDao"/>
+	</bean>
+	<!-- end:  Generated for SysConfig From Template: app-service.xml.beansvm  -->
+	<!-- start:  Generated for NewsComment From Template: app-service.xml.beansvm  -->
+	<bean id="newsCommentService" class="com.htsoft.est.service.info.impl.NewsCommentServiceImpl">
+		<constructor-arg index="0" ref="newsCommentDao"/>
+	</bean>
+	<!-- end:  Generated for NewsComment From Template: app-service.xml.beansvm  -->
+	<!-- start:  Generated for ReportParam From Template: app-service.xml.beansvm  -->
+	<bean id="reportParamService" class="com.htsoft.est.service.system.impl.ReportParamServiceImpl">
+		<constructor-arg index="0" ref="reportParamDao"/>
+	</bean>
+	<!-- end:  Generated for ReportParam From Template: app-service.xml.beansvm  -->
+
+	<!-- start:  Generated for Dictionary From Template: app-service.xml.beansvm  -->
+	<bean id="dictionaryService" class="com.htsoft.est.service.system.impl.DictionaryServiceImpl">
+		<constructor-arg index="0" ref="dictionaryDao"/>
+	</bean>
+	<!-- end:  Generated for Dictionary From Template: app-service.xml.beansvm  -->
+
+	<!-- start:  Generated for FormDef From Template: app-service.xml.beansvm  -->
+	<bean id="formDefService" class="com.htsoft.est.service.flow.impl.FormDefServiceImpl">
+		<constructor-arg index="0" ref="formDefDao"/>
+	</bean>
+	<!-- end:  Generated for FormDef From Template: app-service.xml.beansvm  -->
+
+	<!-- start:  Generated for IndexDisplay From Template: app-service.xml.beansvm  -->
+	<bean id="indexDisplayService" class="com.htsoft.est.service.system.impl.IndexDisplayServiceImpl">
+		<constructor-arg index="0" ref="indexDisplayDao"/>
+	</bean>
+	<!-- end:  Generated for IndexDisplay From Template: app-service.xml.beansvm  -->
+	<!-- start:  Generated for SystemLog From Template: app-service.xml.beansvm  -->
+	<bean id="systemLogService" class="com.htsoft.est.service.system.impl.SystemLogServiceImpl">
+		<constructor-arg index="0" ref="systemLogDao"/>
+	</bean>
+	<!-- end:  Generated for SystemLog From Template: app-service.xml.beansvm  -->
+	<bean id="appTipsService" class="com.htsoft.est.service.info.impl.AppTipsServiceImpl">
+		<constructor-arg index="0" ref="appTipsDao"/>
+	</bean>
+     
+	<!-- start:  Generated for OutMailUserSeting From Template: app-service.xml.beansvm  -->
+	<bean id="outMailUserSetingService" class="com.htsoft.est.service.communicate.impl.OutMailUserSetingServiceImpl">
+		<constructor-arg index="0" ref="outMailUserSetingDao"/>
+	</bean>
+	<!-- end:  Generated for OutMailUserSeting From Template: app-service.xml.beansvm  -->
+	<!-- start:  Generated for OutMail From Template: app-service.xml.beansvm  -->
+	<bean id="outMailService" class="com.htsoft.est.service.communicate.impl.OutMailServiceImpl">
+		<constructor-arg index="0" ref="outMailDao"/>
+	</bean>
+	<!-- end:  Generated for OutMail From Template: app-service.xml.beansvm  -->
+	<!-- start:  Generated for OutMailFolder From Template: app-service.xml.beansvm  -->
+	<bean id="outMailFolderService" class="com.htsoft.est.service.communicate.impl.OutMailFolderServiceImpl">
+		<constructor-arg index="0" ref="outMailFolderDao"/>
+	</bean>
+	<!-- end:  Generated for OutMailFolder From Template: app-service.xml.beansvm  -->
+	<!-- start:  Generated for SmsMobile From Template: app-service.xml.beansvm  -->
+	<bean id="smsMobileService" class="com.htsoft.est.service.communicate.impl.SmsMobileServiceImpl">
+		<constructor-arg index="0" ref="smsMobileDao"/>
+	</bean>
+	<!-- end:  Generated for SmsMobile From Template: app-service.xml.beansvm  -->
+	<!-- start:  Generated for SmsHistory From Template: app-service.xml.beansvm  -->
+	<bean id="smsHistoryService" class="com.htsoft.est.service.communicate.impl.SmsHistoryServiceImpl">
+		<constructor-arg index="0" ref="smsHistoryDao"/>
+	</bean>
+	<!-- end:  Generated for SmsHistory From Template: app-service.xml.beansvm  -->
+	<!-- start:  Generated for GlobalType From Template: app-service.xml.beansvm  -->
+	<bean id="globalTypeService" class="com.htsoft.est.service.system.impl.GlobalTypeServiceImpl">
+		<constructor-arg index="0" ref="globalTypeDao"/>
+	</bean>
+	<!-- end:  Generated for GlobalType From Template: app-service.xml.beansvm  -->
+	<!-- start:  Generated for TypeKey From Template: app-service.xml.beansvm  -->
+	<bean id="typeKeyService" class="com.htsoft.est.service.system.impl.TypeKeyServiceImpl">
+		<constructor-arg index="0" ref="typeKeyDao"/>
+	</bean>
+	<!-- end:  Generated for TypeKey From Template: app-service.xml.beansvm  -->
+
+	<!-- start:  Generated for PaintTemplate From Template: app-service.xml.beansvm  -->
+	<bean id="paintTemplateService" class="com.htsoft.est.service.document.impl.PaintTemplateServiceImpl">
+		<constructor-arg index="0" ref="paintTemplateDao"/>
+	</bean>
+	<!-- end:  Generated for PaintTemplate From Template: app-service.xml.beansvm  -->
+	<!-- start:  Generated for Seal From Template: app-service.xml.beansvm  -->
+	<bean id="sealService" class="com.htsoft.est.service.document.impl.SealServiceImpl">
+		<constructor-arg index="0" ref="sealDao"/>
+	</bean>
+	<!-- end:  Generated for Seal From Template: app-service.xml.beansvm  -->
+	<!-- start:  Generated for Section From Template: app-service.xml.beansvm  -->
+	<bean id="sectionService" class="com.htsoft.est.service.info.impl.SectionServiceImpl">
+		<constructor-arg index="0" ref="sectionDao"/>
+	</bean>
+	<!-- end:  Generated for Section From Template: app-service.xml.beansvm  -->
+
+	<!-- start:  Generated for FormTable From Template: app-service.xml.beansvm  -->
+	<bean id="formTableService" class="com.htsoft.est.service.flow.impl.FormTableServiceImpl">
+		<constructor-arg index="0" ref="formTableDao"/>
+	</bean>
+	<!-- end:  Generated for FormTable From Template: app-service.xml.beansvm  -->
+	<!-- start:  Generated for FormField From Template: app-service.xml.beansvm  -->
+	<bean id="formFieldService" class="com.htsoft.est.service.flow.impl.FormFieldServiceImpl">
+		<constructor-arg index="0" ref="formFieldDao"/>
+	</bean>
+	<!-- end:  Generated for FormField From Template: app-service.xml.beansvm  -->
+	<!-- start:  Generated for ProDefRights From Template: app-service.xml.beansvm  -->
+	<bean id="proDefRightsService" class="com.htsoft.est.service.flow.impl.ProDefRightsServiceImpl">
+		<constructor-arg index="0" ref="proDefRightsDao"/>
+	</bean>
+	<!-- end:  Generated for ProDefRights From Template: app-service.xml.beansvm  -->
+	<!-- start:  Generated for RelativeJob From Template: app-service.xml.beansvm  -->
+	<bean id="relativeJobService" class="com.htsoft.est.service.system.impl.RelativeJobServiceImpl">
+		<constructor-arg index="0" ref="relativeJobDao"/>
+	</bean>
+	<!-- end:  Generated for RelativeJob From Template: app-service.xml.beansvm  -->
+	<!-- start:  Generated for RelativeUser From Template: app-service.xml.beansvm  -->
+	<bean id="relativeUserService" class="com.htsoft.est.service.system.impl.RelativeUserServiceImpl">
+		<constructor-arg index="0" ref="relativeUserDao"/>
+	</bean>
+	<!-- end:  Generated for RelativeUser From Template: app-service.xml.beansvm  -->
+	<bean id="formTableGenService" class="com.htsoft.est.service.flow.impl.FormTableGenServiceImpl">
+		<constructor-arg index="0" ref="formTableDao"/>
+		<property name="velocityEngine" ref="velocityEngine"/>
+		<property name="hibernateDialect" value="${hibernate.dialect}"/>
+	</bean>
+	<!-- start:  Generated for FormDefMapping From Template: app-service.xml.beansvm  -->
+	<bean id="formDefMappingService" class="com.htsoft.est.service.flow.impl.FormDefMappingServiceImpl">
+		<constructor-arg index="0" ref="formDefMappingDao"/>
+	</bean>
+	<!-- end:  Generated for FormDefMapping From Template: app-service.xml.beansvm  -->
+	<!-- start:  Generated for FieldRights From Template: app-service.xml.beansvm  -->
+	<bean id="fieldRightsService" class="com.htsoft.est.service.flow.impl.FieldRightsServiceImpl">
+		<constructor-arg index="0" ref="fieldRightsDao"/>
+	</bean>
+	<!-- end:  Generated for FieldRights From Template: app-service.xml.beansvm  -->
+
+	<!-- start:  Generated for TaskSign From Template: app-service.xml.beansvm  -->
+	<bean id="taskSignService" class="com.htsoft.est.service.flow.impl.TaskSignServiceImpl">
+		<constructor-arg index="0" ref="taskSignDao"/>
+	</bean>
+	<!-- end:  Generated for TaskSign From Template: app-service.xml.beansvm  -->
+
+
+	<!-- start:  Generated for TaskSignData From Template: app-service.xml.beansvm  -->
+	<bean id="taskSignDataService" class="com.htsoft.est.service.flow.impl.TaskSignDataServiceImpl">
+		<constructor-arg index="0" ref="taskSignDataDao"/>
+	</bean>
+	<!-- end:  Generated for TaskSignData From Template: app-service.xml.beansvm  -->
+	<!-- start:  Generated for FormTemplate From Template: app-service.xml.beansvm  -->
+	<bean id="formTemplateService" class="com.htsoft.est.service.flow.impl.FormTemplateServiceImpl">
+		<constructor-arg index="0" ref="formTemplateDao"/>
+	</bean>
+	<!-- end:  Generated for FormTemplate From Template: app-service.xml.beansvm  -->
+	
+	<bean id="historyTaskService" class="com.htsoft.est.service.flow.impl.HistoryTaskServiceImpl">
+   	 	<constructor-arg index="0" ref="historyTaskDao"/>
+   	</bean>
+	
+<!-- start:  Generated for ProcessModule From Template: app-service.xml.beansvm  -->
+	 <bean id="processModuleService" class="com.htsoft.est.service.flow.impl.ProcessModuleServiceImpl">
+   	 	<constructor-arg index="0" ref="processModuleDao"/>
+   	 </bean>
+<!-- end:  Generated for ProcessModule From Template: app-service.xml.beansvm  -->
+<!-- start:  Generated for ProHandleComp From Template: app-service.xml.beansvm  -->
+	 <bean id="proHandleCompService" class="com.htsoft.est.service.flow.impl.ProHandleCompServiceImpl">
+   	 	<constructor-arg index="0" ref="proHandleCompDao"/>
+   	 </bean>
+<!-- end:  Generated for ProHandleComp From Template: app-service.xml.beansvm  -->
+
+<!-- start:  Generated for Demension From Template: app-service.xml.beansvm  -->
+	 <bean id="demensionService" class="com.htsoft.est.service.system.impl.DemensionServiceImpl">
+   	 	<constructor-arg index="0" ref="demensionDao"/>
+   	 </bean>
+<!-- end:  Generated for Demension From Template: app-service.xml.beansvm  -->
+<!-- start:  Generated for Organization From Template: app-service.xml.beansvm  -->
+	 <bean id="organizationService" class="com.htsoft.est.service.system.impl.OrganizationServiceImpl">
+   	 	<constructor-arg index="0" ref="organizationDao"/>
+   	 </bean>
+<!-- end:  Generated for Organization From Template: app-service.xml.beansvm  -->
+<!-- start:  Generated for UserOrg From Template: app-service.xml.beansvm  -->
+	 <bean id="userOrgService" class="com.htsoft.est.service.system.impl.UserOrgServiceImpl">
+   	 	<constructor-arg index="0" ref="userOrgDao"/>
+   	 </bean>
+<!-- end:  Generated for UserOrg From Template: app-service.xml.beansvm  -->
+<!-- start:  Generated for Position From Template: app-service.xml.beansvm  -->
+	 <bean id="positionService" class="com.htsoft.est.service.system.impl.PositionServiceImpl">
+   	 	<constructor-arg index="0" ref="positionDao"/>
+   	 </bean>
+<!-- end:  Generated for Position From Template: app-service.xml.beansvm  -->
+<!-- start:  Generated for UserPosition From Template: app-service.xml.beansvm  -->
+	 <bean id="userPositionService" class="com.htsoft.est.service.system.impl.UserPositionServiceImpl">
+   	 	<constructor-arg index="0" ref="userPositionDao"/>
+   	 </bean>
+<!-- end:  Generated for UserPosition From Template: app-service.xml.beansvm  -->
+<!-- start:  Generated for PositionSub From Template: app-service.xml.beansvm  -->
+	 <bean id="positionSubService" class="com.htsoft.est.service.system.impl.PositionSubServiceImpl">
+   	 	<constructor-arg index="0" ref="positionSubDao"/>
+   	 </bean>
+<!-- end:  Generated for PositionSub From Template: app-service.xml.beansvm  -->
+</beans>

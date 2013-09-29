@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+	
+	<bean id="genericDao" abstract="true" class="com.htsoft.core.dao.impl.GenericDaoImpl">
+		<property name="jdbcTemplate" ref="jdbcTemplate"/>
+   		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+   	<bean id="baseDao" abstract="true" class="com.htsoft.core.dao.impl.BaseDaoImpl" parent="genericDao"/>
+   	<bean id="jbpmDao" class="com.htsoft.est.dao.flow.impl.JbpmDaoImpl"/>	
+	<bean id="appRoleDao" class="com.htsoft.est.dao.system.impl.AppRoleDaoImpl" parent="baseDao"/>
+    <bean id="companyDao" class="com.htsoft.est.dao.system.impl.CompanyDaoImpl" parent="baseDao"></bean>
+    <bean id="departmentDao" class="com.htsoft.est.dao.system.impl.DepartmentDaoImpl" parent="baseDao"/>
+    <bean id="shortMessageDao" class="com.htsoft.est.dao.info.impl.ShortMessageDaoImpl" parent="baseDao"/>
+    <bean id="inMessageDao" class="com.htsoft.est.dao.info.impl.InMessageDaoImpl" parent="baseDao"/>
+    
+<!-- start:  Generated for FileAttach From Template: app-dao.xml.beansvm  -->
+	<bean id="fileAttachDao" class="com.htsoft.est.dao.system.impl.FileAttachDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for FileAttach From Template: app-dao.xml.beansvm  -->
+
+<!-- start:  Generated for AppUser From Template: app-dao.xml.beansvm  -->
+	<bean id="appUserDao" class="com.htsoft.est.dao.system.impl.AppUserDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for AppUser From Template: app-dao.xml.beansvm  -->
+<!-- start:  Generated for ReportTemplate From Template: app-dao.xml.beansvm  -->
+	<bean id="reportTemplateDao" class="com.htsoft.est.dao.system.impl.ReportTemplateDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ReportTemplate From Template: app-dao.xml.beansvm  -->
+<!-- start:  Generated for DocFolder From Template: app-dao.xml.beansvm  -->
+	<bean id="docFolderDao" class="com.htsoft.est.dao.document.impl.DocFolderDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for DocFolder From Template: app-dao.xml.beansvm  -->
+<!-- start:  Generated for Document From Template: app-dao.xml.beansvm  -->
+	<bean id="documentDao" class="com.htsoft.est.dao.document.impl.DocumentDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for Document From Template: app-dao.xml.beansvm  -->
+<!-- start:  Generated for News From Template: app-dao.xml.beansvm  -->
+	<bean id="newsDao" class="com.htsoft.est.dao.info.impl.NewsDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for News From Template: app-dao.xml.beansvm  -->
+
+<!-- start:  Generated for MailFolder From Template: app-dao.xml.beansvm  -->
+	<bean id="mailFolderDao" class="com.htsoft.est.dao.communicate.impl.MailFolderDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for MailFolder From Template: app-dao.xml.beansvm  -->
+<!-- start:  Generated for Mail From Template: app-dao.xml.beansvm  -->
+	<bean id="mailDao" class="com.htsoft.est.dao.communicate.impl.MailDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for Mail From Template: app-dao.xml.beansvm  -->
+<!-- start:  Generated for MailBox From Template: app-dao.xml.beansvm  -->
+	<bean id="mailBoxDao" class="com.htsoft.est.dao.communicate.impl.MailBoxDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for MailBox From Template: app-dao.xml.beansvm  -->
+<!-- start:  Generated for PhoneBook From Template: app-dao.xml.beansvm  -->
+	<bean id="phoneBookDao" class="com.htsoft.est.dao.communicate.impl.PhoneBookDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for PhoneBook From Template: app-dao.xml.beansvm  -->
+<!-- start:  Generated for PhoneGroup From Template: app-dao.xml.beansvm  -->
+	<bean id="phoneGroupDao" class="com.htsoft.est.dao.communicate.impl.PhoneGroupDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for PhoneGroup From Template: app-dao.xml.beansvm  -->
+
+<!-- start:  Generated for ProType From Template: app-dao.xml.beansvm  -->
+	<bean id="proTypeDao" class="com.htsoft.est.dao.flow.impl.ProTypeDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ProType From Template: app-dao.xml.beansvm  -->
+<!-- start:  Generated for ProDefinition From Template: app-dao.xml.beansvm  -->
+	<bean id="proDefinitionDao" class="com.htsoft.est.dao.flow.impl.ProDefinitionDaoImpl" parent="baseDao">
+		<property name="querys">
+			<map>
+				<entry key="InstanceProcess"><value>select distinct pd from ProcessRun pr join pr.proDefinition pd  where pr.runStatus=? order by pd.defId desc</value></entry>
+			</map>
+		</property>
+	</bean>
+<!-- end:  Generated for ProDefinition From Template: app-dao.xml.beansvm  -->
+<!-- start:  Generated for ProUserAssign From Template: app-dao.xml.beansvm  -->
+	<bean id="proUserAssignDao" class="com.htsoft.est.dao.flow.impl.ProUserAssignDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ProUserAssign From Template: app-dao.xml.beansvm  -->
+<!-- start:  Generated for ProcessRun From Template: app-dao.xml.beansvm  -->
+	<bean id="processRunDao" class="com.htsoft.est.dao.flow.impl.ProcessRunDaoImpl" parent="baseDao">
+		<property name="querys">
+			<map>
+				<entry key="MyAttendProcessRun"><value>select distinct vo from ProcessRun as vo join vo.processForms as pf where pf.creatorId=? order by vo.createtime desc</value></entry>
+				<entry key="myRunning">
+					<value>
+						select distinct vo from ProcessRun as vo join vo.processForms as pf where pf.creatorId=? and vo.runStatus=? order by vo.createtime desc
+					</value>
+				</entry>
+			</map>
+		</property>
+	</bean>
+<!-- end:  Generated for ProcessRun From Template: app-dao.xml.beansvm  -->
+<!-- start:  Generated for RunData From Template: app-dao.xml.beansvm  -->
+	<bean id="runDataDao" class="com.htsoft.est.dao.flow.impl.RunDataDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for RunData From Template: app-dao.xml.beansvm  -->
+	<bean id="taskDao" class="com.htsoft.est.dao.flow.impl.TaskDaoImpl" parent="baseDao"/>
+<!-- start:  Generated for ProcessForm From Template: app-dao.xml.beansvm  -->
+	<bean id="processFormDao" class="com.htsoft.est.dao.flow.impl.ProcessFormDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ProcessForm From Template: app-dao.xml.beansvm  -->
+<!-- start:  Generated for DocPrivilege From Template: app-dao.xml.beansvm  -->
+	<bean id="docPrivilegeDao" class="com.htsoft.est.dao.document.impl.DocPrivilegeDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for DocPrivilege From Template: app-dao.xml.beansvm  -->
+
+<!-- start:  Generated for AppFunction From Template: app-dao.xml.beansvm  -->
+	<bean id="appFunctionDao" class="com.htsoft.est.dao.system.impl.AppFunctionDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for AppFunction From Template: app-dao.xml.beansvm  -->
+<!-- start:  Generated for FunUrl From Template: app-dao.xml.beansvm  -->
+	<bean id="funUrlDao" class="com.htsoft.est.dao.system.impl.FunUrlDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for FunUrl From Template: app-dao.xml.beansvm  -->
+<!-- start:  Generated for UserSub From Template: app-dao.xml.beansvm  -->
+	<bean id="userSubDao" class="com.htsoft.est.dao.system.impl.UserSubDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UserSub From Template: app-dao.xml.beansvm  -->
+<!-- start:  Generated for SysConfig From Template: app-dao.xml.beansvm  -->
+	<bean id="sysConfigDao" class="com.htsoft.est.dao.system.impl.SysConfigDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for SysConfig From Template: app-dao.xml.beansvm  -->
+<!-- start:  Generated for NewsComment From Template: app-dao.xml.beansvm  -->
+	<bean id="newsCommentDao" class="com.htsoft.est.dao.info.impl.NewsCommentDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for NewsComment From Template: app-dao.xml.beansvm  -->
+<!-- start:  Generated for ReportParam From Template: app-dao.xml.beansvm  -->
+	<bean id="reportParamDao" class="com.htsoft.est.dao.system.impl.ReportParamDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ReportParam From Template: app-dao.xml.beansvm  -->
+
+<!-- start:  Generated for Dictionary From Template: app-dao.xml.beansvm  -->
+	<bean id="dictionaryDao" class="com.htsoft.est.dao.system.impl.DictionaryDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for Dictionary From Template: app-dao.xml.beansvm  -->
+
+<!-- start:  Generated for FormDef From Template: app-dao.xml.beansvm  -->
+	<bean id="formDefDao" class="com.htsoft.est.dao.flow.impl.FormDefDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for FormDef From Template: app-dao.xml.beansvm  -->
+<!-- start:  Generated for IndexDisplay From Template: app-dao.xml.beansvm  -->
+	<bean id="indexDisplayDao" class="com.htsoft.est.dao.system.impl.IndexDisplayDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for IndexDisplay From Template: app-dao.xml.beansvm  -->
+<!-- start:  Generated for SystemLog From Template: app-dao.xml.beansvm  -->
+	<bean id="systemLogDao" class="com.htsoft.est.dao.system.impl.SystemLogDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for SystemLog From Template: app-dao.xml.beansvm  -->
+    <bean id="appTipsDao" class="com.htsoft.est.dao.info.impl.AppTipsDaoImpl" parent="baseDao"/>
+    
+<!-- start:  Generated for OutMailUserSeting From Template: app-dao.xml.beansvm  -->
+	<bean id="outMailUserSetingDao" class="com.htsoft.est.dao.communicate.impl.OutMailUserSetingDaoImpl" parent="baseDao">
+		<property name="querys">
+			<map>
+				<entry key="outMailSetting">
+					<value>select vo from OutMailUserSeting vo right join vo.appUser au where au.delFlag=0</value>  
+				</entry>
+			</map>
+		</property>	
+	</bean>
+<!-- end:  Generated for OutMailUserSeting From Template: app-dao.xml.beansvm  -->
+<!-- start:  Generated for OutMail From Template: app-dao.xml.beansvm  -->
+	<bean id="outMailDao" class="com.htsoft.est.dao.communicate.impl.OutMailDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for OutMail From Template: app-dao.xml.beansvm  -->
+<!-- start:  Generated for OutMailFolder From Template: app-dao.xml.beansvm  -->
+	<bean id="outMailFolderDao" class="com.htsoft.est.dao.communicate.impl.OutMailFolderDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for OutMailFolder From Template: app-dao.xml.beansvm  -->
+<!-- start:  Generated for SmsMobile From Template: app-dao.xml.beansvm  -->
+	<bean id="smsMobileDao" class="com.htsoft.est.dao.communicate.impl.SmsMobileDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for SmsMobile From Template: app-dao.xml.beansvm  -->
+<!-- start:  Generated for SmsHistory From Template: app-dao.xml.beansvm  -->
+	<bean id="smsHistoryDao" class="com.htsoft.est.dao.communicate.impl.SmsHistoryDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for SmsHistory From Template: app-dao.xml.beansvm  -->
+<!-- start:  Generated for GlobalType From Template: app-dao.xml.beansvm  -->
+	<bean id="globalTypeDao" class="com.htsoft.est.dao.system.impl.GlobalTypeDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for GlobalType From Template: app-dao.xml.beansvm  -->
+<!-- start:  Generated for TypeKey From Template: app-dao.xml.beansvm  -->
+	<bean id="typeKeyDao" class="com.htsoft.est.dao.system.impl.TypeKeyDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for TypeKey From Template: app-dao.xml.beansvm  -->
+
+<!-- start:  Generated for PaintTemplate From Template: app-dao.xml.beansvm  -->
+	<bean id="paintTemplateDao" class="com.htsoft.est.dao.document.impl.PaintTemplateDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for PaintTemplate From Template: app-dao.xml.beansvm  -->
+<!-- start:  Generated for Seal From Template: app-dao.xml.beansvm  -->
+	<bean id="sealDao" class="com.htsoft.est.dao.document.impl.SealDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for Seal From Template: app-dao.xml.beansvm  -->
+<!-- start:  Generated for Section From Template: app-dao.xml.beansvm  -->
+	<bean id="sectionDao" class="com.htsoft.est.dao.info.impl.SectionDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for Section From Template: app-dao.xml.beansvm  -->
+
+<!-- start:  Generated for FormTable From Template: app-dao.xml.beansvm  -->
+	<bean id="formTableDao" class="com.htsoft.est.dao.flow.impl.FormTableDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for FormTable From Template: app-dao.xml.beansvm  -->
+<!-- start:  Generated for FormField From Template: app-dao.xml.beansvm  -->
+	<bean id="formFieldDao" class="com.htsoft.est.dao.flow.impl.FormFieldDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for FormField From Template: app-dao.xml.beansvm  -->
+<!-- start:  Generated for ProDefRights From Template: app-dao.xml.beansvm  -->
+	<bean id="proDefRightsDao" class="com.htsoft.est.dao.flow.impl.ProDefRightsDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ProDefRights From Template: app-dao.xml.beansvm  -->
+<!-- start:  Generated for RelativeJob From Template: app-dao.xml.beansvm  -->
+	<bean id="relativeJobDao" class="com.htsoft.est.dao.system.impl.RelativeJobDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for RelativeJob From Template: app-dao.xml.beansvm  -->
+<!-- start:  Generated for RelativeUser From Template: app-dao.xml.beansvm  -->
+	<bean id="relativeUserDao" class="com.htsoft.est.dao.system.impl.RelativeUserDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for RelativeUser From Template: app-dao.xml.beansvm  -->
+<!-- start:  Generated for FormDefMapping From Template: app-dao.xml.beansvm  -->
+	<bean id="formDefMappingDao" class="com.htsoft.est.dao.flow.impl.FormDefMappingDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for FormDefMapping From Template: app-dao.xml.beansvm  -->
+<!-- start:  Generated for FieldRights From Template: app-dao.xml.beansvm  -->
+	<bean id="fieldRightsDao" class="com.htsoft.est.dao.flow.impl.FieldRightsDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for FieldRights From Template: app-dao.xml.beansvm  -->
+<!-- start:  Generated for TaskSign From Template: app-dao.xml.beansvm  -->
+	<bean id="taskSignDao" class="com.htsoft.est.dao.flow.impl.TaskSignDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for TaskSign From Template: app-dao.xml.beansvm  -->
+
+<!-- start:  Generated for TaskSignData From Template: app-dao.xml.beansvm  -->
+	<bean id="taskSignDataDao" class="com.htsoft.est.dao.flow.impl.TaskSignDataDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for TaskSignData From Template: app-dao.xml.beansvm  -->
+	<bean id="formTemplateDao" class="com.htsoft.est.dao.flow.impl.FormTemplateDaoImpl" parent="baseDao"/>
+
+	<bean id="historyTaskDao" class="com.htsoft.est.dao.flow.impl.HistoryTaskDaoImpl" parent="baseDao"/>
+
+<!-- start:  Generated for ProcessModule From Template: app-dao.xml.beansvm  -->
+	<bean id="processModuleDao" class="com.htsoft.est.dao.flow.impl.ProcessModuleDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ProcessModule From Template: app-dao.xml.beansvm  -->
+<!-- start:  Generated for ProHandleComp From Template: app-dao.xml.beansvm  -->
+	<bean id="proHandleCompDao" class="com.htsoft.est.dao.flow.impl.ProHandleCompDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ProHandleComp From Template: app-dao.xml.beansvm  -->
+
+<!-- start:  Generated for Demension From Template: app-dao.xml.beansvm  -->
+	<bean id="demensionDao" class="com.htsoft.est.dao.system.impl.DemensionDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for Demension From Template: app-dao.xml.beansvm  -->
+<!-- start:  Generated for Organization From Template: app-dao.xml.beansvm  -->
+	<bean id="organizationDao" class="com.htsoft.est.dao.system.impl.OrganizationDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for Organization From Template: app-dao.xml.beansvm  -->
+<!-- start:  Generated for UserOrg From Template: app-dao.xml.beansvm  -->
+	<bean id="userOrgDao" class="com.htsoft.est.dao.system.impl.UserOrgDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UserOrg From Template: app-dao.xml.beansvm  -->
+<!-- start:  Generated for Position From Template: app-dao.xml.beansvm  -->
+	<bean id="positionDao" class="com.htsoft.est.dao.system.impl.PositionDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for Position From Template: app-dao.xml.beansvm  -->
+<!-- start:  Generated for UserPosition From Template: app-dao.xml.beansvm  -->
+	<bean id="userPositionDao" class="com.htsoft.est.dao.system.impl.UserPositionDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UserPosition From Template: app-dao.xml.beansvm  -->
+<!-- start:  Generated for PositionSub From Template: app-dao.xml.beansvm  -->
+	<bean id="positionSubDao" class="com.htsoft.est.dao.system.impl.PositionSubDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for PositionSub From Template: app-dao.xml.beansvm  -->
+</beans>

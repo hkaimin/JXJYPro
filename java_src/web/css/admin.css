@@ -1,0 +1,1286 @@
+.x-layout-collapsed-west{
+   background-image: url(../images/collapse-bg.gif);
+   background-repeat:no-repeat;
+   background-position:center;
+}
+
+.x-layout-collapsed-north{
+	background-image: url(../images/top-collapse-bg.gif);
+   background-repeat:no-repeat;
+   background-position:center;
+}
+
+body {
+	font-size: 12px;
+	font-family: '宋体';
+}
+.clear{
+	clear: both;
+	margin :0;
+	padding:0;
+	border:0;
+}
+
+#loading-mask {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 20000;
+	background-color: white;
+}
+
+#loading {
+	position: absolute;
+	left: 45%;
+	top: 40%;
+	padding: 2px;
+	z-index: 20001;
+	height: auto;
+}
+
+#loading a {
+	color: #225588;
+}
+
+#loading .loading-indicator {
+	background: white;
+	color: #444;
+	font: bold 13px tahoma, arial, helvetica;
+	padding: 10px;
+	margin: 0;
+	height: auto;
+}
+
+#loading-msg {
+	font: normal 14px arial, tahoma, sans-serif;
+	color:blue;
+	padding-top:18px;
+}
+
+div button {
+	border: none;
+	cursor: pointer;
+	width: 16px;
+	height: 16px;
+}
+
+#app-header {
+	background: url('../images/f2.gif') repeat-x;
+	height: 60px;
+	width:100%;
+}
+
+#header-left {
+	width:230px;
+	float:left;
+}
+#header-info{
+	padding-top:6px;
+	height:22px;
+}
+
+#header-nav{
+}
+
+#header-main {
+	width:520px;
+	float:left;
+	margin-top:4px;
+	margin-left:6px;
+}
+#header-right {
+	width:260px;
+	float:right;
+}
+
+#setting {
+	float: right;
+	width: 132px;
+	padding-top: 6px;
+	padding-right: 6px
+}
+#searchFormDisplay{
+	float: right;
+	width: 100px;
+	padding-top: 6px;
+	padding-right: 6px
+}
+#welcomeMsg {
+	float: left;
+	width: 160px;
+	padding-top: 6px;
+}
+
+#currentTime {
+	float: left;
+	width: 360px;
+	padding-top: 6px;
+}
+
+#header-topnav {
+	display: inline;
+	padding-top: 4px;
+}
+
+#header-topnav .activeli {
+	display: block;
+	float: left;
+}
+
+
+.mod-oa{
+	background-image: url('../images/menus/index/home.gif') !important;
+}
+
+.mod-myflow{
+	background-image: url('../images/menus/index/myflow.gif') !important;
+}
+
+.mod-setting{
+	background-image: url('../images/menus/index/setting.gif') !important;
+}
+
+.add-user {
+	background-image: url('../images/system/adduser.gif') !important;
+}
+
+.btn-super{
+	background-image: url('../images/btn/system/super.gif') !important;
+}
+
+.btn-superior{
+	background-image: url('../images/btn/system/superior.png') !important;
+}
+
+.btn-subordinate{
+	background-image: url('../images/btn/system/subordinate.png') !important;
+}
+
+.btn-sibling{
+	background-image: url('../images/btn/system/sibling.png') !important;
+}
+
+.btn-relativeJob{
+	background-image: url('../images/btn/system/relativeJob.png') !important;
+}
+
+.btn-print {
+	background-image: url('../images/btn/print.png') !important;
+}
+
+.excel-cls {
+	background: url('../images/btn/excel.png') no-repeat !important;
+	padding-left: 18px;
+	text-decoration: none;
+}
+
+.btn-signIn {
+	background-image: url('../images/btn/personal/signIn.gif') !important;
+}
+
+.btn-signOff {
+	background-image: url('../images/btn/personal/signOff.gif') !important;
+}
+
+.btn-showDetail{
+	background-image: url('../images/btn/showDetail.png') !important;
+}
+
+
+.btn-del {
+	background: url('../images/btn/remove.png') no-repeat !important;
+}
+
+.btn-un_del {
+	background: url(../images/system/un_delete.gif) no-repeat !important;
+}
+
+.btn-preview {
+	background: url(../images/system/preview.png) no-repeat !important;
+}
+
+.btn-edit {
+	background: url(../images/system/edit.gif) no-repeat !important;
+}
+
+.btn-borrow {
+	background: url(../images/menus/admin/book_go.png) no-repeat !important;
+}
+
+.btn-grant {
+	background: url(../images/btn/system/grant.gif) no-repeat !important;
+}
+
+.btn-un_edit {
+	background: url(../images/system/un_edit.gif) no-repeat !important;
+}
+
+.btn-sendM {
+	background: url(../images/btn/info/write.png) no-repeat !important;
+}
+
+.btn-receiveMessage {
+	background: url(../images/btn/info/receive.gif) no-repeat !important;
+}
+
+.btn-sendMessage {
+	background: url(../images/btn/info/send.gif) no-repeat !important;
+}
+
+.btn-setting {
+	background: url(../images/btn/setting.gif) no-repeat !important;
+}
+
+.btn-newFlow {
+	background: url(../images/btn/flow/newFlow.gif) no-repeat !important;
+}
+
+.btn-lockTask{
+	background: url(../images/btn/flow/lockTask.png) no-repeat !important;
+}
+
+.btn-unlockTask{
+	background: url(../images/btn/flow/unlockTask.png) no-repeat !important;
+}
+
+.btn-approvalTask{
+	background: url(../images/btn/flow/approvalTask.png) no-repeat !important;
+}
+
+.btn-changeTask{
+	background: url(../images/btn/flow/changeTask.png) no-repeat !important;
+}
+
+.btn-flowView {
+	background: url(../images/btn/flow/view.png) no-repeat !important;
+}
+
+.btn-transition{
+	background: url(../images/btn/flow/transition.png) no-repeat !important;
+}
+
+.btn-back{
+	background: url(../images/btn/flow/back.gif) no-repeat !important;
+}
+
+.btn-form-design{
+	background: url(../images/btn/flow/form.png) no-repeat !important;
+}
+
+.btn-form-tag{
+	background: url(../images/btn/flow/form-tag.png) no-repeat !important;
+}
+
+.btn-user-sel {
+	background: url(../images/btn/user-sel.png) no-repeat !important;
+}
+
+.btn-users-sel {
+	background: url(../images/btn/users-sel.png) no-repeat !important;
+}
+
+.btn-next {
+	background: url(../images/btn/next.gif) no-repeat !important;
+}
+
+.btn-department-sel {
+	background: url('../images/menus/system/department_menu.png') no-repeat !important;
+}
+
+.btn-update {
+	background: url(../images/btn/info/update.gif) no-repeat !important;
+}
+
+.btn-top {
+	background: url(../images/btn/top.gif) no-repeat !important;
+}
+
+.btn-up {
+	background: url(../images/btn/up.gif) no-repeat !important;
+}
+
+.btn-down {
+	background: url(../images/btn/down.gif) no-repeat !important;
+}
+
+.btn-last {
+	background: url(../images/btn/last.gif) no-repeat !important;
+}
+
+.btn-logout {
+	background-image: url('../images/btn/logout.png') !important;
+}
+
+.btn-onlineUser {
+	background-image: url('../images/btn/eyes.png') !important;
+}
+
+.btn-readdocument {
+	background: url(../images/btn/read_document.png) no-repeat !important;
+}
+
+.btn-detail {
+	background: url(../images/btn/read_document.png) no-repeat !important;
+}
+
+/**----------------客户管理模块btn--end----------------------**/
+.search {
+	background-image: url('../images/btn/info/search.png') !important;
+}
+
+.reset {
+	background-image: url('../images/btn/info/reset.png') !important;
+}
+
+.refresh {
+	background-image: url('../images/btn/ref_16.gif') !important;
+}
+
+.menu-file{
+	background-image: url('../images/menus/file.png') !important;
+}
+
+.menu-flex-upload{
+	background-image: url('../images/menus/system/flex-upload.png') !important;
+}
+
+.menu-relativeJob{
+	background-image: url('../images/menus/system/relativeJob.png') !important;
+}
+
+.menu-taskSign{
+	background-image: url('../images/menus/flow/tasksign.png') !important;
+}
+
+.menu-globalType{
+   background: url('../images/menus/system/globalType_menu.png') no-repeat !important;
+}
+
+/**----------------信息管理模块menu--start----------------------**/
+.menu-info {
+	background-image: url('../images/menus/info/comment.png') !important;
+}
+
+.menu-news {
+	background-image: url('../images/menus/info/news_menu.png') !important;
+}
+
+.menu-news_type {
+	background-image: url('../images/menus/info/newsType_menu.png') !important;
+}
+
+.menu-notice {
+	background-image: url('../images/menus/info/notice_menu.png') !important;
+}
+
+.menu-add {
+	background-image: url('../images/menus/add.png') !important;
+}
+.menu-m {
+	background-image: url('../images/menus/menu/menu.png') !important;
+}
+
+.menu-url {
+	background-image: url('../images/menus/menu/url.png') !important;
+}
+
+.menu-del {
+	background-image: url('../images/menus/del.png') !important;
+}
+
+.menu-list {
+	background-image: url('../images/menus/list.png') !important;
+}
+
+.menu-manage {
+	background-image: url('../images/menus/manage.png') !important;
+}
+
+.menu-mobile {
+	background-image: url('../images/menus/info/mobile_phone.png') !important;
+}
+.menu-suggestbox{
+	background-image: url('../images/menus/info/suggest_box.png') !important;
+}
+.btn-suggest-scan {
+	background: url('../images/btn/info/scan.png') no-repeat !important;
+}
+.btn-suggest-reply {
+	background: url('../images/btn/info/suggest_reply.png') no-repeat !important;
+}
+.btn-suggest-box {
+	background: url('../images/menus/mail/mail_inbox.png') no-repeat !important;
+}
+.menu-section-manage{
+	background-image: url('../images/menus/info/section.png') !important;
+}
+.menu-section-list{
+	background-image: url('../images/menus/info/list.png') !important;
+}
+.menu-section-view{
+	background-image: url('../images/menus/info/view.png') !important;
+}
+/**----------------信息管理模块menu--end----------------------**/
+.btn-add {
+	background-image: url('../images/system/add_16.gif') !important;
+}
+
+.btn-delete {
+	background-image: url('../images/system/delete.gif') !important;
+}
+
+.btn-shared {
+	background-image: url('../images/system/shared.gif') !important;
+}
+
+.btn-query {
+	background-image: url('../images/btn/query.gif') !important;
+}
+
+.btn-upload {
+	background-image: url('../images/btn/info/upload.png') !important;
+}
+
+.btn-flex-upload {
+	background-image: url('../images/menus/system/flex-upload.png') !important;
+}
+
+.btn-save {
+	background-image: url('../images/btn/info/save.png') !important;
+}
+
+.add {
+	background-image: url('../images/btn/query.gif') !important;
+}
+
+.btn-expand {
+	background-image: url('../images/btn/expand.png') !important;
+}
+
+.btn-collapse {
+	background-image: url('../images/btn/collapse.png') !important;
+}
+
+.btn-refresh {
+	background-image: url('../images/btn/refresh.png') !important;
+}
+
+.btn-ok {
+	background-image: url('../images/btn/ok.png') !important;
+}
+
+.btn-cancel {
+	background-image: url('../images/btn/cancel.png') !important;
+}
+
+.btn-close {
+	background-image: url('../images/btn/cancel.png') !important;
+}
+
+.btn-search {
+	background-image: url('../images/btn/search.png') !important;
+}
+
+.btn-users {
+	background-image: url('../images/btn/users.png') !important;
+}
+
+.btn-select {
+	background-image: url('../images/btn/select.png') !important;
+}
+
+.btn-save {
+	background-image: url('../images/btn/btn-save.png') !important;
+}
+
+.btn-clear {
+	background-image: url('../images/btn/clear.png') !important;
+}
+
+.btn-password {
+	background-image: url('../images/btn/password.gif') !important;
+}
+
+.btn-mail_resend {
+	background-image: url('../images/btn/mail/mail_resend.png') !important;
+}
+
+.btn-mail_receive {
+	background-image: url('../images/btn/mail/mail_receive.png') !important;
+}
+
+.btn-mail_remove {
+	background-image: url('../images/btn/mail/mail_remove.png') !important;
+}
+
+.btn-mail_send {
+	background-image: url('../images/btn/mail/mail_send.png') !important;
+}
+
+.btn-mail_save {
+	background-image: url('../images/btn/mail/mail_save.png') !important;
+}
+
+.btn-mail_move {
+	background-image: url('../images/btn/mail/mail_move.png') !important;
+}
+
+.btn-mail_reply {
+	background-image: url('../images/btn/mail/mail_reply.png') !important;
+}
+
+.btn-mail_refresh {
+	background-image: url('../images/btn/mail/mail_refresh.gif') !important;
+}
+
+.btn-mail_recipient {
+	background-image: url('../images/btn/mail/mail_recipient.png') !important;
+}
+
+.btn-mail_copy {
+	background-image: url('../images/btn/mail/mail_copy.png') !important;
+}
+
+.btn-delete_copy {
+	background-image: url('../images/btn/mail/delete_copy.png') !important;
+}
+
+.btn-mail_edit {
+	background: url('../images/btn/mail/mail_edit.png') no-repeat !important
+		;
+}
+
+.btn-mail_back {
+	background-image: url('../images/btn/mail/mail_back.png') !important;
+}
+
+
+.btn-previous-message {
+	background-image: url('../images/btn/info/previous.png') !important;
+}
+
+.btn-next-message {
+	background-image: url('../images/btn/info/next.png') !important;
+}
+
+.menu-new-document {
+	background-image: url('../images/menus/document/new_document.png')
+		!important;
+}
+
+.menu-personal-doc {
+	background-image: url('../images/menus/document/personal_doc.png')
+		!important;
+}
+
+.menu-find-doc {
+	background-image: url('../images/menus/document/search_doc.png') !important;
+}
+
+.menu-public-fol {
+	background-image: url('../images/menus/document/public_folder.png')!important;
+}
+
+.menu-folder {
+	background-image: url('../images/menus/document/folder_manage.png') !important;
+}
+
+.menu-folder-go {
+	background-image: url('../images/menus/document/folder_go.png') !important;
+}
+
+.menu-folder-shared {
+	background-image: url('../images/menus/document/folder_shared.png') !important;
+}
+
+.menu-destop {
+	background-image: url('../images/menus/destop.gif') !important;
+}
+
+.menu-system {
+	background-image: url('../images/menus/setting.png') !important;
+}
+
+.menu-role {
+	background-image: url('../images/menus/system/role_menu.png') !important;
+}
+
+.menu-department {
+	background-image: url('../images/menus/system/department_menu.png')!important;
+}
+
+.menu-attachment {
+	background-image: url('../images/flag/attachment.png') !important;
+}
+
+.menu-company {
+	background-image: url('../images/menus/system/company_menu.png')!important;
+}
+
+.menu-report {
+	background-image: url('../images/menus/system/report_menu.png')!important;
+}
+.menu-dictionary {
+	background-image: url('../images/menus/system/dictionary.png')!important;
+}
+
+.menu-OrgSetting {
+	background-image: url('../images/menus/system/OrgSetting.png')!important;
+}
+
+.menu-biaodan {
+	background-image: url('../images/menus/system/biaodan.png')!important;
+}
+
+.menu-proModule {
+	background-image: url('../images/menus/system/proModule.png')!important;
+}
+
+.menu-history {
+	background-image: url('../images/menus/system/history.png')!important;
+}
+
+.menu-userTotal {
+	background-image: url('../images/menus/system/userTotal.png')!important;
+}
+
+.menu-communicate {
+	background-image: url('../images/communicate/communicate.png')!important;
+}
+
+.menu-phonebook {
+	background-image: url('../images/menus/book_user.png') !important;
+}
+
+.menu-sharebook {
+	background-image: url('../images/menus/shareBook.jpg') !important;
+}
+
+.menu-phonebook-shared {
+	background-image: url('../images/menus/phone_book.png') !important;
+}
+
+.menu-personal-phoneBook {
+	background-image: url('../images/menus/book_key.png') !important;
+}
+
+.menu-mail {
+	background-image: url('../images/menus/mail/mail_menu.png') !important;
+}
+
+.menu-mail_send {
+	background-image: url('../images/menus/mail/mail_new.png') !important;
+}
+
+.menu-mail_box {
+	background-image: url('../images/menus/mail/mail_box.png') !important;
+	background-repeat: no-repeat;
+	background-position: 10% 50%;
+}
+
+.menu-mail_inbox {
+	background-image: url('../images/menus/mail/mail_inbox.png') !important;
+}
+
+.menu-mail_outbox {
+	background-image: url('../images/menus/mail/mail_outbox.png') !important;
+}
+
+.menu-mail_drafts {
+	background-image: url('../images/menus/mail/mail_drafts.png') !important;
+}
+
+.menu-mail_trash {
+	background-image: url('../images/menus/mail/mail_trash.gif') !important;
+}
+
+.menu-mail_folder {
+	background-image: url('../images/menus/mail/mail_folder.png') !important;
+}
+
+.menu-message {
+	background-image: url('../images/menus/info/mobilephone_menu.png') !important;
+}
+
+.menu-receiveMessage {
+	background-image: url('../images/newpm.gif') !important;
+}
+
+.menu-document {
+	background-image: url('../images/menus/document/documentation.gif') !important;
+	background-repeat: no-repeat;
+	background-position: 10% 50%;
+}
+
+.menu-appuser {
+	background-image: url('../images/menus/system/user_menu.png') !important;
+}
+
+.menu-task {
+	background-image: url('../images/menus/task.png') !important;
+	background-repeat: no-repeat;
+	background-position: 10% 50%;
+}
+
+.menu-administrator {
+	background-image: url('../images/menus/administrator.png') !important;
+}
+
+.menu-flow {
+	background-image: url('../images/menus/flow.gif') !important;
+}
+
+.menu-form {
+	background-image: url('../images/menus/flow/menu-form.png') !important;
+}
+
+a.attachment {
+	background: url('../images/flag/attachment.png') no-repeat !important;
+	padding-left: 18px;
+}
+
+img.img-delete {
+	cursor: pointer;
+	height: 12px;
+}
+
+span.opAttachFile {
+	line-height: 24px;
+	font-size: 12px;
+}
+
+.table-info {
+	margin: 5px 5px 5px 5px;
+	font-size: 12px;
+	color:#03386C;
+	background-color: #99BBE8;
+}
+
+.table-info th {
+	font-weight: bold;
+	text-align:center;
+	background-color: #D0E0F4;
+	padding: 2px 2px 2px 2px;
+}
+.table-info td {
+	background-color: white;
+	height: 24px;
+	padding: 2px 2px 2px 2px;
+}
+
+/*********用户选择器************/
+.dep-user {
+	background-image: url('../images/menus/selectors/dep-user.gif') !important;
+}
+
+.online-user {
+	background-image: url('../images/menus/selectors/user_16.gif') !important;
+}
+
+.role-user {
+	background-image: url('../images/menus/selectors/group_16.gif') !important;
+}
+
+/*****************自定义控件**************************************/
+.x-form-field-wrap .x-form-browse-trigger {
+	background: transparent url(../images/btn/user-sel.png) no-repeat 0 0;
+	cursor: pointer;
+	right: 0px;
+}
+
+.index-list a {
+	text-decoration: none;
+	font-size: 12px;
+	font-family: sans-serif;
+	font-color: black
+}
+
+.home-ul {
+	display: block;
+}
+
+.home-ul li {
+	margin-top: 4px;
+	padding-left: 18px;
+	height: 22px;
+	background: url('../images/flag/home/noticeItem.png') no-repeat !important;
+	border-bottom: dashed 1px #ccc;
+}
+
+.home-ul li a {
+	text-decoration: none;
+}
+
+.assets-type{
+   background-image: url('../images/btn/admin/assets_type.png') !important;
+}
+.goods-type{
+  background-image: url('../images/btn/admin/goods_type.png') !important;
+}
+
+li .right {
+	float: right;
+	padding-right: 6px;
+}
+
+.home-message-ul {
+	display: block;
+}
+
+.home-message-ul li {
+	margin-top: 4px;
+	padding-left: 18px;
+	height: 22px;
+	background: url('../images/menus/info/message_menu.png') no-repeat !important;
+	border-bottom: dashed 1px #ccc;
+}
+
+.home-news-ul {
+	display: block;
+}
+
+.home-news-ul li {
+	margin-top: 4px;
+	padding-left: 18px;
+	height: 22px;
+	background: url('../images/menus/info/news_menu.png') no-repeat !important;
+	border-bottom: dashed 1px #ccc;
+}
+
+.home-news-ul li a {
+	text-decoration: none;
+}
+
+
+.menu-desktop {
+	background-image: url('../images/menus/monitor.png') !important;
+	background-repeat: no-repeat;
+	background-position: 10% 0%;
+}
+.menu-index-company {
+	background-image: url('../images/menus/system/company_menu.png') !important;
+	height:36px;
+	background-repeat: no-repeat;
+	background-position: 10% 0%;
+}
+.menu-subuser {
+	background-image: url('../images/menus/desktop/user_go.png') !important;
+}
+
+.btn-reseted {
+	background-image: url('../images/btn/reset.png') !important;
+}
+
+.btn-reset {
+	background-image: url('../images/btn/reset.png') !important;
+}
+.menu-flowManager {
+	background-image: url('../images/menus/flow/flowManager.png') !important;
+}
+
+.menu-flowNew {
+	background-image: url('../images/menus/flow/flowNew.png') !important;
+}
+
+.menu-flowWait {
+	background-image: url('../images/menus/flow/flowWait.png') !important;
+}
+
+.menu-flowEnd {
+	background-image: url('../images/menus/flow/flowEnd.png') !important;
+}
+
+.menu-flowPr{
+	background-image: url('../images/menus/flow/flowPr.png') !important;
+}
+
+.menu-flowMine {
+	background-image: url('../images/menus/flow/flowMine.png') !important;
+}
+
+.btn-copyrole{
+   background-image: url('../images/btn/system/role_copy.png') !important;
+}
+
+.x-grid3-row-with-body {
+ background:#f4f4f4;
+}
+  
+.x-grid3-row-with-body .x-grid3-row-body {
+ padding: 5px 5px 5px 40px;
+ font-weight:bold;
+ -moz-user-select:text;
+ cursor:text;
+}
+  
+.x-grid3-row td, .x-grid3-summary-row td {
+ -moz-user-select:-moz-none;
+}
+
+.btn-replyM{
+   background-image: url('../images/btn/info/reply.png') !important;
+}
+/**--------------------Grid body Display CSS-end----------------------------**/
+
+.menu-navigation{
+	background-image: url('../images/menus/navigation.png') !important;
+}
+
+.menu-system-setting {
+	background-image: url('../images/btn/system/system-setting.png') !important;
+}
+
+.btn-ie{
+   background-image: url('../images/btn/system/ie.png') !important;
+}
+.btn-pdf{
+   background-image: url('../images/btn/system/pdf.png') !important;
+}
+.btn-xls{
+   background-image: url('../images/btn/system/xls.png') !important;
+}
+
+
+.btn-empProfile-notpass{
+	background: url(../images/btn/info/reset.png) no-repeat !important;
+}
+.btn-salary-pay{
+	background: url(../images/menus/admin/tackle-apply.png) no-repeat !important;
+}
+
+.btn-salaryPayoff-notpass{
+	background: url(../images/btn/info/reset.png) no-repeat !important;
+}
+
+.btn-flow-start{
+    background-image: url('../images/btn/flow/flow_start.png') !important;
+}
+
+.btn-flow-design{
+	background-image: url(../images/btn/flow/flow_design.png) !important;
+}
+
+.btn-flow-chart{
+	background-image: url(../images/btn/flow/flow_chart.png) !important;
+}
+
+.btn-flex-view{
+	background-image: url('../images/btn/flexview.png') !important;
+}
+
+
+.btn-dynamic-pwd{
+  background-image: url('../images/login/dynamic.png')!important;
+}
+.btn-dynamic-bind{
+  background-image: url('../images/login/bind.png')!important;
+}
+.btn-dynamic-unbind{
+  background-image: url('../images/login/unbind.png')!important;
+}
+
+.thumb-wrap{
+	width:31%;
+	border:1px solid #c7e3fa;
+    float: left;
+    margin: 4px;
+    margin-right: 0;
+    padding: 4px;
+}
+.thumb-wrap span{
+    display: block;
+    margin:1px;
+    overflow: hidden;
+}
+
+.thumb-wrap span font{
+    color:#2A4D8F;
+    font-weight:bolder;
+    font-size: 12px;
+}
+
+.x-view-over{
+    border:1px solid #dddddd;
+    background: #efefef;
+    padding: 4px;
+}
+.x-view-selected{
+    background: #DFEDFF;
+    border: 1px solid #6593cf;
+    padding: 4px;
+}
+.x-view-selected .thumb{
+    background:transparent;
+}
+.x-view-selected span{
+    color:#1A4D8F;
+}
+
+.contentDiv{
+       padding-left:3px;
+       padding-right:3px;
+       background:white;
+       border:none;
+   
+}
+.newsList{
+   border:0px dashed #c7e3fa;
+   width:100%;
+}
+
+.newsList tr{
+  border:0px dashed #c7e3fa;
+}
+
+.newsList tr td{
+   height:28px;
+   border:none;
+   border-buttom:1px dashed #c7e3fa;
+   border-top:1px dashed #c7e3fa;
+   color: #c3e3fa;
+}
+
+.newsList tr td a{
+   text-decoration: none;
+   overflow: hidden;
+   color:blue;
+}
+.newsList tr td a:hover{
+    color: #25e3fa; 
+}
+
+.newsList tr td img{
+   border:0;
+   width:16px;
+   height:16px;
+}
+
+.moreDiv{
+   width:100%;
+}
+.moreDiv span{
+   float:right;
+   margin-right:12px;
+}
+.moreDiv span a{
+   text-decoration: none;
+   color:blue;   
+}
+
+
+/****---------tips----start-----**/
+.tipDiv{
+	padding:0px;
+	margin:0px;
+	background:#ffffff;
+}
+
+.resizable{
+  position: absolute;
+}
+
+
+.setDiv{
+  background:#f4ffff;
+}
+
+.x-editable{
+    font:bold 13px tahoma,verdana,helvetica;
+	text-align:center;
+	padding:0px;
+	padding-top:20px;
+}
+
+.x-timelabel{
+   text-align:center;
+   padding-top:20px;
+	
+}
+
+.x-linkdel{
+  position: absolute;visibility: hidden;text-align:right;width:100%;
+}
+
+.tipsClose{
+  padding-right:5px;
+  background: url(../images/btn/info/tips_close.jpg) no-repeat !important;
+}
+
+
+.tipsTile{
+  background-image: url('../images/btn/info/tips.jpg')!important;
+}
+
+.add-all{
+	background-image: url('../images/btn/system/add-all.gif')!important;
+}
+
+.rem-all{
+	background-image: url('../images/btn/system/rem-all.gif')!important;
+}
+.mod-report{
+	background-image: url('../images/menus/system/nav-report.png') !important;
+}
+
+
+#phones {
+    background-color: #fff;
+    text-shadow: #fff 0 1px 0;
+}
+
+#phones ul {
+    position: relative;
+    display: block;
+    height: auto;
+    font-size: 85%;
+}
+
+#phones ul li img {
+    margin-bottom: 1px;
+}
+
+#phones ul li {
+	list-style-type:none;
+    float: left;
+    padding: 8px 17px;
+    margin: 5px;
+/*    margin: 10px 0 0 25px;*/
+    text-align: center;
+    line-height: 1.25em;
+    color: #333;
+    font-family: "Helvetica Neue",sans-serif;
+    height: 113px;
+    width: 112px;
+    overflow: hidden;
+    /*border-top: 1px solid transparent;*/
+    cursor: pointer;
+}
+
+#phones ul li.phone-hover {
+    background-color: #eee;
+}
+
+#phones ul li.x-view-selected {
+    background-color: rgba(0, 80, 80, .15);
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border:none;
+  /*  border-top: 1px solid rgba(0, 0, 0, .15);*/
+}
+
+#phones ul li img {
+/*    display: block;*/
+}
+
+#phones li strong {
+    color: #000;
+    display: block;
+}
+
+#phones li span {
+    color: #999;
+    cue: none;
+}
+
+.text-file{
+	background: url('../images/login/user.png') no-repeat !important;
+	padding:2px 0px 2px 18px;
+	
+}
+
+.menu-onlinedoc{
+   background-image: url('../images/menus/document/online_doc.png') !important;
+}
+
+.menu-template{
+   background-image: url('../images/menus/document/template_edit.png') !important;
+}
+
+.menu-seal{
+   background-image: url('../images/menus/document/seal.png') !important;
+}
+
+
+.btn-users001 {
+	background-image: url('../images/btn/users.png') !important;
+	background-repeat: no-repeat;
+}
+
+.text-date{
+    background: url('../images/login/user.png') no-repeat !important ;
+	padding:2px 0px 2px 18px;
+}
+
+
+.btn-left {
+	background-image: url('../images/btn/system/left.png') !important;
+	background-repeat: no-repeat;
+}
+.btn-right {
+	background-image: url('../images/btn/system/right.png') !important;
+	background-repeat: no-repeat;
+}
+
+
+.menu-instance{
+   background-image: url('../images/menus/flow/instance.png') !important;
+}
+
+.menu-form{
+   background-image: url('../images/menus/flow/form.png') !important;
+}
+
+
+.form-info{
+   margin: 5px 2px 0px 0px;
+   color:#03386C;
+   background-color: #99BBE8;
+}
+
+.form-info th{
+   font-weight: bold;
+   text-align:center;
+   background-color: #D0E0F4;
+   padding: 2px 2px 2px 2px;
+}
+
+.td-info{
+   background-color: white;
+   padding: 2px 2px 2px 2px;
+}
+
+.menu-task-manage{
+   background-image: url('../images/menus/flow/manage-task.png') !important;
+}
+
+
+.el-film-over {
+	border: 1px dotted #869351;
+}
+
+.table-detail{
+	padding:5px 5px 5px 5px;
+	font:12px 宋体;
+	color: black;
+	line-height:24px;
+}
+
+.table-detail th{
+	background-color: #c7e3fa;
+	text-align: right;
+	font-weight: bold;
+	padding-right:6px;
+}
+
+.table-detail td{
+	padding-left:10px;
+	border: 1px #c7e3fa solid;
+}
+
+/*此样式作用为grid cell内容可选*/
+.x-selectable, .x-selectable * {  
+     -moz-user-select: text! important ;  
+     -khtml-user-select: text! important ;  
+ } 

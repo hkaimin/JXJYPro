@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Modules>
+
+	<module name="oa" file="menu-oa.xml"/>
+	<module name="myflow" file="menu-myflow.xml"/>
+	
+	<module name="setting" file="menu-setting.xml"/>
+	<!--
+	<module name="ent" file="menu-ent.xml"/>
+	-->
+</Modules>

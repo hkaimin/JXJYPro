@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ESTBPM" default="init" basedir=".">
+	<property name="ant_doxygen.lib" location="metadata/tools/doxygen/lib" />
+	<property name="ant_doxygen.dir" location="C:/Program Files (x86)/doxygen/bin" />
+	<target name="init">
+		<!-- properties for copyright and versioning -->
+		<property name="author" value="GuangZhou HongTian Software Co.ltd"/>
+		<property name="version" value="2.0"/>
+		<!-- build properties -->
+		<property name="libdir" value="${basedir}/web/WEB-INF/lib"/>
+		<path id="libRef">
+			<fileset dir="web/WEB-INF/lib" includes="*.jar"/>
+			<fileset dir="D:/tools/tomcat6/lib" includes="*.jar"/>
+		</path>
+		<property name="metadatadir" value="metadata"/>
+		<property name="webdir" value="web"/>
+		<property name="srcdir1" value="src"/>
+		<property name="srcdir2" value="common"/>
+		<property name="srcdir3" value="resources"/>
+		<property name="testdir" value="test"/>
+		<property name="builddir" value="build"/>
+		<property name="classdir" value="${builddir}/classes"/>
+		<property name="distdir" value="dist/estbpm${version}"/>
+		<property name="commondir" value="build/common"/>
+		<property name="sources" value="sources"/>
+	</target>
+
+	<taskdef name="doxygen" classname="org.doxygen.tools.DoxygenTask" classpath="${ant_doxygen.lib}/ant_doxygen.jar"/>
+	<target name="doxygen">
+		<doxygen>
+			<property  name="PROJECT_NAME" value="estbpm gen code" />
+			<property  name="PROJECT_NUMBER" value="2.1" />
+			<property  name="OUTPUT_DIRECTORY" value="${ant_doxygen.dir}" />
+			<property  name="JAVADOC_AUTOBRIEF" value="YES" />
+			<property  name="TAB_SIZE" value="4" />
+			<property  name="OPTIMIZE_OUTPUT_JAVA" value="YES" />
+			<property  name="INPUT" value="src" />
+			<property  name="RECURSIVE" value="YES" />
+			<property  name="HAVE_DOT" value="YES" />
+			<property  name="UML_LOOK" value="YES" />
+			<property  name="CLASS_GRAPH" value="YES" />
+			<property  name="COLLABORATION_GRAPH" value="YES" />
+			<property  name="GROUP_GRAPHS" value="YES" />
+			<property  name="DIRECTORY_GRAPH" value="YES" />
+			<property  name="SHOW_DIRECTORIES" value="YES" />
+			<property  name="SOURCE_BROWSER" value="YES" />
+			<property  name="STRIP_CODE_COMMENTS" value="NO" />
+			<property  name="GENERATE_LATEX" value="NO" />
+			<property  name="GENERATE_TREEVIEW" value="YES" />
+		</doxygen>
+	</target>
+	
+	<target name="copy-sources" depends="init">
+
+		<copy todir="${sources}/src" >
+			<fileset dir="${srcdir1}"/>
+		</copy>
+		<copy todir="${sources}/common">
+			<fileset dir="${srcdir2}"/>
+		</copy>
+		<copy todir="${sources}/resources">
+			<fileset dir="${srcdir3}"/>
+		</copy>
+		<copy todir="${sources}/test">
+			<fileset dir="${testdir}"/>
+		</copy>
+
+		<copy todir="${sources}/web">
+			<fileset dir="${webdir}">
+				<exclude name="attachFiles/**"/>
+				<exclude name="WEB-INF/classes/**"/>
+				<exclude name="userfiles/**"/>
+			</fileset>
+		</copy>
+
+		<copy todir="${sources}/metadata">
+			<fileset dir="${metadatadir}">
+				<include name="*/**"/>
+			</fileset>
+		</copy>
+
+		
+		<copy todir="${sources}/.settings">
+			<fileset dir="${basedir}/.settings"/>
+		</copy>
+		<copy file="${basedir}/.project" tofile="${sources}/.project"/>
+		<copy file="${basedir}/.classpath" tofile="${sources}/.classpath"/>
+		<copy file="${basedir}/build.xml" tofile="${sources}/build.xml"/>
+		<mkdir dir="${sources}/web/attachFiles"/>
+		<mkdir dir="${sources}/web/WEB-INF/FlowForm"/>
+		<copy todir="${sources}/web/WEB-INF/FlowForm">
+			<fileset dir="${webdir}/WEB-INF/FlowForm">
+				<include name="*/**"/>
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="zip-source" depends="copy-sources">
+		<zip basedir="${sources}" file="${builddir}/estbpm2-sources.zip" encoding="GBK"/>
+	</target>
+
+	<target name="clean" depends="init">
+		<delete dir="${classdir}" />
+	</target>
+	<target name="compile-estbpm" depends="init,clean">
+		<mkdir dir="${classdir}"/>
+		<javac destdir="${classdir}"
+	                debug="false"
+	                optimize="true"
+	                encoding="UTF-8"
+	        	classpathref="libRef"
+	         >
+			<src path="${srcdir1}"/>
+			<src path="${srcdir2}"/>
+			<src path="${srcdir3}"/>
+		</javac>
+	</target>
+	
+	<target name="jar-common" depends="compile-estbpm">
+				<delete includeemptydirs="true">
+					<fileset dir="build/classes/com/htsoft/oa" ></fileset>
+				</delete>		
+				<jar basedir="build/classes" encoding="UTF-8" destfile="${webdir}/WEB-INF/lib/htcore.jar">
+		        </jar>
+	</target>
+	
+	<!--init,compile-estbpm-->
+	<!--  ============================开始压缩js与 css================================ -->
+		<property name="jsDir" value="build/web/js"/> 
+		<property name="cssDir" value="build/web/css"/>
+	    <property name="cssExtDir" value="build/web/ext3"/>
+	    <property name="extUxJsDir" value="build/web/ext3/ux"/>
+	
+		<property name="jsSourceDir" value="web/js"/>
+		<property name="cssSourceDir" value="web/css"/>
+	    <property name="extUxJsSourceDir" value="web/ext3/ux"/>
+	    <property name="cssExtSourceDir" value="web/ext3"/>
+		
+	    <path id="yuiClasspath">  
+	        <fileset dir="${basedir}">  
+	            <include name="metadata/tools/yui/yuicompressor-2.4.2.jar"/>  
+	            <include name="metadata/tools/yui/YUIAnt.jar"/>  
+	        </fileset>  
+	    </path> 
+		<target name="copy-web-depress-js">
+			<!--
+			<delete dir="build/web"/>
+			-->
+			<copy todir="build/web">
+				<fileset dir="${basedir}/web"/>
+			</copy>
+			<delete dir="build/web/attachFiles"/>
+			
+			<taskdef name="uxJsCompress" classname="com.yahoo.platform.yui.compressor.YUICompressTask">  
+	            <classpath>  
+	                <path refid="yuiClasspath"/>  
+	            </classpath>  
+	        </taskdef>  
+	        <uxJsCompress linebreak="9000000" warn="false" munge="yes"    
+	            preserveallsemicolons="true" outputfolder="${extUxJsDir}">  
+	            <fileset dir="${extUxJsSourceDir}">  
+	                <include name="**/*.js"/>  
+	            </fileset>
+	        </uxJsCompress>
+			
+			<taskdef name="yuicompress" classname="com.yahoo.platform.yui.compressor.YUICompressTask">  
+	            <classpath>  
+	                <path refid="yuiClasspath"/>  
+	            </classpath>  
+	        </taskdef>  
+	        <yuicompress linebreak="9000000" warn="false" munge="yes"    
+	            preserveallsemicolons="true" outputfolder="${jsDir}">  
+	            <fileset dir="${jsSourceDir}">  
+	                <include name="**/*.js"/>  
+	            </fileset>
+	        </yuicompress> 
+			
+			<taskdef name="cssYuicompress" classname="com.yahoo.platform.yui.compressor.YUICompressTask">  
+	            <classpath>  
+	                <path refid="yuiClasspath"/>  
+	            </classpath>  
+	        </taskdef>
+			
+			<cssYuicompress linebreak="9000000" warn="false" munge="yes"    
+	            preserveallsemicolons="true" outputfolder="${cssDir}">  
+	            <fileset dir="${cssSourceDir}">  
+	                <include name="**/*.css"/>  
+	            </fileset>  
+	        </cssYuicompress>
+			
+			<taskdef name="cssExtYuicompress" classname="com.yahoo.platform.yui.compressor.YUICompressTask">  
+	            <classpath>  
+	                <path refid="yuiClasspath"/>  
+	            </classpath>  
+	        </taskdef>
+			
+			<cssExtYuicompress linebreak="9000000" warn="false" munge="yes"    
+	            preserveallsemicolons="true" outputfolder="${cssExtDir}">  
+	            <fileset dir="${cssExtSourceDir}">  
+	                <include name="**/*.css"/>  
+	            </fileset>  
+	        </cssExtYuicompress>
+		</target>
+	<!--  ============================结束压缩js与 css================================-->
+	<target name="war-estbpm" depends="copy-web-depress-js">
+		<war destfile="build/estbpm20.war" webxml="build/web/WEB-INF/web.xml">
+			<fileset dir="build/web">
+				<exclude name="attachFiles/**"/>
+			</fileset>
+			<!--
+			<lib dir="build/web/WEB-INF/lib">
+				<exclude name="ojdbc5.jar"/>
+			</lib>
+			-->
+			<!--
+			  <classes dir="web/WEB-INF/classes"/>
+			  -->
+		</war>
+	</target>
+	<!--打包webserivce依赖文件-->
+	<target name="jarservice-model">
+		<jar destfile="build/ht_cxf_client.jar">
+			<fileset dir="web/WEB-INF/classes">
+				<include name="com/htsoft/core/**"/>
+				<include name="com/htsoft/est/service/**"/>
+				<include name="com/htsoft/est/model/**"/>
+				<exclude name="com/htsoft/est/model/**/*.hbm.xml"/>
+			</fileset>
+		</jar>
+	</target>
+	<target name="delete-classfile">
+		<delete>
+			<fileset dir="C:/dev/oracle/model">
+				<exclude name="*/**.hbm.xml"/>
+			</fileset>
+		</delete>
+	</target>
+	
+</project>
