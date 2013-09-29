@@ -1,4 +1,4 @@
-CREATE TABLE XMGLTABLE  (
+CREATE TABLE JXJY_XMGLTable  (
    XM_ID                NUMBER(18)                 NOT NULL,
    KT_ID                NUMBER(18),
    MC                   VARCHAR2(50),
@@ -13,10 +13,10 @@ CREATE TABLE XMGLTABLE  (
    XFLB                 VARCHAR2(20),
    ZBDW                 VARCHAR2(20),
    ZT                   VARCHAR2(10),
-   CONSTRAINT PK_XMGLTABLE PRIMARY KEY (XM_ID)
+   CONSTRAINT PK_JXJY_XMGLTable PRIMARY KEY (XM_ID)
 );
 
-CREATE TABLE KTGLTABLE  (
+CREATE TABLE JXJY_KTGLTable  (
    KT_ID                NUMBER(18)                      NOT NULL,
    KTMC                 VARCHAR2(20),
    JSMC                 VARCHAR2(20),
@@ -25,10 +25,10 @@ CREATE TABLE KTGLTABLE  (
    XS                   VARCHAR2(10),
    SKDD                 VARCHAR2(20),
    SKSJ                 VARCHAR2(20),
-   CONSTRAINT PK_KTGLTABLE PRIMARY KEY (KT_ID)
+   CONSTRAINT PK_JXJY_KTGLTable PRIMARY KEY (KT_ID)
 );
 
-CREATE TABLE RYXFGL  (
+CREATE TABLE JXJY_RYXFGL (
    RYBH                 NUMBER(18)                      NOT NULL,
    KT_ID                NUMBER(18),
    XM                   VARCHAR2(10),
@@ -44,19 +44,29 @@ CREATE TABLE RYXFGL  (
    SHZT                 VARCHAR2(10),
    BZ                   VARCHAR2(100),
    ID                   NUMBER(18)                      NOT NULL,
-   CONSTRAINT PK_RYXFGL PRIMARY KEY (ID)
+   CONSTRAINT PK_JXJY_RYXFGL PRIMARY KEY (ID)
 );
 
 
-CREATE TABLE DBRYTABLE  (
+CREATE TABLE JXJY_DBRYTable  (
    RYBH                 NUMBER(18)                      NOT NULL,
    XM                   VARCHAR2(10),
    DB                   VARCHAR2(10),
    NF                   VARCHAR2(20),
-   CONSTRAINT PK_DBRYTABLE PRIMARY KEY (RYBH)
+   CONSTRAINT PK_JXJY_DBRYTable PRIMARY KEY (RYBH)
 );
 
-CREATE TABLE SFBZMXTABLE  (
+CREATE TABLE JXJY_XFLBTABLE  (
+   XFLBID               NUMBER(18)                      NOT NULL,
+   MC                   VARCHAR2(20),
+   XFMC                 VARCHAR2(20),
+   XFMCID               NUMBER(18),
+   ID                   NUMBER(18)                      NOT NULL,
+   SFSH                 VARCHAR2(10),
+   CONSTRAINT PK_JXJY_XFLBTABLE PRIMARY KEY (ID)
+);
+
+CREATE TABLE JXJY_SFBZMXTable  (
    ID                   NUMBER(18)                      NOT NULL,
    XM_ID                NUMBER(18),
    XMMC                 VARCHAR2(50),
@@ -64,14 +74,14 @@ CREATE TABLE SFBZMXTABLE  (
    DW                   VARCHAR2(10),
    XF                   NUMBER(18),
    ZGZ                  NUMBER(18),
-   CONSTRAINT PK_SFBZMXTABLE PRIMARY KEY (ID)
+   CONSTRAINT PK_JXJY_SFBZMXTable PRIMARY KEY (ID)
 );
 
-CREATE TABLE DDDZTABLE  (
+CREATE TABLE JXJY_DDDZTable  (
    ID                   NUMBER(18)                      NOT NULL,
    TJLX                 VARCHAR2(20),
    MX                   VARCHAR2(20),
-   CONSTRAINT PK_DDDZTABLE PRIMARY KEY (ID)
+   CONSTRAINT PK_JXJY_DDDZTable PRIMARY KEY (ID)
 );
 
 备注：学些统一取名 ： S_表名 ：例如 ：S_DDDZTABLE
