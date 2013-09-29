@@ -7,7 +7,7 @@
 	
 	<module name="setting" file="menu-setting.xml"/>
 	<module name="project" file="menu-project.xml"/>
-	<!--
+	<!-- 
 	<module name="ent" file="menu-ent.xml"/>
 	-->
 </Modules>

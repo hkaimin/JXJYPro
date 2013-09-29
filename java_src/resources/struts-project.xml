@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="project" extends="struts-default" namespace="/project">
+		<action name="*Project" class="ProjectAction" method="{1}">
+			<result>${successResultValue}</result>
+		</action>
+	</package>
+</struts>
