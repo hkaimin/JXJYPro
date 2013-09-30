@@ -24,6 +24,14 @@ public interface OrganizationService extends BaseService<Organization>{
 	public List<Organization> getByPath(String path);
 	
 	/**
+	 * 取得某个节点下的所有公司节点
+	 * @param parentId
+	 * @param demId
+	 * @return
+	 */
+	public List<Organization> getCompanyByParent(Long parentId, Long demId);
+	
+	/**
 	 * 删除某个岗位及其下属组织
 	 * @param posId
 	 */

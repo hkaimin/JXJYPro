@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
@@ -212,4 +212,9 @@
 <!-- start:  Generated for PositionSub From Template: app-action.xml.beansvm  -->
  <bean id="PositionSubAction" class="com.htsoft.est.action.system.PositionSubAction" scope="prototype"/>
 <!-- end:  Generated for PositionSub From Template: app-action.xml.beansvm  -->
+
+
+<!-- start:  Project  -->
+ <bean id="ProjectAction" class="com.htsoft.est.action.project.ProjectAction" scope="prototype"/>
+<!-- end:  Project  -->
 </beans>

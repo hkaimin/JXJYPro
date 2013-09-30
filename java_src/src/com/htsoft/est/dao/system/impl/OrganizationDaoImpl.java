@@ -33,6 +33,22 @@ public class OrganizationDaoImpl extends BaseDaoImpl<Organization> implements Or
 		}
 		return findByHql(hql, params.toArray());
 	}
+	
+	@Override
+	public List<Organization> getCompanyByParent(Long parentId, Long demId) {
+		// TODO Auto-generated method stub
+		ArrayList<Object> params = new ArrayList<Object>();
+		StringBuffer hql = new StringBuffer("from Organization o where o.orgSupId=?");
+		params.add(parentId);
+		if(demId != null && demId != 0) {
+			hql.append(" and o.demension.demId=?");
+			params.add(demId);
+		}
+		hql.append(" and o.orgType=?");
+		params.add(Organization.ORG_TYPE_COMPANY);
+		return this.findByHql(hql.toString(), params.toArray());
+	}
+	
 	/**
 	 * 按路径查找所有节点
 	 * @param path

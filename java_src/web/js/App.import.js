@@ -422,6 +422,9 @@ UserFormPanel:[
     	__ctxPath+'/js/system/PositionSubView.js',
     	__ctxPath+'/js/system/PositionSubForm.js'
 ]
-
+,ProjectView : [
+    	__ctxPath+'/js/project/ProjectView.js',
+    	__ctxPath+'/js/project/ProjectForm.js'
+]
 //  end:  Generated for PositionSub From Template: App.import.js.vm
 };

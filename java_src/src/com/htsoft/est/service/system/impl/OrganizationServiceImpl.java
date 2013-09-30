@@ -37,6 +37,12 @@ public class OrganizationServiceImpl extends BaseServiceImpl<Organization> imple
 		return dao.getByPath(path);
 	}
 	
+	@Override
+	public List<Organization> getCompanyByParent(Long parentId, Long demId) {
+		// TODO Auto-generated method stub
+		return this.dao.getCompanyByParent(parentId, demId);
+	}
+	
 	/**
 	 * 删除某个组织及其下属组织
 	 * @param posId
