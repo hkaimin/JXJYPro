@@ -8615,9 +8615,9 @@ CARD 0 新宋体,8,N</a:FontList>
 </o:ReferenceSymbol>
 <o:ReferenceSymbol Id="o295">
 <a:CreationDate>1380375567</a:CreationDate>
-<a:ModificationDate>1380529828</a:ModificationDate>
-<a:Rect>((-54694,51748), (-37163,59817))</a:Rect>
-<a:ListOfPoints>((-54694,51748),(-37163,59817))</a:ListOfPoints>
+<a:ModificationDate>1380530594</a:ModificationDate>
+<a:Rect>((-54694,51748), (-36713,60711))</a:Rect>
+<a:ListOfPoints>((-54694,51748),(-36713,60711))</a:ListOfPoints>
 <a:ArrowStyle>1</a:ArrowStyle>
 <a:LineColor>12615680</a:LineColor>
 <a:ShadowColor>12632256</a:ShadowColor>
@@ -8655,9 +8655,9 @@ CARD 0 新宋体,8,N</a:FontList>
 </o:ReferenceSymbol>
 <o:ReferenceSymbol Id="o302">
 <a:CreationDate>1380446454</a:CreationDate>
-<a:ModificationDate>1380529828</a:ModificationDate>
-<a:Rect>((-33845,41550), (-22221,53759))</a:Rect>
-<a:ListOfPoints>((-30225,41550),(-25950,53759))</a:ListOfPoints>
+<a:ModificationDate>1380530594</a:ModificationDate>
+<a:Rect>((-33666,41550), (-22042,53885))</a:Rect>
+<a:ListOfPoints>((-30225,41550),(-25500,53885))</a:ListOfPoints>
 <a:ArrowStyle>1</a:ArrowStyle>
 <a:LineColor>12615680</a:LineColor>
 <a:ShadowColor>12632256</a:ShadowColor>
@@ -8675,9 +8675,9 @@ CARD 0 新宋体,8,N</a:FontList>
 </o:ReferenceSymbol>
 <o:ReferenceSymbol Id="o304">
 <a:CreationDate>1380446543</a:CreationDate>
-<a:ModificationDate>1380529828</a:ModificationDate>
-<a:Rect>((-53400,63107), (-36825,69600))</a:Rect>
-<a:ListOfPoints>((-36825,63107),(-53400,69600))</a:ListOfPoints>
+<a:ModificationDate>1380530594</a:ModificationDate>
+<a:Rect>((-53400,64418), (-36375,69600))</a:Rect>
+<a:ListOfPoints>((-36375,64418),(-53400,69600))</a:ListOfPoints>
 <a:ArrowStyle>1</a:ArrowStyle>
 <a:LineColor>12615680</a:LineColor>
 <a:ShadowColor>12632256</a:ShadowColor>
@@ -8696,7 +8696,7 @@ CARD 0 新宋体,8,N</a:FontList>
 <o:ReferenceSymbol Id="o307">
 <a:CreationDate>1380446636</a:CreationDate>
 <a:ModificationDate>1380529491</a:ModificationDate>
-<a:Rect>((-55500,73650), (-53850,81000))</a:Rect>
+<a:Rect>((-60481,73650), (-48857,81000))</a:Rect>
 <a:ListOfPoints>((-55500,73650),(-53850,81000))</a:ListOfPoints>
 <a:ArrowStyle>1</a:ArrowStyle>
 <a:LineColor>12615680</a:LineColor>
@@ -8715,9 +8715,9 @@ CARD 0 新宋体,8,N</a:FontList>
 </o:ReferenceSymbol>
 <o:ReferenceSymbol Id="o310">
 <a:CreationDate>1380446951</a:CreationDate>
-<a:ModificationDate>1380529828</a:ModificationDate>
-<a:Rect>((-54375,59069), (-35550,60770))</a:Rect>
-<a:ListOfPoints>((-54375,59700),(-35550,60770))</a:ListOfPoints>
+<a:ModificationDate>1380530594</a:ModificationDate>
+<a:Rect>((-54375,59700), (-35100,61785))</a:Rect>
+<a:ListOfPoints>((-54375,59700),(-35100,61785))</a:ListOfPoints>
 <a:ArrowStyle>1</a:ArrowStyle>
 <a:LineColor>12615680</a:LineColor>
 <a:ShadowColor>12632256</a:ShadowColor>
@@ -8735,8 +8735,8 @@ CARD 0 新宋体,8,N</a:FontList>
 </o:ReferenceSymbol>
 <o:TableSymbol Id="o297">
 <a:CreationDate>1380349867</a:CreationDate>
-<a:ModificationDate>1380529828</a:ModificationDate>
-<a:Rect>((-38487,51664), (-22063,66962))</a:Rect>
+<a:ModificationDate>1380530594</a:ModificationDate>
+<a:Rect>((-38037,51525), (-21613,68761))</a:Rect>
 <a:AutoAdjustToText>0</a:AutoAdjustToText>
 <a:LineColor>12615680</a:LineColor>
 <a:FillColor>16570034</a:FillColor>
@@ -8955,7 +8955,7 @@ TableComment 0 新宋体,8,N</a:FontList>
 <o:TableSymbol Id="o323">
 <a:CreationDate>1380514228</a:CreationDate>
 <a:ModificationDate>1380529945</a:ModificationDate>
-<a:Rect>((9582,66025), (22816,70024))</a:Rect>
+<a:Rect>((9389,66025), (23009,70024))</a:Rect>
 <a:LineColor>12615680</a:LineColor>
 <a:FillColor>16570034</a:FillColor>
 <a:ShadowColor>12632256</a:ShadowColor>
@@ -8978,7 +8978,7 @@ TableComment 0 新宋体,8,N</a:FontList>
 <o:TableSymbol Id="o325">
 <a:CreationDate>1380514334</a:CreationDate>
 <a:ModificationDate>1380529947</a:ModificationDate>
-<a:Rect>((11355,73000), (21499,76999))</a:Rect>
+<a:Rect>((11162,73000), (21692,76999))</a:Rect>
 <a:LineColor>12615680</a:LineColor>
 <a:FillColor>16570034</a:FillColor>
 <a:ShadowColor>12632256</a:ShadowColor>
@@ -18667,9 +18667,9 @@ end</a:Comment>
 <a:Code>ZXF</a:Code>
 <a:CreationDate>1380353147</a:CreationDate>
 <a:Creator>Administrator</a:Creator>
-<a:ModificationDate>1380377385</a:ModificationDate>
+<a:ModificationDate>1380530569</a:ModificationDate>
 <a:Modifier>Administrator</a:Modifier>
-<a:DataType>VARCHAR2(10 BYTE)</a:DataType>
+<a:DataType>VARCHAR2(10)</a:DataType>
 <a:Length>10</a:Length>
 </o:Column>
 <o:Column Id="o1061">
@@ -19197,9 +19197,9 @@ end</a:Comment>
 <a:Code>RSJSH</a:Code>
 <a:CreationDate>1380526052</a:CreationDate>
 <a:Creator>Administrator</a:Creator>
-<a:ModificationDate>1380526052</a:ModificationDate>
+<a:ModificationDate>1380530617</a:ModificationDate>
 <a:Modifier>Administrator</a:Modifier>
-<a:DataType>VARCHAR(10)</a:DataType>
+<a:DataType>VARCHAR2(10)</a:DataType>
 <a:Length>10</a:Length>
 </o:Column>
 <o:Column Id="o1104">
@@ -19208,9 +19208,9 @@ end</a:Comment>
 <a:Code>ZC</a:Code>
 <a:CreationDate>1380528984</a:CreationDate>
 <a:Creator>Administrator</a:Creator>
-<a:ModificationDate>1380528984</a:ModificationDate>
+<a:ModificationDate>1380530617</a:ModificationDate>
 <a:Modifier>Administrator</a:Modifier>
-<a:DataType>VARCHAR(20)</a:DataType>
+<a:DataType>VARCHAR2(20)</a:DataType>
 <a:Length>20</a:Length>
 </o:Column>
 <o:Column Id="o1105">
@@ -19219,9 +19219,9 @@ end</a:Comment>
 <a:Code>XW</a:Code>
 <a:CreationDate>1380528984</a:CreationDate>
 <a:Creator>Administrator</a:Creator>
-<a:ModificationDate>1380528984</a:ModificationDate>
+<a:ModificationDate>1380530622</a:ModificationDate>
 <a:Modifier>Administrator</a:Modifier>
-<a:DataType>VARCHAR(20)</a:DataType>
+<a:DataType>VARCHAR2(20)</a:DataType>
 <a:Length>20</a:Length>
 </o:Column>
 </c:Columns>
@@ -19522,9 +19522,9 @@ end</a:Comment>
 <a:Code>MX</a:Code>
 <a:CreationDate>1380440963</a:CreationDate>
 <a:Creator>Administrator</a:Creator>
-<a:ModificationDate>1380440963</a:ModificationDate>
+<a:ModificationDate>1380530583</a:ModificationDate>
 <a:Modifier>Administrator</a:Modifier>
-<a:DataType>VARCHAR2(100 BYTE)</a:DataType>
+<a:DataType>VARCHAR2(100)</a:DataType>
 <a:Length>100</a:Length>
 </o:Column>
 </c:Columns>
@@ -19625,9 +19625,9 @@ end</a:Comment>
 <a:Code>MC</a:Code>
 <a:CreationDate>1380514331</a:CreationDate>
 <a:Creator>Administrator</a:Creator>
-<a:ModificationDate>1380514331</a:ModificationDate>
+<a:ModificationDate>1380530635</a:ModificationDate>
 <a:Modifier>Administrator</a:Modifier>
-<a:DataType>VARCHAR(50)</a:DataType>
+<a:DataType>VARCHAR2(50)</a:DataType>
 <a:Length>50</a:Length>
 </o:Column>
 </c:Columns>
@@ -19676,9 +19676,9 @@ end</a:Comment>
 <a:Code>ZC</a:Code>
 <a:CreationDate>1380514394</a:CreationDate>
 <a:Creator>Administrator</a:Creator>
-<a:ModificationDate>1380514394</a:ModificationDate>
+<a:ModificationDate>1380530643</a:ModificationDate>
 <a:Modifier>Administrator</a:Modifier>
-<a:DataType>VARCHAR(50)</a:DataType>
+<a:DataType>VARCHAR2(50)</a:DataType>
 <a:Length>50</a:Length>
 </o:Column>
 </c:Columns>
