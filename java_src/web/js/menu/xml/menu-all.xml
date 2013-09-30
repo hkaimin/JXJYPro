@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Modules>
-
+    <!-- diu -->
     <module name="infoset" file="menu-infoset.xml"/>
 	<module name="oa" file="menu-oa.xml"/>
 	<module name="myflow" file="menu-myflow.xml"/>
