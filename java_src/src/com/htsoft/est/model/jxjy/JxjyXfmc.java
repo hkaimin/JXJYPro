@@ -6,7 +6,7 @@ package com.htsoft.est.model.jxjy;
 
 public class JxjyXfmc implements java.io.Serializable {
 
-	// Fields
+	// Fields  
 
 	private Long id;
 	private String mc;

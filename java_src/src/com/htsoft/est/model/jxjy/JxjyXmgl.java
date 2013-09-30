@@ -6,7 +6,7 @@ package com.htsoft.est.model.jxjy;
 
 public class JxjyXmgl implements java.io.Serializable {
 
-	// Fields
+	// Fields  
 
 	private Long xmId;
 	private Long xflbid;

@@ -6,7 +6,7 @@ package com.htsoft.est.model.jxjy;
 
 public class JxjyDbry implements java.io.Serializable {
 
-	// Fields
+	// Fields  
 
 	private Long rybh;
 	private String xm;
