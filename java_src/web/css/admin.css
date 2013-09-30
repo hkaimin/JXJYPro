@@ -736,6 +736,10 @@ div button {
 	background-image: url('../images/menus/flow/menu-form.png') !important;
 }
 
+.mod-infoset{
+	background-image: url('../images/menus/flow/menu-form.png') !important;
+}
+
 a.attachment {
 	background: url('../images/flag/attachment.png') no-repeat !important;
 	padding-left: 18px;

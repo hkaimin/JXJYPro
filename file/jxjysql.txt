@@ -84,4 +84,11 @@ CREATE TABLE JXJY_DDDZTable  (
    CONSTRAINT PK_JXJY_DDDZTable PRIMARY KEY (ID)
 );
 
+CREATE TABLE JXJY_XFMCTABLE  (
+   XFLBID               NUMBER(18),
+   ID                   NUMBER(18)                      NOT NULL,
+   MC                   VARCHAR2(20),
+   CONSTRAINT PK_XFMCTABLE PRIMARY KEY (ID)
+);
+
 备注：学些统一取名 ： S_表名 ：例如 ：S_DDDZTABLE
