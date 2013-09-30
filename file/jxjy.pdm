@@ -8696,8 +8696,8 @@ CARD 0 新宋体,8,N</a:FontList>
 <o:ReferenceSymbol Id="o307">
 <a:CreationDate>1380446636</a:CreationDate>
 <a:ModificationDate>1380529491</a:ModificationDate>
-<a:Rect>((-60481,73650), (-48857,81000))</a:Rect>
-<a:ListOfPoints>((-55500,73650),(-53850,81000))</a:ListOfPoints>
+<a:Rect>((-60415,73650), (-48791,81000))</a:Rect>
+<a:ListOfPoints>((-55500,73650),(-53715,81000))</a:ListOfPoints>
 <a:ArrowStyle>1</a:ArrowStyle>
 <a:LineColor>12615680</a:LineColor>
 <a:ShadowColor>12632256</a:ShadowColor>
@@ -8932,7 +8932,7 @@ TableComment 0 新宋体,8,N</a:FontList>
 <o:TableSymbol Id="o308">
 <a:CreationDate>1380441217</a:CreationDate>
 <a:ModificationDate>1380529489</a:ModificationDate>
-<a:Rect>((-59873,79466), (-45865,83466))</a:Rect>
+<a:Rect>((-58907,79466), (-46831,83466))</a:Rect>
 <a:LineColor>12615680</a:LineColor>
 <a:FillColor>16570034</a:FillColor>
 <a:ShadowColor>12632256</a:ShadowColor>
@@ -19574,9 +19574,9 @@ end</a:Comment>
 <a:Code>学分名称 MC</a:Code>
 <a:CreationDate>1380441321</a:CreationDate>
 <a:Creator>Administrator</a:Creator>
-<a:ModificationDate>1380441321</a:ModificationDate>
+<a:ModificationDate>1380530861</a:ModificationDate>
 <a:Modifier>Administrator</a:Modifier>
-<a:DataType>VARCHAR2(20 BYTE)</a:DataType>
+<a:DataType>VARCHAR2(20)</a:DataType>
 <a:Length>20</a:Length>
 </o:Column>
 </c:Columns>
