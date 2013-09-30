@@ -21,6 +21,15 @@ public interface OrganizationDao extends BaseDao<Organization>{
 	 * @return
 	 */
 	public List<Organization> getByParent(Long parentId,Long demId);
+	
+	/**
+	 * 取得某个节点下的所有公司子节点
+	 * @param parentId
+	 * @param demId
+	 * @return
+	 */
+	public List<Organization> getCompanyByParent(Long parentId, Long demId);
+	
 	/**
 	 * 按路径查找所有节点
 	 * @param path

@@ -316,6 +316,8 @@
 			<result>/pages/document/fileDetail.jsp</result>
 		</action>
 	</package>
+	
+	<include file="struts-project.xml"></include>
 </struts>
 
 		
