@@ -8595,9 +8595,9 @@ Shadow=0</a:DisplayPreferences>
 <c:Symbols>
 <o:ReferenceSymbol Id="o291">
 <a:CreationDate>1380368792</a:CreationDate>
-<a:ModificationDate>1380529822</a:ModificationDate>
-<a:Rect>((-23376,41964), (-11030,49577))</a:Rect>
-<a:ListOfPoints>((-11451,49577),(-23376,41964))</a:ListOfPoints>
+<a:ModificationDate>1380529930</a:ModificationDate>
+<a:Rect>((-23376,41964), (-10784,49577))</a:Rect>
+<a:ListOfPoints>((-11001,49577),(-23376,41964))</a:ListOfPoints>
 <a:ArrowStyle>1</a:ArrowStyle>
 <a:LineColor>12615680</a:LineColor>
 <a:ShadowColor>12632256</a:ShadowColor>
@@ -8635,9 +8635,9 @@ CARD 0 新宋体,8,N</a:FontList>
 </o:ReferenceSymbol>
 <o:ReferenceSymbol Id="o299">
 <a:CreationDate>1380380362</a:CreationDate>
-<a:ModificationDate>1380529822</a:ModificationDate>
-<a:Rect>((-15774,61851), (-4150,77080))</a:Rect>
-<a:ListOfPoints>((-10111,61851),(-9828,77080))</a:ListOfPoints>
+<a:ModificationDate>1380529933</a:ModificationDate>
+<a:Rect>((-15205,61851), (-3581,75205))</a:Rect>
+<a:ListOfPoints>((-9661,61851),(-9153,75205))</a:ListOfPoints>
 <a:ArrowStyle>1</a:ArrowStyle>
 <a:LineColor>12615680</a:LineColor>
 <a:ShadowColor>12632256</a:ShadowColor>
@@ -8696,7 +8696,7 @@ CARD 0 新宋体,8,N</a:FontList>
 <o:ReferenceSymbol Id="o307">
 <a:CreationDate>1380446636</a:CreationDate>
 <a:ModificationDate>1380529491</a:ModificationDate>
-<a:Rect>((-60482,73650), (-48858,81000))</a:Rect>
+<a:Rect>((-55500,73650), (-53850,81000))</a:Rect>
 <a:ListOfPoints>((-55500,73650),(-53850,81000))</a:ListOfPoints>
 <a:ArrowStyle>1</a:ArrowStyle>
 <a:LineColor>12615680</a:LineColor>
@@ -8716,7 +8716,7 @@ CARD 0 新宋体,8,N</a:FontList>
 <o:ReferenceSymbol Id="o310">
 <a:CreationDate>1380446951</a:CreationDate>
 <a:ModificationDate>1380529828</a:ModificationDate>
-<a:Rect>((-54375,59119), (-35550,60770))</a:Rect>
+<a:Rect>((-54375,59069), (-35550,60770))</a:Rect>
 <a:ListOfPoints>((-54375,59700),(-35550,60770))</a:ListOfPoints>
 <a:ArrowStyle>1</a:ArrowStyle>
 <a:LineColor>12615680</a:LineColor>
@@ -8810,8 +8810,8 @@ TableComment 0 新宋体,8,N</a:FontList>
 </o:TableSymbol>
 <o:TableSymbol Id="o292">
 <a:CreationDate>1380355480</a:CreationDate>
-<a:ModificationDate>1380529822</a:ModificationDate>
-<a:Rect>((-15575,48319), (-801,64885))</a:Rect>
+<a:ModificationDate>1380529930</a:ModificationDate>
+<a:Rect>((-15125,48319), (-351,64885))</a:Rect>
 <a:AutoAdjustToText>0</a:AutoAdjustToText>
 <a:LineColor>12615680</a:LineColor>
 <a:FillColor>16570034</a:FillColor>
@@ -8835,8 +8835,8 @@ TableComment 0 新宋体,8,N</a:FontList>
 </o:TableSymbol>
 <o:TableSymbol Id="o317">
 <a:CreationDate>1380374985</a:CreationDate>
-<a:ModificationDate>1380529711</a:ModificationDate>
-<a:Rect>((-2787,78887), (10061,83135))</a:Rect>
+<a:ModificationDate>1380529936</a:ModificationDate>
+<a:Rect>((-3087,76787), (9761,81035))</a:Rect>
 <a:LineColor>12615680</a:LineColor>
 <a:FillColor>16570034</a:FillColor>
 <a:ShadowColor>12632256</a:ShadowColor>
@@ -8881,8 +8881,8 @@ TableComment 0 新宋体,8,N</a:FontList>
 </o:TableSymbol>
 <o:TableSymbol Id="o300">
 <a:CreationDate>1380375688</a:CreationDate>
-<a:ModificationDate>1380529679</a:ModificationDate>
-<a:Rect>((-20227,74727), (-7403,81203))</a:Rect>
+<a:ModificationDate>1380529933</a:ModificationDate>
+<a:Rect>((-19552,72852), (-6728,79328))</a:Rect>
 <a:AutoAdjustToText>0</a:AutoAdjustToText>
 <a:LineColor>12615680</a:LineColor>
 <a:FillColor>16570034</a:FillColor>
@@ -8954,8 +8954,8 @@ TableComment 0 新宋体,8,N</a:FontList>
 </o:TableSymbol>
 <o:TableSymbol Id="o323">
 <a:CreationDate>1380514228</a:CreationDate>
-<a:ModificationDate>1380529172</a:ModificationDate>
-<a:Rect>((5232,64150), (18466,68149))</a:Rect>
+<a:ModificationDate>1380529945</a:ModificationDate>
+<a:Rect>((9582,66025), (22816,70024))</a:Rect>
 <a:LineColor>12615680</a:LineColor>
 <a:FillColor>16570034</a:FillColor>
 <a:ShadowColor>12632256</a:ShadowColor>
@@ -8977,8 +8977,8 @@ TableComment 0 新宋体,8,N</a:FontList>
 </o:TableSymbol>
 <o:TableSymbol Id="o325">
 <a:CreationDate>1380514334</a:CreationDate>
-<a:ModificationDate>1380529171</a:ModificationDate>
-<a:Rect>((6255,71200), (16399,75199))</a:Rect>
+<a:ModificationDate>1380529947</a:ModificationDate>
+<a:Rect>((11355,73000), (21499,76999))</a:Rect>
 <a:LineColor>12615680</a:LineColor>
 <a:FillColor>16570034</a:FillColor>
 <a:ShadowColor>12632256</a:ShadowColor>
