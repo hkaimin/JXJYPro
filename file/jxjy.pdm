@@ -8696,7 +8696,7 @@ CARD 0 新宋体,8,N</a:FontList>
 <o:ReferenceSymbol Id="o307">
 <a:CreationDate>1380446636</a:CreationDate>
 <a:ModificationDate>1380529491</a:ModificationDate>
-<a:Rect>((-60415,73650), (-48791,81000))</a:Rect>
+<a:Rect>((-55500,73650), (-53715,81000))</a:Rect>
 <a:ListOfPoints>((-55500,73650),(-53715,81000))</a:ListOfPoints>
 <a:ArrowStyle>1</a:ArrowStyle>
 <a:LineColor>12615680</a:LineColor>
@@ -18764,10 +18764,10 @@ end</a:Comment>
 <o:Column Id="o1069">
 <a:ObjectID>E97202B8-397B-46B3-B2DD-DB6D69AF1F81</a:ObjectID>
 <a:Name>项目编号 XMBH</a:Name>
-<a:Code>项目编号 XMBH</a:Code>
+<a:Code>XMBH</a:Code>
 <a:CreationDate>1380529564</a:CreationDate>
 <a:Creator>Administrator</a:Creator>
-<a:ModificationDate>1380529564</a:ModificationDate>
+<a:ModificationDate>1380555680</a:ModificationDate>
 <a:Modifier>Administrator</a:Modifier>
 <a:DataType>NUMBER(18)</a:DataType>
 <a:Length>18</a:Length>
