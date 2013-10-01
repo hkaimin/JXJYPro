@@ -10,6 +10,10 @@ App.importJs = {
 	        __ctxPath + '/js/system/MenuUrlForm.js',
 	        __ctxPath + '/js/system/IconSelector.js'
 	],
+	JxjyRyxfglView : [
+    	__ctxPath+'/js/ryxf/JxjyRyxfglView.js',
+    	__ctxPath+'/js/ryxf/JxjyRyxfglForm.js'
+],
 
 	AppRoleView : [
 			__ctxPath + '/js/system/AppRoleView.js',
@@ -427,4 +431,8 @@ UserFormPanel:[
     	__ctxPath+'/js/project/ProjectForm.js'
 ]
 //  end:  Generated for PositionSub From Template: App.import.js.vm
+//  start:  Generated for JxjyRyxfgl From Template: App.import.js.vm
+
+
+//  end:  Generated for JxjyRyxfgl From Template: App.import.js.vm
 };

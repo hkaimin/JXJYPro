@@ -217,4 +217,7 @@
 <!-- start:  Project  -->
  <bean id="ProjectAction" class="com.htsoft.est.action.project.ProjectAction" scope="prototype"/>
 <!-- end:  Project  -->
+<!-- start:  Generated for JxjyRyxfgl From Template: app-action.xml.beansvm  -->
+ <bean id="JxjyRyxfglAction" class="com.htsoft.est.action.ryxf.JxjyRyxfglAction" scope="prototype"/>
+<!-- end:  Generated for JxjyRyxfgl From Template: app-action.xml.beansvm  -->
 </beans>

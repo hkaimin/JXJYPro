@@ -369,4 +369,9 @@
    	 	<constructor-arg index="0" ref="positionSubDao"/>
    	 </bean>
 <!-- end:  Generated for PositionSub From Template: app-service.xml.beansvm  -->
+<!-- start:  Generated for JxjyRyxfgl From Template: app-service.xml.beansvm  -->
+	 <bean id="jxjyRyxfglService" class="com.htsoft.est.service.ryxf.impl.JxjyRyxfglServiceImpl">
+   	 	<constructor-arg index="0" ref="jxjyRyxfglDao"/>
+   	 </bean>
+<!-- end:  Generated for JxjyRyxfgl From Template: app-service.xml.beansvm  -->
 </beans>

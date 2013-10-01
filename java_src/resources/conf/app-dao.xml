@@ -224,4 +224,7 @@
 <!-- start:  Generated for PositionSub From Template: app-dao.xml.beansvm  -->
 	<bean id="positionSubDao" class="com.htsoft.est.dao.system.impl.PositionSubDaoImpl" parent="baseDao"/>
 <!-- end:  Generated for PositionSub From Template: app-dao.xml.beansvm  -->
+<!-- start:  Generated for JxjyRyxfgl From Template: app-dao.xml.beansvm  -->
+	<bean id="jxjyRyxfglDao" class="com.htsoft.est.dao.ryxf.impl.JxjyRyxfglDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for JxjyRyxfgl From Template: app-dao.xml.beansvm  -->
 </beans>
