@@ -9,6 +9,15 @@
 		<property name="jdbcTemplate" ref="jdbcTemplate"/>
    		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
+	
+		<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<bean id="basicDao" class="com.htsoft.core.dao.impl.BasicDaoImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+	
    	<bean id="baseDao" abstract="true" class="com.htsoft.core.dao.impl.BaseDaoImpl" parent="genericDao"/>
    	<bean id="jbpmDao" class="com.htsoft.est.dao.flow.impl.JbpmDaoImpl"/>	
 	<bean id="appRoleDao" class="com.htsoft.est.dao.system.impl.AppRoleDaoImpl" parent="baseDao"/>

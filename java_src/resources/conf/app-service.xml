@@ -38,6 +38,11 @@
 		</tx:attributes>
 	</tx:advice>
 	
+		<bean id="commonService" class="com.htsoft.core.service.impl.CommonServiceImpl">
+		<property name="basicDao" ref="basicDao"></property>
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
 	<bean id="jbpmService" class="com.htsoft.est.service.flow.impl.JbpmServiceImpl"/>
 	
 	<bean id="flowFormService" class="com.htsoft.est.service.flow.impl.FlowFormServiceImpl"/>
