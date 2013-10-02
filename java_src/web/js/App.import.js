@@ -15,6 +15,7 @@ App.importJs = {
     	__ctxPath+'/js/ryxf/JxjyRyxfglForm.js'
 ],
 
+
 	AppRoleView : [
 			__ctxPath + '/js/system/AppRoleView.js',
 			__ctxPath+'/ext3/ux/CheckTreePanel.js',
