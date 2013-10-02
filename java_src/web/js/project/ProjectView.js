@@ -418,7 +418,39 @@ ProjectView = Ext.extend(Ext.Panel,{
 			}, {
 				header : '状态',
 				dataIndex : 'zt',
-				sortable: true
+				sortable: true,
+				renderer : function(value, metadata, record, rowIndex,
+							colIndex) {
+						if(value == '2') {
+							return "未审核";
+						} else if(value == "0") {
+							return "不通过"
+						} else if(value == "1") {
+							return "已通过";
+						} else if(value == "3") {
+							return "已上报";
+						}else {
+							return "无状态";
+						}
+					}
+			}, {
+				header : '医院状态',
+				dataIndex : 'yysh',
+				sortable: true,
+				renderer : function(value, metadata, record, rowIndex,
+							colIndex) {
+						if(value == '2') {
+							return "未审核";
+						} else if(value == "0") {
+							return "不通过"
+						} else if(value == "1") {
+							return "已通过";
+						} else if(value == "3") {
+							return "已上报";
+						}else {
+							return "无状态";
+						}
+					}
 			}, new Ext.ux.grid.RowActions( {
 				header : '管理',
 				width : 100,
@@ -432,7 +464,22 @@ ProjectView = Ext.extend(Ext.Panel,{
 					iconCls : 'btn-edit',
 					qtip : '编辑变电站',
 					style : 'margin:0 3px 0 3px'
-				} ],
+				},{
+					text:'<a href="#">上报</a>',
+					iconCls : 'btn-report',
+					qtip : '上报医院同意',
+					style : 'margin:0 3px 0 3px'
+				},{
+					text:'<a href="#">医院</a>',
+					iconCls : 'btn-checkYy',
+					qtip : '医院审核',
+					style : 'margin:0 3px 0 3px'
+				},{
+					text:'<a href="#">审核</a>',
+					iconCls : 'btn-check',
+					qtip : '报卫生局审核',
+					style : 'margin:0 3px 0 3px'
+				}],
 				listeners : {
 					scope : this,
 					'action' : this.onRowAction
@@ -591,46 +638,151 @@ ProjectView = Ext.extend(Ext.Panel,{
 			edit:true
 		}).show();
 	},
-	
-	//把选中共享
-	shareSelRs : function() {
-
-		var records = this.gridPanel.getSelectionModel().getSelections();
-		if(records.length != 1 ) {
-			Ext.ux.Toast.msg("操作信息","请选择一个变电站！");
-			return;
-		}
+	//上报医院同意
+	reportRs : function(record) {
+		var gridPanel = this.gridPanel;
+		Ext.Msg.confirm("信息确认", "是否上报医院？", function(btn){
+            if (btn == "yes") {
+            	var xmId = 	record.data.xmId;
+				Ext.Ajax.request({
+					url : __ctxPath + '/project/reportToYyProject.do',
+					method : 'POST',
+					params : {
+						xmId : xmId
+					},
+					success : function(form, action) {
+						
+						var result = Ext.util.JSON.decode(form.responseText);
+						if (result.success == true) {
+							Ext.ux.Toast.msg("操作信息", "项目上报医院成功！");
+																	
+						} else {
+							Ext.MessageBox.show({
+								title : '操作信息',
+								msg : result.message,
+								buttons : Ext.MessageBox.OK,
+								icon : 'ext-mb-error'
+							});
+						}
+						gridPanel.getStore().reload();
+					},
+					failure : function(response, options) {
+						Ext.ux.Toast.msg("温馨提示", "系统错误，请联系管理员！");
+					}
+			   });
+            }
+	 	});	
+	},
+	//卫生局审核
+	checkRs : function(record) {
+		var gridPanel = this.gridPanel;
+		Ext.Msg.confirm("信息确认", "此项目是否通过？", function(btn){ 
+			if(btn == "yes") {
+				Ext.MessageBox.prompt('提示信息', '请输入此项目编号。', function(btn, text) {
+		            if (btn == "ok") {
+		            	var xmId = 	record.data.xmId;
+						Ext.Ajax.request({
+							url : __ctxPath + '/project/checkProProject.do',
+							method : 'POST',
+							params : {
+								xmId : xmId,
+								xmbh : text,
+								isCheck : '1'
+							},
+							success : function(form, action) {
+								
+								var result = Ext.util.JSON.decode(form.responseText);
+								if (result.success == true) {
+									Ext.ux.Toast.msg("操作信息", "信息保存成功！");
+																			
+								} else {
+									Ext.MessageBox.show({
+										title : '操作信息',
+										msg : result.message,
+										buttons : Ext.MessageBox.OK,
+										icon : 'ext-mb-error'
+									});
+								}
+								gridPanel.getStore().reload();
+							},
+							failure : function(response, options) {
+								Ext.ux.Toast.msg("温馨提示", "系统错误，请联系管理员！");
+							}
+					   });
+		            }
+	 			});	
+			} else if(btn == "no"){
+				var xmId = 	record.data.xmId;
+				Ext.Ajax.request({
+					url : __ctxPath + '/project/checkProProject.do',
+					method : 'POST',
+					params : {
+						xmId : xmId,
+						isCheck : '0'
+					},
+					success : function(form, action) {
+						
+						var result = Ext.util.JSON.decode(form.responseText);
+						if (result.success == true) {
+							Ext.ux.Toast.msg("操作信息", "信息保存成功！");
+																	
+						} else {
+							Ext.MessageBox.show({
+								title : '操作信息',
+								msg : result.message,
+								buttons : Ext.MessageBox.OK,
+								icon : 'ext-mb-error'
+							});
+						}
+						gridPanel.getStore().reload();
+					},
+					failure : function(response, options) {
+						Ext.ux.Toast.msg("温馨提示", "系统错误，请联系管理员！");
+					}
+			   });
+			}
+		});
 		
-		var bdzId = records[0].data.bdzId;
-//		QJSelector.getView(function(qjIds){
-//			Ext.Ajax.request({
-//					url : __ctxPath + '/dataManagement/shareRmBdz.do',
-//					method : 'POST',
-//					params : {
-//						'qjIds' : qjIds,
-//						'bdzId' : bdzId
-//					},
-//					success : function(form, action) {
-//						
-//						var result = Ext.util.JSON.decode(form.responseText);
-//						if (result.success == true) {
-//							Ext.ux.Toast.msg("操作信息", "共享变电站操作成功");
-//																	
-//						} else {
-//							Ext.ux.Toast.msg("操作信息", result.msg);
-//						}
-//
-//					},
-//					failure : function(response, options) {
-//						Ext.ux.Toast.msg("温馨提示", "系统错误，请联系管理员！");
-//					}
-//			   });
-//			
-//		},{
-//			excludeIds:this._param.orgId,
-//			bdzId : bdzId
-//			}).show();		
-		
+	},
+	//医院审核
+	checkYyRs : function(record) {
+		var gridPanel = this.gridPanel;
+		Ext.Msg.confirm("信息确认", "此项目是否通过？", function(btn){ 
+			var flage = "";
+			if(btn == "yes") {
+				flage = "1";
+			} else if(btn == "no"){
+				flage = "0";
+			}
+			var xmId = 	record.data.xmId;
+			Ext.Ajax.request({
+				url : __ctxPath + '/project/checkProYyProject.do',
+				method : 'POST',
+				params : {
+					xmId : xmId,
+					isCheck : flage
+				},
+				success : function(form, action) {
+					
+					var result = Ext.util.JSON.decode(form.responseText);
+					if (result.success == true) {
+						Ext.ux.Toast.msg("操作信息", "信息保存成功！");
+																
+					} else {
+						Ext.MessageBox.show({
+							title : '操作信息',
+							msg : result.message,
+							buttons : Ext.MessageBox.OK,
+							icon : 'ext-mb-error'
+						});
+					}
+					gridPanel.getStore().reload();
+				},
+				failure : function(response, options) {
+					Ext.ux.Toast.msg("温馨提示", "系统错误，请联系管理员！");
+				}
+		   });
+		});
 		
 	},
 	
@@ -642,6 +794,15 @@ ProjectView = Ext.extend(Ext.Panel,{
 			break;
 		case 'btn-edit':
 			this.editRs.call(this, record);
+			break;
+		case 'btn-report':
+			this.reportRs.call(this, record);
+			break;
+		case 'btn-check':
+			this.checkRs.call(this, record);
+			break;
+		case 'btn-checkYy':
+			this.checkYyRs.call(this, record);
 			break;
 		default:
 			break;

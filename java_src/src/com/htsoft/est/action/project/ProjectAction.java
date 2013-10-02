@@ -45,6 +45,39 @@ public class ProjectAction extends BaseAction {
 		}
 		return SUCCESS;
 	}
+	
+	/**
+	 * 上报医院
+	 * @return
+	 */
+	public String reportToYy() {
+		String xmId = this.getRequest().getParameter("xmId");
+		this.projectService.reportToYy(new Long(xmId));
+		return SUCCESS;
+	}
+	
+	/**
+	 * 卫生院审核
+	 * @return
+	 */
+	public String checkPro() {
+		String xmId = this.getRequest().getParameter("xmId");
+		String xmbh = this.getRequest().getParameter("xmbh") == null ? "" : this.getRequest().getParameter("xmbh");
+		String isCheck = this.getRequest().getParameter("isCheck") == null ? "" : this.getRequest().getParameter("isCheck");
+		this.projectService.checkProject(new Long(xmId), xmbh, isCheck);
+		return SUCCESS;
+	}
+	
+	/**
+	 * 医院审核
+	 * @return
+	 */
+	public String checkProYy() {
+		String xmId = this.getRequest().getParameter("xmId");
+		String isCheck = this.getRequest().getParameter("isCheck") == null ? "" : this.getRequest().getParameter("isCheck");
+		this.projectService.checkProjectYy(new Long(xmId), isCheck);
+		return SUCCESS;
+	}
 
 	/**
 	 * 显示列表

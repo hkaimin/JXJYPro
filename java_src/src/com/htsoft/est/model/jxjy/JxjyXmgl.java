@@ -24,7 +24,7 @@ public class JxjyXmgl implements java.io.Serializable {
 	private String zt;
 	private Long zbbwid;
 	private Long yysh;
-	private Long xmbh;
+	private String xmbh;
 
 	// Constructors
 
@@ -41,7 +41,7 @@ public class JxjyXmgl implements java.io.Serializable {
 	public JxjyXmgl(Long xmId, Long xflbid, String mc, String xmmc,
 			String hdfs, String shfs, Long xmlb, String zxf, String zxs,
 			String jbsj, String tjsj, String xflb, String zbdw, String zt,
-			Long zbbwid, Long yysh, Long xmbh) {
+			Long zbbwid, Long yysh, String xmbh) {
 		this.xmId = xmId;
 		this.xflbid = xflbid;
 		this.mc = mc;
@@ -191,12 +191,13 @@ public class JxjyXmgl implements java.io.Serializable {
 		this.yysh = yysh;
 	}
 
-	public Long getXmbh() {
-		return this.xmbh;
+	public String getXmbh() {
+		return xmbh;
 	}
 
-	public void setXmbh(Long xmbh) {
+	public void setXmbh(String xmbh) {
 		this.xmbh = xmbh;
 	}
+	
 
 }

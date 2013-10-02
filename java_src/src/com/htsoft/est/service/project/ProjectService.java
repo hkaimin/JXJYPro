@@ -18,4 +18,24 @@ public interface ProjectService extends BaseService<JxjyXmgl>{
 	 * @return
 	 */
 	public List<JxjyXmgl> getProjectByOrg(Long orgId);
+	
+	/**
+	 * 上报给医院进行审核
+	 * @param xmId
+	 */
+	public void reportToYy(Long xmId);
+	
+	/**
+	 * 审核项目
+	 * @param xmId
+	 * @param xmbh
+	 */
+	public void checkProject(Long xmId, String xmbh, String isCheck);
+	
+	/**
+	 * 医院审核项目
+	 * @param xmId
+	 * @param isCheck
+	 */
+	public void checkProjectYy(Long xmId, String isCheck);
 }
