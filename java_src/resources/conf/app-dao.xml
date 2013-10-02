@@ -236,4 +236,7 @@
 <!-- start:  Generated for JxjyRyxfgl From Template: app-dao.xml.beansvm  -->
 	<bean id="jxjyRyxfglDao" class="com.htsoft.est.dao.ryxf.impl.JxjyRyxfglDaoImpl" parent="baseDao"/>
 <!-- end:  Generated for JxjyRyxfgl From Template: app-dao.xml.beansvm  -->
+<!-- start:  Generated for JxjyXmgl From Template: app-dao.xml.beansvm  -->
+	<bean id="jxjyXmglDao" class="com.htsoft.est.dao.ryxf.impl.JxjyXmglDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for JxjyXmgl From Template: app-dao.xml.beansvm  -->
 </beans>

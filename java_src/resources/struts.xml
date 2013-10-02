@@ -14,6 +14,16 @@
 	</package>
 	<constant name="struts.custom.i18n.resources" value="conf/message" />
 	 -->
+	 
+	 <package name="ryxf" extends="struts-default" namespace="/ryxf">
+	    <action name="*JxjyRyxfgl" class="JxjyRyxfglAction" method="{1}">
+			<result>${successResultValue}</result>
+		</action>
+		
+	    <action name="*JxjyXmgl" class="JxjyXmglAction" method="{1}">
+			<result>${successResultValue}</result>
+		</action>
+	 </package>
 
 	<package name="system" extends="struts-default" namespace="/system">
 		<action name="*RelativeUser" class="RelativeUserAction" method="{1}">

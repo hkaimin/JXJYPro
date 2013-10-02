@@ -43,6 +43,11 @@
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
 	
+		<bean id="myJdbcService" class="com.htsoft.est.service.ryxf.impl.MyJdbcServiceImpl" >   		
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="basicDao" ref="basicDao"></property>
+    </bean>
+	
 	<bean id="jbpmService" class="com.htsoft.est.service.flow.impl.JbpmServiceImpl"/>
 	
 	<bean id="flowFormService" class="com.htsoft.est.service.flow.impl.FlowFormServiceImpl"/>
@@ -379,4 +384,9 @@
    	 	<constructor-arg index="0" ref="jxjyRyxfglDao"/>
    	 </bean>
 <!-- end:  Generated for JxjyRyxfgl From Template: app-service.xml.beansvm  -->
+<!-- start:  Generated for JxjyXmgl From Template: app-service.xml.beansvm  -->
+	 <bean id="jxjyXmglService" class="com.htsoft.est.service.ryxf.impl.JxjyXmglServiceImpl">
+   	 	<constructor-arg index="0" ref="jxjyXmglDao"/>
+   	 </bean>
+<!-- end:  Generated for JxjyXmgl From Template: app-service.xml.beansvm  -->
 </beans>

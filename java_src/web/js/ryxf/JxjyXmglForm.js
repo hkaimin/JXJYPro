@@ -1,26 +1,26 @@
 /**
  * @author 
  * @createtime 
- * @class JxjyRyxfglForm
+ * @class JxjyXmglForm
  * @extends Ext.Window
- * @description JxjyRyxfgl表单
+ * @description JxjyXmgl表单
  * @company 宏天软件
  */
-JxjyRyxfglForm = Ext.extend(Ext.Window, {
+JxjyXmglForm = Ext.extend(Ext.Window, {
 			//构造函数
 			constructor : function(_cfg) {
 				Ext.applyIf(this, _cfg);
 				//必须先初始化组件
 				this.initUIComponents();
-				JxjyRyxfglForm.superclass.constructor.call(this, {
-							id : 'JxjyRyxfglFormWin',
+				JxjyXmglForm.superclass.constructor.call(this, {
+							id : 'JxjyXmglFormWin',
 							layout : 'fit',
 							items : this.formPanel,
 							modal : true,
 							height : 400,
 							width : 500,
 							maximizable : true,
-							title : '[JxjyRyxfgl]详细信息',
+							title : '[JxjyXmgl]详细信息',
 							buttonAlign : 'center',
 							buttons : [
 										{
@@ -49,110 +49,104 @@ JxjyRyxfglForm = Ext.extend(Ext.Window, {
 							bodyStyle : 'padding:10px',
 							border : false,
 							autoScroll:true,
-							//id : 'JxjyRyxfglForm',
+							//id : 'JxjyXmglForm',
 							defaults : {
 								anchor : '96%,96%'
 							},
 							defaultType : 'textfield',
 							items : [{
-								name : 'jxjyRyxfgl.id',
+								name : 'jxjyXmgl.xmId',
 								xtype : 'hidden',
-								value : this.id == null ? '' : this.id
+								value : this.xmId == null ? '' : this.xmId
 							}
-																																			,{
-																fieldLabel : '人员编号',
-								 								name : 'jxjyRyxfgl.rybh'
-																,allowBlank:false
+																																																	,{
+																fieldLabel : 'xflbid',
+								 								name : 'jxjyXmgl.xflbid'
 								 																,xtype:'numberfield'
 								 							}
 																																										,{
-																fieldLabel : '课题ID',
-								 								name : 'jxjyRyxfgl.ktId'
+																fieldLabel : 'mc',
+								 								name : 'jxjyXmgl.mc'
+								 																 								,maxLength: 50
+								 							}
+																																										,{
+																fieldLabel : 'xmmc',
+								 								name : 'jxjyXmgl.xmmc'
+								 																 								,maxLength: 20
+								 							}
+																																										,{
+																fieldLabel : 'hdfs',
+								 								name : 'jxjyXmgl.hdfs'
+								 																 								,maxLength: 20
+								 							}
+																																										,{
+																fieldLabel : 'shfs',
+								 								name : 'jxjyXmgl.shfs'
+								 																 								,maxLength: 20
+								 							}
+																																										,{
+																fieldLabel : 'xmlb',
+								 								name : 'jxjyXmgl.xmlb'
 								 																,xtype:'numberfield'
 								 							}
 																																										,{
-																fieldLabel : '姓名',
-								 								name : 'jxjyRyxfgl.xm'
+																fieldLabel : 'zxf',
+								 								name : 'jxjyXmgl.zxf'
 								 																 								,maxLength: 10
 								 							}
 																																										,{
-																fieldLabel : '日期',
-								 								name : 'jxjyRyxfgl.rq'
+																fieldLabel : 'zxs',
+								 								name : 'jxjyXmgl.zxs'
+								 																 								,maxLength: 10
+								 							}
+																																										,{
+																fieldLabel : 'jbsj',
+								 								name : 'jxjyXmgl.jbsj'
 								 																 								,maxLength: 20
 								 							}
 																																										,{
-																fieldLabel : '课题',
-								 								name : 'jxjyRyxfgl.kt'
+																fieldLabel : 'tjsj',
+								 								name : 'jxjyXmgl.tjsj'
 								 																 								,maxLength: 20
 								 							}
 																																										,{
-																fieldLabel : '学分类型',
-								 								name : 'jxjyRyxfgl.xflx'
-								 																 								,maxLength: 10
-								 							}
-																																										,{
-																fieldLabel : '学分类别',
-								 								name : 'jxjyRyxfgl.xflb'
-								 																 								,maxLength: 10
-								 							}
-																																										,{
-																fieldLabel : '学科',
-								 								name : 'jxjyRyxfgl.xk'
+																fieldLabel : 'xflb',
+								 								name : 'jxjyXmgl.xflb'
 								 																 								,maxLength: 20
 								 							}
 																																										,{
-																fieldLabel : '活动形式',
-								 								name : 'jxjyRyxfgl.hdxs'
-								 																 								,maxLength: 10
-								 							}
-																																										,{
-																fieldLabel : '学分',
-								 								name : 'jxjyRyxfgl.xf'
-								 																 								,maxLength: 10
-								 							}
-																																										,{
-																fieldLabel : '学时',
-								 								name : 'jxjyRyxfgl.xs'
-								 																 								,maxLength: 10
-								 							}
-																																										,{
-																fieldLabel : '授分单位',
-								 								name : 'jxjyRyxfgl.sfdw'
+																fieldLabel : 'zbdw',
+								 								name : 'jxjyXmgl.zbdw'
 								 																 								,maxLength: 20
 								 							}
 																																										,{
-																fieldLabel : '卫生厅审核状态',
-								 								name : 'jxjyRyxfgl.shzt'
+																fieldLabel : 'zt',
+								 								name : 'jxjyXmgl.zt'
 								 																 								,maxLength: 10
 								 							}
 																																										,{
-																fieldLabel : '备注',
-								 								name : 'jxjyRyxfgl.bz'
-								 																 								,maxLength: 100
-								 							}
-																																																								,{
-																fieldLabel : '人社局审核状态',
-								 								name : 'jxjyRyxfgl.rsjsh'
-								 																 								,maxLength: 10
+																fieldLabel : 'zbbwid',
+								 								name : 'jxjyXmgl.zbbwid'
+								 																,xtype:'numberfield'
 								 							}
 																																										,{
-																fieldLabel : '职称',
-								 								name : 'jxjyRyxfgl.zc'
-								 																 								,maxLength: 20
+																fieldLabel : 'yysh',
+								 								name : 'jxjyXmgl.yysh'
+								 																,xtype:'numberfield'
 								 							}
 																																										,{
-																fieldLabel : '学位',
-								 								name : 'jxjyRyxfgl.xw'
-								 																 								,maxLength: 20
+																fieldLabel : 'xmbh',
+								 								name : 'jxjyXmgl.xmbh'
+								 																,xtype:'numberfield'
 								 							}
 																																			]
 						});
 				//加载表单对应的数据	
-				if (this.id != null && this.id != 'undefined') {
+				if (this.xmId != null && this.xmId != 'undefined') {
 					this.formPanel.loadData({
-								url : __ctxPath + '/ryxf/getJxjyRyxfgl.do?id='+ this.id,
+								url : __ctxPath + '/ryxf/getJxjyXmgl.do?xmId='+ this.xmId,
 								root : 'data',
-								preName : 'jxjyRyxfgl'
+								preName : 'jxjyXmgl'
 							});
 				}
 				
@@ -179,9 +173,9 @@ JxjyRyxfglForm = Ext.extend(Ext.Window, {
 				$postForm({
 						formPanel:this.formPanel,
 						scope:this,
-						url:__ctxPath + '/ryxf/saveJxjyRyxfgl.do',
+						url:__ctxPath + '/ryxf/saveJxjyXmgl.do',
 						callback:function(fp,action){
-							var gridPanel = Ext.getCmp('JxjyRyxfglGrid');
+							var gridPanel = Ext.getCmp('JxjyXmglGrid');
 							if (gridPanel != null) {
 								gridPanel.getStore().reload();
 							}
