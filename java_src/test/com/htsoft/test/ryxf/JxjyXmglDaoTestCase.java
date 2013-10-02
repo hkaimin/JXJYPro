@@ -9,20 +9,19 @@ import org.junit.Test;
 import org.springframework.test.annotation.Rollback;
 
 import com.htsoft.test.BaseTestCase;
-import com.htsoft.est.dao.ryxf.JxjyRyxfglDao;
-import com.htsoft.est.model.jxjy.JxjyRyxfgl;
+import com.htsoft.est.dao.ryxf.JxjyXmglDao;
+import com.htsoft.est.model.jxjy.JxjyXmgl;
 
-
-public class JxjyRyxfglDaoTestCase extends BaseTestCase {
+public class JxjyXmglDaoTestCase extends BaseTestCase {
 	@Resource
-	private JxjyRyxfglDao jxjyRyxfglDao;
+	private JxjyXmglDao jxjyXmglDao;
 	
 	@Test
 	@Rollback(false)
 	public void add(){		
-		JxjyRyxfgl jxjyRyxfgl=new JxjyRyxfgl();
+		JxjyXmgl jxjyXmgl=new JxjyXmgl();
 //		TODO
 
-		jxjyRyxfglDao.save(jxjyRyxfgl);
+		jxjyXmglDao.save(jxjyXmgl);
 	}
 }

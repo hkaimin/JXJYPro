@@ -439,4 +439,11 @@ UserFormPanel:[
 
 
 //  end:  Generated for JxjyRyxfgl From Template: App.import.js.vm
+//  start:  Generated for JxjyXmgl From Template: App.import.js.vm
+,JxjyXmglView : [
+    	__ctxPath+'/js/ryxf/JxjyXmglView.js',
+    	__ctxPath+'/js/ryxf/JxjyXmglForm.js'
+]
+
+//  end:  Generated for JxjyXmgl From Template: App.import.js.vm
 };
