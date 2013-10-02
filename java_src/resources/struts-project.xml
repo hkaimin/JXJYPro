@@ -7,5 +7,8 @@
 		<action name="*Project" class="ProjectAction" method="{1}">
 			<result>${successResultValue}</result>
 		</action>
+		<action name="*Course" class="CourseAction" method="{1}">
+			<result>${successResultValue}</result>
+		</action>
 	</package>
 </struts>

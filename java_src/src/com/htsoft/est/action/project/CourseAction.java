@@ -12,10 +12,12 @@ import com.htsoft.core.command.QueryFilter;
 import com.htsoft.core.util.AppUtil;
 import com.htsoft.core.util.ContextUtil;
 import com.htsoft.core.web.action.BaseAction;
+import com.htsoft.est.model.jxjy.JxjyKtgl;
 import com.htsoft.est.model.jxjy.JxjyXmgl;
 import com.htsoft.est.model.system.AppUser;
 import com.htsoft.est.model.system.Organization;
 import com.htsoft.est.model.system.UserOrg;
+import com.htsoft.est.service.project.CourseService;
 import com.htsoft.est.service.project.ProjectService;
 import com.htsoft.est.service.system.OrganizationService;
 import com.htsoft.est.service.system.UserOrgService;
@@ -25,7 +27,7 @@ import com.htsoft.est.service.system.UserOrgService;
  * @author guojy
  *
  */
-public class ProjectAction extends BaseAction {
+public class CourseAction extends BaseAction {
 	
 	@Resource
 	private OrganizationService organizationService;
@@ -33,12 +35,14 @@ public class ProjectAction extends BaseAction {
 	private UserOrgService userOrgService;
 	@Resource
 	private ProjectService projectService;
+	@Resource
+	private CourseService courseService;
 	
-	private JxjyXmgl project;
+	private JxjyKtgl course;
 	
 	public String save() {
-		JxjyXmgl tempProject = this.projectService.saveProject(this.project);
-		if(tempProject != null) {
+		JxjyKtgl temp = this.courseService.saveCourse(this.course);
+		if(temp != null) {
 			jsonString = "{success:true}";
 		} else {
 			jsonString = "{success:false,message:'保存信息失败！'}";
@@ -58,8 +62,8 @@ public class ProjectAction extends BaseAction {
 
 		if (method.equals("treeClick")) { 	// 树点击，根据区局ID加载
 
-			List<JxjyXmgl> list = this.projectService.listProject(filter);
-			Type type = new TypeToken<List<JxjyXmgl>>() {
+			List<JxjyKtgl> list = this.courseService.listCourse(filter);
+			Type type = new TypeToken<List<JxjyKtgl>>() {
 			}.getType();
 			StringBuffer buff = new StringBuffer(
 					"{success:true,'totalCounts':").append(
@@ -102,36 +106,71 @@ public class ProjectAction extends BaseAction {
 
 		StringBuffer strbuff = new StringBuffer();
 
+		String orgType = this.getRequest().getParameter("orgType");
+		
 		Long demId = new Long(this.getRequest().getParameter("demensionId"));
 		Long orgId = new Long(this.getRequest().getParameter("treeNodeId"));
 
-		List<Organization> orgList = organizationService.getCompanyByParent(
-				orgId, demId);
-
-		if (orgList != null && orgList.size() > 0) {
-			strbuff.append("[");
-			boolean bFirst = true;
-			for (Organization orgX : orgList) {
-				if (!bFirst) {
-					strbuff.append(",");
-				} else {
-					bFirst = false;
-				}
-				strbuff.append("{");
-				strbuff.append("resId:'").append(orgX.getOrgId()).append("',");
-				strbuff.append("text:'").append(orgX.getOrgName()).append("',");
-				strbuff.append("treeNodeType:'org'");
-				List<Organization> list = organizationService
-						.getCompanyByParent(orgX.getOrgId(), null);
-				if (list == null || list.size() <= 0) { // 子节点没有公司，设为叶子
+		if(orgType.equals(Organization.ORG_TYPE_DEPARTMENT.toString())) { //科室加载项目
+			
+			
+			List<JxjyXmgl> xmList = this.projectService.getProjectByOrg(orgId);
+			
+			if(xmList.size() > 0) {
+				strbuff.append("[");
+				boolean bFirst = true;
+				for (JxjyXmgl p : xmList) {
+					if (!bFirst) {
+						strbuff.append(",");
+					} else {
+						bFirst = false;
+					}
+					strbuff.append("{");
+					strbuff.append("resId:'").append(p.getXmId()).append("',");
+					strbuff.append("text:'").append(p.getMc()).append("',");
+					strbuff.append("orgType:'").append("project").append("',");
+					
+					strbuff.append("treeNodeType:'org'");
+					
 					strbuff.append(",");
 					strbuff.append("leaf:true");
+					strbuff.append("}");
 				}
-				strbuff.append("}");
+				strbuff.append("]");
 			}
-			strbuff.append("]");
+			setJsonString(strbuff.toString());
+			
+		} else {
+			List<Organization> orgList = organizationService.getCompanyByParent(
+					orgId, demId);
+
+			if (orgList != null && orgList.size() > 0) {
+				strbuff.append("[");
+				boolean bFirst = true;
+				for (Organization orgX : orgList) {
+					if (!bFirst) {
+						strbuff.append(",");
+					} else {
+						bFirst = false;
+					}
+					strbuff.append("{");
+					strbuff.append("resId:'").append(orgX.getOrgId()).append("',");
+					strbuff.append("text:'").append(orgX.getOrgName()).append("',");
+					strbuff.append("orgType:'").append(orgX.getOrgType()).append("',");
+					strbuff.append("treeNodeType:'org'");
+//					List<Organization> list = organizationService
+//							.getCompanyByParent(orgX.getOrgId(), null);
+//					if (list == null || list.size() <= 0) { // 子节点没有公司，设为叶子
+//						strbuff.append(",");
+//						strbuff.append("leaf:true");
+//					}
+					strbuff.append("}");
+				}
+				strbuff.append("]");
+			}
+			setJsonString(strbuff.toString());
 		}
-		setJsonString(strbuff.toString());
+		
 		return SUCCESS;
 	}
 
@@ -161,6 +200,10 @@ public class ProjectAction extends BaseAction {
 							"',");
 					strbuff.append("text:'").append(orgX.getOrgName()).append(
 							"',");
+					
+					//增加orgType
+					strbuff.append("orgType:'").append(orgX.getOrgType()).append("',");
+					
 					strbuff.append("treeNodeType:'org'");
 					if (orgX.getDepth() == 2l) {
 						strbuff.append(",leaf:true");
@@ -219,6 +262,10 @@ public class ProjectAction extends BaseAction {
 			strbuff.append("resId:'").append(orgParent.getOrgId()).append("',");
 			strbuff.append("text:'").append(orgParent.getOrgName())
 					.append("',");
+			
+			//增加orgType
+			strbuff.append("orgType:'").append(orgParent.getOrgType()).append("',");
+			
 			// strbuff.append("expanded:true,");
 			strbuff.append("treeNodeType:'org'");
 			if(orgParent.getDepth() == 2l) {
@@ -236,12 +283,12 @@ public class ProjectAction extends BaseAction {
 		}
 	}
 
-	public JxjyXmgl getProject() {
-		return project;
+	public JxjyKtgl getCourse() {
+		return course;
 	}
 
-	public void setProject(JxjyXmgl project) {
-		this.project = project;
+	public void setCourse(JxjyKtgl course) {
+		this.course = course;
 	}
 	
 }

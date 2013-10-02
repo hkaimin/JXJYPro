@@ -6,13 +6,13 @@
  * @company 广州宏天软件有限公司
  * @createtime:
  */
-ProjectView = Ext.extend(Ext.Panel,{
+CourseView = Ext.extend(Ext.Panel,{
 	constructor:function(conf){
 		Ext.applyIf(this,conf);
 		this.initUI();
-		ProjectView.superclass.constructor.call(this,{
-			id:'ProjectView',
-			title:'项目管理',
+		CourseView.superclass.constructor.call(this,{
+			id:'CourseView',
+			title:'课题管理',
 //			iconCls:'menu-RmBdzView',
 			layout:'border',
 			items:[
@@ -56,7 +56,7 @@ ProjectView = Ext.extend(Ext.Panel,{
 		
 			var setTreeRoot = function(root) {
 				Ext.Ajax.request( {
-						url : __ctxPath + '/project/treeRootProject.do?',
+						url : __ctxPath + '/project/treeRootCourse.do?',
 						params : '',
 						method : 'POST',
 						success : function(response, options) {
@@ -89,7 +89,7 @@ ProjectView = Ext.extend(Ext.Panel,{
 		var treeLoad = new Ext.tree.TreeLoader();
 		
 		this.tree=new Ext.tree.TreePanel({
-		id:'bdzManageViewTreePanel',
+		id:'courseTreePanel',
 		region:'center',
 		root:root,
 		rootVisible: false,
@@ -109,19 +109,19 @@ ProjectView = Ext.extend(Ext.Panel,{
 					text : '刷新',
 					iconCls : 'btn-refresh',
 					handler : function() {
-						setTreeRoot(Ext.getCmp('bdzManageViewTreePanel').root);
+						setTreeRoot(Ext.getCmp('courseTreePanel').root);
 					}
 				}, {
 					text : '展开',
 					iconCls : 'btn-expand',
 					handler : function() {
-						Ext.getCmp('bdzManageViewTreePanel').expandAll();
+						Ext.getCmp('courseTreePanel').expandAll();
 					}
 				}, {
 					text : '收起',
 					iconCls : 'btn-collapse',
 					handler : function() {
-						Ext.getCmp('bdzManageViewTreePanel').collapseAll();
+						Ext.getCmp('courseTreePanel').collapseAll();
 					}
 				} ]
 			});
@@ -133,31 +133,32 @@ ProjectView = Ext.extend(Ext.Panel,{
 		setTreeRoot(this.tree.root);
 		
 		this.tree.on("beforeload",function(node){
-			var ProjectView = Ext.getCmp("ProjectView");
-			var demId = ProjectView._param.demId;
-			treeLoad.dataUrl=__ctxPath + '/project/treeProject.do?treeNodeId='+node.attributes.resId 
+			var CourseView = Ext.getCmp("CourseView");
+			var demId = CourseView._param.demId;
+			treeLoad.dataUrl=__ctxPath + '/project/treeCourse.do?treeNodeId='+node.attributes.resId 
 							+ '&treeNodeType='+ node.attributes.treeNodeType 
+							+ '&orgType='+ node.attributes.orgType 
 							+ '&demensionId='+ demId;
 			
 		});
 		
 		this.tree.on("click",function(node){	//树点击事件
 			if(node.leaf){					
-				var ProjectView = Ext.getCmp("ProjectView");
-				ProjectView._param.orgName = node.text;
-				ProjectView._param.orgId = node.attributes.resId;
-				ProjectView._param.nodePath = node.getPath();
+				var CourseView = Ext.getCmp("CourseView");
+				CourseView._param.orgName = node.text;
+				CourseView._param.orgId = node.attributes.resId;
+				CourseView._param.nodePath = node.getPath();
 				
 				//设置右面板中标题
 				var centerPanel = Ext.getCmp("BdzViewCenterPanel");
-				centerPanel.setTitle(node.text + " - 项目信息");
+				centerPanel.setTitle(node.text + " - 课题信息");
 				
 				//重新加载列表
 				var grid = Ext.getCmp("EmBdzGrid");
 					if (grid != null) {
 							var store = grid.getStore();
 							var limit = grid.getBottomToolbar().pageSize;
-							store.url = __ctxPath + "/project/listProject.do";
+							store.url = __ctxPath + "/project/listCourse.do";
 							store.baseParams = {
 								orgId : node.attributes.resId,
 								method : 'treeClick',
@@ -197,7 +198,7 @@ ProjectView = Ext.extend(Ext.Panel,{
 		this.searchPanel = new Ext.FormPanel( {
 			id:'RmBdz_SearchPanel',
 			region : 'north',
-			height : 90,
+			height : 60,
 			width : '100%',
 //			keys : [{
 //				key : Ext.EventObject.ENTER,
@@ -225,20 +226,14 @@ ProjectView = Ext.extend(Ext.Panel,{
 					layout : 'form',
 					items : [{
 						width : '95%',
-						fieldLabel : '项目编号',
+						fieldLabel : '课题名称',
 						name : 'Q_modulename_S_LK',
 						xtype : 'textfield',
 						maxLength : 125
 					}, {
 						width : '95%',
-						fieldLabel : '项目类别',
+						fieldLabel : '讲师名称',
 						name : 'Q_modulekey_S_LK',
-						xtype : 'textfield',
-						maxLength : 125
-					},{
-						width : '95%',
-						fieldLabel : '审核状态',
-						name : 'Q_creator_S_LK',
 						xtype : 'textfield',
 						maxLength : 125
 					}]
@@ -248,7 +243,7 @@ ProjectView = Ext.extend(Ext.Panel,{
 					layout : 'form',
 					items : [{
 						width : '95%',
-						fieldLabel : '项目名称',
+						fieldLabel : '讲师职称',
 						name : 'Q_processkey_S_LK',
 						xtype : 'textfield',
 						maxLength : 125
@@ -256,7 +251,7 @@ ProjectView = Ext.extend(Ext.Panel,{
 						xtype : 'container',
 						layout : 'column',
 						border : false,
-						fieldLabel : '举办时间',
+						fieldLabel : '授课时间',
 						items : [{
 							columnWidth : .49,
 							name : 'Q_createtime_D_GE',
@@ -279,14 +274,8 @@ ProjectView = Ext.extend(Ext.Panel,{
 					layout : 'form',
 					items : [{
 						width : '95%',
-						fieldLabel : '项目类别',
+						fieldLabel : '上课地点',
 						name : 'Q_creator_S_LK',
-						xtype : 'textfield',
-						maxLength : 125
-					}, {
-						width : '95%',
-						fieldLabel : '学分类别',
-						name : 'Q_descp_S_LK',
 						xtype : 'textfield',
 						maxLength : 125
 					}]
@@ -357,67 +346,42 @@ ProjectView = Ext.extend(Ext.Panel,{
 			//使用RowActions
 			rowActions : true,
 			id : 'EmBdzGrid',
-			url : __ctxPath + "/project/listProject.do",
-			fields : [ 'xmId','xflbid', 'mc', 'xmmc', 'hdfs', 'shfs', 'xmlb', 'zxf', 'zxs', 'jbsj', 'tjsj', 'xflb', 'zbdw', 'zt', 'zbbwid', 'yysh', 'xmbh'],
+			url : __ctxPath + "/project/listCourse.do",
+			fields : [ 'ktId', 'xmId', 'ktmc', 'jsmc', 'jszc', 'xf', 'xs', 'skdd', 'sksj'],
 			columns : [ {
-				header : '编号',
-				dataIndex : 'xmbh'
+				header : '课题名称',
+				dataIndex : 'ktmc'
 //				hidden : true
 //				sortable: true
 			}, {
-				header : '名称',
-				dataIndex : 'mc',
+				header : '讲师名称',
+				dataIndex : 'jsmc',
 				width:180,
 				sortable: true
 			}, {
-				header : '项目专业',
-				dataIndex : 'xmmc',
+				header : '讲师职称',
+				dataIndex : 'jszc',
 				sortable: true
 //				hidden : true
 			}, {
-				header : '活动方式',
-				dataIndex : 'hdfs',
-				sortable: true,
-				hidden : true
-			}, {
-				header : '审核方式',
-				dataIndex : 'shfs',
+				header : '学分',
+				dataIndex : 'xf',
 				sortable: true
-//				hidden : true
-			}
-			, {
-				header : '项目类别',
-				dataIndex : 'xmlb',
+			}, {
+				header : '学时',
+				dataIndex : 'xs',
 				sortable: true
 //				hidden : true
 			}
 			, {
-				header : '总学分',
-				dataIndex : 'zxf',
+				header : '上课地点',
+				dataIndex : 'skdd',
 				sortable: true
-			}, {
-				header : '总学时',
-				dataIndex : 'zxs',
-				sortable: true
-			}, {
-				header : '举办时间',
-				dataIndex : 'jbsj',
-				sortable: true
-			}, {
-				header : '提交时间',
-				dataIndex : 'tjsj',
-				sortable: true
-			}, {
-				header : '学分类别',
-				dataIndex : 'xflb',
-				sortable: true
-			}, {
-				header : '主办单位',
-				dataIndex : 'zbdw',
-				sortable: true
-			}, {
-				header : '状态',
-				dataIndex : 'zt',
+//				hidden : true
+			}
+			, {
+				header : '授课时间',
+				dataIndex : 'sksj',
 				sortable: true
 			}, new Ext.ux.grid.RowActions( {
 				header : '管理',
@@ -448,7 +412,7 @@ ProjectView = Ext.extend(Ext.Panel,{
 			id:'BdzViewCenterPanel',
 			region:'center',
 			layout : 'border',
-			title:'项目信息',
+			title:'课题信息',
 			items:[this.searchPanel,this.gridPanel]
 		});
 	},
@@ -487,9 +451,8 @@ ProjectView = Ext.extend(Ext.Panel,{
 			Ext.ux.Toast.msg("操作信息","请选择区局");
 			return;
 		}
-		new ProjectForm({
-			ssdwId : this._param.orgId,
-			orgName : this._param.orgName
+		new CourseForm({
+			xmId : this._param.orgId
 		}).show();
 		
 	},

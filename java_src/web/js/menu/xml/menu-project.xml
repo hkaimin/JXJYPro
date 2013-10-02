@@ -2,6 +2,6 @@
 <Menus id="Mod_Project" text="项目管理" iconCls="mod-project">
 	<Items id="Project" text="项目管理" iconCls="mod-1" isPublic="false">  
 	    <Item id="ProjectView" text="项目管理" iconCls="menu-flowNew"/>  
-	    <Item id="CourseManage" text="课题管理" iconCls="menu-flowWait"/>
+	    <Item id="CourseView" text="课题管理" iconCls="menu-flowWait"/>
   	</Items> 
 </Menus>

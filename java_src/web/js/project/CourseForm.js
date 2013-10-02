@@ -6,21 +6,21 @@
  * @description DpBdzForm表单
  * @company 宏天软件
  */
-ProjectForm = Ext.extend(Ext.Window, {
+CourseForm = Ext.extend(Ext.Window, {
 	//构造函数
 	constructor : function(_cfg) {
 		Ext.applyIf(this, _cfg);
 		//必须先初始化组件
 		this.initUIComponents();
-		ProjectForm.superclass.constructor.call(this, {
-			id : 'ProjectForm',
+		CourseForm.superclass.constructor.call(this, {
+			id : 'CourseForm',
 			layout : 'fit',
 			items : this.formPanel,
 			modal : true,
 			height : 600,
 			width : 800,
 			maximizable : true,
-			title : '项目详细信息',
+			title : '课程详细信息',
 			buttonAlign : 'center',
 			buttons : [ {
 				text : '保存',
@@ -54,106 +54,46 @@ ProjectForm = Ext.extend(Ext.Window, {
 			},
 			defaultType : 'textfield',
 			items : [ {
-				name : 'project.xmId',
+				name : 'course.ktId',
 //				xtype : 'hidden',
-				value : this.xmId == null ? '' : this.xmId
-			}, 
-			{
-				fieldLabel : '项目名称',
-				name : 'project.mc',
+				value : this.ktId == null ? '' : this.ktId
+			},{
+				fieldLabel : '项目id',
+				name : 'course.xmId',
+				xtype:'textfield',
+				value: this.xmId == null ? '' : this.xmId
+			},{
+				fieldLabel : '课题名称',
+				name : 'course.ktmc',
 				allowBlank : false,
 				maxLength : 100
 			},{
-				fieldLabel : '项目编号',
-				name : 'project.xmbh',
+				fieldLabel : '讲师名称',
+				name : 'course.jsmc',
 				allowBlank : false,
 				maxLength : 100
 			},{
-				fieldLabel : '项目专业',
-				name : 'project.xmmc'
+				fieldLabel : '讲师职称',
+				name : 'course.jszc'
 			},{
-				fieldLabel : '活动方式',
-				xtype : 'combo',
-				editable : false,
-				emptyText:'请选择',
-				triggerAction :'all',
-				hiddenName:'project.hdfs',
-				store : [
-					['2','审批通过'],
-					['4','数据整理未通过']
-						]
-			}, {
-				fieldLabel : '审核方式',
-				xtype : 'combo',
-				editable : false,
-				emptyText:'请选择',
-				triggerAction :'all',
-				hiddenName:'project.shfs',
-				store : [
-					['2','审批通过'],
-					['0','外业采集未审批'],
-					['1','数据整理未审批'],
-					['3','外业采集未通过'],
-					['4','数据整理未通过']
-						]
-			}, {
-				fieldLabel : '项目类别',
-				xtype : 'combo',
-				editable : false,
-				emptyText:'请选择',
-				triggerAction :'all',
-				hiddenName:'project.xmlb',
-				store : [
-					['2','审批通过'],
-					['0','外业采集未审批'],
-					['1','数据整理未审批'],
-					['3','外业采集未通过'],
-					['4','数据整理未通过']
-						]
-			},{
-				fieldLabel : '总学分',
-				name : 'project.zxf',
+				fieldLabel : '学分',
+				name : 'course.xf',
 				xtype:'numberfield',
 				maxLength : 100
-			}
-			, {
-				fieldLabel : '总学时',
-				name : 'project.zxs',
-				allowBlank : false,
+			}, {
+				fieldLabel : '学时',
+				name : 'course.xs',
+//				allowBlank : false,
 				xtype:'numberfield',
 				maxLength : 100
-			}
-			, {
+			},{
+				fieldLabel : '上课地点',
+				name : 'course.skdd'
+			}, {
 				xtype : 'datefield',
 				format : 'Y-m-d',
-				fieldLabel : '举办时间',
-				name : 'project.jbsj',
-				maxLength : 25
-			}
-			, {
-				xtype : 'datefield',
-				format : 'Y-m-d',
-				fieldLabel : '提交时间',
-				name : 'project.tjsj',
-				maxLength : 25
-			}
-			, {
-				fieldLabel : '学分类别',
-				name : 'project.xflb',
-				allowBlank : false,
-				xtype:'numberfield',
-				maxLength : 100
-			}
-			, {
-				fieldLabel : '主办单位',
-				name : 'project.zbdw',
-				xtype:'textfield',
-				value: this.orgName == null ? "" : this.orgName
-			}, {
-				fieldLabel : '主办单位id',
-				name : 'project.zbbwid',
-				xtype:'textfield',
-				value: this.ssdwId == null ? "" : this.ssdwId
+				fieldLabel : '授课时间',
+				name : 'course.sksj'
 			}
 			]
 		});
@@ -165,7 +105,7 @@ ProjectForm = Ext.extend(Ext.Window, {
 				url : __ctxPath + '/dp/getDpBdz.do?bdzId='
 						+ this.bdzId,
 				root : 'data',
-				preName : 'project'
+				preName : 'course'
 			});
 			
 
@@ -206,7 +146,7 @@ ProjectForm = Ext.extend(Ext.Window, {
 		
 		this.formPanel.getForm().submit({
 			scope:this,
-			url :  __ctxPath + '/project/saveProject.do',
+			url :  __ctxPath + '/project/saveCourse.do',
 			method : 'post',
 			waitMsg : '正在提交数据...',
 			success : function(fp, action) {

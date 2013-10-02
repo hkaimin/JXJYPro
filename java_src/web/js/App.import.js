@@ -430,6 +430,10 @@ UserFormPanel:[
     	__ctxPath+'/js/project/ProjectView.js',
     	__ctxPath+'/js/project/ProjectForm.js'
 ]
+,CourseView : [
+    	__ctxPath+'/js/project/CourseView.js',
+    	__ctxPath+'/js/project/CourseForm.js'
+]
 //  end:  Generated for PositionSub From Template: App.import.js.vm
 //  start:  Generated for JxjyRyxfgl From Template: App.import.js.vm
 

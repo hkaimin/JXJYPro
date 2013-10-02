@@ -44,8 +44,8 @@ public class OrganizationDaoImpl extends BaseDaoImpl<Organization> implements Or
 			hql.append(" and o.demension.demId=?");
 			params.add(demId);
 		}
-		hql.append(" and o.orgType=?");
-		params.add(Organization.ORG_TYPE_COMPANY);
+//		hql.append(" and o.orgType=?");
+//		params.add(Organization.ORG_TYPE_COMPANY);
 		return this.findByHql(hql.toString(), params.toArray());
 	}
 	

@@ -221,6 +221,12 @@
 <!-- start:  Generated for UserPosition From Template: app-dao.xml.beansvm  -->
 	<bean id="userPositionDao" class="com.htsoft.est.dao.system.impl.UserPositionDaoImpl" parent="baseDao"/>
 <!-- end:  Generated for UserPosition From Template: app-dao.xml.beansvm  -->
+
+	<bean id="projectDao" class="com.htsoft.est.dao.project.impl.ProjectDaoImpl" parent="baseDao"/>
+	<bean id="courseDao" class="com.htsoft.est.dao.project.impl.CourseDaoImpl" parent="baseDao"/>
+
+
+
 <!-- start:  Generated for PositionSub From Template: app-dao.xml.beansvm  -->
 	<bean id="positionSubDao" class="com.htsoft.est.dao.system.impl.PositionSubDaoImpl" parent="baseDao"/>
 <!-- end:  Generated for PositionSub From Template: app-dao.xml.beansvm  -->

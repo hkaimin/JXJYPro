@@ -364,6 +364,14 @@
    	 	<constructor-arg index="0" ref="userPositionDao"/>
    	 </bean>
 <!-- end:  Generated for UserPosition From Template: app-service.xml.beansvm  -->
+
+	 <bean id="projectService" class="com.htsoft.est.service.project.impl.ProjectServiceImpl">
+   	 	<constructor-arg index="0" ref="projectDao"/>
+   	 </bean>
+	 <bean id="courseService" class="com.htsoft.est.service.project.impl.CourseServiceImpl">
+   	 	<constructor-arg index="0" ref="courseDao"/>
+   	 </bean>
+
 <!-- start:  Generated for PositionSub From Template: app-service.xml.beansvm  -->
 	 <bean id="positionSubService" class="com.htsoft.est.service.system.impl.PositionSubServiceImpl">
    	 	<constructor-arg index="0" ref="positionSubDao"/>
