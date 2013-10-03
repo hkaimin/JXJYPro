@@ -8,7 +8,7 @@
     <class name="com.htsoft.est.model.jxjy.JxjyXflb" table="JXJY_XFLB" schema="JXJY">
         <id name="xflbid" type="java.lang.Long">
             <column name="XFLBID" precision="18" scale="0" />
-           <generator class="sequence">
+           <generator class="sequence"> 
         <param name="sequence">S_JXJY</param>
       </generator> 
         </id>
