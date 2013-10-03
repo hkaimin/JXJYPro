@@ -15,7 +15,7 @@ JxjyXmglView = Ext.extend(Ext.Panel, {
 		// 调用父类构造
 		JxjyXmglView.superclass.constructor.call(this, {
 			id : 'JxjyXmglView',
-			title : '[JxjyXmgl]管理',
+			title : '课题报名',
 			region : 'center',
 			layout : 'border',
 			items : [ this.searchPanel, this.gridPanel ]
@@ -163,7 +163,7 @@ JxjyXmglView = Ext.extend(Ext.Panel, {
 				type : 'int'
 			}, 'xflbid', 'mc', 'xmmc', 'hdfs', 'shfs', 'xmlb', 'zxf', 'zxs',
 					'jbsj', 'tjsj', 'xflb', 'zbdw', 'zt', 'zbbwid', 'yysh',
-					'xmbh' ],
+					'xmbh','ktidVo','ktmcVo','xfVo','xsVo','skddVo','sksjVo','bmqkVo' ],
 			columns : [ {
 				header : '项目id',
 				dataIndex : 'xmId',
@@ -214,7 +214,8 @@ JxjyXmglView = Ext.extend(Ext.Panel, {
 				dataIndex : 'zbdw'
 			}, {
 				header : '审核状态',
-				dataIndex : 'zt'
+				dataIndex : 'zt',
+				hidden : true
 			}, {
 				header : '主办单位id',
 				dataIndex : 'zbbwid',
@@ -228,6 +229,24 @@ JxjyXmglView = Ext.extend(Ext.Panel, {
 				header : '项目编号',
 				dataIndex : 'xmbh',
 				hidden : true
+			}, {
+				header : '课题名称',
+				dataIndex : 'ktmcVo'
+			},{
+				header : '学分',
+				dataIndex : 'xfVo'
+			},{
+				header : '学时',
+				dataIndex : 'xsVo'
+			},{
+				header : '上课地点',
+				dataIndex : 'skddVo'
+			},{
+				header : '授课时间',
+				dataIndex : 'sksjVo'
+			},{
+				header : '报名情况',
+				dataIndex : 'bmqkVo'
 			},
 			new Ext.ux.grid.RowActions( {
 				header : '管理',
