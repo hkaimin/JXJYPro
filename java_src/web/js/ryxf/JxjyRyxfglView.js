@@ -15,7 +15,7 @@ JxjyRyxfglView = Ext.extend(Ext.Panel, {
 		// 调用父类构造
 		JxjyRyxfglView.superclass.constructor.call(this, {
 			id : 'JxjyRyxfglView',
-			title : '[JxjyRyxfgl]管理',
+			title : '学员学分情况',
 			region : 'center',
 			layout : 'border',
 			items : [ this.searchPanel, this.gridPanel ]
@@ -52,8 +52,10 @@ JxjyRyxfglView = Ext.extend(Ext.Panel, {
 					{
 						fieldLabel : '日期',
 						name : 'Q_rq_S_EQ',
-						flex : 1,
-						xtype : 'textfield'
+						xtype : 'datefield',
+						format : 'Y-m-d',
+						flex : 1
+
 					}, {
 						fieldLabel : '课题',
 						name : 'Q_kt_S_EQ',
@@ -69,19 +71,19 @@ JxjyRyxfglView = Ext.extend(Ext.Panel, {
 						name : 'Q_xflb_S_EQ',
 						flex : 1,
 						xtype : 'textfield'
-					}, 
-//					{
-//						fieldLabel : '学科',
-//						name : 'Q_xk_S_EQ',
-//						flex : 1,
-//						xtype : 'textfield'
-//					},
-//					{
-//						fieldLabel : '活动形式',
-//						name : 'Q_hdxs_S_EQ',
-//						flex : 1,
-//						xtype : 'textfield'
-//					},
+					},
+					//					{
+					//						fieldLabel : '学科',
+					//						name : 'Q_xk_S_EQ',
+					//						flex : 1,
+					//						xtype : 'textfield'
+					//					},
+					//					{
+					//						fieldLabel : '活动形式',
+					//						name : 'Q_hdxs_S_EQ',
+					//						flex : 1,
+					//						xtype : 'textfield'
+					//					},
 					{
 						fieldLabel : '学分',
 						name : 'Q_xf_S_EQ',
@@ -102,31 +104,31 @@ JxjyRyxfglView = Ext.extend(Ext.Panel, {
 						name : 'Q_shzt_S_EQ',
 						flex : 1,
 						xtype : 'textfield'
-					}, 
-//					{
-//						fieldLabel : '备注',
-//						name : 'Q_bz_S_EQ',
-//						flex : 1,
-//						xtype : 'textfield'
-//					},
+					},
+					//					{
+					//						fieldLabel : '备注',
+					//						name : 'Q_bz_S_EQ',
+					//						flex : 1,
+					//						xtype : 'textfield'
+					//					},
 					{
 						fieldLabel : '人社局审核',
 						name : 'Q_rsjsh_S_EQ',
 						flex : 1,
 						xtype : 'textfield'
 					}
-//					, {
-//						fieldLabel : '职称',
-//						name : 'Q_zc_S_EQ',
-//						flex : 1,
-//						xtype : 'textfield'
-//					}, {
-//						fieldLabel : '学位',
-//						name : 'Q_xw_S_EQ',
-//						flex : 1,
-//						xtype : 'textfield'
-//					}
-					],
+			//					, {
+			//						fieldLabel : '职称',
+			//						name : 'Q_zc_S_EQ',
+			//						flex : 1,
+			//						xtype : 'textfield'
+			//					}, {
+			//						fieldLabel : '学位',
+			//						name : 'Q_xw_S_EQ',
+			//						flex : 1,
+			//						xtype : 'textfield'
+			//					}
+			],
 			buttons : [ {
 				text : '查询',
 				scope : this,
@@ -143,16 +145,22 @@ JxjyRyxfglView = Ext.extend(Ext.Panel, {
 		this.topbar = new Ext.Toolbar( {
 			items : [ {
 				iconCls : 'btn-add',
-				text : '添加[JxjyRyxfgl]',
+				text : '录入非项目学分',
 				xtype : 'button',
 				scope : this,
 				handler : this.createRs
 			}, {
 				iconCls : 'btn-del',
-				text : '删除[JxjyRyxfgl]',
+				text : '删除非项目学分',
 				xtype : 'button',
 				scope : this,
 				handler : this.removeSelRs
+			} , {
+				iconCls : 'btn-update',
+				text : '学分提交审核',
+				xtype : 'button',
+				scope : this,
+				handler : this.removeSelRsd
 			} ]
 		});
 
