@@ -382,6 +382,9 @@
 	 <bean id="courseService" class="com.htsoft.est.service.project.impl.CourseServiceImpl">
    	 	<constructor-arg index="0" ref="courseDao"/>
    	 </bean>
+	 <bean id="creditService" class="com.htsoft.est.service.project.impl.CreditServiceImpl">
+   	 	<constructor-arg index="0" ref="creditDao"/>
+   	 </bean>
 
 <!-- start:  Generated for PositionSub From Template: app-service.xml.beansvm  -->
 	 <bean id="positionSubService" class="com.htsoft.est.service.system.impl.PositionSubServiceImpl">

@@ -10,7 +10,7 @@
             <column name="XFLBID" precision="18" scale="0" />
            <generator class="sequence"> 
         <param name="sequence">S_JXJY</param>
-      </generator> 
+      </generator>  
         </id>
         <property name="id" type="java.lang.Long">
             <column name="ID" precision="18" scale="0" />

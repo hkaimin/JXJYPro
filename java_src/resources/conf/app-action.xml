@@ -218,6 +218,7 @@
 <!-- start:  Project  -->
  <bean id="ProjectAction" class="com.htsoft.est.action.project.ProjectAction" scope="prototype"/>
  <bean id="CourseAction" class="com.htsoft.est.action.project.CourseAction" scope="prototype"/>
+ <bean id="CreditAction" class="com.htsoft.est.action.project.CreditAction" scope="prototype"/>
 <!-- end:  Project  -->
 <!-- start:  Generated for JxjyRyxfgl From Template: app-action.xml.beansvm  -->
  <bean id="JxjyRyxfglAction" class="com.htsoft.est.action.ryxf.JxjyRyxfglAction" scope="prototype"/>

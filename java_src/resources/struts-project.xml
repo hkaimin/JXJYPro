@@ -10,5 +10,8 @@
 		<action name="*Course" class="CourseAction" method="{1}">
 			<result>${successResultValue}</result>
 		</action>
+		<action name="*Credit" class="CreditAction" method="{1}">
+			<result>${successResultValue}</result>
+		</action>
 	</package>
 </struts>

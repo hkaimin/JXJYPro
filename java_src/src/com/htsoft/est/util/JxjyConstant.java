@@ -12,4 +12,14 @@ public class JxjyConstant {
 	public final static String PROJECT_ZT_TONG_GUO = "1";
 	public final static String PROJECT_ZT_BU_TONG_GUO = "0";
 	
+	
+	//学分
+	public final static Long XUE_FEN_YI_LEI = 0l;
+	public final static Long XUE_FEN_ER_LEI = 1l;
+	
+	public final static String XUE_FEN_SHEN_HE_XUE_FEN = "0";
+	public final static String XUE_FEN_SHEN_HE_XIANG_MU = "1";
+	public final static String XUE_FEN_SHEN_HE_XIANG_MU_XUE_FEN = "2";
+	public final static String XUE_FEN_BU_SHEN_HE = "3";
+	
 }

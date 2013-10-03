@@ -234,6 +234,7 @@
 
 	<bean id="projectDao" class="com.htsoft.est.dao.project.impl.ProjectDaoImpl" parent="baseDao"/>
 	<bean id="courseDao" class="com.htsoft.est.dao.project.impl.CourseDaoImpl" parent="baseDao"/>
+	<bean id="creditDao" class="com.htsoft.est.dao.project.impl.CreditDaoImpl" parent="baseDao"/>
 
 
 

@@ -1,20 +1,20 @@
 /**
  * @author:
- * @class JxjyXmglView
+ * @class CreditSettingView
  * @extends Ext.Panel
  * @description [JxjyXmgl]管理
  * @company 广州宏天软件有限公司
  * @createtime:
  */
-JxjyXmglView = Ext.extend(Ext.Panel, {
+CreditSettingView = Ext.extend(Ext.Panel, {
 	// 构造函数
 	constructor : function(_cfg) {
 		Ext.applyIf(this, _cfg);
 		// 初始化组件
 		this.initUIComponents();
 		// 调用父类构造
-		JxjyXmglView.superclass.constructor.call(this, {
-			id : 'JxjyXmglView',
+		CreditSettingView.superclass.constructor.call(this, {
+			id : 'CreditSettingView',
 			title : '[JxjyXmgl]管理',
 			region : 'center',
 			layout : 'border',
