@@ -7,7 +7,7 @@ package com.htsoft.est.model.jxjy;
 public class JxjyRyxfgl implements java.io.Serializable {
 
 	// Fields  
-
+    private Long is_commit;
 	private Long id;
 	private Long rybh;
 	private Long ktId;
@@ -208,6 +208,14 @@ public class JxjyRyxfgl implements java.io.Serializable {
 
 	public void setXw(String xw) {
 		this.xw = xw;
+	}
+
+	public Long getIs_commit() {
+		return is_commit;
+	}
+
+	public void setIs_commit(Long isCommit) {
+		is_commit = isCommit;
 	}
 
 }

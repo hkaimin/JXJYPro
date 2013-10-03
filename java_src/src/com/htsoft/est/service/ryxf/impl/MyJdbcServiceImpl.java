@@ -1,6 +1,7 @@
 package com.htsoft.est.service.ryxf.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.sql.DataSource;
 
@@ -35,6 +36,11 @@ public class MyJdbcServiceImpl extends CommonServiceImpl implements MyJdbcServic
 	public List<JxjyXmgl> getXmgl() {
 		String sql ="  ";
 		return null;
+	}
+	@Override
+	public List<Map<String, Object>> getXflb() {
+		String sql = " select t.xflbid,t.mc from jxjy_xflb t ";
+		return this.getBasicDao().loadByForTransfReturnListMap(sql);
 	}
 	
 }

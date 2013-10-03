@@ -4,19 +4,25 @@ package com.htsoft.est.action.ryxf;
  *  Copyright (C) 2008-2010 GuangZhou HongTian Software Limited Company.
 */
 import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import java.lang.reflect.Type;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import com.htsoft.core.util.AppUtil;
 import com.htsoft.core.util.BeanUtil;
+import com.htsoft.core.util.ContextUtil;
 
 import com.htsoft.core.command.QueryFilter;
 import com.htsoft.core.web.action.BaseAction;
 
 import com.htsoft.est.model.jxjy.JxjyRyxfgl;
+import com.htsoft.est.model.system.AppUser;
 import com.htsoft.est.service.ryxf.JxjyRyxfglService;
+import com.htsoft.est.service.ryxf.MyJdbcService;
 /**
  * 
  * @author 
@@ -25,6 +31,8 @@ import com.htsoft.est.service.ryxf.JxjyRyxfglService;
 public class JxjyRyxfglAction extends BaseAction{
 	@Resource
 	private JxjyRyxfglService jxjyRyxfglService;
+	@Resource
+	private MyJdbcService myJdbcService;
 	private JxjyRyxfgl jxjyRyxfgl;
 	
 	private Long id;
@@ -104,6 +112,9 @@ public class JxjyRyxfglAction extends BaseAction{
 	 */
 	public String save(){
 		if(jxjyRyxfgl.getId()==null){
+			AppUser currentUser = ContextUtil.getCurrentUser();
+			jxjyRyxfgl.setRybh(currentUser.getUserId());
+			jxjyRyxfgl.setXm(currentUser.getFullname());
 			jxjyRyxfglService.save(jxjyRyxfgl);
 		}else{
 			JxjyRyxfgl orgJxjyRyxfgl=jxjyRyxfglService.get(jxjyRyxfgl.getId());
@@ -117,5 +128,22 @@ public class JxjyRyxfglAction extends BaseAction{
 		setJsonString("{success:true}");
 		return SUCCESS;
 		
+	}
+	
+	public String getXflb(){
+		
+		List<Map<String,Object>> list=myJdbcService.getXflb();
+		StringBuffer sb = new StringBuffer("[");
+		for (Map map : list) {
+			
+				sb.append("['" + map.get("XFLBID") + "','" + map.get("MC")
+						+ "'],");
+			
+		}
+		sb.deleteCharAt(sb.length() - 1);
+		sb.append("]");
+		setJsonString(sb.toString());
+		
+		return SUCCESS;
 	}
 }
