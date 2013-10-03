@@ -43,12 +43,12 @@ JxjyRyxfglView = Ext.extend(Ext.Panel, {
 					//																		xtype:'numberfield'
 					//																	}
 					//																,
-//					{
-//						fieldLabel : '姓名',
-//						name : 'Q_xm_S_EQ',
-//						flex : 1,
-//						xtype : 'textfield'
-//					}, 
+					//					{
+					//						fieldLabel : '姓名',
+					//						name : 'Q_xm_S_EQ',
+					//						flex : 1,
+					//						xtype : 'textfield'
+					//					}, 
 					{
 						fieldLabel : '日期',
 						name : 'Q_rq_S_EQ',
@@ -155,12 +155,12 @@ JxjyRyxfglView = Ext.extend(Ext.Panel, {
 				xtype : 'button',
 				scope : this,
 				handler : this.removeSelRs
-			} , {
+			}, {
 				iconCls : 'btn-update',
 				text : '学分提交审核',
 				xtype : 'button',
 				scope : this,
-				handler : this.removeSelRsd
+				handler : this.xfCommit
 			} ]
 		});
 
@@ -175,7 +175,8 @@ JxjyRyxfglView = Ext.extend(Ext.Panel, {
 				name : 'id',
 				type : 'int'
 			}, 'rybh', 'ktId', 'xm', 'rq', 'kt', 'xflx', 'xflb', 'xk', 'hdxs',
-					'xf', 'xs', 'sfdw', 'shzt', 'bz', 'rsjsh', 'zc', 'xw' ],
+					'xf', 'xs', 'sfdw', 'shzt', 'bz', 'rsjsh', 'zc', 'xw',
+					'is_commit' ],
 			columns : [ {
 				header : 'id',
 				dataIndex : 'id',
@@ -229,12 +230,23 @@ JxjyRyxfglView = Ext.extend(Ext.Panel, {
 			}, {
 				header : '人社局审核状态',
 				dataIndex : 'rsjsh'
-			}, {
-				header : '职称',
-				dataIndex : 'zc'
-			}, {
-				header : '学位',
-				dataIndex : 'xw'
+			}, 
+//			{
+//				header : '职称',
+//				dataIndex : 'zc'
+//			}, {
+//				header : '学位',
+//				dataIndex : 'xw'
+//			},
+			{
+				header : '学分提交状态',
+				dataIndex : 'is_commit',
+				renderer : function(value) {
+				    if(value=='0'){
+				    	return '未提交';
+				    }
+					return '已提交';
+				}
 			}, new Ext.ux.grid.RowActions( {
 				header : '管理',
 				width : 100,
@@ -296,6 +308,35 @@ JxjyRyxfglView = Ext.extend(Ext.Panel, {
 			grid : this.gridPanel,
 			idName : 'id'
 		});
+	},
+	xfCommit : function() {
+
+		var grid = Ext.getCmp("JxjyRyxfglGrid");
+		var selectRecord = grid.getSelectionModel().getSelections();
+		if (selectRecord.length == 0) {
+			Ext.ux.Toast.msg("信息", "请选择要提交的学分记录！");
+			return;
+		}
+		if (selectRecord.length > 1) {
+			Ext.ux.Toast.msg("信息", "只能选择一条记录！");
+			return;
+		}
+
+		Ext.Ajax.request( {
+			url : __ctxPath + '//ryxf/commitXFJxjyRyxfgl.do',
+							params : {
+			                      id:selectRecord[0].data.id
+							},
+			method : 'post',
+			success : function(response) {
+				Ext.ux.Toast.msg("信息", "成功提交学分审核！");
+                grid.getStore().reload();
+			},
+			failure : function() {
+			}
+		});
+		
+
 	},
 	//编辑Rs
 	editRs : function(record) {

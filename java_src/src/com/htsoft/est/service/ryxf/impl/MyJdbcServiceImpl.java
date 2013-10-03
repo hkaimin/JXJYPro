@@ -1,5 +1,6 @@
 package com.htsoft.est.service.ryxf.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -34,8 +35,24 @@ public class MyJdbcServiceImpl extends CommonServiceImpl implements MyJdbcServic
 	}
 	@Override
 	public List<JxjyXmgl> getXmgl() {
-		String sql ="  ";
-		return null;
+		String sql =" select * from jxjy_xmgl t join jxjy_ktgl k on t.xm_id=k.xm_id ";
+		List<Map<String,Object>> listVo = this.getBasicDao().loadByForTransfReturnListMap(sql);
+		List<JxjyXmgl> xmglVo = new ArrayList<JxjyXmgl>();
+		for(Map map : listVo){
+			JxjyXmgl xmgl = new JxjyXmgl();
+			xmgl.setXmmc((String)map.get("XMMC"));
+			xmgl.setXflb((String)map.get("XFLB"));
+			xmgl.setHdfs((String)map.get("HDFS"));
+			xmgl.setZbdw((String)map.get("ZBDW"));
+			xmgl.setKtmcVo((String)map.get("KTMC"));
+			xmgl.setXfVo((String)map.get("XF"));
+			xmgl.setXsVo((String)map.get("XS"));
+			xmgl.setSkddVo((String)map.get("SKDD"));
+			xmgl.setSksjVo((String)map.get("SKSJ"));
+			xmgl.setBmqkVo("未报名");
+			xmglVo.add(xmgl);
+		}
+		return xmglVo;
 	}
 	@Override
 	public List<Map<String, Object>> getXflb() {

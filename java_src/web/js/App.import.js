@@ -435,6 +435,10 @@ UserFormPanel:[
     	__ctxPath+'/js/project/CourseView.js',
     	__ctxPath+'/js/project/CourseForm.js'
 ]
+,CreditSettingView : [
+    	__ctxPath+'/js/project/CreditSettingView.js',
+    	__ctxPath+'/js/project/CreditForm.js'
+]
 //  end:  Generated for PositionSub From Template: App.import.js.vm
 //  start:  Generated for JxjyRyxfgl From Template: App.import.js.vm
 

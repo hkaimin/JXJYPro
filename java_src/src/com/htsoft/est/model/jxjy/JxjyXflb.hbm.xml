@@ -8,9 +8,9 @@
     <class name="com.htsoft.est.model.jxjy.JxjyXflb" table="JXJY_XFLB" >
         <id name="xflbid" type="java.lang.Long">
             <column name="XFLBID" precision="18" scale="0" />
-           <generator class="sequence">
+           <generator class="sequence"> 
         <param name="sequence">S_JXJY</param>
-      </generator> 
+      </generator>  
         </id>
         <property name="id" type="java.lang.Long">
             <column name="ID" precision="18" scale="0" />
@@ -26,6 +26,9 @@
         </property>
         <property name="sfsh" type="java.lang.String">
             <column name="SFSH" length="10" />
+        </property>
+        <property name="xfbz" type="java.lang.Long">
+            <column name="XFBZ" precision="18" scale="0" />
         </property>
     </class>
 </hibernate-mapping>

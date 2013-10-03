@@ -17,6 +17,7 @@ import com.htsoft.core.web.action.BaseAction;
 
 import com.htsoft.est.model.jxjy.JxjyXmgl;
 import com.htsoft.est.service.ryxf.JxjyXmglService;
+import com.htsoft.est.service.ryxf.MyJdbcService;
 /**
  * 
  * @author 
@@ -25,6 +26,8 @@ import com.htsoft.est.service.ryxf.JxjyXmglService;
 public class JxjyXmglAction extends BaseAction{
 	@Resource
 	private JxjyXmglService jxjyXmglService;
+	@Resource
+	private MyJdbcService myJdbcService;
 	private JxjyXmgl jxjyXmgl;
 	
 	private Long xmId;
@@ -50,13 +53,18 @@ public class JxjyXmglAction extends BaseAction{
 	 */
 	public String list(){
 		
-		QueryFilter filter=new QueryFilter(getRequest());
-		List<JxjyXmgl> list= jxjyXmglService.getAll(filter);
+//		QueryFilter filter=new QueryFilter(getRequest());
+//		List<JxjyXmgl> list= jxjyXmglService.getAll(filter);
+//		
+//		Type type=new TypeToken<List<JxjyXmgl>>(){}.getType();
+//		StringBuffer buff = new StringBuffer("{success:true,'totalCounts':")
+//		.append(filter.getPagingBean().getTotalItems()).append(",result:");
 		
+		
+		List<JxjyXmgl> list= myJdbcService.getXmgl();
 		Type type=new TypeToken<List<JxjyXmgl>>(){}.getType();
 		StringBuffer buff = new StringBuffer("{success:true,'totalCounts':")
-		.append(filter.getPagingBean().getTotalItems()).append(",result:");
-		
+		.append(list.size()).append(",result:");
 		Gson gson=new Gson();
 		buff.append(gson.toJson(list, type));
 		buff.append("}");
