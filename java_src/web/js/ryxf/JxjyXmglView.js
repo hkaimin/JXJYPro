@@ -1,12 +1,12 @@
 /**
  * @author:
- * @class JxjyXmglView
+ * @class CreditSettingView
  * @extends Ext.Panel
  * @description [JxjyXmgl]管理
  * @company 广州宏天软件有限公司
  * @createtime:
  */
-JxjyXmglView = Ext.extend(Ext.Panel, {
+CreditSettingView = Ext.extend(Ext.Panel, {
 	// 构造函数
 	constructor : function(_cfg) {
 		Ext.applyIf(this, _cfg);
