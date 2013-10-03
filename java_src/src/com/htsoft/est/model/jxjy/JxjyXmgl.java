@@ -27,7 +27,7 @@ public class JxjyXmgl implements java.io.Serializable {
 	private String xmbh;
 	
 	//--vo
-	private String ktidVo;
+	private Long ktidVo;
 	private String ktmcVo;
 	private String xfVo;
 	private String xsVo;
@@ -208,11 +208,13 @@ public class JxjyXmgl implements java.io.Serializable {
 		this.xmbh = xmbh;
 	}
 
-	public String getKtidVo() {
+
+
+	public Long getKtidVo() {
 		return ktidVo;
 	}
 
-	public void setKtidVo(String ktidVo) {
+	public void setKtidVo(Long ktidVo) {
 		this.ktidVo = ktidVo;
 	}
 

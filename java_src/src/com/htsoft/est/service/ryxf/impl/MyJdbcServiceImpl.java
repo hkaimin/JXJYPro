@@ -1,5 +1,6 @@
 package com.htsoft.est.service.ryxf.impl;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -11,7 +12,9 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 
 import com.htsoft.core.service.impl.CommonServiceImpl;
+import com.htsoft.core.util.ContextUtil;
 import com.htsoft.est.model.jxjy.JxjyXmgl;
+import com.htsoft.est.model.system.AppUser;
 import com.htsoft.est.service.ryxf.MyJdbcService;
 
 public class MyJdbcServiceImpl extends CommonServiceImpl implements MyJdbcService{
@@ -35,24 +38,40 @@ public class MyJdbcServiceImpl extends CommonServiceImpl implements MyJdbcServic
 	}
 	@Override
 	public List<JxjyXmgl> getXmgl() {
+		
+		AppUser user = ContextUtil.getCurrentUser();
 		String sql =" select * from jxjy_xmgl t join jxjy_ktgl k on t.xm_id=k.xm_id ";
+		String sql2 = " select t.kt_id from jxjy_ryxfgl t where t.rybh="+user.getUserId();//用户选课记录
 		List<Map<String,Object>> listVo = this.getBasicDao().loadByForTransfReturnListMap(sql);
+		List<Map<String,Object>> listKtid = this.getBasicDao().loadByForTransfReturnListMap(sql2);
 		List<JxjyXmgl> xmglVo = new ArrayList<JxjyXmgl>();
 		for(Map map : listVo){
 			JxjyXmgl xmgl = new JxjyXmgl();
+			xmgl.setXmId(new Long((BigDecimal)map.get("XM_ID")+""));
 			xmgl.setXmmc((String)map.get("XMMC"));
 			xmgl.setXflb((String)map.get("XFLB"));
 			xmgl.setHdfs((String)map.get("HDFS"));
 			xmgl.setZbdw((String)map.get("ZBDW"));
+			xmgl.setKtidVo(new Long((BigDecimal)map.get("KT_ID")+""));
 			xmgl.setKtmcVo((String)map.get("KTMC"));
 			xmgl.setXfVo((String)map.get("XF"));
 			xmgl.setXsVo((String)map.get("XS"));
 			xmgl.setSkddVo((String)map.get("SKDD"));
 			xmgl.setSksjVo((String)map.get("SKSJ"));
-			xmgl.setBmqkVo("未报名");
+			String bmqk = "未报名";
+			if(listKtid.size()>0){
+                for(Map mapKt : listKtid){
+                	if(((BigDecimal)map.get("KT_ID")+"").equals((BigDecimal)mapKt.get("KT_ID")+"")){
+                		bmqk = "已报名";
+                		break;
+                	}
+                }			
+			}
+			xmgl.setBmqkVo(bmqk);
 			xmglVo.add(xmgl);
 		}
 		return xmglVo;
+		
 	}
 	@Override
 	public List<Map<String, Object>> getXflb() {

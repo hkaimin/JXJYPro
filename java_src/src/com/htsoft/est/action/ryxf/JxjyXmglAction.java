@@ -3,6 +3,8 @@ package com.htsoft.est.action.ryxf;
  *  广州宏天软件有限公司 J.Office协同办公管理系统   -- http://www.jee-soft.cn
  *  Copyright (C) 2008-2010 GuangZhou HongTian Software Limited Company.
 */
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.Resource;
 
@@ -11,11 +13,17 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.htsoft.core.util.BeanUtil;
+import com.htsoft.core.util.ContextUtil;
 
 import com.htsoft.core.command.QueryFilter;
 import com.htsoft.core.web.action.BaseAction;
 
+import com.htsoft.est.model.jxjy.JxjyKtgl;
+import com.htsoft.est.model.jxjy.JxjyRyxfgl;
 import com.htsoft.est.model.jxjy.JxjyXmgl;
+import com.htsoft.est.model.system.AppUser;
+import com.htsoft.est.service.project.CourseService;
+import com.htsoft.est.service.ryxf.JxjyRyxfglService;
 import com.htsoft.est.service.ryxf.JxjyXmglService;
 import com.htsoft.est.service.ryxf.MyJdbcService;
 /**
@@ -28,9 +36,15 @@ public class JxjyXmglAction extends BaseAction{
 	private JxjyXmglService jxjyXmglService;
 	@Resource
 	private MyJdbcService myJdbcService;
+	@Resource
+	private JxjyRyxfglService jxjyRyxfglService;
+	@Resource
+	private CourseService courseService;
 	private JxjyXmgl jxjyXmgl;
 	
 	private Long xmId;
+	private Long ktidVo;
+	private Long xmid;
 
 	public Long getXmId() {
 		return xmId;
@@ -40,12 +54,28 @@ public class JxjyXmglAction extends BaseAction{
 		this.xmId = xmId;
 	}
 
+	public Long getKtidVo() {
+		return ktidVo;
+	}
+
+	public void setKtidVo(Long ktidVo) {
+		this.ktidVo = ktidVo;
+	}
+
 	public JxjyXmgl getJxjyXmgl() {
 		return jxjyXmgl;
 	}
 
 	public void setJxjyXmgl(JxjyXmgl jxjyXmgl) {
 		this.jxjyXmgl = jxjyXmgl;
+	}
+
+	public Long getXmid() {
+		return xmid;
+	}
+
+	public void setXmid(Long xmid) {
+		this.xmid = xmid;
 	}
 
 	/**
@@ -123,6 +153,34 @@ public class JxjyXmglAction extends BaseAction{
 			}
 		}
 		setJsonString("{success:true}");
+		return SUCCESS;
+		
+	}
+	
+	public String caurseRes(){
+		AppUser user = ContextUtil.getCurrentUser();
+		JxjyXmgl xmgl = jxjyXmglService.get(xmid);
+		JxjyKtgl ktgl = courseService.get(ktidVo);
+		
+		JxjyRyxfgl ryxf = new JxjyRyxfgl();
+		Date date = new Date();
+		SimpleDateFormat sip = new SimpleDateFormat("yyyy-MM-dd");
+		String str = sip.format(date);
+		ryxf.setRq(str);
+		ryxf.setKt(ktgl.getKtmc());
+		ryxf.setRybh(user.getUserId());
+		ryxf.setXm(user.getFullname());
+		ryxf.setKtId(ktgl.getKtId());
+		ryxf.setXflx("项目学分");
+		ryxf.setXflb(xmgl.getXflb());
+		ryxf.setHdxs(xmgl.getHdfs());
+		ryxf.setXf(ktgl.getXf());
+		ryxf.setXs(ktgl.getXs());
+		ryxf.setSfdw(xmgl.getZbdw());
+		ryxf.setShzt("2");
+		ryxf.setRsjsh("2");
+		ryxf.setIs_commit(0L);
+		jxjyRyxfglService.save(ryxf);
 		return SUCCESS;
 		
 	}

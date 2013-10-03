@@ -6,7 +6,7 @@
  * @company 广州宏天软件有限公司
  * @createtime:
  */
-CreditSettingView = Ext.extend(Ext.Panel, {
+JxjyXmglView = Ext.extend(Ext.Panel, {
 	// 构造函数
 	constructor : function(_cfg) {
 		Ext.applyIf(this, _cfg);
@@ -249,17 +249,19 @@ CreditSettingView = Ext.extend(Ext.Panel, {
 				dataIndex : 'bmqkVo'
 			},
 			new Ext.ux.grid.RowActions( {
-				header : '管理',
+				header : '-',
 				width : 100,
-				actions : [ {
-					iconCls : 'btn-del',
-					qtip : '取消报名',
-					style : 'margin:0 3px 0 3px'
-				}, {
-					iconCls : 'btn-edit',
-					qtip : '报名',
-					style : 'margin:0 3px 0 3px'
-				} ],
+				actions : [
+//					{
+//					iconCls : 'btn-del',
+//					qtip : '取消报名',
+//					style : 'margin:0 3px 0 3px'
+//				}, {
+//					iconCls : 'btn-edit',
+//					qtip : '报名',
+//					style : 'margin:0 3px 0 3px'
+//				} 
+				],
 				listeners : {
 					scope : this,
 					'action' : this.onRowAction
@@ -292,7 +294,34 @@ CreditSettingView = Ext.extend(Ext.Panel, {
 	},
 	//创建记录
 	createRs : function() {
-		new JxjyXmglForm().show();
+		//new JxjyXmglForm().show();
+		
+				var grid = Ext.getCmp("JxjyXmglGrid");
+		var selectRecord = grid.getSelectionModel().getSelections();
+		if (selectRecord.length == 0) {
+			Ext.ux.Toast.msg("信息", "请选择要报名的课程！");
+			return;
+		}
+		if (selectRecord.length > 1) {
+			Ext.ux.Toast.msg("信息", "只能选择一条记录！");
+			return;
+		}
+        alert(selectRecord[0].data.xmId);
+		Ext.Ajax.request( {
+			url : __ctxPath + '/ryxf/caurseResJxjyXmgl.do',
+							params : {
+			                      ktidVo:selectRecord[0].data.ktidVo,
+			                      xmid:selectRecord[0].data.xmId
+							},
+			method : 'post',
+			success : function(response) {
+				Ext.ux.Toast.msg("信息", "成功报名！");
+                grid.getStore().reload();
+			},
+			failure : function() {
+			}
+		});
+		
 	},
 	//按ID删除记录
 	removeRs : function(id) {

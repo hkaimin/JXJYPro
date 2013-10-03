@@ -191,6 +191,7 @@ JxjyRyxfglView = Ext.extend(Ext.Panel, {
 				dataIndex : 'ktId'
 			}, {
 				header : '姓名',
+				hidden : true,
 				dataIndex : 'xm'
 			}, {
 				header : '日期',
@@ -323,7 +324,7 @@ JxjyRyxfglView = Ext.extend(Ext.Panel, {
 		}
 
 		Ext.Ajax.request( {
-			url : __ctxPath + '//ryxf/commitXFJxjyRyxfgl.do',
+			url : __ctxPath + '/ryxf/commitXFJxjyRyxfgl.do',
 							params : {
 			                      id:selectRecord[0].data.id
 							},
