@@ -27,5 +27,8 @@
         <property name="sfsh" type="java.lang.String">
             <column name="SFSH" length="10" />
         </property>
+        <property name="xfbz" type="java.lang.Long">
+            <column name="XFBZ" precision="18" scale="0" />
+        </property>
     </class>
 </hibernate-mapping>
