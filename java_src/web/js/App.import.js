@@ -13,6 +13,10 @@ App.importJs = {
 	JxjyRyxfglView : [
     	__ctxPath+'/js/ryxf/JxjyRyxfglView.js',
     	__ctxPath+'/js/ryxf/JxjyRyxfglForm.js'
+],JxjyXfshWstView : [
+    	__ctxPath+'/js/ryxf/JxjyXfshWstView.js'
+],JxjyXfshRsjView : [
+    	__ctxPath+'/js/ryxf/JxjyXfshRsjView.js'
 ],
 
 

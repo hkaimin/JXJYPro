@@ -25,6 +25,15 @@ public class JxjyXmgl implements java.io.Serializable {
 	private Long zbbwid;
 	private Long yysh;
 	private String xmbh;
+	
+	//--vo
+	private Long ktidVo;
+	private String ktmcVo;
+	private String xfVo;
+	private String xsVo;
+	private String skddVo;
+	private String sksjVo;
+	private String bmqkVo;//报名情况
 
 	// Constructors
 
@@ -197,6 +206,64 @@ public class JxjyXmgl implements java.io.Serializable {
 
 	public void setXmbh(String xmbh) {
 		this.xmbh = xmbh;
+	}
+
+
+
+	public Long getKtidVo() {
+		return ktidVo;
+	}
+
+	public void setKtidVo(Long ktidVo) {
+		this.ktidVo = ktidVo;
+	}
+
+	public String getKtmcVo() {
+		return ktmcVo;
+	}
+
+	public void setKtmcVo(String ktmcVo) {
+		this.ktmcVo = ktmcVo;
+	}
+
+	public String getXfVo() {
+		return xfVo;
+	}
+
+	public void setXfVo(String xfVo) {
+		this.xfVo = xfVo;
+	}
+
+	public String getXsVo() {
+		return xsVo;
+	}
+
+	public void setXsVo(String xsVo) {
+		this.xsVo = xsVo;
+	}
+
+	public String getSkddVo() {
+		return skddVo;
+	}
+
+	public void setSkddVo(String skddVo) {
+		this.skddVo = skddVo;
+	}
+
+	public String getSksjVo() {
+		return sksjVo;
+	}
+
+	public void setSksjVo(String sksjVo) {
+		this.sksjVo = sksjVo;
+	}
+
+	public String getBmqkVo() {
+		return bmqkVo;
+	}
+
+	public void setBmqkVo(String bmqkVo) {
+		this.bmqkVo = bmqkVo;
 	}
 	
 

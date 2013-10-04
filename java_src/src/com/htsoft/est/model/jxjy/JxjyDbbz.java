@@ -15,6 +15,9 @@ public class JxjyDbbz implements java.io.Serializable {
 	private Long xfz;
 	private Long zgf;
 	private String tjms;
+	private Long khnrId;
+	private String tjlx;
+	private String nf;
 
 	// Constructors
 
@@ -96,5 +99,30 @@ public class JxjyDbbz implements java.io.Serializable {
 	public void setTjms(String tjms) {
 		this.tjms = tjms;
 	}
+
+	public Long getKhnrId() {
+		return khnrId;
+	}
+
+	public void setKhnrId(Long khnrId) {
+		this.khnrId = khnrId;
+	}
+
+	public String getTjlx() {
+		return tjlx;
+	}
+
+	public void setTjlx(String tjlx) {
+		this.tjlx = tjlx;
+	}
+
+	public String getNf() {
+		return nf;
+	}
+
+	public void setNf(String nf) {
+		this.nf = nf;
+	}
+	
 
 }

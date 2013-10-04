@@ -53,9 +53,6 @@ public class CreditServiceImpl extends BaseServiceImpl<JxjyXflb> implements Cred
 		
 		List<JxjyXflb> list = this.dao.getLb(JxjyConstant.XUE_FEN_YI_LEI);
 		
-//		for(JxjyXflb lb : list) {
-//			allList.add(lb);
-//		}
 		allList.addAll(list);
 		
 		JxjyXflb twoLb = new JxjyXflb();
@@ -64,10 +61,15 @@ public class CreditServiceImpl extends BaseServiceImpl<JxjyXflb> implements Cred
 		
 		List<JxjyXflb> list2 = this.dao.getLb(JxjyConstant.XUE_FEN_ER_LEI);
 		
-//		for(JxjyXflb lb : list2) {
-//			allList.add(lb);
-//		}
 		allList.addAll(list2);
+		
+		JxjyXflb otherLb = new JxjyXflb();
+		otherLb.setMc("其他学分");
+		allList.add(otherLb);
+		
+		List<JxjyXflb> list3 = this.dao.getLb(JxjyConstant.XUE_FEN_QI_TA);
+		
+		allList.addAll(list3);
 		
 		return allList;
 	}

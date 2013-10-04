@@ -183,15 +183,15 @@ CreditSettingView = Ext.extend(Ext.Panel, {
 				dataIndex : 'mc',
 				renderer : function(value, metadata, record, rowIndex,
 							colIndex) {
-						var xflbid = record.data.xflbid;
-						if(xflbid != null && xflbid != "") {
+						var xfbz = record.data.xfbz;
+						if(xfbz != null && xfbz != "") {
 							return "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" + value;
 						} else {
 							return value;
 						}
 					}
 			}, {
-				header : '审核方式',
+				header : '审核否',
 				dataIndex : 'sfsh',
 				renderer : function(value, metadata, record, rowIndex,
 							colIndex) {

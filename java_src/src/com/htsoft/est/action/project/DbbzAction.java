@@ -1,0 +1,61 @@
+package com.htsoft.est.action.project;
+
+import java.lang.reflect.Type;
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.htsoft.core.command.QueryFilter;
+import com.htsoft.core.web.action.BaseAction;
+import com.htsoft.est.model.jxjy.JxjyDbbz;
+import com.htsoft.est.model.jxjy.JxjyKtgl;
+import com.htsoft.est.service.project.DbbzService;
+
+public class DbbzAction extends BaseAction{
+
+	@Resource
+	private DbbzService dbbzService;
+	
+	private JxjyDbbz biaozhun;
+	
+	public String saveBiaozhun() {
+		JxjyDbbz temp = this.dbbzService.saveBiaozhun(this.biaozhun);
+		if(temp != null) {
+			jsonString = "{success:true}";
+		} else {
+			jsonString = "{success:false,message:'保存信息失败！'}";
+		}
+		return SUCCESS;
+	}
+	
+	public String list() {
+//		String nf = this.getRequest().getParameter("nf");
+		QueryFilter filter = new QueryFilter(getRequest());
+		
+		List<JxjyDbbz> list = this.dbbzService.list(filter);
+		Type type = new TypeToken<List<JxjyDbbz>>() {
+		}.getType();
+		StringBuffer buff = new StringBuffer(
+				"{success:true,'totalCounts':").append(
+				filter.getPagingBean().getTotalItems()).append(",result:");
+
+		Gson gson = new Gson();
+		buff.append(gson.toJson(list, type));
+		buff.append("}");
+
+		jsonString = buff.toString();
+
+		return SUCCESS;
+	}
+
+	public JxjyDbbz getBiaozhun() {
+		return biaozhun;
+	}
+
+	public void setBiaozhun(JxjyDbbz biaozhun) {
+		this.biaozhun = biaozhun;
+	}
+
+}
