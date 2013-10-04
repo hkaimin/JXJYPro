@@ -79,4 +79,10 @@ public class MyJdbcServiceImpl extends CommonServiceImpl implements MyJdbcServic
 		return this.getBasicDao().loadByForTransfReturnListMap(sql);
 	}
 	
+	@Override
+	public List<Map<String, Object>> getRyxfByKtid(Long userid, Long ktid) {
+		String sql = " select t.id from jxjy_ryxfgl t where t.rybh="+userid+" and t.kt_id="+ktid;
+		return this.getBasicDao().loadByForTransfReturnListMap(sql);
+	}
+	
 }

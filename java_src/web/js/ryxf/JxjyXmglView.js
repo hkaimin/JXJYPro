@@ -306,7 +306,7 @@ JxjyXmglView = Ext.extend(Ext.Panel, {
 			Ext.ux.Toast.msg("信息", "只能选择一条记录！");
 			return;
 		}
-        alert(selectRecord[0].data.xmId);
+
 		Ext.Ajax.request( {
 			url : __ctxPath + '/ryxf/caurseResJxjyXmgl.do',
 							params : {
@@ -333,10 +333,35 @@ JxjyXmglView = Ext.extend(Ext.Panel, {
 	},
 	//把选中ID删除
 	removeSelRs : function() {
-		$delGridRs( {
-			url : __ctxPath + '/ryxf/multiDelJxjyXmgl.do',
-			grid : this.gridPanel,
-			idName : 'xmId'
+//		$delGridRs( {
+//			url : __ctxPath + '/ryxf/multiDelJxjyXmgl.do',
+//			grid : this.gridPanel,
+//			idName : 'xmId'
+//		});
+		
+		var grid = Ext.getCmp("JxjyXmglGrid");
+		var selectRecord = grid.getSelectionModel().getSelections();
+		if (selectRecord.length == 0) {
+			Ext.ux.Toast.msg("信息", "请选择要取消报名的课程！");
+			return;
+		}
+		if (selectRecord.length > 1) {
+			Ext.ux.Toast.msg("信息", "只能选择一条记录！");
+			return;
+		}
+
+		Ext.Ajax.request( {
+			url : __ctxPath + '/ryxf/caurseDelJxjyXmgl.do',
+							params : {
+			                      ktidVo:selectRecord[0].data.ktidVo			                   
+							},
+			method : 'post',
+			success : function(response) {
+				Ext.ux.Toast.msg("信息", "已取消报名！");
+                grid.getStore().reload();
+			},
+			failure : function() {
+			}
 		});
 	},
 	//编辑Rs

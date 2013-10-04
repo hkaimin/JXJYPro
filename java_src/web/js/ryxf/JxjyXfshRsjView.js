@@ -1,21 +1,21 @@
 /**
  * @author:
- * @class JxjyRyxfglView
+ * @class JxjyXfshRsjView
  * @extends Ext.Panel
  * @description [JxjyRyxfgl]管理
  * @company 广州宏天软件有限公司
  * @createtime:
  */
-JxjyRyxfglView = Ext.extend(Ext.Panel, {
+JxjyXfshRsjView = Ext.extend(Ext.Panel, {
 	// 构造函数
 	constructor : function(_cfg) {
 		Ext.applyIf(this, _cfg);
 		// 初始化组件
 		this.initUIComponents();
 		// 调用父类构造
-		JxjyRyxfglView.superclass.constructor.call(this, {
-			id : 'JxjyRyxfglView',
-			title : '学员学分情况',
+		JxjyXfshRsjView.superclass.constructor.call(this, {
+			id : 'JxjyXfshRsjView',
+			title : '学分审核',
 			region : 'center',
 			layout : 'border',
 			items : [ this.searchPanel, this.gridPanel ]
@@ -144,20 +144,8 @@ JxjyRyxfglView = Ext.extend(Ext.Panel, {
 
 		this.topbar = new Ext.Toolbar( {
 			items : [ {
-				iconCls : 'btn-add',
-				text : '录入非项目学分',
-				xtype : 'button',
-				scope : this,
-				handler : this.createRs
-			}, {
-				iconCls : 'btn-del',
-				text : '删除非项目学分',
-				xtype : 'button',
-				scope : this,
-				handler : this.removeSelRs
-			}, {
 				iconCls : 'btn-update',
-				text : '学分提交审核',
+				text : '学分审核',
 				xtype : 'button',
 				scope : this,
 				handler : this.xfCommit
@@ -191,7 +179,6 @@ JxjyRyxfglView = Ext.extend(Ext.Panel, {
 				dataIndex : 'ktId'
 			}, {
 				header : '姓名',
-				hidden : true,
 				dataIndex : 'xm'
 			}, {
 				header : '日期',
@@ -224,7 +211,7 @@ JxjyRyxfglView = Ext.extend(Ext.Panel, {
 			}, {
 				header : '卫生厅审核状态',
 				dataIndex : 'shzt',
-								renderer : function(value) {
+				renderer : function(value) {
 				    if(value=='0'){
 				    	return '审核通过';
 				    }else if(value=='1'){
@@ -255,27 +242,30 @@ JxjyRyxfglView = Ext.extend(Ext.Panel, {
 //				header : '学位',
 //				dataIndex : 'xw'
 //			},
-			{
-				header : '学分提交状态',
-				dataIndex : 'is_commit',
-				renderer : function(value) {
-				    if(value=='0'){
-				    	return '未提交';
-				    }
-					return '已提交';
-				}
-			}, new Ext.ux.grid.RowActions( {
-				header : '管理',
+//			{
+//				header : '学分提交状态',
+//				dataIndex : 'is_commit',
+//				renderer : function(value) {
+//				    if(value=='0'){
+//				    	return '未提交';
+//				    }
+//					return '已提交';
+//				}
+//			}, 
+			new Ext.ux.grid.RowActions( {
+				header : '-',
 				width : 100,
-				actions : [ {
-					iconCls : 'btn-del',
-					qtip : '删除',
-					style : 'margin:0 3px 0 3px'
-				}, {
-					iconCls : 'btn-edit',
-					qtip : '编辑',
-					style : 'margin:0 3px 0 3px'
-				} ],
+				actions : [ 
+//					{
+//					iconCls : 'btn-del',
+//					qtip : '删除',
+//					style : 'margin:0 3px 0 3px'
+//				}, {
+//					iconCls : 'btn-edit',
+//					qtip : '编辑',
+//					style : 'margin:0 3px 0 3px'
+//				} 
+				],
 				listeners : {
 					scope : this,
 					'action' : this.onRowAction

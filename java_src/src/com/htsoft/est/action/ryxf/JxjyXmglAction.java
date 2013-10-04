@@ -6,9 +6,13 @@ package com.htsoft.est.action.ryxf;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import java.lang.reflect.Type;
+import java.math.BigDecimal;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -184,4 +188,16 @@ public class JxjyXmglAction extends BaseAction{
 		return SUCCESS;
 		
 	}
+	
+	public String caurseDel(){
+		AppUser user = ContextUtil.getCurrentUser();
+		List<Map<String,Object>> list = myJdbcService.getRyxfByKtid(user.getUserId(), ktidVo);
+		String ryxfId="0";
+		if(list.size()>0){
+			ryxfId = (BigDecimal)list.get(0).get("ID")+"";
+		}
+		jxjyRyxfglService.remove(new Long(ryxfId));
+		return SUCCESS;
+	}
+	
 }

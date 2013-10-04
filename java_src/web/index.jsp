@@ -135,7 +135,7 @@
         <div id="loading-mask"></div>
 		<div id="app-header">
 			<div id="header-left">
-				<img id ="CompanyLogo" src="<%=basePath%>/images/jxjylogo.png" height="50" style="max-width:230px;"/>
+				<img id ="CompanyLogo" src="<%=basePath%>/images/jxjylogo2.png" height="50" style="max-width:230px;"/>
 			</div>
 			<div id="header-main">
 				<div id="header-info">
