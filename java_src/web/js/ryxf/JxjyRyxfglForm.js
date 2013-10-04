@@ -139,31 +139,27 @@ JxjyRyxfglForm = Ext.extend(Ext.Window, {
 						fieldLabel : '授分单位',
 						name : 'jxjyRyxfgl.sfdw',
 						maxLength : 20
-					}, 
-//					{
-//						fieldLabel : '卫生厅审核状态',
-//						name : 'jxjyRyxfgl.shzt',
-//						maxLength : 10
-//					}, 
-					{
+					}, {
+						fieldLabel : '卫生厅审核状态',
+						name : 'jxjyRyxfgl.shzt',
+						maxLength : 10
+					}, {
 						fieldLabel : '备注',
 						name : 'jxjyRyxfgl.bz',
 						maxLength : 100
-					}
-//					, {
-//						fieldLabel : '人社局审核状态',
-//						name : 'jxjyRyxfgl.rsjsh',
-//						maxLength : 10
-//					}, {
-//						fieldLabel : '职称',
-//						name : 'jxjyRyxfgl.zc',
-//						maxLength : 20
-//					}, {
-//						fieldLabel : '学位',
-//						name : 'jxjyRyxfgl.xw',
-//						maxLength : 20
-//					}
-					]
+					}, {
+						fieldLabel : '人社局审核状态',
+						name : 'jxjyRyxfgl.rsjsh',
+						maxLength : 10
+					}, {
+						fieldLabel : '职称',
+						name : 'jxjyRyxfgl.zc',
+						maxLength : 20
+					}, {
+						fieldLabel : '学位',
+						name : 'jxjyRyxfgl.xw',
+						maxLength : 20
+					} ]
 		});
 		//加载表单对应的数据	
 		if (this.id != null && this.id != 'undefined') {

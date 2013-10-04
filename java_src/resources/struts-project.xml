@@ -13,5 +13,10 @@
 		<action name="*Credit" class="CreditAction" method="{1}">
 			<result>${successResultValue}</result>
 		</action>
+
+		<action name="*DbbzAction" class="DbbzAction" method="{1}">
+			<result>${successResultValue}</result>
+		</action>
+
 	</package>
 </struts>

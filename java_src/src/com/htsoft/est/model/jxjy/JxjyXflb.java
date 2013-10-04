@@ -14,6 +14,7 @@ public class JxjyXflb implements java.io.Serializable {
 	private String xfmc;
 	private Long xfmcid;
 	private String sfsh;
+	private String tjlx;
 	private Long xfbz;
 
 	// Constructors
@@ -94,6 +95,14 @@ public class JxjyXflb implements java.io.Serializable {
 
 	public void setXfbz(Long xfbz) {
 		this.xfbz = xfbz;
+	}
+
+	public String getTjlx() {
+		return tjlx;
+	}
+
+	public void setTjlx(String tjlx) {
+		this.tjlx = tjlx;
 	}
 	
 }

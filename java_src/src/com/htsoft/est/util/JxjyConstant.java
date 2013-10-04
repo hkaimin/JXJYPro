@@ -16,6 +16,7 @@ public class JxjyConstant {
 	//学分
 	public final static Long XUE_FEN_YI_LEI = 0l;
 	public final static Long XUE_FEN_ER_LEI = 1l;
+	public final static Long XUE_FEN_QI_TA = 2l;
 	
 	public final static String XUE_FEN_SHEN_HE_XUE_FEN = "0";
 	public final static String XUE_FEN_SHEN_HE_XIANG_MU = "1";

@@ -43,12 +43,12 @@ JxjyRyxfglView = Ext.extend(Ext.Panel, {
 					//																		xtype:'numberfield'
 					//																	}
 					//																,
-					//					{
-					//						fieldLabel : '姓名',
-					//						name : 'Q_xm_S_EQ',
-					//						flex : 1,
-					//						xtype : 'textfield'
-					//					}, 
+//					{
+//						fieldLabel : '姓名',
+//						name : 'Q_xm_S_EQ',
+//						flex : 1,
+//						xtype : 'textfield'
+//					}, 
 					{
 						fieldLabel : '日期',
 						name : 'Q_rq_S_EQ',
@@ -155,13 +155,13 @@ JxjyRyxfglView = Ext.extend(Ext.Panel, {
 				xtype : 'button',
 				scope : this,
 				handler : this.removeSelRs
-			}, {
+			} , {
 				iconCls : 'btn-update',
 				text : '学分提交审核',
 				xtype : 'button',
 				scope : this,
-				handler : this.xfCommit
-			}]
+				handler : this.removeSelRsd
+			} ]
 		});
 
 		this.gridPanel = new HT.GridPanel( {
@@ -175,8 +175,7 @@ JxjyRyxfglView = Ext.extend(Ext.Panel, {
 				name : 'id',
 				type : 'int'
 			}, 'rybh', 'ktId', 'xm', 'rq', 'kt', 'xflx', 'xflb', 'xk', 'hdxs',
-					'xf', 'xs', 'sfdw', 'shzt', 'bz', 'rsjsh', 'zc', 'xw',
-					'is_commit' ],
+					'xf', 'xs', 'sfdw', 'shzt', 'bz', 'rsjsh', 'zc', 'xw' ],
 			columns : [ {
 				header : 'id',
 				dataIndex : 'id',
@@ -191,7 +190,6 @@ JxjyRyxfglView = Ext.extend(Ext.Panel, {
 				dataIndex : 'ktId'
 			}, {
 				header : '姓名',
-				hidden : true,
 				dataIndex : 'xm'
 			}, {
 				header : '日期',
@@ -223,47 +221,20 @@ JxjyRyxfglView = Ext.extend(Ext.Panel, {
 				dataIndex : 'sfdw'
 			}, {
 				header : '卫生厅审核状态',
-				dataIndex : 'shzt',
-								renderer : function(value) {
-				    if(value=='0'){
-				    	return '审核通过';
-				    }else if(value=='1'){
-				    	return '审核不通过';
-				    }
-					return '待审核';
-				}
+				dataIndex : 'shzt'
 			}, {
 				header : '备注',
 				hidden : true,
 				dataIndex : 'bz'
 			}, {
 				header : '人社局审核状态',
-				dataIndex : 'rsjsh',
-				renderer : function(value) {
-				    if(value=='0'){
-				    	return '审核通过';
-				    }else if(value=='1'){
-				    	return '审核不通过';
-				    }
-					return '待审核';
-				}
-			}, 
-//			{
-//				header : '职称',
-//				dataIndex : 'zc'
-//			}, {
-//				header : '学位',
-//				dataIndex : 'xw'
-//			},
-			{
-				header : '学分提交状态',
-				dataIndex : 'is_commit',
-				renderer : function(value) {
-				    if(value=='0'){
-				    	return '未提交';
-				    }
-					return '已提交';
-				}
+				dataIndex : 'rsjsh'
+			}, {
+				header : '职称',
+				dataIndex : 'zc'
+			}, {
+				header : '学位',
+				dataIndex : 'xw'
 			}, new Ext.ux.grid.RowActions( {
 				header : '管理',
 				width : 100,
@@ -325,64 +296,6 @@ JxjyRyxfglView = Ext.extend(Ext.Panel, {
 			grid : this.gridPanel,
 			idName : 'id'
 		});
-	},
-	xfCommit : function() {
-
-		var grid = Ext.getCmp("JxjyRyxfglGrid");
-		var selectRecord = grid.getSelectionModel().getSelections();
-		if (selectRecord.length == 0) {
-			Ext.ux.Toast.msg("信息", "请选择要提交的学分记录！");
-			return;
-		}
-		if (selectRecord.length > 1) {
-			Ext.ux.Toast.msg("信息", "只能选择一条记录！");
-			return;
-		}
-
-		Ext.Ajax.request( {
-			url : __ctxPath + '/ryxf/commitXFJxjyRyxfgl.do',
-							params : {
-			                      id:selectRecord[0].data.id
-							},
-			method : 'post',
-			success : function(response) {
-				Ext.ux.Toast.msg("信息", "成功提交学分审核！");
-                grid.getStore().reload();
-			},
-			failure : function() {
-			}
-		});
-		
-
-	},
-	xfReview : function() {
-
-		var grid = Ext.getCmp("JxjyRyxfglGrid");
-		var selectRecord = grid.getSelectionModel().getSelections();
-		if (selectRecord.length == 0) {
-			Ext.ux.Toast.msg("信息", "请选择要审核的学分记录！");
-			return;
-		}
-		if (selectRecord.length > 1) {
-			Ext.ux.Toast.msg("信息", "只能选择一条记录！");
-			return;
-		}
-
-		Ext.Ajax.request( {
-			url : __ctxPath + '/ryxf/commitXFJxjyRyxfgl.do',
-							params : {
-			                      id:selectRecord[0].data.id
-							},
-			method : 'post',
-			success : function(response) {
-				Ext.ux.Toast.msg("信息", "成功提交学分审核！");
-                grid.getStore().reload();
-			},
-			failure : function() {
-			}
-		});
-		
-
 	},
 	//编辑Rs
 	editRs : function(record) {

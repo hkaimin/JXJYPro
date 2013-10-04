@@ -443,6 +443,11 @@ UserFormPanel:[
     	__ctxPath+'/js/project/CreditSettingView.js',
     	__ctxPath+'/js/project/CreditForm.js'
 ]
+,StandardSettingView : [
+    	__ctxPath+'/js/project/StandardSettingView.js',
+    	__ctxPath+'/js/project/StandardForm.js',
+    	__ctxPath+'/js/project/CreditSelector.js'
+]
 //  end:  Generated for PositionSub From Template: App.import.js.vm
 //  start:  Generated for JxjyRyxfgl From Template: App.import.js.vm
 

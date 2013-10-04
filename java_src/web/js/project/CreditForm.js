@@ -84,7 +84,8 @@ CreditForm = Ext.extend(Ext.Window, {
 				triggerAction :'all',
 				store : [
 					['0','I类学分'],
-					['1','IIl类学分']
+					['1','IIl类学分'],
+					['2','其他学分']
 						]
 			}
 			]

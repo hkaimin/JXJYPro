@@ -3,13 +3,7 @@
 
 	<Items id="CreditManager" text="学分管理" iconCls="menu-system" isPublic="false"> 
 		<Item id="JxjyRyxfglView" iconCls="menu-appuser" text="学员学分情况">  
-		</Item> 
-		
-				<Item id="JxjyXfshWstView" iconCls="menu-appuser" text="学分审核（卫生厅）">  
 		</Item>  
-		
-				<Item id="JxjyXfshRsjView" iconCls="menu-appuser" text="学分审核（人社局）">  
-		</Item>   
 		
 		<Item id="JxjyXmglView" iconCls="menu-appuser" text="课题报名"> 
 		</Item>  
