@@ -14,9 +14,11 @@ App.importJs = {
     	__ctxPath+'/js/ryxf/JxjyRyxfglView.js',
     	__ctxPath+'/js/ryxf/JxjyRyxfglForm.js'
 ],JxjyXfshWstView : [
-    	__ctxPath+'/js/ryxf/JxjyXfshWstView.js'
+    	__ctxPath+'/js/ryxf/JxjyXfshWstView.js',
+    	__ctxPath+'/js/ryxf/WSTXFSHForm.js'
 ],JxjyXfshRsjView : [
-    	__ctxPath+'/js/ryxf/JxjyXfshRsjView.js'
+    	__ctxPath+'/js/ryxf/JxjyXfshRsjView.js',
+    	__ctxPath+'/js/ryxf/RSJXFSHForm.js'
 ],
 
 
@@ -463,4 +465,20 @@ UserFormPanel:[
 ]
 
 //  end:  Generated for JxjyXmgl From Template: App.import.js.vm
+//  start:  Generated for JxjySfbzsz From Template: App.import.js.vm
+,JxjySfbzszView : [
+    	__ctxPath+'/js/ryxf/JxjySfbzszView.js',
+    	__ctxPath+'/js/ryxf/SFMXForm.js',
+    	__ctxPath+'/js/ryxf/SFMXSAVEForm.js',
+    	__ctxPath+'/js/ryxf/JxjySfbzszForm.js'
+]
+
+//  end:  Generated for JxjySfbzsz From Template: App.import.js.vm
+//  start:  Generated for JxjySfbzmx From Template: App.import.js.vm
+,JxjySfbzmxView : [
+    	__ctxPath+'/js/ryxf/JxjySfbzmxView.js',
+    	__ctxPath+'/js/ryxf/JxjySfbzmxForm.js'
+]
+
+//  end:  Generated for JxjySfbzmx From Template: App.import.js.vm
 };
