@@ -91,6 +91,16 @@ public class JxjyRyxfglAction extends BaseAction{
 		return SUCCESS;
 	}
 	
+	public String commitXF(){
+		
+		JxjyRyxfgl jxjyRyxfgl=jxjyRyxfglService.get(id);
+		jxjyRyxfgl.setIs_commit(1L);
+		jxjyRyxfglService.save(jxjyRyxfgl);
+		jsonString="{success:true}";
+		
+		return SUCCESS;
+	}
+	
 	/**
 	 * 显示详细信息
 	 * @return

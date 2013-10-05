@@ -448,6 +448,9 @@ UserFormPanel:[
     	__ctxPath+'/js/project/StandardForm.js',
     	__ctxPath+'/js/project/CreditSelector.js'
 ]
+,CheckView : [
+    	__ctxPath+'/js/project/CheckView.js',
+]
 //  end:  Generated for PositionSub From Template: App.import.js.vm
 //  start:  Generated for JxjyRyxfgl From Template: App.import.js.vm
 
