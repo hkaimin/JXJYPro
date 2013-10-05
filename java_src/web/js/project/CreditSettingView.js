@@ -142,26 +142,26 @@ CreditSettingView = Ext.extend(Ext.Panel, {
 				xtype : 'button',
 				scope : this,
 				handler : this.createRs
-			}, '-', {
-				iconCls : 'btn-del',
+			}, '->', {
+				iconCls : 'btn-search',
 				text : '审核学分',
 				xtype : 'button',
 				scope : this,
 				handler : this.checkCredit
 			}, '-', {
-				iconCls : 'btn-del',
+				iconCls : 'btn-search',
 				text : '审核项目',
 				xtype : 'button',
 				scope : this,
 				handler : this.checkProject
 			}, '-', {
-				iconCls : 'btn-del',
+				iconCls : 'btn-search',
 				text : '审核项目及学分',
 				xtype : 'button',
 				scope : this,
 				handler : this.checkProjectCredit
 			}, '-', {
-				iconCls : 'btn-del',
+				iconCls : 'btn-search',
 				text : '取消审核',
 				xtype : 'button',
 				scope : this,
@@ -184,7 +184,7 @@ CreditSettingView = Ext.extend(Ext.Panel, {
 				renderer : function(value, metadata, record, rowIndex,
 							colIndex) {
 						var xfbz = record.data.xfbz;
-						if(xfbz != null && xfbz != "") {
+						if(xfbz != null && xfbz != "" || xfbz == "0") {
 							return "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" + value;
 						} else {
 							return value;
@@ -275,8 +275,12 @@ CreditSettingView = Ext.extend(Ext.Panel, {
 	},
 	//按ID删除记录
 	removeRs : function(id) {
+		if(id == "" || id == null) {
+//			Ext.ux.Toast.msg("操作信息","学分大类别不能修改");
+			return;
+		}
 		$postDel( {
-			url : __ctxPath + '/ryxf/multiDelJxjyXmgl.do',
+			url : __ctxPath + '/project/multiDelCredit.do',
 			ids : id,
 			grid : this.gridPanel
 		});
@@ -284,15 +288,20 @@ CreditSettingView = Ext.extend(Ext.Panel, {
 	//把选中ID删除
 	removeSelRs : function() {
 		$delGridRs( {
-			url : __ctxPath + '/ryxf/multiDelJxjyXmgl.do',
+			url : __ctxPath + '/project/multiDelCredit.do',
 			grid : this.gridPanel,
-			idName : 'xmId'
+			idName : 'xflbid'
 		});
 	},
 	//编辑Rs
 	editRs : function(record) {
-		new JxjyXmglForm( {
-			xmId : record.data.xmId
+		var xflbid = record.data.xflbid;
+		if(xflbid == "" || xflbid == null) {
+//			Ext.ux.Toast.msg("操作信息","学分大类别不能修改");
+			return;
+		}
+		new CreditForm({
+			xflbid : record.data.xflbid
 		}).show();
 	},
 	//审核学分
@@ -487,7 +496,7 @@ CreditSettingView = Ext.extend(Ext.Panel, {
 	onRowAction : function(grid, record, action, row, col) {
 		switch (action) {
 		case 'btn-del':
-			this.removeRs.call(this, record.data.xmId);
+			this.removeRs.call(this, record.data.xflbid);
 			break;
 		case 'btn-edit':
 			this.editRs.call(this, record);

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.htsoft.core.command.QueryFilter;
 import com.htsoft.core.web.action.BaseAction;
@@ -20,6 +21,26 @@ public class DbbzAction extends BaseAction{
 	
 	private JxjyDbbz biaozhun;
 	
+	public String get(){
+		
+		JxjyDbbz bz = this.dbbzService.get(new Long(this.getRequest().getParameter("id")));
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		// 将数据转成JSON格式
+		StringBuffer sb = new StringBuffer("{success:true,data:");
+		sb.append(gson.toJson(bz));
+		sb.append("}");
+		setJsonString(sb.toString());
+		
+		return SUCCESS;
+	}
+	
+	public String multiDel() {
+		String[] ids = this.getRequest().getParameterValues("ids");
+		this.dbbzService.multiDel(ids);
+		return SUCCESS;
+	}
+	
 	public String saveBiaozhun() {
 		JxjyDbbz temp = this.dbbzService.saveBiaozhun(this.biaozhun);
 		if(temp != null) {
@@ -31,7 +52,7 @@ public class DbbzAction extends BaseAction{
 	}
 	
 	public String list() {
-//		String nf = this.getRequest().getParameter("nf");
+		
 		QueryFilter filter = new QueryFilter(getRequest());
 		
 		List<JxjyDbbz> list = this.dbbzService.list(filter);

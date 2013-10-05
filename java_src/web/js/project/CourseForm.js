@@ -17,8 +17,8 @@ CourseForm = Ext.extend(Ext.Window, {
 			layout : 'fit',
 			items : this.formPanel,
 			modal : true,
-			height : 600,
-			width : 800,
+			height : 300,
+			width : 400,
 			maximizable : true,
 			title : '课程详细信息',
 			buttonAlign : 'center',
@@ -55,12 +55,12 @@ CourseForm = Ext.extend(Ext.Window, {
 			defaultType : 'textfield',
 			items : [ {
 				name : 'course.ktId',
-//				xtype : 'hidden',
+				xtype : 'hidden',
 				value : this.ktId == null ? '' : this.ktId
 			},{
 				fieldLabel : '项目id',
 				name : 'course.xmId',
-				xtype:'textfield',
+				xtype:'hidden',
 				value: this.xmId == null ? '' : this.xmId
 			},{
 				fieldLabel : '课题名称',
@@ -99,11 +99,11 @@ CourseForm = Ext.extend(Ext.Window, {
 		});
 		
 		//加载表单对应的数据	
-		if (this.bdzId != null && this.bdzId != 'undefined') {
+		if (this.ktId != null && this.ktId != 'undefined') {
 			
 			this.formPanel.loadData( {
-				url : __ctxPath + '/dp/getDpBdz.do?bdzId='
-						+ this.bdzId,
+				url : __ctxPath + '/project/getCourse.do?ktId='
+						+ this.ktId,
 				root : 'data',
 				preName : 'course'
 			});

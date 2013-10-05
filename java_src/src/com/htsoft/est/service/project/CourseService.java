@@ -11,4 +11,8 @@ public interface CourseService extends BaseService<JxjyKtgl>{
 	public JxjyKtgl saveCourse(JxjyKtgl course);
 	
 	public List<JxjyKtgl> listCourse(QueryFilter filter);
+	
+	public void mutilDel(String[] ids);
+	
+	public List<JxjyKtgl> search(QueryFilter filter, JxjyKtgl kt);
 }

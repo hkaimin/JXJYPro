@@ -21,5 +21,7 @@ public interface DbbzService extends BaseService<JxjyDbbz>{
 	 * @return
 	 */
 	public List<JxjyDbbz> list(QueryFilter filter);
+	
+	public void multiDel(String[] ids);
 
 }

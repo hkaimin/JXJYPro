@@ -196,7 +196,7 @@ CourseView = Ext.extend(Ext.Panel,{
 				
 		// 初始化搜索条件Panel
 		this.searchPanel = new Ext.FormPanel( {
-			id:'RmBdz_SearchPanel',
+			id:'CourseSearch',
 			region : 'north',
 			height : 60,
 			width : '100%',
@@ -227,13 +227,13 @@ CourseView = Ext.extend(Ext.Panel,{
 					items : [{
 						width : '95%',
 						fieldLabel : '课题名称',
-						name : 'Q_modulename_S_LK',
+						name : 'course.ktmc',
 						xtype : 'textfield',
 						maxLength : 125
 					}, {
 						width : '95%',
 						fieldLabel : '讲师名称',
-						name : 'Q_modulekey_S_LK',
+						name : 'course.jsmc',
 						xtype : 'textfield',
 						maxLength : 125
 					}]
@@ -244,7 +244,7 @@ CourseView = Ext.extend(Ext.Panel,{
 					items : [{
 						width : '95%',
 						fieldLabel : '讲师职称',
-						name : 'Q_processkey_S_LK',
+						name : 'course.jszc',
 						xtype : 'textfield',
 						maxLength : 125
 					}, {
@@ -254,7 +254,7 @@ CourseView = Ext.extend(Ext.Panel,{
 						fieldLabel : '授课时间',
 						items : [{
 							columnWidth : .49,
-							name : 'Q_createtime_D_GE',
+							name : 'course.sksjStart',
 							xtype : 'datefield',
 							format : 'Y-m-d'
 						}, {
@@ -263,7 +263,7 @@ CourseView = Ext.extend(Ext.Panel,{
 							style : 'padding-top:3px'
 						}, {
 							columnWidth : .49,
-							name : 'Q_createtime_D_LE',
+							name : 'course.sksjEnd',
 							xtype : 'datefield',
 							format : 'Y-m-d'
 						}]
@@ -275,7 +275,7 @@ CourseView = Ext.extend(Ext.Panel,{
 					items : [{
 						width : '95%',
 						fieldLabel : '上课地点',
-						name : 'Q_creator_S_LK',
+						name : 'course.skdd',
 						xtype : 'textfield',
 						maxLength : 125
 					}]
@@ -298,6 +298,13 @@ CourseView = Ext.extend(Ext.Panel,{
 						iconCls : 'reset',
 						handler : this.reset
 					}]
+				},{
+					name : 'orgId',
+					xtype : 'hidden'
+				},{
+					name : 'method',
+					value : 'search',
+					xtype : 'hidden'
 				}]
 			}]
 		});// end of searchPanel
@@ -386,12 +393,13 @@ CourseView = Ext.extend(Ext.Panel,{
 			}, new Ext.ux.grid.RowActions( {
 				header : '管理',
 				width : 100,
-				actions : [ {
-					text:'<a href="#">删除</a>',
-					iconCls : 'btn-del',
-					qtip : '删除变电站',
-					style : 'margin:0 3px 0 3px'
-				},{
+				actions : [ 
+				{
+//					text:'<a href="#">删除</a>',
+//					iconCls : 'btn-del',
+//					qtip : '删除变电站',
+//					style : 'margin:0 3px 0 3px'
+//				},{
 					text:'<a href="#">编辑</a>',
 					iconCls : 'btn-edit',
 					qtip : '编辑变电站',
@@ -425,12 +433,12 @@ CourseView = Ext.extend(Ext.Panel,{
 	//按条件搜索
 	search : function() {
 		if(this._param.orgId <=0 ){
-			Ext.ux.Toast.msg("操作信息","请选择区局");
+			Ext.ux.Toast.msg("操作信息","请选择项目");
 			return;
 		}
 		
 		//修改查询面板中所属单位			
-		var searchPanel = Ext.getCmp("RmBdz_SearchPanel");
+		var searchPanel = Ext.getCmp("CourseSearch");
 		searchPanel.form.findField('orgId').setValue(this._param.orgId);
 		$search( {
 			searchPanel : this.searchPanel,
@@ -448,7 +456,7 @@ CourseView = Ext.extend(Ext.Panel,{
 	//创建记录
 	createRs : function() {
 		if(this._param.orgId <=0 ){
-			Ext.ux.Toast.msg("操作信息","请选择区局");
+			Ext.ux.Toast.msg("操作信息","请选择项目");
 			return;
 		}
 		new CourseForm({
@@ -511,47 +519,47 @@ CourseView = Ext.extend(Ext.Panel,{
 		
 		var ids = [];
 		for(var i=0;i<records.length;i++) {
-			ids.push(records[i].data.bdzId);	
+			ids.push(records[i].data.ktId);	
 		}
+		
 		var gridPanel = this.gridPanel;
-		Ext.Msg.confirm("信息确认", "删除变电站，请确认变电站下无任何馈线，继续？", function(btn){
-		            if (btn == "yes") {
-		    				Ext.Ajax.request({
-								url : __ctxPath + '/dp/multiDelDpBdz.do',
-								method : 'POST',
-								params : {
-									ids : ids
-								},
-								success : function(form, action) {
-									
-									var result = Ext.util.JSON.decode(form.responseText);
-									if (result.success == true) {
-										Ext.ux.Toast.msg("操作信息", "删除变电站操作成功");
-																				
-									} else {
-										Ext.MessageBox.show({
-											title : '操作信息',
-											msg : result.message,
-											buttons : Ext.MessageBox.OK,
-											icon : 'ext-mb-error'
-										});
-									}
-									gridPanel.getStore().reload();
+		Ext.Msg.confirm("信息确认", "是否删除选定的记录？", function(btn){
+            if (btn == "yes") {
+    				Ext.Ajax.request({
+						url : __ctxPath + '/project/multiDelCourse.do',
+						method : 'POST',
+						params : {
+							ids : ids
+						},
+						success : function(form, action) {
+							
+							var result = Ext.util.JSON.decode(form.responseText);
+							if (result.success == true) {
+								Ext.ux.Toast.msg("操作信息", "删除操作成功");
+																		
+							} else {
+								Ext.MessageBox.show({
+									title : '操作信息',
+									msg : result.message,
+									buttons : Ext.MessageBox.OK,
+									icon : 'ext-mb-error'
+								});
+							}
+							gridPanel.getStore().reload();
 
-								},
-								failure : function(response, options) {
-									Ext.ux.Toast.msg("温馨提示", "系统错误，请联系管理员！");
-								}
-						   });
-		            }
-			 });	
+						},
+						failure : function(response, options) {
+							Ext.ux.Toast.msg("温馨提示", "系统错误，请联系管理员！");
+						}
+				   });
+           	 }
+	 	});	
 		
 	},
 	//编辑Rs
 	editRs : function(record) {
-		new DpBdzForm( {
-			bdzId : record.data.bdzId,
-			edit:true
+		new CourseForm({
+			ktId : record.data.ktId
 		}).show();
 	},
 	

@@ -21,4 +21,6 @@ public interface CreditService extends BaseService<JxjyXflb>{
 	 * @param flage
 	 */
 	public void batchModified(String[] ids, String flage);
+	
+	public void multiDel(String[] ids) ;
 }

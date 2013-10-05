@@ -48,4 +48,18 @@ public class CourseServiceImpl extends BaseServiceImpl<JxjyKtgl> implements Cour
 		return this.dao.listCourse(filter);
 	}
 
+	@Override
+	public void mutilDel(String[] ids) {
+		// TODO Auto-generated method stub
+		for(String id : ids) {
+			this.dao.remove(new Long(id));
+		}
+	}
+
+	@Override
+	public List<JxjyKtgl> search(QueryFilter filter, JxjyKtgl kt) {
+		// TODO Auto-generated method stub
+		return this.dao.search(filter, kt);
+	}
+
 }

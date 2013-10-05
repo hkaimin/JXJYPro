@@ -84,4 +84,12 @@ public class CreditServiceImpl extends BaseServiceImpl<JxjyXflb> implements Cred
 		}
 	}
 
+	@Override
+	public void multiDel(String[] ids) {
+		// TODO Auto-generated method stub
+		for(String id : ids){
+			this.dao.remove(new Long(id));
+		}
+	}
+
 }

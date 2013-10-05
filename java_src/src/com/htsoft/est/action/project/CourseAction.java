@@ -39,6 +39,26 @@ public class CourseAction extends BaseAction {
 	private CourseService courseService;
 	
 	private JxjyKtgl course;
+
+	public String multiDel() {
+		String[] ids = this.getRequest().getParameterValues("ids");
+		this.courseService.mutilDel(ids);
+		return SUCCESS;
+	}
+	
+	public String get(){
+		
+		JxjyKtgl kt = this.courseService.get(new Long(this.getRequest().getParameter("ktId")));
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		// 将数据转成JSON格式
+		StringBuffer sb = new StringBuffer("{success:true,data:");
+		sb.append(gson.toJson(kt));
+		sb.append("}");
+		setJsonString(sb.toString());
+		
+		return SUCCESS;
+	}
 	
 	public String save() {
 		JxjyKtgl temp = this.courseService.saveCourse(this.course);
@@ -77,19 +97,19 @@ public class CourseAction extends BaseAction {
 
 		} else if (method.equals("search")) { 	// 条件查询
 			
-//			List<DpBdz> list = dpBdzService.search(dpBdz, filter);
-//
-//			Type type = new TypeToken<List<DpBdz>>() {
-//			}.getType();
-//			StringBuffer buff = new StringBuffer("{success:true,'totalCounts':")
-//					.append(filter.getPagingBean().getTotalItems()).append(
-//							",result:");
-//
-//			Gson gson = new Gson();
-//			buff.append(gson.toJson(list, type));
-//			buff.append("}");
-//
-//			jsonString = buff.toString();
+			List<JxjyKtgl> list = this.courseService.search(filter, this.course);
+
+			Type type = new TypeToken<List<JxjyKtgl>>() {
+			}.getType();
+			StringBuffer buff = new StringBuffer("{success:true,'totalCounts':")
+					.append(filter.getPagingBean().getTotalItems()).append(
+							",result:");
+
+			Gson gson = new Gson();
+			buff.append(gson.toJson(list, type));
+			buff.append("}");
+
+			jsonString = buff.toString();
 		} else {
 			jsonString = "{success:true,'totalCounts':0,result:[]}";
 		}

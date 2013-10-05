@@ -36,6 +36,12 @@ public class ProjectAction extends BaseAction {
 	
 	private JxjyXmgl project;
 	
+	public String multiDel() {
+		String[] ids = this.getRequest().getParameterValues("ids");
+		this.projectService.mutilDel(ids);
+		return SUCCESS;
+	}
+	
 	public String save() {
 		JxjyXmgl tempProject = this.projectService.saveProject(this.project);
 		if(tempProject != null) {
@@ -43,6 +49,26 @@ public class ProjectAction extends BaseAction {
 		} else {
 			jsonString = "{success:false,message:'保存信息失败！'}";
 		}
+		return SUCCESS;
+	}
+	
+	/**
+	 * 显示详细信息
+	 * 
+	 * @return
+	 */
+	public String get() {
+
+		
+		JxjyXmgl xm = this.projectService.get(new Long(this.getRequest().getParameter("xmId")));
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		// 将数据转成JSON格式
+		StringBuffer sb = new StringBuffer("{success:true,data:");
+		sb.append(gson.toJson(xm));
+		sb.append("}");
+		setJsonString(sb.toString());
+
 		return SUCCESS;
 	}
 	
@@ -106,19 +132,19 @@ public class ProjectAction extends BaseAction {
 
 		} else if (method.equals("search")) { 	// 条件查询
 			
-//			List<DpBdz> list = dpBdzService.search(dpBdz, filter);
-//
-//			Type type = new TypeToken<List<DpBdz>>() {
-//			}.getType();
-//			StringBuffer buff = new StringBuffer("{success:true,'totalCounts':")
-//					.append(filter.getPagingBean().getTotalItems()).append(
-//							",result:");
-//
-//			Gson gson = new Gson();
-//			buff.append(gson.toJson(list, type));
-//			buff.append("}");
-//
-//			jsonString = buff.toString();
+			List<JxjyXmgl> list = this.projectService.search(filter, this.project);
+
+			Type type = new TypeToken<List<JxjyXmgl>>() {
+			}.getType();
+			StringBuffer buff = new StringBuffer("{success:true,'totalCounts':")
+					.append(filter.getPagingBean().getTotalItems()).append(
+							",result:");
+
+			Gson gson = new Gson();
+			buff.append(gson.toJson(list, type));
+			buff.append("}");
+
+			jsonString = buff.toString();
 		} else {
 			jsonString = "{success:true,'totalCounts':0,result:[]}";
 		}

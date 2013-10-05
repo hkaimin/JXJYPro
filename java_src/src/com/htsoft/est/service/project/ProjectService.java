@@ -38,4 +38,18 @@ public interface ProjectService extends BaseService<JxjyXmgl>{
 	 * @param isCheck
 	 */
 	public void checkProjectYy(Long xmId, String isCheck);
+	
+	/**
+	 * 删除项目
+	 * @param ids
+	 */
+	public void mutilDel(String[] ids);
+	
+	/**
+	 * 搜索
+	 * @param filter
+	 * @param xm
+	 * @return
+	 */
+	public List<JxjyXmgl> search(QueryFilter filter, JxjyXmgl xm);
 }

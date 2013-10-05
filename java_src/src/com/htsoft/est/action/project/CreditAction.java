@@ -6,11 +6,13 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.htsoft.core.command.QueryFilter;
 import com.htsoft.core.util.ContextUtil;
 import com.htsoft.core.web.action.BaseAction;
 import com.htsoft.est.model.jxjy.JxjyDbbz;
+import com.htsoft.est.model.jxjy.JxjyKtgl;
 import com.htsoft.est.model.jxjy.JxjyXflb;
 import com.htsoft.est.model.jxjy.JxjyXmgl;
 import com.htsoft.est.model.jxjy.JxjyZc;
@@ -44,6 +46,26 @@ public class CreditAction extends BaseAction {
 	
 	private JxjyXflb credit;
 	private JxjyDbbz biaozhun;
+	
+	public String multiDel() {
+		String[] ids = this.getRequest().getParameterValues("ids");
+		this.creditService.multiDel(ids);
+		return SUCCESS;
+	}
+	
+	public String get(){
+		
+		JxjyXflb cre = this.creditService.get(new Long(this.getRequest().getParameter("xflbid")));
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		// 将数据转成JSON格式
+		StringBuffer sb = new StringBuffer("{success:true,data:");
+		sb.append(gson.toJson(cre));
+		sb.append("}");
+		setJsonString(sb.toString());
+		
+		return SUCCESS;
+	}
 	
 	public String save() {
 		JxjyXflb temp = this.creditService.saveLb(this.credit);

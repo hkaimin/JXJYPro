@@ -10,4 +10,6 @@ public interface CourseDao extends BaseDao<JxjyKtgl>{
 
 	
 	public List<JxjyKtgl> listCourse(QueryFilter filter);
+	
+	public List<JxjyKtgl> search(QueryFilter filter, JxjyKtgl kt);
 }
