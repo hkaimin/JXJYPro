@@ -18,6 +18,10 @@ public class JxjyKtgl implements java.io.Serializable {
 	private String skdd;
 	private String sksj;
 
+	//vo
+	private String sksjStart;
+	private String sksjEnd;
+	
 	// Constructors
 
 	/** default constructor */
@@ -117,4 +121,20 @@ public class JxjyKtgl implements java.io.Serializable {
 		this.sksj = sksj;
 	}
 
+	public String getSksjStart() {
+		return sksjStart;
+	}
+
+	public void setSksjStart(String sksjStart) {
+		this.sksjStart = sksjStart;
+	}
+
+	public String getSksjEnd() {
+		return sksjEnd;
+	}
+
+	public void setSksjEnd(String sksjEnd) {
+		this.sksjEnd = sksjEnd;
+	}
+	
 }

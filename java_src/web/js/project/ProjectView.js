@@ -195,9 +195,9 @@ ProjectView = Ext.extend(Ext.Panel,{
 				
 		// 初始化搜索条件Panel
 		this.searchPanel = new Ext.FormPanel( {
-			id:'RmBdz_SearchPanel',
+			id:'projectSearch',
 			region : 'north',
-			height : 90,
+			height : 60,
 			width : '100%',
 //			keys : [{
 //				key : Ext.EventObject.ENTER,
@@ -226,19 +226,13 @@ ProjectView = Ext.extend(Ext.Panel,{
 					items : [{
 						width : '95%',
 						fieldLabel : '项目编号',
-						name : 'Q_modulename_S_LK',
-						xtype : 'textfield',
-						maxLength : 125
-					}, {
-						width : '95%',
-						fieldLabel : '项目类别',
-						name : 'Q_modulekey_S_LK',
+						name : 'project.xmbh',
 						xtype : 'textfield',
 						maxLength : 125
 					},{
 						width : '95%',
-						fieldLabel : '审核状态',
-						name : 'Q_creator_S_LK',
+						fieldLabel : '学分类别',
+						name : 'project.xflb',
 						xtype : 'textfield',
 						maxLength : 125
 					}]
@@ -249,7 +243,7 @@ ProjectView = Ext.extend(Ext.Panel,{
 					items : [{
 						width : '95%',
 						fieldLabel : '项目名称',
-						name : 'Q_processkey_S_LK',
+						name : 'project.mc',
 						xtype : 'textfield',
 						maxLength : 125
 					}, {
@@ -259,7 +253,7 @@ ProjectView = Ext.extend(Ext.Panel,{
 						fieldLabel : '举办时间',
 						items : [{
 							columnWidth : .49,
-							name : 'Q_createtime_D_GE',
+							name : 'project.jbsj_start',
 							xtype : 'datefield',
 							format : 'Y-m-d'
 						}, {
@@ -268,7 +262,7 @@ ProjectView = Ext.extend(Ext.Panel,{
 							style : 'padding-top:3px'
 						}, {
 							columnWidth : .49,
-							name : 'Q_createtime_D_LE',
+							name : 'project.jbsj_end',
 							xtype : 'datefield',
 							format : 'Y-m-d'
 						}]
@@ -280,15 +274,34 @@ ProjectView = Ext.extend(Ext.Panel,{
 					items : [{
 						width : '95%',
 						fieldLabel : '项目类别',
-						name : 'Q_creator_S_LK',
-						xtype : 'textfield',
-						maxLength : 125
+						name : 'project.xmlb',
+						xtype : 'combo',
+						editable : false,
+						emptyText:'请选择',
+						triggerAction :'all',
+						hiddenName:'project.xmlb',
+						value : '',
+						store : [
+							['1','自主项目'],
+							['2','科室项目'],
+							['3','申报导入项目']
+								]
 					}, {
 						width : '95%',
-						fieldLabel : '学分类别',
-						name : 'Q_descp_S_LK',
-						xtype : 'textfield',
-						maxLength : 125
+						fieldLabel : '审核状态',
+						name : 'project.zt',
+						xtype : 'combo',
+						editable : false,
+						emptyText:'请选择',
+						triggerAction :'all',
+						hiddenName:'project.zt',
+						value : '',
+						store : [
+							['all','全部'],
+							['2','待审核'],
+							['0','不通过'],
+							['1','通过']
+								]
 					}]
 				}, {
 					columnWidth : .1,
@@ -309,6 +322,13 @@ ProjectView = Ext.extend(Ext.Panel,{
 						iconCls : 'reset',
 						handler : this.reset
 					}]
+				},{
+					name : 'orgId',
+					xtype : 'hidden'
+				},{
+					name : 'method',
+					value : 'search',
+					xtype : 'hidden'
 				}]
 			}]
 		});// end of searchPanel
@@ -367,7 +387,6 @@ ProjectView = Ext.extend(Ext.Panel,{
 			}, {
 				header : '名称',
 				dataIndex : 'mc',
-				width:180,
 				sortable: true
 			}, {
 				header : '项目专业',
@@ -377,8 +396,7 @@ ProjectView = Ext.extend(Ext.Panel,{
 			}, {
 				header : '活动方式',
 				dataIndex : 'hdfs',
-				sortable: true,
-				hidden : true
+				sortable: true
 			}, {
 				header : '审核方式',
 				dataIndex : 'shfs',
@@ -388,7 +406,18 @@ ProjectView = Ext.extend(Ext.Panel,{
 			, {
 				header : '项目类别',
 				dataIndex : 'xmlb',
-				sortable: true
+				renderer : function(value, metadata, record, rowIndex,
+							colIndex) {
+						if(value == "1") {
+							return "自主项目";
+						} else if(value == "2") {
+							return "科室项目";
+						} else if(value == "3") {
+							return "申报导入项目";
+						} else {
+							return "类型错误";
+						}
+					}
 //				hidden : true
 			}
 			, {
@@ -453,18 +482,21 @@ ProjectView = Ext.extend(Ext.Panel,{
 					}
 			}, new Ext.ux.grid.RowActions( {
 				header : '管理',
-				width : 100,
-				actions : [ {
-					text:'<a href="#">删除</a>',
-					iconCls : 'btn-del',
-					qtip : '删除变电站',
-					style : 'margin:0 3px 0 3px'
-				},{
+				width : 200,
+				actions : [ 
+//				{
+//					text:'<a href="#">删除</a>',
+//					iconCls : 'btn-del',
+//					qtip : '删除变电站',
+//					style : 'margin:0 3px 0 3px'
+//				},
+				{
 					text:'<a href="#">编辑</a>',
 					iconCls : 'btn-edit',
 					qtip : '编辑变电站',
 					style : 'margin:0 3px 0 3px'
-				},{
+				},
+				{
 					text:'<a href="#">上报</a>',
 					iconCls : 'btn-report',
 					qtip : '上报医院同意',
@@ -508,12 +540,12 @@ ProjectView = Ext.extend(Ext.Panel,{
 	//按条件搜索
 	search : function() {
 		if(this._param.orgId <=0 ){
-			Ext.ux.Toast.msg("操作信息","请选择区局");
+			Ext.ux.Toast.msg("操作信息","请选择科室");
 			return;
 		}
 		
 		//修改查询面板中所属单位			
-		var searchPanel = Ext.getCmp("RmBdz_SearchPanel");
+		var searchPanel = Ext.getCmp("projectSearch");
 		searchPanel.form.findField('orgId').setValue(this._param.orgId);
 		$search( {
 			searchPanel : this.searchPanel,
@@ -595,47 +627,48 @@ ProjectView = Ext.extend(Ext.Panel,{
 		
 		var ids = [];
 		for(var i=0;i<records.length;i++) {
-			ids.push(records[i].data.bdzId);	
+			ids.push(records[i].data.xmId);	
 		}
 		var gridPanel = this.gridPanel;
-		Ext.Msg.confirm("信息确认", "删除变电站，请确认变电站下无任何馈线，继续？", function(btn){
-		            if (btn == "yes") {
-		    				Ext.Ajax.request({
-								url : __ctxPath + '/dp/multiDelDpBdz.do',
-								method : 'POST',
-								params : {
-									ids : ids
-								},
-								success : function(form, action) {
-									
-									var result = Ext.util.JSON.decode(form.responseText);
-									if (result.success == true) {
-										Ext.ux.Toast.msg("操作信息", "删除变电站操作成功");
-																				
-									} else {
-										Ext.MessageBox.show({
-											title : '操作信息',
-											msg : result.message,
-											buttons : Ext.MessageBox.OK,
-											icon : 'ext-mb-error'
-										});
-									}
-									gridPanel.getStore().reload();
+		Ext.Msg.confirm("信息确认", "是否删除此项目？", function(btn){
+            if (btn == "yes") {
+    				Ext.Ajax.request({
+						url : __ctxPath + '/project/multiDelProject.do',
+						method : 'POST',
+						params : {
+							ids : ids
+						},
+						success : function(form, action) {
+							
+							var result = Ext.util.JSON.decode(form.responseText);
+							if (result.success == true) {
+								Ext.ux.Toast.msg("操作信息", "删除成功");
+																		
+							} else {
+								Ext.MessageBox.show({
+									title : '操作信息',
+									msg : result.message,
+									buttons : Ext.MessageBox.OK,
+									icon : 'ext-mb-error'
+								});
+							}
+							gridPanel.getStore().reload();
 
-								},
-								failure : function(response, options) {
-									Ext.ux.Toast.msg("温馨提示", "系统错误，请联系管理员！");
-								}
-						   });
-		            }
-			 });	
+						},
+						failure : function(response, options) {
+							Ext.ux.Toast.msg("温馨提示", "系统错误，请联系管理员！");
+						}
+				   });
+            }
+	 });	
 		
 	},
 	//编辑Rs
 	editRs : function(record) {
-		new DpBdzForm( {
-			bdzId : record.data.bdzId,
-			edit:true
+		new ProjectForm({
+//			ssdwId : this._param.orgId,
+//			orgName : this._param.orgName
+			xmId : record.data.xmId
 		}).show();
 	},
 	//上报医院同意

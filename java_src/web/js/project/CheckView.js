@@ -191,124 +191,115 @@ CheckView = Ext.extend(Ext.Panel,{
 		});
 		
 	
+		var zcStore = new Ext.data.Store({
+			id:'zcStore',
+			proxy : new Ext.data.HttpProxy({
+				url : __ctxPath + "/project/listZcCredit.do"
+			}),
+			reader : new Ext.data.ArrayReader({},[
+				{name:'zcId'},
+				{name:'zcm'}
+			])
+		});
 				
 		// 初始化搜索条件Panel
 		this.searchPanel = new Ext.FormPanel( {
 			id:'RmBdz_SearchPanel',
-			region : 'north',
-			height : 90,
-			width : '100%',
-//			keys : [{
-//				key : Ext.EventObject.ENTER,
-//				fn : this.search,
-//				scope : this
-//			}, {
-//				key : Ext.EventObject.ESC,
-//				fn : this.reset,
-//				scope : this
-//			}],
-			items : [{
-				border : false,
-				layout : 'column',
-				style : 'padding-left:5px;padding-right:5px;padding-top:5px;',
-				layoutConfig : {
-					align : 'middle',
-					padding : '5px'
-				},
-				defaults : {
-					xtype : 'label'
-				},
-				items : [{
-					columnWidth : .3,
-					xtype : 'container',
-					layout : 'form',
-					items : [{
-						width : '95%',
-						fieldLabel : '项目编号',
-						name : 'Q_modulename_S_LK',
-						xtype : 'textfield',
-						maxLength : 125
-					}, {
-						width : '95%',
-						fieldLabel : '项目类别',
-						name : 'Q_modulekey_S_LK',
-						xtype : 'textfield',
-						maxLength : 125
-					},{
-						width : '95%',
-						fieldLabel : '审核状态',
-						name : 'Q_creator_S_LK',
-						xtype : 'textfield',
-						maxLength : 125
-					}]
-				}, {
-					columnWidth : .3,
-					xtype : 'container',
-					layout : 'form',
-					items : [{
-						width : '95%',
-						fieldLabel : '项目名称',
-						name : 'Q_processkey_S_LK',
-						xtype : 'textfield',
-						maxLength : 125
-					}, {
-						xtype : 'container',
-						layout : 'column',
-						border : false,
-						fieldLabel : '举办时间',
-						items : [{
-							columnWidth : .49,
-							name : 'Q_createtime_D_GE',
-							xtype : 'datefield',
-							format : 'Y-m-d'
-						}, {
-							xtype : 'label',
-							text : '至',
-							style : 'padding-top:3px'
-						}, {
-							columnWidth : .49,
-							name : 'Q_createtime_D_LE',
-							xtype : 'datefield',
-							format : 'Y-m-d'
-						}]
-					}]
-				}, {
-					columnWidth : .3,
-					xtype : 'container',
-					layout : 'form',
-					items : [{
-						width : '95%',
-						fieldLabel : '项目类别',
-						name : 'Q_creator_S_LK',
-						xtype : 'textfield',
-						maxLength : 125
-					}, {
-						width : '95%',
-						fieldLabel : '学分类别',
-						name : 'Q_descp_S_LK',
-						xtype : 'textfield',
-						maxLength : 125
-					}]
-				}, {
-					columnWidth : .1,
-					xtype : 'container',
-					layout : 'form',
-					defaults : {
-						xtype : 'button'
-					},
-					items : [{
-						text : '查询',
-						scope : this,
-						iconCls : 'btn-search',
-						handler : this.search
-					}, {
-						style : 'padding-top:3px;',
-						text : '清空',
-						scope : this,
-						iconCls : 'reset',
-						handler : this.reset
-					}]
-				}]
+			region : 'center',
+			layout : 'hbox',
+			layoutConfig : {
+				align : 'left',
+				padding : '5'
+			},
+			defaults : {
+				xtype : 'label',
+				border:false,
+				margins:{top:10, right:4, bottom:2, left:4}
+			},
+			items : [ 
+			{
+				text : '职称'
+			},{
+				name : 'biaozhun.zc',
+				model:'remote',
+				xtype : 'combo',
+				editable : false,
+				valueField:'zcId',
+				displayField:'zcm',
+				emptyText:'请选择',
+				triggerAction :'all',
+				hiddenName:'biaozhun.zc',
+				store : zcStore
+			},{
+				text : '年度'
+			},{
+				xtype : 'combo',
+				editable : false,
+				emptyText:'请选择',
+				triggerAction :'all',
+				hiddenName:'biaozhun.nf',
+				value : '2013',
+				store : [
+					['2013','2013'],
+					['2012','2012'],
+					['2011','2011']
+						]
+			},{
+				iconCls : 'btn-search',
+				text : '单位考核',
+				xtype : 'button',
+				scope : this,
+				handler : this.removeSelRs
+			}]
+		});// end of searchPanel
+		
+		// 初始化搜索条件Panel
+		this.searchPanel2 = new Ext.FormPanel( {
+			id:'RmBdz_SearchPanel2',
+			region : 'center',
+			layout : 'hbox',
+			layoutConfig : {
+				align : 'left',
+				padding : '5'
+			},
+			defaults : {
+				xtype : 'label',
+				border:false,
+				margins:{top:10, right:4, bottom:2, left:4}
+			},
+			items : [ 
+			{
+				text : '人员编号'
+			},{
+				xtype : 'textfield'
+			}, {
+				iconCls : 'btn-search',
+				text : '查询',
+				xtype : 'button',
+				scope : this,
+				handler : this.removeSelRs
+			},{
+				xtype : 'textfield' 
+			},{
+				text : '年度'
+			},{
+				xtype : 'combo',
+				editable : false,
+				emptyText:'请选择',
+				triggerAction :'all',
+				hiddenName:'biaozhun.nf',
+				value : '2013',
+				store : [
+					['2013','2013'],
+					['2012','2012'],
+					['2011','2011']
+						]
+			},{
+				iconCls : 'btn-search',
+				text : '个人考核',
+				xtype : 'button',
+				scope : this,
+				handler : this.removeSelRs
 			}]
 		});// end of searchPanel
 
@@ -350,142 +341,6 @@ CheckView = Ext.extend(Ext.Panel,{
 			]
 		});
 
-		this.gridPanel = new HT.GridPanel( {
-			region : 'center',
-			tbar : this.topbar,
-			//使用RowActions
-			rowActions : true,
-			id : 'EmBdzGrid',
-			url : __ctxPath + "/project/listProject.do",
-			fields : [ 'xmId','xflbid', 'mc', 'xmmc', 'hdfs', 'shfs', 'xmlb', 'zxf', 'zxs', 'jbsj', 'tjsj', 'xflb', 'zbdw', 'zt', 'zbbwid', 'yysh', 'xmbh'],
-			columns : [ {
-				header : '编号',
-				dataIndex : 'xmbh'
-//				hidden : true
-//				sortable: true
-			}, {
-				header : '名称',
-				dataIndex : 'mc',
-				width:180,
-				sortable: true
-			}, {
-				header : '项目专业',
-				dataIndex : 'xmmc',
-				sortable: true
-//				hidden : true
-			}, {
-				header : '活动方式',
-				dataIndex : 'hdfs',
-				sortable: true,
-				hidden : true
-			}, {
-				header : '审核方式',
-				dataIndex : 'shfs',
-				sortable: true
-//				hidden : true
-			}
-			, {
-				header : '项目类别',
-				dataIndex : 'xmlb',
-				sortable: true
-//				hidden : true
-			}
-			, {
-				header : '总学分',
-				dataIndex : 'zxf',
-				sortable: true
-			}, {
-				header : '总学时',
-				dataIndex : 'zxs',
-				sortable: true
-			}, {
-				header : '举办时间',
-				dataIndex : 'jbsj',
-				sortable: true
-			}, {
-				header : '提交时间',
-				dataIndex : 'tjsj',
-				sortable: true
-			}, {
-				header : '学分类别',
-				dataIndex : 'xflb',
-				sortable: true
-			}, {
-				header : '主办单位',
-				dataIndex : 'zbdw',
-				sortable: true
-			}, {
-				header : '状态',
-				dataIndex : 'zt',
-				sortable: true,
-				renderer : function(value, metadata, record, rowIndex,
-							colIndex) {
-						if(value == '2') {
-							return "未审核";
-						} else if(value == "0") {
-							return "不通过"
-						} else if(value == "1") {
-							return "已通过";
-						} else if(value == "3") {
-							return "已上报";
-						}else {
-							return "无状态";
-						}
-					}
-			}, {
-				header : '医院状态',
-				dataIndex : 'yysh',
-				sortable: true,
-				renderer : function(value, metadata, record, rowIndex,
-							colIndex) {
-						if(value == '2') {
-							return "未审核";
-						} else if(value == "0") {
-							return "不通过"
-						} else if(value == "1") {
-							return "已通过";
-						} else if(value == "3") {
-							return "已上报";
-						}else {
-							return "无状态";
-						}
-					}
-			}, new Ext.ux.grid.RowActions( {
-				header : '管理',
-				width : 100,
-				actions : [ {
-					text:'<a href="#">删除</a>',
-					iconCls : 'btn-del',
-					qtip : '删除变电站',
-					style : 'margin:0 3px 0 3px'
-				},{
-					text:'<a href="#">编辑</a>',
-					iconCls : 'btn-edit',
-					qtip : '编辑变电站',
-					style : 'margin:0 3px 0 3px'
-				},{
-					text:'<a href="#">上报</a>',
-					iconCls : 'btn-report',
-					qtip : '上报医院同意',
-					style : 'margin:0 3px 0 3px'
-				},{
-					text:'<a href="#">医院</a>',
-					iconCls : 'btn-checkYy',
-					qtip : '医院审核',
-					style : 'margin:0 3px 0 3px'
-				},{
-					text:'<a href="#">审核</a>',
-					iconCls : 'btn-check',
-					qtip : '报卫生局审核',
-					style : 'margin:0 3px 0 3px'
-				}],
-				listeners : {
-					scope : this,
-					'action' : this.onRowAction
-				}
-			}) ]
-		//end of columns
-		});
 		
 		this.topbar2 = new Ext.Toolbar( {
 			items : [ {
@@ -514,82 +369,32 @@ CheckView = Ext.extend(Ext.Panel,{
 					['2012','2012'],
 					['2011','2011']
 						]
+			},{
+				iconCls : 'btn-search',
+				text : '个人考核',
+				xtype : 'button',
+				scope : this,
+				handler : this.removeSelRs
 			}
 			]
 		});
 		
-		this.personPanel = new HT.GridPanel( {
-			region : 'center',
-			tbar : this.topbar2,
-			//使用RowActions
-			rowActions : true,
-			id : 'personGrid',
-			url : __ctxPath + "/project/listProject.do",
-			fields : [ 'xmId','xflbid', 'mc', 'xmmc', 'hdfs', 'shfs', 'xmlb', 'zxf', 'zxs', 'jbsj', 'tjsj', 'xflb', 'zbdw', 'zt', 'zbbwid', 'yysh', 'xmbh'],
-			columns : [ {
-				header : '编号',
-				dataIndex : 'xmbh'
-//				hidden : true
-//				sortable: true
-			}, {
-				header : '名称',
-				dataIndex : 'mc',
-				width:180,
-				sortable: true
-			}, new Ext.ux.grid.RowActions( {
-				header : '管理',
-				width : 100,
-				actions : [ {
-					text:'<a href="#">删除</a>',
-					iconCls : 'btn-del',
-					qtip : '删除变电站',
-					style : 'margin:0 3px 0 3px'
-				},{
-					text:'<a href="#">编辑</a>',
-					iconCls : 'btn-edit',
-					qtip : '编辑变电站',
-					style : 'margin:0 3px 0 3px'
-				},{
-					text:'<a href="#">上报</a>',
-					iconCls : 'btn-report',
-					qtip : '上报医院同意',
-					style : 'margin:0 3px 0 3px'
-				},{
-					text:'<a href="#">医院</a>',
-					iconCls : 'btn-checkYy',
-					qtip : '医院审核',
-					style : 'margin:0 3px 0 3px'
-				},{
-					text:'<a href="#">审核</a>',
-					iconCls : 'btn-check',
-					qtip : '报卫生局审核',
-					style : 'margin:0 3px 0 3px'
-				}],
-				listeners : {
-					scope : this,
-					'action' : this.onRowAction
-				}
-			}) ]
-		//end of columns
-		});
 
-		this.gridPanel.addListener('rowdblclick', this.rowClick);
-
-		//右边面板
-		this.centerPanel=new Ext.Panel({
-			id:'BdzViewCenterPanel',
-			region:'center',
-			layout : 'border',
-			title:'项目信息',
-			items:[this.searchPanel,this.gridPanel]
-		});
+//		//右边面板
+//		this.centerPanel=new Ext.Panel({
+//			id:'BdzViewCenterPanel',
+//			region:'center',
+//			layout : 'border',
+//			title:'项目信息',
+//			items:[this.searchPanel,this.gridPanel]
+//		});
 		
 		//右边面板
 		this.onePanel=new Ext.Panel({
 			region:'center',
 			layout : 'border',
 			title:'单位考核',
-			items:[this.leftPanel, this.centerPanel]
+			items:[this.leftPanel, this.searchPanel]
 		});
 		
 		//右边面板
@@ -597,7 +402,7 @@ CheckView = Ext.extend(Ext.Panel,{
 			region:'center',
 			layout : 'border',
 			title:'个人考核',
-			items:[this.personPanel]
+			items:[this.searchPanel2]
 		});
 		
 		this.centerTabPanel = new Ext.TabPanel({

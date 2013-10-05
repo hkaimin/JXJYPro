@@ -98,4 +98,18 @@ public class ProjectServiceImpl extends BaseServiceImpl<JxjyXmgl> implements Pro
 		}
 	}
 
+	@Override
+	public void mutilDel(String[] ids) {
+		// TODO Auto-generated method stub
+		for(String id : ids) {
+			this.dao.remove(new Long(id));
+		}
+	}
+
+	@Override
+	public List<JxjyXmgl> search(QueryFilter filter, JxjyXmgl xm) {
+		// TODO Auto-generated method stub
+		return this.dao.search(filter, xm);
+	}
+
 }

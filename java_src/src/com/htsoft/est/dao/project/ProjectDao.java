@@ -16,4 +16,12 @@ public interface ProjectDao extends BaseDao<JxjyXmgl>{
 	 * @return
 	 */
 	public List<JxjyXmgl> getProjectByOrg(Long orgId);
+	
+	/**
+	 * 搜索
+	 * @param filter
+	 * @param xm
+	 * @return
+	 */
+	public List<JxjyXmgl> search(QueryFilter filter, JxjyXmgl xm);
 }

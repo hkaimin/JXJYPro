@@ -17,8 +17,8 @@ ProjectForm = Ext.extend(Ext.Window, {
 			layout : 'fit',
 			items : this.formPanel,
 			modal : true,
-			height : 600,
-			width : 800,
+			height : 400,
+			width : 600,
 			maximizable : true,
 			title : '项目详细信息',
 			buttonAlign : 'center',
@@ -27,11 +27,11 @@ ProjectForm = Ext.extend(Ext.Window, {
 				iconCls : 'btn-save',
 				scope : this,
 				handler : this.save
-			}, {
-				text : '重置',
-				iconCls : 'btn-reset',
-				scope : this,
-				handler : this.reset
+//			}, {
+//				text : '重置',
+//				iconCls : 'btn-reset',
+//				scope : this,
+//				handler : this.reset
 			}, {
 				text : '取消',
 				iconCls : 'btn-cancel',
@@ -55,7 +55,7 @@ ProjectForm = Ext.extend(Ext.Window, {
 			defaultType : 'textfield',
 			items : [ {
 				name : 'project.xmId',
-//				xtype : 'hidden',
+				xtype : 'hidden',
 				value : this.xmId == null ? '' : this.xmId
 			}, 
 			{
@@ -63,52 +63,56 @@ ProjectForm = Ext.extend(Ext.Window, {
 				name : 'project.mc',
 				allowBlank : false,
 				maxLength : 100
-			},{
-				fieldLabel : '项目编号',
-				name : 'project.xmbh',
-				allowBlank : false,
-				maxLength : 100
+//			},{
+//				fieldLabel : '项目编号',
+//				name : 'project.xmbh',
+//				allowBlank : false,
+//				maxLength : 100
 			},{
 				fieldLabel : '项目专业',
 				name : 'project.xmmc'
 			},{
 				fieldLabel : '活动方式',
+				name : 'project.hdfs',
 				xtype : 'combo',
 				editable : false,
 				emptyText:'请选择',
 				triggerAction :'all',
-				hiddenName:'project.hdfs',
+//				hiddenName:'project.hdfs',
 				store : [
-					['2','审批通过'],
-					['4','数据整理未通过']
+					['1','其他活动形式'],
+					['2','自学笔记'],
+					['3','远程教育'],
+					['4','学习班'],
+					['5','研修班'],
+					['6','培训班'],
+					['7','学术讲座']
 						]
 			}, {
 				fieldLabel : '审核方式',
 				xtype : 'combo',
+				name : 'project.shfs',
 				editable : false,
 				emptyText:'请选择',
 				triggerAction :'all',
-				hiddenName:'project.shfs',
+//				hiddenName:'project.shfs',
 				store : [
-					['2','审批通过'],
-					['0','外业采集未审批'],
-					['1','数据整理未审批'],
-					['3','外业采集未通过'],
-					['4','数据整理未通过']
+					['2','考试'],
+					['0','考核'],
+					['4','其他']
 						]
 			}, {
 				fieldLabel : '项目类别',
+				name : 'project.xmlb',
 				xtype : 'combo',
 				editable : false,
 				emptyText:'请选择',
 				triggerAction :'all',
 				hiddenName:'project.xmlb',
 				store : [
-					['2','审批通过'],
-					['0','外业采集未审批'],
-					['1','数据整理未审批'],
-					['3','外业采集未通过'],
-					['4','数据整理未通过']
+					['1','自主项目'],
+					['2','科室项目'],
+					['3','申报导入项目']
 						]
 			},{
 				fieldLabel : '总学分',
@@ -137,12 +141,28 @@ ProjectForm = Ext.extend(Ext.Window, {
 				name : 'project.tjsj',
 				maxLength : 25
 			}
-			, {
-				fieldLabel : '学分类别',
-				name : 'project.xflb',
-				allowBlank : false,
-				xtype:'numberfield',
-				maxLength : 100
+			 , {
+				fieldLabel : '学分类别', 
+				xtype : 'compositefield',
+//				hidden : this.flage2,
+//				hideLabel : this.flage2,
+//				hidden : true,
+//				hideLabel : true,
+				items : [
+					{	
+						xtype : 'textfield',
+						name : 'project.xflb'
+					},{	
+						xtype : 'textfield',
+						name : 'project.xflbid',
+						hidden : true
+					},{
+						xtype : 'button',
+						iconCls:'menu-flow',
+						text : '选择学分类别',
+						handler : this.selectLb.createCallback(this)
+					}
+				]
 			}
 			, {
 				fieldLabel : '主办单位',
@@ -153,17 +173,19 @@ ProjectForm = Ext.extend(Ext.Window, {
 				fieldLabel : '主办单位id',
 				name : 'project.zbbwid',
 				xtype:'textfield',
+				hidden:true,
+				hideLabel : true,
 				value: this.ssdwId == null ? "" : this.ssdwId
 			}
 			]
 		});
 		
 		//加载表单对应的数据	
-		if (this.bdzId != null && this.bdzId != 'undefined') {
+		if (this.xmId != null && this.xmId != 'undefined') {
 			
 			this.formPanel.loadData( {
-				url : __ctxPath + '/dp/getDpBdz.do?bdzId='
-						+ this.bdzId,
+				url : __ctxPath + '/project/getProject.do?xmId='
+						+ this.xmId,
 				root : 'data',
 				preName : 'project'
 			});
@@ -172,7 +194,18 @@ ProjectForm = Ext.extend(Ext.Window, {
 		}
 
 	},//end of the initcomponents
-
+	//选择学分类别
+	selectLb : function(fPanel){
+		var params = [];
+		params.tjlb = "2";
+//		alert(params.tjlb);
+		CreditSelector.getView(
+			function(lbId, lbName) {
+				fPanel.getCmpByName('project.xflbid').setValue(lbId);
+				fPanel.getCmpByName('project.xflb').setValue(lbName);
+			}
+		, true, params).show();//end of selector
+	},
 	/**
 	 * 重置
 	 * @param {} formPanel

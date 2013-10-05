@@ -433,7 +433,8 @@ UserFormPanel:[
 ]
 ,ProjectView : [
     	__ctxPath+'/js/project/ProjectView.js',
-    	__ctxPath+'/js/project/ProjectForm.js'
+    	__ctxPath+'/js/project/ProjectForm.js',
+    	__ctxPath+'/js/project/CreditSelector.js'
 ]
 ,CourseView : [
     	__ctxPath+'/js/project/CourseView.js',

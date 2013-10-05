@@ -26,6 +26,11 @@ public class JxjyXmgl implements java.io.Serializable {
 	private Long yysh;
 	private String xmbh;
 	
+	//vo
+	private String xflbName;
+	private String jbsj_start;
+	private String jbsj_end;
+	
 	//--vo
 	private Long ktidVo;
 	private String ktmcVo;
@@ -264,6 +269,30 @@ public class JxjyXmgl implements java.io.Serializable {
 
 	public void setBmqkVo(String bmqkVo) {
 		this.bmqkVo = bmqkVo;
+	}
+
+	public String getXflbName() {
+		return xflbName;
+	}
+
+	public void setXflbName(String xflbName) {
+		this.xflbName = xflbName;
+	}
+
+	public String getJbsj_start() {
+		return jbsj_start;
+	}
+
+	public void setJbsj_start(String jbsjStart) {
+		jbsj_start = jbsjStart;
+	}
+
+	public String getJbsj_end() {
+		return jbsj_end;
+	}
+
+	public void setJbsj_end(String jbsjEnd) {
+		jbsj_end = jbsjEnd;
 	}
 	
 
