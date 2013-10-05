@@ -9,6 +9,7 @@ public class JxjySfbzmx implements java.io.Serializable {
 	// Fields  
 
 	private Long id;
+	private Long sfbzszid;
 	private Long xmId;
 	private String xmmc;
 	private Long sz;
@@ -95,6 +96,14 @@ public class JxjySfbzmx implements java.io.Serializable {
 
 	public void setZgz(Long zgz) {
 		this.zgz = zgz;
+	}
+
+	public Long getSfbzszid() {
+		return sfbzszid;
+	}
+
+	public void setSfbzszid(Long sfbzszid) {
+		this.sfbzszid = sfbzszid;
 	}
 
 }

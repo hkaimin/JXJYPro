@@ -7,10 +7,7 @@
 		<Item id="StandardSettingView" iconCls="menu-appuser" text="达标标准设置"> 
 
 		</Item>  
-		<Item id="AppUserView3" iconCls="menu-appuser" text="授分标准设置"> 
-			<Function id="_AppUserQuery" text="查看账号" iconCls="menu-list"> 
-				<url>/system/listAppUser.do</url> 
-			</Function>  
+		<Item id="JxjySfbzszView" iconCls="menu-appuser" text="授分标准设置"> 
 
 		</Item>  
 	</Items>

@@ -36,6 +36,8 @@ public class JxjyRyxfglAction extends BaseAction{
 	private JxjyRyxfgl jxjyRyxfgl; 
 	
 	private Long id;
+	private String ids;
+	private String shzt;
 
 	public Long getId() {
 		return id;
@@ -45,12 +47,28 @@ public class JxjyRyxfglAction extends BaseAction{
 		this.id = id;
 	}
 
+	public String getIds() {
+		return ids;
+	}
+
+	public void setIds(String ids) {
+		this.ids = ids;
+	}
+
 	public JxjyRyxfgl getJxjyRyxfgl() {
 		return jxjyRyxfgl;
 	}
 
 	public void setJxjyRyxfgl(JxjyRyxfgl jxjyRyxfgl) {
 		this.jxjyRyxfgl = jxjyRyxfgl;
+	}
+
+	public String getShzt() {
+		return shzt;
+	}
+
+	public void setShzt(String shzt) {
+		this.shzt = shzt;
 	}
 
 	/**
@@ -98,6 +116,34 @@ public class JxjyRyxfglAction extends BaseAction{
 		jxjyRyxfglService.save(jxjyRyxfgl);
 		jsonString="{success:true}";
 		
+		return SUCCESS;
+	}
+	
+	public String wstSHXF(){
+		
+		String[] ryxfIdvo = ids.split(",");
+		
+		for(String s:ryxfIdvo){
+			JxjyRyxfgl jxjyRyxfgl=jxjyRyxfglService.get(new Long(s));
+			jxjyRyxfgl.setShzt(shzt);
+			jxjyRyxfglService.save(jxjyRyxfgl);
+		}
+		
+		jsonString="{success:true}";
+		return SUCCESS;
+	}
+	
+	public String rsjSHXF(){
+		
+		String[] ryxfIdvo = ids.split(",");
+		
+		for(String s:ryxfIdvo){
+			JxjyRyxfgl jxjyRyxfgl=jxjyRyxfglService.get(new Long(s));
+			jxjyRyxfgl.setRsjsh(shzt);
+			jxjyRyxfglService.save(jxjyRyxfgl);
+		}
+		
+		jsonString="{success:true}";
 		return SUCCESS;
 	}
 	

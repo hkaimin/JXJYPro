@@ -227,4 +227,10 @@
 <!-- start:  Generated for JxjyXmgl From Template: app-action.xml.beansvm  -->
  <bean id="JxjyXmglAction" class="com.htsoft.est.action.ryxf.JxjyXmglAction" scope="prototype"/>
 <!-- end:  Generated for JxjyXmgl From Template: app-action.xml.beansvm  -->
+<!-- start:  Generated for JxjySfbzsz From Template: app-action.xml.beansvm  -->
+ <bean id="JxjySfbzszAction" class="com.htsoft.est.action.ryxf.JxjySfbzszAction" scope="prototype"/>
+<!-- end:  Generated for JxjySfbzsz From Template: app-action.xml.beansvm  -->
+<!-- start:  Generated for JxjySfbzmx From Template: app-action.xml.beansvm  -->
+ <bean id="JxjySfbzmxAction" class="com.htsoft.est.action.ryxf.JxjySfbzmxAction" scope="prototype"/>
+<!-- end:  Generated for JxjySfbzmx From Template: app-action.xml.beansvm  -->
 </beans>

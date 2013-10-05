@@ -13,6 +13,8 @@ import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 
 import com.htsoft.core.service.impl.CommonServiceImpl;
 import com.htsoft.core.util.ContextUtil;
+import com.htsoft.est.model.jxjy.JxjySfbzmx;
+import com.htsoft.est.model.jxjy.JxjySfbzsz;
 import com.htsoft.est.model.jxjy.JxjyXmgl;
 import com.htsoft.est.model.system.AppUser;
 import com.htsoft.est.service.ryxf.MyJdbcService;
@@ -83,6 +85,39 @@ public class MyJdbcServiceImpl extends CommonServiceImpl implements MyJdbcServic
 	public List<Map<String, Object>> getRyxfByKtid(Long userid, Long ktid) {
 		String sql = " select t.id from jxjy_ryxfgl t where t.rybh="+userid+" and t.kt_id="+ktid;
 		return this.getBasicDao().loadByForTransfReturnListMap(sql);
+	}
+	@Override
+	public List<JxjySfbzsz> getSfbz() {
+		String sql = " select t.id,t.xflbid,t.mx,t.xmmc,l.mc from jxjy_sfbzsz t join jxjy_xflb l on t.xflbid=l.xflbid ";
+		List<Map<String,Object>> list = this.getBasicDao().loadByForTransfReturnListMap(sql);
+		List<JxjySfbzsz> listSfbz = new ArrayList<JxjySfbzsz>();
+		for(Map map : list){
+			JxjySfbzsz jxjySfbzsz = new JxjySfbzsz();
+			jxjySfbzsz.setId(new Long((BigDecimal)map.get("ID")+""));
+			jxjySfbzsz.setMx((String)map.get("MX"));
+			jxjySfbzsz.setXmmc((String)map.get("XMMC"));
+			jxjySfbzsz.setLbmcVo((String)map.get("MC"));
+			listSfbz.add(jxjySfbzsz);
+		}
+		return listSfbz;
+	}
+	@Override
+	public List<JxjySfbzmx> getSfbzmx(Long sfbzszid) {
+		
+		String sql = " select t.*,z.mx,z.xmmc from jxjy_sfbzmx t join jxjy_sfbzsz z on t.sfbzszid=z.id and z.id="+sfbzszid ;
+		List<Map<String,Object>> list = this.getBasicDao().loadByForTransfReturnListMap(sql);
+		List<JxjySfbzmx> listSfbzmx =new ArrayList<JxjySfbzmx>();
+		for(Map map : list){
+			JxjySfbzmx jxjySfbzmx = new JxjySfbzmx();
+			jxjySfbzmx.setId(new Long((BigDecimal)map.get("ID")+""));
+			jxjySfbzmx.setXmmc((String)map.get("XMMC"));
+			jxjySfbzmx.setSz(new Long((BigDecimal)map.get("SZ")+""));
+			jxjySfbzmx.setDw((String)map.get("DW"));
+			jxjySfbzmx.setXf(new Long((BigDecimal)map.get("XF")+""));
+			jxjySfbzmx.setZgz(new Long((BigDecimal)map.get("ZGZ")+""));
+			listSfbzmx.add(jxjySfbzmx);
+		}
+		return listSfbzmx;
 	}
 	
 }

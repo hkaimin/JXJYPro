@@ -471,7 +471,7 @@ UserFormPanel:[
     	__ctxPath+'/js/ryxf/JxjySfbzszView.js',
     	__ctxPath+'/js/ryxf/SFMXForm.js',
     	__ctxPath+'/js/ryxf/SFMXSAVEForm.js',
-    	__ctxPath+'/js/ryxf/JxjySfbzszForm.js'
+    	__ctxPath+'/js/ryxf/JxjySfbzszForm.js' 
 ]
 
 //  end:  Generated for JxjySfbzsz From Template: App.import.js.vm

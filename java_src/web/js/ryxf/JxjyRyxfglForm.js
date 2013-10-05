@@ -20,7 +20,7 @@ JxjyRyxfglForm = Ext.extend(Ext.Window, {
 			height : 400,
 			width : 500,
 			maximizable : true,
-			title : '[JxjyRyxfgl]详细信息',
+			title : '录入非项目学分',
 			buttonAlign : 'center',
 			buttons : [ {
 				text : '保存',

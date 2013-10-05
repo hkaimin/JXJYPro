@@ -18,5 +18,11 @@
         <property name="mx" type="java.lang.String">
             <column name="MX" length="100" />
         </property>
+                <property name="xflbid" type="java.lang.Long">
+            <column name="XFLBID" precision="18" scale="0" />
+        </property>
+                <property name="xmmc" type="java.lang.String">
+            <column name="XMMC" length="100" />
+        </property>
     </class>
 </hibernate-mapping>

@@ -249,4 +249,10 @@
 <!-- start:  Generated for JxjyXmgl From Template: app-dao.xml.beansvm  -->
 	<bean id="jxjyXmglDao" class="com.htsoft.est.dao.ryxf.impl.JxjyXmglDaoImpl" parent="baseDao"/>
 <!-- end:  Generated for JxjyXmgl From Template: app-dao.xml.beansvm  -->
+<!-- start:  Generated for JxjySfbzsz From Template: app-dao.xml.beansvm  -->
+	<bean id="jxjySfbzszDao" class="com.htsoft.est.dao.ryxf.impl.JxjySfbzszDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for JxjySfbzsz From Template: app-dao.xml.beansvm  -->
+<!-- start:  Generated for JxjySfbzmx From Template: app-dao.xml.beansvm  -->
+	<bean id="jxjySfbzmxDao" class="com.htsoft.est.dao.ryxf.impl.JxjySfbzmxDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for JxjySfbzmx From Template: app-dao.xml.beansvm  -->
 </beans>

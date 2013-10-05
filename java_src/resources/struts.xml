@@ -23,6 +23,14 @@
 	    <action name="*JxjyXmgl" class="JxjyXmglAction" method="{1}">
 			<result>${successResultValue}</result>
 		</action>
+		
+			<action name="*JxjySfbzsz" class="JxjySfbzszAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+	
+		<action name="*JxjySfbzmx" class="JxjySfbzmxAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
 	 </package>
 
 	<package name="system" extends="struts-default" namespace="/system">

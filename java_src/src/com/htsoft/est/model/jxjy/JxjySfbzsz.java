@@ -9,9 +9,13 @@ public class JxjySfbzsz implements java.io.Serializable {
 	// Fields  
 
 	private Long id;
+	private Long xflbid;
 	private Long xmId;
 	private String mx;
+	private String xmmc;
 
+	private String lbmcVo;
+	
 	// Constructors
 
 	/** default constructor */
@@ -55,5 +59,34 @@ public class JxjySfbzsz implements java.io.Serializable {
 	public void setMx(String mx) {
 		this.mx = mx;
 	}
+
+
+	public String getLbmcVo() {
+		return lbmcVo;
+	}
+
+	public void setLbmcVo(String lbmcVo) {
+		this.lbmcVo = lbmcVo;
+	}
+
+	public Long getXflbid() {
+		return xflbid;
+	}
+
+	public void setXflbid(Long xflbid) {
+		this.xflbid = xflbid;
+	}
+
+	public String getXmmc() {
+		return xmmc;
+	}
+
+	public void setXmmc(String xmmc) {
+		this.xmmc = xmmc;
+	}
+
+
+	
+	
 
 }

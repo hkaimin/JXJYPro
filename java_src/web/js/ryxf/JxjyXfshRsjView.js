@@ -157,7 +157,7 @@ JxjyXfshRsjView = Ext.extend(Ext.Panel, {
 			tbar : this.topbar,
 			//使用RowActions
 			rowActions : true,
-			id : 'JxjyRyxfglGrid',
+			id : 'JxjyRSJRyxfglGrid',
 			url : __ctxPath + "/ryxf/listJxjyRyxfgl.do",
 			fields : [ {
 				name : 'id',
@@ -318,30 +318,29 @@ JxjyXfshRsjView = Ext.extend(Ext.Panel, {
 	},
 	xfCommit : function() {
 
-		var grid = Ext.getCmp("JxjyRyxfglGrid");
+		var grid = Ext.getCmp("JxjyRSJRyxfglGrid");
 		var selectRecord = grid.getSelectionModel().getSelections();
 		if (selectRecord.length == 0) {
-			Ext.ux.Toast.msg("信息", "请选择要提交的学分记录！");
+			Ext.ux.Toast.msg("信息", "请选择要审核的学分记录！");
 			return;
 		}
-		if (selectRecord.length > 1) {
-			Ext.ux.Toast.msg("信息", "只能选择一条记录！");
-			return;
-		}
-
-		Ext.Ajax.request( {
-			url : __ctxPath + '/ryxf/commitXFJxjyRyxfgl.do',
-							params : {
-			                      id:selectRecord[0].data.id
-							},
-			method : 'post',
-			success : function(response) {
-				Ext.ux.Toast.msg("信息", "成功提交学分审核！");
-                grid.getStore().reload();
-			},
-			failure : function() {
-			}
-		});
+//		if (selectRecord.length > 1) {
+//			Ext.ux.Toast.msg("信息", "只能选择一条记录！");
+//			return;
+//		}
+		
+						var ids="" ;	
+						for (var i = 0; i < selectRecord.length; i++) {
+							
+							if(i==selectRecord.length-1){
+								ids+=selectRecord[i].data.id;
+							}else{
+								ids+=selectRecord[i].data.id+",";
+							}						
+						}
+             new RSJXFSHForm({
+            	 ids:ids
+             }).show();
 		
 
 	},
