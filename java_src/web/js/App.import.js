@@ -9,7 +9,7 @@ App.importJs = {
 	        __ctxPath + '/js/system/MenuFunctionForm.js',
 	        __ctxPath + '/js/system/MenuUrlForm.js',
 	        __ctxPath + '/js/system/IconSelector.js'
-	],
+	], 
 	JxjyRyxfglView : [
     	__ctxPath+'/js/ryxf/JxjyRyxfglView.js',
     	__ctxPath+'/js/ryxf/JxjyRyxfglForm.js'

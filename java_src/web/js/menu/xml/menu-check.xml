@@ -3,5 +3,5 @@
 	<Items id="Check" text="达标审核" iconCls="mod-1" isPublic="false">  
 	    <Item id="CheckView" text="达标计算（已通过学分）" iconCls="menu-flowNew"/>  
 	    <Item id="CourseView" text="达标计算（含待审核学分）" iconCls="menu-flowWait"/>
-  	</Items> 
+  	</Items>  
 </Menus>

@@ -499,7 +499,7 @@ CheckView = Ext.extend(Ext.Panel,{
 				scope : this,
 				handler : this.removeSelRs
 			},{
-				xtype : 'textfield'
+				xtype : 'textfield' 
 			},{
 				text : '年度'
 			},{

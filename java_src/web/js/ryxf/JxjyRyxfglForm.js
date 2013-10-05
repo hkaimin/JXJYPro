@@ -11,7 +11,7 @@ JxjyRyxfglForm = Ext.extend(Ext.Window, {
 	constructor : function(_cfg) {
 		Ext.applyIf(this, _cfg);
 		//必须先初始化组件
-		this.initUIComponents();
+		this.initUIComponents(); 
 		JxjyRyxfglForm.superclass.constructor.call(this, {
 			id : 'JxjyRyxfglFormWin',
 			layout : 'fit',

@@ -4,7 +4,7 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context-2.5.xsd">      
-	<!-- 为缺省的Action处理 -->
+	<!-- 为缺省的Action处理 --> 
 	<bean id="BaseAction" class="com.htsoft.core.web.action.BaseAction"/>
 	<bean id="LoginAction" class="com.htsoft.est.action.system.LoginAction" scope="prototype"/>
 	<bean id="AppUserAction" class="com.htsoft.est.action.system.AppUserAction" scope="prototype"/>

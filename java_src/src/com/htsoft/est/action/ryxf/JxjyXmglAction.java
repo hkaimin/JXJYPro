@@ -39,7 +39,7 @@ public class JxjyXmglAction extends BaseAction{
 	@Resource
 	private JxjyXmglService jxjyXmglService;
 	@Resource
-	private MyJdbcService myJdbcService;
+	private MyJdbcService myJdbcService; 
 	@Resource
 	private JxjyRyxfglService jxjyRyxfglService;
 	@Resource

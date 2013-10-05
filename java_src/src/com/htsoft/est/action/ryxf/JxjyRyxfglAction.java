@@ -33,7 +33,7 @@ public class JxjyRyxfglAction extends BaseAction{
 	private JxjyRyxfglService jxjyRyxfglService;
 	@Resource
 	private MyJdbcService myJdbcService;
-	private JxjyRyxfgl jxjyRyxfgl;
+	private JxjyRyxfgl jxjyRyxfgl; 
 	
 	private Long id;
 

@@ -13,7 +13,7 @@ public interface MyJdbcService extends CommonService{
      */
     public List<Map<String,Object>> getXflb();
     /**
-     * 获取人员信息表-byktid
+     * 获取人员信息表-byktid 
      */
     public List<Map<String,Object>> getRyxfByKtid(Long userid,Long ktid);
 }

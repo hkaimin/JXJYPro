@@ -11,7 +11,7 @@ JxjyXfshRsjView = Ext.extend(Ext.Panel, {
 	constructor : function(_cfg) {
 		Ext.applyIf(this, _cfg);
 		// 初始化组件
-		this.initUIComponents();
+		this.initUIComponents(); 
 		// 调用父类构造
 		JxjyXfshRsjView.superclass.constructor.call(this, {
 			id : 'JxjyXfshRsjView',
