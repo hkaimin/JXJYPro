@@ -17,8 +17,8 @@ StandardForm = Ext.extend(Ext.Window, {
 			layout : 'fit',
 			items : this.formPanel,
 			modal : true,
-			height : 600,
-			width : 800,
+			height : 300,
+			width : 400,
 			maximizable : true,
 			title : '达标标准信息',
 			buttonAlign : 'center',
@@ -42,42 +42,6 @@ StandardForm = Ext.extend(Ext.Window, {
 	},//end of the constructor
 	//初始化组件
 	initUIComponents : function() {
-		
-		this.searchPanel = new HT.SearchPanel( {
-			layout : 'hbox',
-			region : 'north',
-			layoutConfig : {
-				align : 'middle',
-				padding : '5'
-			},
-			defaults : {
-				xtype : 'label',
-				border:false,
-				margins:{top:0, right:4, bottom:2, left:4}
-			},
-			items : [ 
-			 {
-					text : '条件类型：'
-			}, {
-				name : 'dpBdz.sbmc',
-				xtype : 'combo',
-				editable : false,
-				emptyText:'请选择',
-				triggerAction :'all',
-				hiddenName:'project.xmlb',
-				store : [
-					['1','必要条件'],
-					['3','最高分限制']
-						]
-			} ,{
-					name : 'method',
-					value: 'search',
-					xtype : 'hidden'
-			}, {
-					name : 'orgId',
-					xtype : 'hidden'
-			}]
-		});// end of searchPanel
 		
 		var zcStore = new Ext.data.Store({
 			id:'zcStore',
@@ -105,7 +69,11 @@ StandardForm = Ext.extend(Ext.Window, {
 			},
 			defaultType : 'textfield',
 			items : [
-				
+			{
+				name : 'biaozhun.id',
+				xtype : 'hidden',
+				value : this.id == null ? '' : this.id
+			},
 			{
 				name : 'biaozhun.tjlx',
 				fieldLabel : '条件类型',
@@ -232,24 +200,28 @@ StandardForm = Ext.extend(Ext.Window, {
 				maxLength : 100
 			}, {
 				name : 'biaozhun.khnrId',
-				xtype:'numberfield',
+				xtype:'hidden',
 				maxLength : 100
 			}, {
 				name : 'biaozhun.nf',
-				xtype:'numberfield',
+				xtype:'hidden',
 				maxLength : 100,
-				value : this.nf
+				value : this.nf == null ? '' : this.nf
 			}
 			]
 		});
 		
-		this.centerPanel = new Ext.Panel({
-//			region:'center'
-			layout : 'border',
-//			tbar : this.topbar,
-			items:[this.searchPanel, this.formPanel]
-		});
-
+		//加载表单对应的数据	
+		if (this.id != null && this.id != 'undefined') {
+			
+			this.formPanel.loadData( {
+				url : __ctxPath + '/project/getDbbzAction.do?id='
+						+ this.id,
+				root : 'data',
+				preName : 'biaozhun'
+			});
+		}
+		
 		
 	},//end of the initcomponents
 

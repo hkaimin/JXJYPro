@@ -29,6 +29,9 @@ public class DbbzDaoImpl extends BaseDaoImpl<JxjyDbbz> implements DbbzDao{
 	public List<JxjyDbbz> listBz(QueryFilter filter) {
 		// TODO Auto-generated method stub
 		String nf = filter.getRequest().getParameter("nf");
+		if(nf == null ) {
+			nf = "2013";
+		}
 		StringBuffer sql = new StringBuffer("select bz.*, zc.zcm from jxjy_dbbz bz, jxjy_zc zc where bz.zc=zc.zc_id and bz.nf = '" + nf + "'");
 		StringBuffer countSql = new StringBuffer("select count(bz.id) from jxjy_dbbz bz, jxjy_zc zc where bz.zc=zc.zc_id and bz.nf = '" + nf + "'");
 		

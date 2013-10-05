@@ -92,11 +92,11 @@ CreditForm = Ext.extend(Ext.Window, {
 		});
 		
 		//加载表单对应的数据	
-		if (this.bdzId != null && this.bdzId != 'undefined') {
+		if (this.xflbid != null && this.xflbid != 'undefined') {
 			
 			this.formPanel.loadData( {
-				url : __ctxPath + '/dp/getDpBdz.do?bdzId='
-						+ this.bdzId,
+				url : __ctxPath + '/project/getCredit.do?xflbid='
+						+ this.xflbid,
 				root : 'data',
 				preName : 'credit'
 			});

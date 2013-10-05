@@ -41,12 +41,12 @@ StandardSettingView = Ext.extend(Ext.Panel, {
 					text : '年份'
 			}, {
 				id:'biaozhun.nf',
-				name : 'biaozhun.nf',
+				name : 'nf',
 				xtype : 'combo',
 				editable : false,
 				emptyText:'请选择',
 				triggerAction :'all',
-				hiddenName:'biaozhun.nf',
+				hiddenName:'nf',
 				value : '2013',
 				store : [
 					['2013','2013'],
@@ -86,7 +86,7 @@ StandardSettingView = Ext.extend(Ext.Panel, {
 			//使用RowActions
 			rowActions : true,
 			id : 'bzGrid',
-			url : __ctxPath + "/project/listDbbzAction.do?nf=2013",
+			url : __ctxPath + "/project/listDbbzAction.do",
 			fields : [ 'id', 'yylx', 'zc', 'khnr', 'xfz', 'zgf', 'tjms', 'khnrId', 'tjlx', 'nf'],
 			columns : [ {
 				header : '医院类型',
@@ -150,19 +150,9 @@ StandardSettingView = Ext.extend(Ext.Panel, {
 		});
 
 		this.gridPanel.addListener('rowdblclick', this.rowClick);
-		this.gridPanel.getSelectionModel().addListener('beforerowselect', this.gridSelect);
 
 	},// end of the initComponents()
 	
-	//列表选择事件
-	gridSelect : function(model, rowIndex, flage, record) {
-//		alert(Ext.encode(record.data));
-		var xflbid = record.data.xflbid;
-		if(xflbid == null || xflbid == "") {
-			Ext.ux.Toast.msg("提示信息", "具体学分类别不用选择");
-			return false;
-		}
-	},
 	//重置查询表单
 	reset : function() {
 		this.searchPanel.getForm().reset();
@@ -192,7 +182,7 @@ StandardSettingView = Ext.extend(Ext.Panel, {
 	//按ID删除记录
 	removeRs : function(id) {
 		$postDel( {
-			url : __ctxPath + '/ryxf/multiDelJxjyXmgl.do',
+			url : __ctxPath + '/project/multiDelDbbzAction.do',
 			ids : id,
 			grid : this.gridPanel
 		});
@@ -200,15 +190,15 @@ StandardSettingView = Ext.extend(Ext.Panel, {
 	//把选中ID删除
 	removeSelRs : function() {
 		$delGridRs( {
-			url : __ctxPath + '/ryxf/multiDelJxjyXmgl.do',
+			url : __ctxPath + '/project/multiDelDbbzAction.do',
 			grid : this.gridPanel,
-			idName : 'xmId'
+			idName : 'id'
 		});
 	},
 	//编辑Rs
 	editRs : function(record) {
-		new JxjyXmglForm( {
-			xmId : record.data.xmId
+		new StandardForm({
+			id : record.data.id
 		}).show();
 	},
 	//不审核
@@ -262,7 +252,7 @@ StandardSettingView = Ext.extend(Ext.Panel, {
 	onRowAction : function(grid, record, action, row, col) {
 		switch (action) {
 		case 'btn-del':
-			this.removeRs.call(this, record.data.xmId);
+			this.removeRs.call(this, record.data.id);
 			break;
 		case 'btn-edit':
 			this.editRs.call(this, record);
