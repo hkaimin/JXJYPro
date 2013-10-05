@@ -4,12 +4,14 @@
      <module name="credit" file="menu-credit.xml"/>
     <module name="infoset" file="menu-infoset.xml"/>
 	<module name="oa" file="menu-oa.xml"/>
-	<module name="myflow" file="menu-myflow.xml"/>
+	<!--<module name="myflow" file="menu-myflow.xml"/>
 	
+	-->
 	<module name="setting" file="menu-setting.xml"/>
 	<module name="project" file="menu-project.xml"/>
+	<module name="check" file="menu-check.xml"/>
 	<!-- 
-	test
+	test 
 
 	<module name="ent" file="menu-ent.xml"/>
 	-->

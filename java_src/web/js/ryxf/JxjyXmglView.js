@@ -6,16 +6,16 @@
  * @company 广州宏天软件有限公司
  * @createtime:
  */
-CreditSettingView = Ext.extend(Ext.Panel, {
+JxjyXmglView = Ext.extend(Ext.Panel, {
 	// 构造函数
 	constructor : function(_cfg) {
 		Ext.applyIf(this, _cfg);
 		// 初始化组件
-		this.initUIComponents();
+		this.initUIComponents(); 
 		// 调用父类构造
-		CreditSettingView.superclass.constructor.call(this, {
-			id : 'CreditSettingView',
-			title : '[JxjyXmgl]管理',
+		JxjyXmglView.superclass.constructor.call(this, {
+			id : 'JxjyXmglView',
+			title : '课题报名',
 			region : 'center',
 			layout : 'border',
 			items : [ this.searchPanel, this.gridPanel ]
@@ -163,7 +163,7 @@ CreditSettingView = Ext.extend(Ext.Panel, {
 				type : 'int'
 			}, 'xflbid', 'mc', 'xmmc', 'hdfs', 'shfs', 'xmlb', 'zxf', 'zxs',
 					'jbsj', 'tjsj', 'xflb', 'zbdw', 'zt', 'zbbwid', 'yysh',
-					'xmbh' ],
+					'xmbh','ktidVo','ktmcVo','xfVo','xsVo','skddVo','sksjVo','bmqkVo' ],
 			columns : [ {
 				header : '项目id',
 				dataIndex : 'xmId',
@@ -214,7 +214,8 @@ CreditSettingView = Ext.extend(Ext.Panel, {
 				dataIndex : 'zbdw'
 			}, {
 				header : '审核状态',
-				dataIndex : 'zt'
+				dataIndex : 'zt',
+				hidden : true
 			}, {
 				header : '主办单位id',
 				dataIndex : 'zbbwid',
@@ -228,19 +229,39 @@ CreditSettingView = Ext.extend(Ext.Panel, {
 				header : '项目编号',
 				dataIndex : 'xmbh',
 				hidden : true
+			}, {
+				header : '课题名称',
+				dataIndex : 'ktmcVo'
+			},{
+				header : '学分',
+				dataIndex : 'xfVo'
+			},{
+				header : '学时',
+				dataIndex : 'xsVo'
+			},{
+				header : '上课地点',
+				dataIndex : 'skddVo'
+			},{
+				header : '授课时间',
+				dataIndex : 'sksjVo'
+			},{
+				header : '报名情况',
+				dataIndex : 'bmqkVo'
 			},
 			new Ext.ux.grid.RowActions( {
-				header : '管理',
+				header : '-',
 				width : 100,
-				actions : [ {
-					iconCls : 'btn-del',
-					qtip : '取消报名',
-					style : 'margin:0 3px 0 3px'
-				}, {
-					iconCls : 'btn-edit',
-					qtip : '报名',
-					style : 'margin:0 3px 0 3px'
-				} ],
+				actions : [
+//					{
+//					iconCls : 'btn-del',
+//					qtip : '取消报名',
+//					style : 'margin:0 3px 0 3px'
+//				}, {
+//					iconCls : 'btn-edit',
+//					qtip : '报名',
+//					style : 'margin:0 3px 0 3px'
+//				} 
+				],
 				listeners : {
 					scope : this,
 					'action' : this.onRowAction
@@ -273,7 +294,34 @@ CreditSettingView = Ext.extend(Ext.Panel, {
 	},
 	//创建记录
 	createRs : function() {
-		new JxjyXmglForm().show();
+		//new JxjyXmglForm().show();
+		
+				var grid = Ext.getCmp("JxjyXmglGrid");
+		var selectRecord = grid.getSelectionModel().getSelections();
+		if (selectRecord.length == 0) {
+			Ext.ux.Toast.msg("信息", "请选择要报名的课程！");
+			return;
+		}
+		if (selectRecord.length > 1) {
+			Ext.ux.Toast.msg("信息", "只能选择一条记录！");
+			return;
+		}
+
+		Ext.Ajax.request( {
+			url : __ctxPath + '/ryxf/caurseResJxjyXmgl.do',
+							params : {
+			                      ktidVo:selectRecord[0].data.ktidVo,
+			                      xmid:selectRecord[0].data.xmId
+							},
+			method : 'post',
+			success : function(response) {
+				Ext.ux.Toast.msg("信息", "成功报名！");
+                grid.getStore().reload();
+			},
+			failure : function() {
+			}
+		});
+		
 	},
 	//按ID删除记录
 	removeRs : function(id) {
@@ -285,10 +333,35 @@ CreditSettingView = Ext.extend(Ext.Panel, {
 	},
 	//把选中ID删除
 	removeSelRs : function() {
-		$delGridRs( {
-			url : __ctxPath + '/ryxf/multiDelJxjyXmgl.do',
-			grid : this.gridPanel,
-			idName : 'xmId'
+//		$delGridRs( {
+//			url : __ctxPath + '/ryxf/multiDelJxjyXmgl.do',
+//			grid : this.gridPanel,
+//			idName : 'xmId'
+//		});
+		
+		var grid = Ext.getCmp("JxjyXmglGrid");
+		var selectRecord = grid.getSelectionModel().getSelections();
+		if (selectRecord.length == 0) {
+			Ext.ux.Toast.msg("信息", "请选择要取消报名的课程！");
+			return;
+		}
+		if (selectRecord.length > 1) {
+			Ext.ux.Toast.msg("信息", "只能选择一条记录！");
+			return;
+		}
+
+		Ext.Ajax.request( {
+			url : __ctxPath + '/ryxf/caurseDelJxjyXmgl.do',
+							params : {
+			                      ktidVo:selectRecord[0].data.ktidVo			                   
+							},
+			method : 'post',
+			success : function(response) {
+				Ext.ux.Toast.msg("信息", "已取消报名！");
+                grid.getStore().reload();
+			},
+			failure : function() {
+			}
 		});
 	},
 	//编辑Rs

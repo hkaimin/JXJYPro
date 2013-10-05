@@ -9,7 +9,7 @@ App.importJs = {
 	        __ctxPath + '/js/system/MenuFunctionForm.js',
 	        __ctxPath + '/js/system/MenuUrlForm.js',
 	        __ctxPath + '/js/system/IconSelector.js'
-	],
+	], 
 	JxjyRyxfglView : [
     	__ctxPath+'/js/ryxf/JxjyRyxfglView.js',
     	__ctxPath+'/js/ryxf/JxjyRyxfglForm.js'
@@ -447,6 +447,9 @@ UserFormPanel:[
     	__ctxPath+'/js/project/StandardSettingView.js',
     	__ctxPath+'/js/project/StandardForm.js',
     	__ctxPath+'/js/project/CreditSelector.js'
+]
+,CheckView : [
+    	__ctxPath+'/js/project/CheckView.js',
 ]
 //  end:  Generated for PositionSub From Template: App.import.js.vm
 //  start:  Generated for JxjyRyxfgl From Template: App.import.js.vm

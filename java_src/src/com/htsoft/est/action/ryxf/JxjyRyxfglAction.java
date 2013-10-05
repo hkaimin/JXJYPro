@@ -33,7 +33,7 @@ public class JxjyRyxfglAction extends BaseAction{
 	private JxjyRyxfglService jxjyRyxfglService;
 	@Resource
 	private MyJdbcService myJdbcService;
-	private JxjyRyxfgl jxjyRyxfgl;
+	private JxjyRyxfgl jxjyRyxfgl; 
 	
 	private Long id;
 
@@ -86,6 +86,16 @@ public class JxjyRyxfglAction extends BaseAction{
 			}
 		}
 		
+		jsonString="{success:true}";
+		
+		return SUCCESS;
+	}
+	
+	public String commitXF(){
+		
+		JxjyRyxfgl jxjyRyxfgl=jxjyRyxfglService.get(id);
+		jxjyRyxfgl.setIs_commit(1L);
+		jxjyRyxfglService.save(jxjyRyxfgl);
 		jsonString="{success:true}";
 		
 		return SUCCESS;
