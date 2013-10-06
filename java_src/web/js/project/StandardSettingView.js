@@ -134,11 +134,11 @@ StandardSettingView = Ext.extend(Ext.Panel, {
 				width : 100,
 				actions : [ {
 					iconCls : 'btn-del',
-					qtip : '取消报名',
+					qtip : '删除',
 					style : 'margin:0 3px 0 3px'
 				}, {
 					iconCls : 'btn-edit',
-					qtip : '报名',
+					qtip : '编辑',
 					style : 'margin:0 3px 0 3px'
 				} ],
 				listeners : {

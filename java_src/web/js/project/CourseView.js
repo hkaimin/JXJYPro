@@ -402,7 +402,7 @@ CourseView = Ext.extend(Ext.Panel,{
 //				},{
 					text:'<a href="#">编辑</a>',
 					iconCls : 'btn-edit',
-					qtip : '编辑变电站',
+					qtip : '编辑',
 					style : 'margin:0 3px 0 3px'
 				} ],
 				listeners : {

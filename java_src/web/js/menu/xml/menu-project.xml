@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Menus id="Mod_Project" text="项目管理" iconCls="mod-project">
 	<Items id="Project" text="项目管理" iconCls="mod-1" isPublic="false">  
-	    <Item id="ProjectView" text="项目管理" iconCls="menu-flowNew"/>  
+	    <Item id="ProjectView" text="项目管理" iconCls="menu-flowNew">
+	          <Function id="_ProjectEdit" text="编辑" iconCls="menu-list">    
+              </Function> 
+              <Function id="_ProjectSBYY" text="上报医院" iconCls="menu-list">    
+              </Function>
+              <Function id="_ProjectYYSH" text="医院审核" iconCls="menu-list">    
+              </Function> 
+              <Function id="_ProjectWST" text="卫生厅审核" iconCls="menu-list">    
+              </Function> 
+	    </Item>  
 	    <Item id="CourseView" text="课题管理" iconCls="menu-flowWait"/>
   	</Items> 
 </Menus>

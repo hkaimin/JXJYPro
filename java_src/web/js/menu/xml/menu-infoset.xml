@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Menus id="Mod_Infoset" text="信息设置" iconCls="mod-infoset">
 	<Items id="SystemSetting" text="信息设置" iconCls="menu-system" isPublic="false"> 
-		<Item id="CreditSettingView" iconCls="menu-appuser" text="审核学分设置"> 
+		<Item id="CreditSettingView" iconCls="mod-infoset" text="审核学分设置"> 
 
 		</Item>  
-		<Item id="StandardSettingView" iconCls="menu-appuser" text="达标标准设置"> 
+		<Item id="StandardSettingView" iconCls="mod-infoset" text="达标标准设置"> 
 
 		</Item>  
-		<Item id="JxjySfbzszView" iconCls="menu-appuser" text="授分标准设置"> 
+		<Item id="JxjySfbzszView" iconCls="mod-infoset" text="授分标准设置"> 
 
 		</Item>  
 	</Items>

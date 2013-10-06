@@ -888,8 +888,15 @@ li .right {
 .menu-flowNew {
 	background-image: url('../images/menus/flow/flowNew.png') !important;
 }
+.mod-project {
+	background-image: url('../images/menus/flow/flowNew.png') !important;
+}
 
 .menu-flowWait {
+	background-image: url('../images/menus/flow/flowWait.png') !important;
+}
+
+.mod-credit {
 	background-image: url('../images/menus/flow/flowWait.png') !important;
 }
 
@@ -1206,7 +1213,9 @@ li .right {
 .menu-seal{
    background-image: url('../images/menus/document/seal.png') !important;
 }
-
+.mod-check{
+   background-image: url('../images/menus/document/seal.png') !important;
+}
 
 .btn-users001 {
 	background-image: url('../images/btn/users.png') !important;
