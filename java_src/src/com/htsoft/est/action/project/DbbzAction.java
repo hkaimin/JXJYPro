@@ -10,7 +10,9 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.htsoft.core.command.QueryFilter;
 import com.htsoft.core.web.action.BaseAction;
+import com.htsoft.est.dao.project.DbryDao;
 import com.htsoft.est.model.jxjy.JxjyDbbz;
+import com.htsoft.est.model.jxjy.JxjyDbry;
 import com.htsoft.est.model.jxjy.JxjyKtgl;
 import com.htsoft.est.service.project.DbbzService;
 
@@ -18,8 +20,36 @@ public class DbbzAction extends BaseAction{
 
 	@Resource
 	private DbbzService dbbzService;
+	@Resource
+	private DbryDao dbryDao;
 	
 	private JxjyDbbz biaozhun;
+	
+	private JxjyDbry dbry;
+	
+	public String listCheck() {
+		
+		QueryFilter filter = new QueryFilter(getRequest());
+		
+		if(this.dbry == null) {
+			this.dbry = new JxjyDbry();
+		}
+		
+		List<JxjyDbry> list = this.dbryDao.getAllList(filter, this.dbry);
+		Type type = new TypeToken<List<JxjyDbry>>() {
+		}.getType();
+		StringBuffer buff = new StringBuffer(
+				"{success:true,'totalCounts':").append(
+				filter.getPagingBean().getTotalItems()).append(",result:");
+
+		Gson gson = new Gson();
+		buff.append(gson.toJson(list, type));
+		buff.append("}");
+
+		jsonString = buff.toString();
+		
+		return SUCCESS;
+	}
 	
 	public String checkOrg() {
 		String orgId = this.getRequest().getParameter("orgId");
@@ -94,4 +124,12 @@ public class DbbzAction extends BaseAction{
 		this.biaozhun = biaozhun;
 	}
 
+	public JxjyDbry getDbry() {
+		return dbry;
+	}
+
+	public void setDbry(JxjyDbry dbry) {
+		this.dbry = dbry;
+	}
+	
 }

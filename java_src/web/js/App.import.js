@@ -454,6 +454,9 @@ UserFormPanel:[
 ,CheckView : [
     	__ctxPath+'/js/project/CheckView.js',
 ]
+,CheckSearchView : [
+    	__ctxPath+'/js/project/CheckSearchView.js',
+]
 //  end:  Generated for PositionSub From Template: App.import.js.vm
 //  start:  Generated for JxjyRyxfgl From Template: App.import.js.vm
 

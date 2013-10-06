@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Menus id="Mod_Check" text="达标审核" iconCls="mod-check">
-	<Items id="Check" text="达标审核" iconCls="mod-1" isPublic="false">  
+	<Items id="Check" text="达标审核" iconCls="menu-message" isPublic="false">  
 	    <Item id="CheckView" text="达标计算（已通过学分）" iconCls="menu-flowNew"/>  
 	    <Item id="CheckView1" text="达标计算（含待审核学分）" iconCls="menu-flowWait"/>
+  	</Items>  
+	<Items id="CheckSearch" text="达标考核查询" iconCls="menu-info" isPublic="false">  
+	    <Item id="CheckSearchView" text="达标考核查询" iconCls="menu-flowNew"/>  
   	</Items>  
 </Menus>
