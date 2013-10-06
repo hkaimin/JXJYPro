@@ -93,11 +93,11 @@ StandardSettingView = Ext.extend(Ext.Panel, {
 				dataIndex : 'yylx',
 				renderer : function(value, metadata, record, rowIndex,
 							colIndex) {
-						if(value == "1") {
+						if(value == "3") {
 							return "一级及以下医院";
-						} else if(value == "2") {
+						} else if(value == "4") {
 							return "二级医院";
-						} else if(value == "3") {
+						} else if(value == "5") {
 							return "三级医院";
 						} else {
 							return "类型错误";
