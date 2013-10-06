@@ -128,22 +128,23 @@ StandardForm = Ext.extend(Ext.Window, {
 				triggerAction :'all',
 				hiddenName:'biaozhun.yylx',
 				store : [
-					['1','一级及以下医院'],
-					['2','二级医院'],
-					['3','三级医院']
+					['3','一级及以下医院'],
+					['4','二级医院'],
+					['5','三级医院']
 						]
 			},{
 				fieldLabel : '职称',
 				name : 'biaozhun.zc',
-				model:'remote',
 				xtype : 'combo',
 				editable : false,
-				valueField:'zcId',
-				displayField:'zcm',
 				emptyText:'请选择',
 				triggerAction :'all',
 				hiddenName:'biaozhun.zc',
-				store : zcStore
+//				valueField:'zcId',
+//				displayField:'zcm',
+//				store : zcStore
+//				model:'remote',
+				store : [['0', '初级职称'], ['1', '中级职称'], ['2', '副高级职称'], ['3', '正高级职称']]
 			}
 //			,{
 //				id:'khnr',

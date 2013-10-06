@@ -21,6 +21,21 @@ public class DbbzAction extends BaseAction{
 	
 	private JxjyDbbz biaozhun;
 	
+	public String checkOrg() {
+		String orgId = this.getRequest().getParameter("orgId");
+		String yearNo = this.getRequest().getParameter("yearNo");
+		String zc = this.getRequest().getParameter("zc");
+		this.dbbzService.checkOrg(orgId, zc, yearNo);
+		return SUCCESS;
+	}
+	
+	public String checkPerson() {
+		String userNo = this.getRequest().getParameter("userNo");
+		String yearNo = this.getRequest().getParameter("yearNo");
+		this.dbbzService.checkPerson(userNo, yearNo);
+		return SUCCESS;
+	}
+	
 	public String get(){
 		
 		JxjyDbbz bz = this.dbbzService.get(new Long(this.getRequest().getParameter("id")));

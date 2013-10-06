@@ -46,6 +46,7 @@ import com.htsoft.est.model.system.UserPosition;
 @SuppressWarnings("unchecked")
 public class AppUserDaoImpl extends BaseDaoImpl<AppUser> implements AppUserDao,
 		UserDetailsService {
+	
 
 	public AppUserDaoImpl() {
 		super(AppUser.class);
@@ -590,4 +591,18 @@ public class AppUserDaoImpl extends BaseDaoImpl<AppUser> implements AppUserDao,
 		String hql = "from AppUser au where au.userId in ("+isChargeUser+") and au.delFlag=0";
 		return findByHql(hql);
 	}
+
+	@Override
+	public AppUser getByFx(String fx) {
+		// TODO Auto-generated method stub
+		String hql = "from AppUser au where au.fax=?";
+		Object[] params = {fx};
+		List<AppUser> list = findByHql(hql, params);
+		AppUser user = null;
+		if (list.size() != 0) {
+			user = list.get(0);
+		} 
+		return user;
+	}
+
 }

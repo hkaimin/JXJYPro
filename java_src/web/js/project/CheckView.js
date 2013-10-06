@@ -141,32 +141,11 @@ CheckView = Ext.extend(Ext.Panel,{
 		});
 		
 		this.tree.on("click",function(node){	//树点击事件
-			if(node.leaf){					
-				var CheckView = Ext.getCmp("CheckView");
-				CheckView._param.orgName = node.text;
-				CheckView._param.orgId = node.attributes.resId;
-				CheckView._param.nodePath = node.getPath();
+			var CheckView = Ext.getCmp("CheckView");
+			CheckView._param.orgName = node.text;
+			CheckView._param.orgId = node.attributes.resId;
+			CheckView._param.nodePath = node.getPath();
 				
-				//设置右面板中标题
-				var centerPanel = Ext.getCmp("BdzViewCenterPanel");
-				centerPanel.setTitle(node.text + " - 项目信息");
-				
-				//重新加载列表
-				var grid = Ext.getCmp("EmBdzGrid");
-					if (grid != null) {
-							var store = grid.getStore();
-							var limit = grid.getBottomToolbar().pageSize;
-							store.url = __ctxPath + "/project/listProject.do";
-							store.baseParams = {
-								orgId : node.attributes.resId,
-								method : 'treeClick',
-								limit : limit
-							};
-						store.load();
-				}			
-					
-			}
-			
 		});
 		
 
@@ -204,7 +183,7 @@ CheckView = Ext.extend(Ext.Panel,{
 				
 		// 初始化搜索条件Panel
 		this.searchPanel = new Ext.FormPanel( {
-			id:'RmBdz_SearchPanel',
+			id:'orgSearchPanel',
 			region : 'center',
 			layout : 'hbox',
 			layoutConfig : {
@@ -220,25 +199,27 @@ CheckView = Ext.extend(Ext.Panel,{
 			{
 				text : '职称'
 			},{
+				id : 'biaozhun.zc',
 				name : 'biaozhun.zc',
-				model:'remote',
 				xtype : 'combo',
 				editable : false,
-				valueField:'zcId',
-				displayField:'zcm',
 				emptyText:'请选择',
 				triggerAction :'all',
 				hiddenName:'biaozhun.zc',
-				store : zcStore
+//				valueField:'zcId',
+//				displayField:'zcm',
+//				model:'remote',
+//				store : zcStore
+				store : [['0', '初级职称'], ['1', '中级职称'], ['2', '副高级职称'], ['3', '正高级职称']]
 			},{
 				text : '年度'
 			},{
+				id:'personYear2',
 				xtype : 'combo',
 				editable : false,
 				emptyText:'请选择',
 				triggerAction :'all',
 				hiddenName:'biaozhun.nf',
-				value : '2013',
 				store : [
 					['2013','2013'],
 					['2012','2012'],
@@ -249,13 +230,13 @@ CheckView = Ext.extend(Ext.Panel,{
 				text : '单位考核',
 				xtype : 'button',
 				scope : this,
-				handler : this.removeSelRs
+				handler : this.checkOrg
 			}]
 		});// end of searchPanel
 		
 		// 初始化搜索条件Panel
 		this.searchPanel2 = new Ext.FormPanel( {
-			id:'RmBdz_SearchPanel2',
+			id:'persionPanel',
 			region : 'center',
 			layout : 'hbox',
 			layoutConfig : {
@@ -271,24 +252,27 @@ CheckView = Ext.extend(Ext.Panel,{
 			{
 				text : '人员编号'
 			},{
+				id : 'userNo',
 				xtype : 'textfield'
 			}, {
 				iconCls : 'btn-search',
 				text : '查询',
 				xtype : 'button',
 				scope : this,
-				handler : this.removeSelRs
+				handler : this.searchPerson
 			},{
+				id : 'userName',
+				readOnly : true,
 				xtype : 'textfield' 
 			},{
 				text : '年度'
 			},{
+				id:'personYear',
 				xtype : 'combo',
 				editable : false,
 				emptyText:'请选择',
 				triggerAction :'all',
 				hiddenName:'biaozhun.nf',
-				value : '2013',
 				store : [
 					['2013','2013'],
 					['2012','2012'],
@@ -299,7 +283,7 @@ CheckView = Ext.extend(Ext.Panel,{
 				text : '个人考核',
 				xtype : 'button',
 				scope : this,
-				handler : this.removeSelRs
+				handler : this.personCheck
 			}]
 		});// end of searchPanel
 
@@ -341,54 +325,6 @@ CheckView = Ext.extend(Ext.Panel,{
 			]
 		});
 
-		
-		this.topbar2 = new Ext.Toolbar( {
-			items : [ {
-				text : '人员编号'
-			},{
-				xtype : 'textfield'
-			}, {
-				iconCls : 'btn-search',
-				text : '查询',
-				xtype : 'button',
-				scope : this,
-				handler : this.removeSelRs
-			},{
-				xtype : 'textfield' 
-			},{
-				text : '年度'
-			},{
-				xtype : 'combo',
-				editable : false,
-				emptyText:'请选择',
-				triggerAction :'all',
-				hiddenName:'biaozhun.nf',
-				value : '2013',
-				store : [
-					['2013','2013'],
-					['2012','2012'],
-					['2011','2011']
-						]
-			},{
-				iconCls : 'btn-search',
-				text : '个人考核',
-				xtype : 'button',
-				scope : this,
-				handler : this.removeSelRs
-			}
-			]
-		});
-		
-
-//		//右边面板
-//		this.centerPanel=new Ext.Panel({
-//			id:'BdzViewCenterPanel',
-//			region:'center',
-//			layout : 'border',
-//			title:'项目信息',
-//			items:[this.searchPanel,this.gridPanel]
-//		});
-		
 		//右边面板
 		this.onePanel=new Ext.Panel({
 			region:'center',
@@ -415,6 +351,108 @@ CheckView = Ext.extend(Ext.Panel,{
 	},
 	//end of initUI
 	
+	//个人考核
+	personCheck : function() {
+		var userNo = Ext.getCmp("userNo");
+		var yearNo = Ext.getCmp("personYear");
+		if(userNo.getValue() == "") {
+			Ext.ux.Toast.msg("操作信息","请输入人员内部编号");
+			return;
+		}
+		if(yearNo.getValue() == "") {
+			Ext.ux.Toast.msg("操作信息","请输入考核年份");
+			return;
+		}
+		
+		Ext.Msg.confirm("信息确认", "是否审核此人员？", function(btn){
+            if (btn == "yes") {
+    				Ext.Ajax.request({
+						url : __ctxPath + '/project/checkPersonDbbzAction.do',
+						method : 'POST',
+						params : {
+    						userNo : userNo.getValue(),
+    						yearNo : yearNo.getValue()
+						},
+						success : function(form, action) {
+							
+							var result = Ext.util.JSON.decode(form.responseText);
+							if (result.success == true) {
+								Ext.ux.Toast.msg("操作信息", "审核成功");
+																		
+							} else {
+								
+								Ext.MessageBox.show({
+									title : '操作信息',
+									msg : result.message,
+									buttons : Ext.MessageBox.OK,
+									icon : 'ext-mb-error'
+								});
+							}
+							gridPanel.getStore().reload();
+
+						},
+						failure : function(response, options) {
+							Ext.ux.Toast.msg("温馨提示", "系统错误，请联系管理员！");
+						}
+				   });
+            }
+	 	});	
+	},
+	
+	//单位考核
+	checkOrg : function() {
+		var yearNo = Ext.getCmp("personYear2");
+		var zc = Ext.getCmp("biaozhun.zc");
+		var orgId = this._param.orgId;
+		if(yearNo.getValue() == "") {
+			Ext.ux.Toast.msg("操作信息","请输入考核年份");
+			return;
+		}
+		if(zc.getValue() == "") {
+			Ext.ux.Toast.msg("操作信息","请选择所需要审核的职称");
+			return;
+		}
+		if(orgId == null && orgId == "") {
+			Ext.ux.Toast.msg("操作信息","请选择您所需要审核的单位");
+			return;
+		}
+		
+		Ext.Msg.confirm("信息确认", "是否审核？", function(btn){
+            if (btn == "yes") {
+    				Ext.Ajax.request({
+						url : __ctxPath + '/project/checkOrgDbbzAction.do',
+						method : 'POST',
+						params : {
+    						orgId : orgId,
+    						yearNo : yearNo.getValue(),
+    						zc : zc.getValue()
+						},
+						success : function(form, action) {
+							
+							var result = Ext.util.JSON.decode(form.responseText);
+							if (result.success == true) {
+								Ext.ux.Toast.msg("操作信息", "审核成功");
+																		
+							} else {
+								
+								Ext.MessageBox.show({
+									title : '操作信息',
+									msg : result.message,
+									buttons : Ext.MessageBox.OK,
+									icon : 'ext-mb-error'
+								});
+							}
+							gridPanel.getStore().reload();
+
+						},
+						failure : function(response, options) {
+							Ext.ux.Toast.msg("温馨提示", "系统错误，请联系管理员！");
+						}
+				   });
+            }
+	 	});	
+	},
+	
 	//重置查询表单
 	reset : function() {
 		this.searchPanel.getForm().reset();
@@ -427,7 +465,7 @@ CheckView = Ext.extend(Ext.Panel,{
 		}
 		
 		//修改查询面板中所属单位			
-		var searchPanel = Ext.getCmp("RmBdz_SearchPanel");
+		var searchPanel = Ext.getCmp("orgSearchPanel");
 		searchPanel.form.findField('orgId').setValue(this._param.orgId);
 		$search( {
 			searchPanel : this.searchPanel,
@@ -552,152 +590,41 @@ CheckView = Ext.extend(Ext.Panel,{
 			edit:true
 		}).show();
 	},
-	//上报医院同意
-	reportRs : function(record) {
-		var gridPanel = this.gridPanel;
-		Ext.Msg.confirm("信息确认", "是否上报医院？", function(btn){
-            if (btn == "yes") {
-            	var xmId = 	record.data.xmId;
-				Ext.Ajax.request({
-					url : __ctxPath + '/project/reportToYyProject.do',
-					method : 'POST',
-					params : {
-						xmId : xmId
-					},
-					success : function(form, action) {
-						
-						var result = Ext.util.JSON.decode(form.responseText);
-						if (result.success == true) {
-							Ext.ux.Toast.msg("操作信息", "项目上报医院成功！");
-																	
-						} else {
-							Ext.MessageBox.show({
-								title : '操作信息',
-								msg : result.message,
-								buttons : Ext.MessageBox.OK,
-								icon : 'ext-mb-error'
-							});
-						}
-						gridPanel.getStore().reload();
-					},
-					failure : function(response, options) {
-						Ext.ux.Toast.msg("温馨提示", "系统错误，请联系管理员！");
-					}
-			   });
-            }
-	 	});	
-	},
-	//卫生局审核
-	checkRs : function(record) {
-		var gridPanel = this.gridPanel;
-		Ext.Msg.confirm("信息确认", "此项目是否通过？", function(btn){ 
-			if(btn == "yes") {
-				Ext.MessageBox.prompt('提示信息', '请输入此项目编号。', function(btn, text) {
-		            if (btn == "ok") {
-		            	var xmId = 	record.data.xmId;
-						Ext.Ajax.request({
-							url : __ctxPath + '/project/checkProProject.do',
-							method : 'POST',
-							params : {
-								xmId : xmId,
-								xmbh : text,
-								isCheck : '1'
-							},
-							success : function(form, action) {
-								
-								var result = Ext.util.JSON.decode(form.responseText);
-								if (result.success == true) {
-									Ext.ux.Toast.msg("操作信息", "信息保存成功！");
-																			
-								} else {
-									Ext.MessageBox.show({
-										title : '操作信息',
-										msg : result.message,
-										buttons : Ext.MessageBox.OK,
-										icon : 'ext-mb-error'
-									});
-								}
-								gridPanel.getStore().reload();
-							},
-							failure : function(response, options) {
-								Ext.ux.Toast.msg("温馨提示", "系统错误，请联系管理员！");
-							}
-					   });
-		            }
-	 			});	
-			} else if(btn == "no"){
-				var xmId = 	record.data.xmId;
-				Ext.Ajax.request({
-					url : __ctxPath + '/project/checkProProject.do',
-					method : 'POST',
-					params : {
-						xmId : xmId,
-						isCheck : '0'
-					},
-					success : function(form, action) {
-						
-						var result = Ext.util.JSON.decode(form.responseText);
-						if (result.success == true) {
-							Ext.ux.Toast.msg("操作信息", "信息保存成功！");
-																	
-						} else {
-							Ext.MessageBox.show({
-								title : '操作信息',
-								msg : result.message,
-								buttons : Ext.MessageBox.OK,
-								icon : 'ext-mb-error'
-							});
-						}
-						gridPanel.getStore().reload();
-					},
-					failure : function(response, options) {
-						Ext.ux.Toast.msg("温馨提示", "系统错误，请联系管理员！");
-					}
-			   });
-			}
-		});
-		
-	},
-	//医院审核
-	checkYyRs : function(record) {
-		var gridPanel = this.gridPanel;
-		Ext.Msg.confirm("信息确认", "此项目是否通过？", function(btn){ 
-			var flage = "";
-			if(btn == "yes") {
-				flage = "1";
-			} else if(btn == "no"){
-				flage = "0";
-			}
-			var xmId = 	record.data.xmId;
-			Ext.Ajax.request({
-				url : __ctxPath + '/project/checkProYyProject.do',
-				method : 'POST',
-				params : {
-					xmId : xmId,
-					isCheck : flage
-				},
-				success : function(form, action) {
-					
-					var result = Ext.util.JSON.decode(form.responseText);
-					if (result.success == true) {
-						Ext.ux.Toast.msg("操作信息", "信息保存成功！");
-																
-					} else {
-						Ext.MessageBox.show({
-							title : '操作信息',
-							msg : result.message,
-							buttons : Ext.MessageBox.OK,
-							icon : 'ext-mb-error'
-						});
-					}
-					gridPanel.getStore().reload();
-				},
-				failure : function(response, options) {
-					Ext.ux.Toast.msg("温馨提示", "系统错误，请联系管理员！");
+	//编辑Rs
+	searchPerson : function() {
+		var userNo = Ext.getCmp("userNo");
+		var userName = Ext.getCmp("userName");
+		var value = userNo.getValue();
+		if(value == "") {
+			Ext.ux.Toast.msg("提示信息", "请输入人员编号！");
+			return ;
+		}
+//		alert(userNo.getValue());
+		Ext.Ajax.request({
+			url : __ctxPath + '/project/getUserByNbbhCredit.do',
+			method : 'POST',
+			params : {
+				userNo : value
+			},
+			success : function(form, action) {
+				
+				var result = Ext.util.JSON.decode(form.responseText);
+				if (result.success == true) {
+					userName.setValue(result.userName);										
+				} else {
+					Ext.MessageBox.show({
+						title : '操作信息',
+						msg : '找不到对应编号的人员信息',
+						buttons : Ext.MessageBox.OK,
+						icon : 'ext-mb-error'
+					});
 				}
-		   });
-		});
-		
+				gridPanel.getStore().reload();
+			},
+			failure : function(response, options) {
+				Ext.ux.Toast.msg("温馨提示", "系统错误，请联系管理员！");
+			}
+	   });
 	},
 	
 	//行的Action

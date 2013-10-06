@@ -14,4 +14,5 @@ public interface CreditDao extends BaseDao<JxjyXflb>{
 	 * @return
 	 */
 	public List<JxjyXflb> getLb(Long xfbz);
+	
 }

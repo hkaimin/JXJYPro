@@ -26,6 +26,8 @@ public class JxjyRyxfgl implements java.io.Serializable {
 	private String rsjsh;
 	private String zc;
 	private String xw;
+	
+	private Long xflbid;
 
 	// Constructors
 
@@ -218,4 +220,12 @@ public class JxjyRyxfgl implements java.io.Serializable {
 		is_commit = isCommit;
 	}
 
+	public Long getXflbid() {
+		return xflbid;
+	}
+
+	public void setXflbid(Long xflbid) {
+		this.xflbid = xflbid;
+	}
+	
 }

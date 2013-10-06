@@ -31,6 +31,22 @@ public class StringUtil {
 		}
 		return r;
 	}
+	
+	/**
+	 * 把对象转换成Short，失败返回0
+	 * 
+	 * @param o
+	 *            对象
+	 * @return int
+	 */
+	public static Short o2st(Object o) {
+		Short r = 0;
+		try {
+			r = Short.parseShort(o2s(o));
+		} catch (Throwable e) {
+		}
+		return r;
+	}
 
 	/**
 	 * 把对象转换成long，失败返回0

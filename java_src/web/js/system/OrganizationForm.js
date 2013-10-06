@@ -99,7 +99,7 @@ OrganizationForm = Ext.extend(Ext.Window, {
 										fieldLabel : '类型',
 										hiddenName : 'organization.orgType',
 										xtype : 'combo'
-										,store :[['0','集团'],['1','公司'],['2','部门'],['3','其他组织']]
+										,store :[['1','厅级'],['3','一级及以下医院'],['4','二级医院'],['2','科室'],['5','三级']]
 									  }, {
 											xtype : 'compositefield',
 											fieldLabel : '主要负责人',
@@ -139,11 +139,14 @@ OrganizationForm = Ext.extend(Ext.Window, {
 								preName : 'organization'
 							});
 				}
-				if(this.orgType==0||this.orgType==1){
-					this.formPanel.getCmpByName('organization.orgType').store = [['1','公司'],['2','部门'],['3','其他组织']];
+				if(this.orgType==0){
+					this.formPanel.getCmpByName('organization.orgType').store = [['1','厅级']];
 				}
-				if(this.orgType==2){
-					this.formPanel.getCmpByName('organization.orgType').store = [['2','部门'],['3','其他组织']];
+				if(this.orgType==1){
+					this.formPanel.getCmpByName('organization.orgType').store = [['3','一级及以下医院'],['4','二级医院'],['5','三级']];
+				}
+				if(this.orgType==3 || this.orgType==4 || this.orgType==5){
+					this.formPanel.getCmpByName('organization.orgType').store = [['2','科室']];
 				}
 
 			},//end of the initcomponents

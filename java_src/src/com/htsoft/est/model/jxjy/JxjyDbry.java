@@ -12,6 +12,8 @@ public class JxjyDbry implements java.io.Serializable {
 	private String xm;
 	private String db;
 	private String nf;
+	
+	private Long dbId;
 
 	// Constructors
 
@@ -66,4 +68,12 @@ public class JxjyDbry implements java.io.Serializable {
 		this.nf = nf;
 	}
 
+	public Long getDbId() {
+		return dbId;
+	}
+
+	public void setDbId(Long dbId) {
+		this.dbId = dbId;
+	}
+	
 }

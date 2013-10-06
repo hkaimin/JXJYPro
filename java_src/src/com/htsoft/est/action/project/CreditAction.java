@@ -11,6 +11,7 @@ import com.google.gson.reflect.TypeToken;
 import com.htsoft.core.command.QueryFilter;
 import com.htsoft.core.util.ContextUtil;
 import com.htsoft.core.web.action.BaseAction;
+import com.htsoft.est.dao.system.AppUserDao;
 import com.htsoft.est.model.jxjy.JxjyDbbz;
 import com.htsoft.est.model.jxjy.JxjyKtgl;
 import com.htsoft.est.model.jxjy.JxjyXflb;
@@ -43,9 +44,26 @@ public class CreditAction extends BaseAction {
 	private ZcService zcService;
 	@Resource
 	private DbbzService dbbzService;
+	@Resource
+	private AppUserDao appUserDao;
 	
 	private JxjyXflb credit;
 	private JxjyDbbz biaozhun;
+	
+	public String getUserByNbbh() {
+		String userNo = this.getRequest().getParameter("userNo");
+		AppUser user = this.appUserDao.getByFx(userNo);
+		StringBuffer sb = new StringBuffer();
+		if(user != null) {
+			sb.append("{success:true,userName:'" + user.getFullname() + "',userId:'" + user.getUserId() + "'");
+			sb.append("}");
+		} else {
+			sb.append("{success:false");
+			sb.append("}");
+		}
+		setJsonString(sb.toString());
+		return SUCCESS;
+	}
 	
 	public String multiDel() {
 		String[] ids = this.getRequest().getParameterValues("ids");
@@ -142,18 +160,18 @@ public class CreditAction extends BaseAction {
 			List<JxjyXflb> list = new ArrayList();
 			
 			JxjyXflb oneLb = new JxjyXflb();
-			oneLb.setXflbid(1l);
+			oneLb.setXflbid(0l);
 			oneLb.setMc("I类学分");
 			list.add(oneLb);
 			
 			JxjyXflb twoLb = new JxjyXflb();
-			twoLb.setXflbid(2l);
+			twoLb.setXflbid(1l);
 			twoLb.setMc("II类学分");
 			list.add(twoLb);
 			
 			
 			JxjyXflb otherLb = new JxjyXflb();
-			otherLb.setXflbid(0l);
+			otherLb.setXflbid(2l);
 			otherLb.setMc("其他学分");
 			list.add(otherLb);
 			

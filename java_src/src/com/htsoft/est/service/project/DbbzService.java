@@ -23,5 +23,19 @@ public interface DbbzService extends BaseService<JxjyDbbz>{
 	public List<JxjyDbbz> list(QueryFilter filter);
 	
 	public void multiDel(String[] ids);
+	
+	/**
+	 * 个人审核
+	 * @param userNO
+	 * @param yearNo
+	 */
+	public void checkPerson(String userNO, String yearNo);
+	
+	/**
+	 * 单位审核
+	 * @param orgId
+	 * @param yearNo
+	 */
+	public void checkOrg(String orgId, String zc, String yearNo);
 
 }

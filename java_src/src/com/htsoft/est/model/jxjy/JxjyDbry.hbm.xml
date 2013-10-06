@@ -6,11 +6,11 @@
 -->
 <hibernate-mapping> 
     <class name="com.htsoft.est.model.jxjy.JxjyDbry" table="JXJY_DBRY" >
-        <id name="rybh" type="java.lang.Long">
-            <column name="RYBH" precision="18" scale="0" />
-                 <generator class="sequence">
-        <param name="sequence">S_JXJY</param>
-      </generator> 
+        <id name="dbId" type="java.lang.Long">
+            <column name="DB_ID" precision="18" scale="0" />
+            <generator class="sequence">
+        		<param name="sequence">S_JXJY</param>
+      		</generator> 
         </id>
         <property name="xm" type="java.lang.String">
             <column name="XM" length="10" />
@@ -20,6 +20,9 @@
         </property>
         <property name="nf" type="java.lang.String">
             <column name="NF" length="20" />
+        </property>
+        <property name="rybh" type="java.lang.Long">
+            <column name="RYBH" precision="18" scale="0" />
         </property>
     </class>
 </hibernate-mapping>

@@ -547,26 +547,27 @@ OrgSettingView=Ext.extend(Ext.Panel,{
 						iconCls:'btn-add',
 						scope:this,
 						handler:this.addCompany.createDelegate(this,[orgId,orgName])
-					},
-					'-',
-					{
-						text:'添加部门',
-						iconCls:'btn-add',
-						scope:this,
-						handler:this.addDepartment.createDelegate(this,[orgId,orgName])
 					}
+//					,
+//					'-',
+//					{
+//						text:'添加部门',
+//						iconCls:'btn-add',
+//						scope:this,
+//						handler:this.addDepartment.createDelegate(this,[orgId,orgName])
+//					}
 			]);
 	
 		}else if(orgType==1 || orgType==2){//公司或部门下才允许添加部门
-			orgPanel.getTopToolbar().add([
-					'-',
-					{
-						text:'添加部门',
-						iconCls:'btn-add',
-						scope:this,
-						handler:this.addDepartment.createDelegate(this,[orgId,orgName])
-					}
-			]);
+//			orgPanel.getTopToolbar().add([
+//					'-',
+//					{
+//						text:'添加部门',
+//						iconCls:'btn-add',
+//						scope:this,
+//						handler:this.addDepartment.createDelegate(this,[orgId,orgName])
+//					}
+//			]);
 		}
 		
 		

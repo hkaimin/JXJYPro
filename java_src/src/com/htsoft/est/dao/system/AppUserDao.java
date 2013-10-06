@@ -113,4 +113,12 @@ public interface AppUserDao extends BaseDao<AppUser> {
 	 * @return
 	 */
 	public List<AppUser> getChargeOrgUsers(Set userOrgs);
+	
+	/**
+	 * 获取人员，根据内部编号，内部编号为fx
+	 * @param fx
+	 * @return
+	 */
+	public AppUser getByFx(String fx);
+	
 }
