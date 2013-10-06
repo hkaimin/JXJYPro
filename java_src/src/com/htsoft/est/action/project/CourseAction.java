@@ -211,9 +211,9 @@ public class CourseAction extends BaseAction {
 					Organization orgParent = organizationService.get(org
 							.getOrgSupId());
 					Organization orgX = orgParent;
-					if (org.getOrgType().equals(Organization.ORG_TYPE_COMPANY)) {
+//					if (org.getOrgType().equals(Organization.ORG_TYPE_COMPANY)) {
 						orgX = org;
-					}
+//					}
 					StringBuffer strbuff = new StringBuffer();
 					strbuff.append("{");
 					strbuff.append("resId:'").append(orgX.getOrgId()).append(
@@ -225,9 +225,9 @@ public class CourseAction extends BaseAction {
 					strbuff.append("orgType:'").append(orgX.getOrgType()).append("',");
 					
 					strbuff.append("treeNodeType:'org'");
-					if (orgX.getDepth() == 2l) {
-						strbuff.append(",leaf:true");
-					} else {
+//					if (orgX.getDepth() == 2l) {
+//						strbuff.append(",leaf:true");
+//					} else {
 						List<Organization> list = organizationService
 								.getCompanyByParent(orgX.getOrgId(),
 										null);
@@ -235,7 +235,7 @@ public class CourseAction extends BaseAction {
 							strbuff.append(",");
 							strbuff.append("leaf:true");
 						}
-					}
+//					}
 					strbuff.append("}");
 
 					strReturn = recursiveOrganizationTree_parent(orgX, strbuff
@@ -288,14 +288,14 @@ public class CourseAction extends BaseAction {
 			
 			// strbuff.append("expanded:true,");
 			strbuff.append("treeNodeType:'org'");
-			if(orgParent.getDepth() == 2l) {
-				strbuff.append(",leaf:true");
-			} else {
+//			if(orgParent.getDepth() == 2l) {
+//				strbuff.append(",leaf:true");
+//			} else {
 				if (strChild != null && !strChild.equals("")) {
 					strbuff.append(",");
 					strbuff.append("children:[").append(strChild).append("]");
 				}
-			}
+//			}
 			strbuff.append("}");
 
 			return recursiveOrganizationTree_parent(orgParent, strbuff
