@@ -6,7 +6,7 @@ App.LoginWin = function(_isCodeEnabled,_isDyPwdEnabled) {
 		id : 'LoginFormPanel',
 		bodyStyle : 'padding-top:6px',
 		defaultType : 'textfield',
-		columnWidth : .75,
+		columnWidth : .75, 
 		labelAlign : 'right',
 		labelWidth : 55,
 		labelPad : 0,
@@ -130,8 +130,8 @@ App.LoginWin = function(_isCodeEnabled,_isDyPwdEnabled) {
 				closable : false,
 				resizable : false,
 				buttonAlign : 'center',
-				height : 350,//275
-				width : 800,//460
+				height : 275,
+				width : 460,
 				layout : {
 					type : 'vbox',
 					align : 'stretch'

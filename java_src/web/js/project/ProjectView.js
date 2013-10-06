@@ -23,6 +23,24 @@ ProjectView = Ext.extend(Ext.Panel,{
 	},
 	//初始化UI
 	initUI:function(){
+		
+		var edit ='';
+		var sbyy = '';
+		var yysh = '';
+		var wstsh = '';
+		if (isGranted('_ProjectEdit')) {
+			edit = '编辑';
+		}
+		if (isGranted('_ProjectSBYY')) {
+			sbyy = '上报';
+		}
+		if (isGranted('_ProjectYYSH')) {
+			yysh = '医院';
+		}
+		if (isGranted('_ProjectWST')) {
+			wstsh = '审核';
+		}
+		
 		//属性
 		this._param = new Object(
 			{
@@ -491,23 +509,23 @@ ProjectView = Ext.extend(Ext.Panel,{
 //					style : 'margin:0 3px 0 3px'
 //				},
 				{
-					text:'<a href="#">编辑</a>',
-					iconCls : 'btn-edit',
-					qtip : '编辑变电站',
+					text:'<a href="#">'+edit+'</a>',
+					iconCls : 'btn-editt',
+					qtip : '编辑',
 					style : 'margin:0 3px 0 3px'
 				},
 				{
-					text:'<a href="#">上报</a>',
+					text:'<a href="#">'+sbyy+'</a>',
 					iconCls : 'btn-report',
 					qtip : '上报医院同意',
 					style : 'margin:0 3px 0 3px'
 				},{
-					text:'<a href="#">医院</a>',
+					text:'<a href="#">'+yysh+'</a>',
 					iconCls : 'btn-checkYy',
 					qtip : '医院审核',
 					style : 'margin:0 3px 0 3px'
 				},{
-					text:'<a href="#">审核</a>',
+					text:'<a href="#">'+wstsh+'</a>',
 					iconCls : 'btn-check',
 					qtip : '报卫生局审核',
 					style : 'margin:0 3px 0 3px'
@@ -825,7 +843,7 @@ ProjectView = Ext.extend(Ext.Panel,{
 		case 'btn-del':
 			this.removeRs.call(this, record.data.bdzId);
 			break;
-		case 'btn-edit':
+		case 'btn-editt':
 			this.editRs.call(this, record);
 			break;
 		case 'btn-report':
