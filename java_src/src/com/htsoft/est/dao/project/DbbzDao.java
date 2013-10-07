@@ -30,7 +30,7 @@ public interface DbbzDao extends BaseDao<JxjyDbbz>{
 	 * @param xflbId
 	 * @return
 	 */
-	public Long getXfByLb(Long xflbId, Long userId);
+	public Long getXfByLb(Long xflbId, Long userId, String nf);
 	
 	/**
 	 * 根据单位和职称加载人员

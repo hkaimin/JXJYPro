@@ -112,10 +112,13 @@ public class DbbzDaoImpl extends BaseDaoImpl<JxjyDbbz> implements DbbzDao{
 	}
 
 	@Override
-	public Long getXfByLb(Long xflbId, Long userId) {
+	public Long getXfByLb(Long xflbId, Long userId, String nf) {
 		// TODO Auto-generated method stub
 		
-		StringBuffer sql = new StringBuffer("select sum(xf.xf) sum from jxjy_xflb lb, jxjy_xmgl xm, jxjy_ktgl kt, jxjy_ryxfgl xf where lb.xflbid=xm.xflbid and xm.xm_id=kt.xm_id and kt.kt_id=xf.kt_id and xf.rybh=" + userId + " and xm.xflbid=" + xflbId);
+		String startTime = nf + "-01-01";
+		String endTime = nf + "-12-30";
+		
+		StringBuffer sql = new StringBuffer("select sum(xf.xf) sum from jxjy_xflb lb, jxjy_xmgl xm, jxjy_ktgl kt, jxjy_ryxfgl xf where lb.xflbid=xm.xflbid and xm.xm_id=kt.xm_id and kt.kt_id=xf.kt_id and xm.jbsj >= '" + startTime + "' and xm.jbsj <= '" + endTime + "' and xf.rybh=" + userId + " and xm.xflbid=" + xflbId);
 		
 		logger.debug("sql:" + sql);
 		

@@ -92,7 +92,7 @@ public class DbbzServiceImpl extends BaseServiceImpl<JxjyDbbz> implements DbbzSe
 		// TODO Auto-generated method stub
 		
 		//注意，缺少根据年份加载相应的项目----------------------------------
-		Log.debug("注意，缺少根据年份加载相应的项目");
+		//Log.debug("注意，缺少根据年份加载相应的项目");
 		
 		AppUser user = this.appUserDao.getByFx(userNO);
 		List<JxjyDbbz> bzList = this.dao.getBzByNf(yearNo, user.getUserId());
@@ -118,6 +118,9 @@ public class DbbzServiceImpl extends BaseServiceImpl<JxjyDbbz> implements DbbzSe
 		boolean isPass = true;
 		
 		Set<Long> key = byMap.keySet();
+		if(key.size() <=0) {
+			Log.debug("还没设置标准");
+		}
     	for (Iterator it = key.iterator(); it.hasNext();) {
     		
     		Long s = (Long) it.next();
@@ -128,7 +131,7 @@ public class DbbzServiceImpl extends BaseServiceImpl<JxjyDbbz> implements DbbzSe
     		//计算大类别学分总和
     		Long sum = 0l;
     		for(JxjyXflb xflb : xflbList) {
-    			Long xf = this.dao.getXfByLb(xflb.getXflbid(), user.getUserId());
+    			Long xf = this.dao.getXfByLb(xflb.getXflbid(), user.getUserId(), yearNo);
     			
     			logger.debug("算到" + xflb.getMc() + "：" + xf);
     			
