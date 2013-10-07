@@ -6,12 +6,12 @@
  * @company 广州宏天软件有限公司
  * @createtime:
  */
-CheckView = Ext.extend(Ext.Panel,{
+CheckViewNotCheck = Ext.extend(Ext.Panel,{
 	constructor:function(conf){
 		Ext.applyIf(this,conf);
 		this.initUI();
-		CheckView.superclass.constructor.call(this,{
-			id:'CheckView',
+		CheckViewNotCheck.superclass.constructor.call(this,{
+			id:'CheckViewNotCheck',
 			title:'达标计算（已通过学分）',
 //			iconCls:'menu-RmBdzView',
 			layout:'border',
@@ -132,8 +132,8 @@ CheckView = Ext.extend(Ext.Panel,{
 		setTreeRoot(this.tree.root);
 		
 		this.tree.on("beforeload",function(node){
-			var CheckView = Ext.getCmp("CheckView");
-			var demId = CheckView._param.demId;
+			var CheckViewNotCheck = Ext.getCmp("CheckViewNotCheck");
+			var demId = CheckViewNotCheck._param.demId;
 			treeLoad.dataUrl=__ctxPath + '/project/treeProject.do?treeNodeId='+node.attributes.resId 
 							+ '&treeNodeType='+ node.attributes.treeNodeType 
 							+ '&demensionId='+ demId;
@@ -141,10 +141,10 @@ CheckView = Ext.extend(Ext.Panel,{
 		});
 		
 		this.tree.on("click",function(node){	//树点击事件
-			var CheckView = Ext.getCmp("CheckView");
-			CheckView._param.orgName = node.text;
-			CheckView._param.orgId = node.attributes.resId;
-			CheckView._param.nodePath = node.getPath();
+			var CheckViewNotCheck = Ext.getCmp("CheckViewNotCheck");
+			CheckViewNotCheck._param.orgName = node.text;
+			CheckViewNotCheck._param.orgId = node.attributes.resId;
+			CheckViewNotCheck._param.nodePath = node.getPath();
 				
 		});
 		
@@ -199,13 +199,13 @@ CheckView = Ext.extend(Ext.Panel,{
 			{
 				text : '职称'
 			},{
-				id : 'biaozhun.zc',
-				name : 'biaozhun.zc',
+				id : 'biaozhun.zc2',
+				name : 'biaozhun.zc2',
 				xtype : 'combo',
 				editable : false,
 				emptyText:'请选择',
 				triggerAction :'all',
-				hiddenName:'biaozhun.zc',
+				hiddenName:'biaozhun.zc2',
 //				valueField:'zcId',
 //				displayField:'zcm',
 //				model:'remote',
@@ -214,7 +214,7 @@ CheckView = Ext.extend(Ext.Panel,{
 			},{
 				text : '年度'
 			},{
-				id:'personYear2',
+				id:'personYear22',
 				xtype : 'combo',
 				editable : false,
 				emptyText:'请选择',
@@ -252,7 +252,7 @@ CheckView = Ext.extend(Ext.Panel,{
 			{
 				text : '人员编号'
 			},{
-				id : 'userNo',
+				id : 'userNo_1',
 				xtype : 'textfield'
 			}, {
 				iconCls : 'btn-search',
@@ -261,13 +261,13 @@ CheckView = Ext.extend(Ext.Panel,{
 				scope : this,
 				handler : this.searchPerson
 			},{
-				id : 'userName',
+				id : 'userName_1',
 				readOnly : true,
 				xtype : 'textfield' 
 			},{
 				text : '年度'
 			},{
-				id:'personYear',
+				id:'personYear_1',
 				xtype : 'combo',
 				editable : false,
 				emptyText:'请选择',
@@ -353,8 +353,8 @@ CheckView = Ext.extend(Ext.Panel,{
 	
 	//个人考核
 	personCheck : function() {
-		var userNo = Ext.getCmp("userNo");
-		var yearNo = Ext.getCmp("personYear");
+		var userNo = Ext.getCmp("userNo_1");
+		var yearNo = Ext.getCmp("personYear_1");
 		if(userNo.getValue() == "") {
 			Ext.ux.Toast.msg("操作信息","请输入人员内部编号");
 			return;
@@ -367,7 +367,7 @@ CheckView = Ext.extend(Ext.Panel,{
 		Ext.Msg.confirm("信息确认", "是否审核此人员？", function(btn){
             if (btn == "yes") {
     				Ext.Ajax.request({
-						url : __ctxPath + '/project/checkPersonDbbzAction.do',
+						url : __ctxPath + '/project/checkPersonNotCheckDbbzAction.do',
 						method : 'POST',
 						params : {
     						userNo : userNo.getValue(),
@@ -388,7 +388,6 @@ CheckView = Ext.extend(Ext.Panel,{
 									icon : 'ext-mb-error'
 								});
 							}
-
 						},
 						failure : function(response, options) {
 							Ext.ux.Toast.msg("温馨提示", "系统错误，请联系管理员！");
@@ -400,8 +399,8 @@ CheckView = Ext.extend(Ext.Panel,{
 	
 	//单位考核
 	checkOrg : function() {
-		var yearNo = Ext.getCmp("personYear2");
-		var zc = Ext.getCmp("biaozhun.zc");
+		var yearNo = Ext.getCmp("personYear22");
+		var zc = Ext.getCmp("biaozhun.zc2");
 		var orgId = this._param.orgId;
 		if(yearNo.getValue() == "") {
 			Ext.ux.Toast.msg("操作信息","请输入考核年份");
@@ -419,7 +418,7 @@ CheckView = Ext.extend(Ext.Panel,{
 		Ext.Msg.confirm("信息确认", "是否审核？", function(btn){
             if (btn == "yes") {
     				Ext.Ajax.request({
-						url : __ctxPath + '/project/checkOrgDbbzAction.do',
+						url : __ctxPath + '/project/checkOrgNotCheckDbbzAction.do',
 						method : 'POST',
 						params : {
     						orgId : orgId,
@@ -441,7 +440,6 @@ CheckView = Ext.extend(Ext.Panel,{
 									icon : 'ext-mb-error'
 								});
 							}
-
 						},
 						failure : function(response, options) {
 							Ext.ux.Toast.msg("温馨提示", "系统错误，请联系管理员！");
@@ -590,14 +588,14 @@ CheckView = Ext.extend(Ext.Panel,{
 	},
 	//编辑Rs
 	searchPerson : function() {
-		var userNo = Ext.getCmp("userNo");
-		var userName = Ext.getCmp("userName");
-		var value = userNo.getValue();
+		var userNo_1 = Ext.getCmp("userNo_1");
+		var userName = Ext.getCmp("userName_1");
+		var value = userNo_1.getValue();
 		if(value == "") {
 			Ext.ux.Toast.msg("提示信息", "请输入人员编号！");
 			return ;
 		}
-//		alert(userNo.getValue());
+//		alert(userNo_1.getValue());
 		Ext.Ajax.request({
 			url : __ctxPath + '/project/getUserByNbbhCredit.do',
 			method : 'POST',

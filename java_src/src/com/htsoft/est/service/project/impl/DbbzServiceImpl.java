@@ -88,7 +88,7 @@ public class DbbzServiceImpl extends BaseServiceImpl<JxjyDbbz> implements DbbzSe
 	}
 
 	@Override
-	public void checkPerson(String userNO, String yearNo) {
+	public void checkPerson(String userNO, String yearNo, String flage) {
 		// TODO Auto-generated method stub
 		
 		//注意，缺少根据年份加载相应的项目----------------------------------
@@ -131,7 +131,7 @@ public class DbbzServiceImpl extends BaseServiceImpl<JxjyDbbz> implements DbbzSe
     		//计算大类别学分总和
     		Long sum = 0l;
     		for(JxjyXflb xflb : xflbList) {
-    			Long xf = this.dao.getXfByLb(xflb.getXflbid(), user.getUserId(), yearNo);
+    			Long xf = this.dao.getXfByLb(xflb.getXflbid(), user.getUserId(), yearNo, flage);
     			
     			logger.debug("算到" + xflb.getMc() + "：" + xf);
     			
@@ -178,11 +178,11 @@ public class DbbzServiceImpl extends BaseServiceImpl<JxjyDbbz> implements DbbzSe
 	}
 
 	@Override
-	public void checkOrg(String orgId, String zc, String yearNo) {
+	public void checkOrg(String orgId, String zc, String yearNo, String flage) {
 		// TODO Auto-generated method stub
 		List<AppUser> userList = this.dao.getUserByOrgAndZc(new Long(orgId), zc);
 		for(AppUser user : userList) {
-			this.checkPerson(user.getFax(), yearNo);
+			this.checkPerson(user.getFax(), yearNo, flage);
 		}
 	}
 

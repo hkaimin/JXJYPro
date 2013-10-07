@@ -29,13 +29,13 @@ public interface DbbzService extends BaseService<JxjyDbbz>{
 	 * @param userNO
 	 * @param yearNo
 	 */
-	public void checkPerson(String userNO, String yearNo);
+	public void checkPerson(String userNO, String yearNo, String flage);
 	
 	/**
 	 * 单位审核
 	 * @param orgId
 	 * @param yearNo
 	 */
-	public void checkOrg(String orgId, String zc, String yearNo);
+	public void checkOrg(String orgId, String zc, String yearNo, String flage);
 
 }

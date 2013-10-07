@@ -55,14 +55,29 @@ public class DbbzAction extends BaseAction{
 		String orgId = this.getRequest().getParameter("orgId");
 		String yearNo = this.getRequest().getParameter("yearNo");
 		String zc = this.getRequest().getParameter("zc");
-		this.dbbzService.checkOrg(orgId, zc, yearNo);
+		this.dbbzService.checkOrg(orgId, zc, yearNo, "0");
 		return SUCCESS;
 	}
 	
 	public String checkPerson() {
 		String userNo = this.getRequest().getParameter("userNo");
 		String yearNo = this.getRequest().getParameter("yearNo");
-		this.dbbzService.checkPerson(userNo, yearNo);
+		this.dbbzService.checkPerson(userNo, yearNo, "0");
+		return SUCCESS;
+	}
+	
+	public String checkOrgNotCheck() {
+		String orgId = this.getRequest().getParameter("orgId");
+		String yearNo = this.getRequest().getParameter("yearNo");
+		String zc = this.getRequest().getParameter("zc");
+		this.dbbzService.checkOrg(orgId, zc, yearNo, "1");
+		return SUCCESS;
+	}
+	
+	public String checkPersonNotCheck() {
+		String userNo = this.getRequest().getParameter("userNo");
+		String yearNo = this.getRequest().getParameter("yearNo");
+		this.dbbzService.checkPerson(userNo, yearNo, "1");
 		return SUCCESS;
 	}
 	

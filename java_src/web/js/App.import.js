@@ -454,6 +454,9 @@ UserFormPanel:[
 ,CheckView : [
     	__ctxPath+'/js/project/CheckView.js',
 ]
+,CheckViewNotCheck : [
+    	__ctxPath+'/js/project/CheckViewNotCheck.js',
+]
 ,CheckSearchView : [
     	__ctxPath+'/js/project/CheckSearchView.js',
 ]
