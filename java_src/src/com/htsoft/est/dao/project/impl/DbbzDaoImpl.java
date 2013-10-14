@@ -38,8 +38,11 @@ public class DbbzDaoImpl extends BaseDaoImpl<JxjyDbbz> implements DbbzDao{
 		if(nf == null ) {
 			nf = "2013";
 		}
-		StringBuffer sql = new StringBuffer("select bz.*, zc.zcm from jxjy_dbbz bz, jxjy_zc zc where bz.zc=zc.zc_id and bz.nf = '" + nf + "'");
-		StringBuffer countSql = new StringBuffer("select count(bz.id) from jxjy_dbbz bz, jxjy_zc zc where bz.zc=zc.zc_id and bz.nf = '" + nf + "'");
+//		StringBuffer sql = new StringBuffer("select bz.*, zc.zcm from jxjy_dbbz bz, jxjy_zc zc where bz.zc=zc.zc_id and bz.nf = '" + nf + "'");
+//		StringBuffer countSql = new StringBuffer("select count(bz.id) from jxjy_dbbz bz, jxjy_zc zc where bz.zc=zc.zc_id and bz.nf = '" + nf + "'");
+		
+		StringBuffer sql = new StringBuffer("select bz.* from jxjy_dbbz bz  where  bz.nf = '" + nf + "'");
+		StringBuffer countSql = new StringBuffer("select count(bz.id) from jxjy_dbbz bz where  bz.nf = '" + nf + "'");
 		
 		
 		int total = ((BigDecimal)this.basicDao.queryTotalCntBySql(countSql.toString())).intValue();
@@ -58,7 +61,7 @@ public class DbbzDaoImpl extends BaseDaoImpl<JxjyDbbz> implements DbbzDao{
 			bz.setYylx(StringUtil.o2s(map.get("YYLX")));
 			
 			
-			bz.setZc(StringUtil.o2s(map.get("ZCM")));
+		//	bz.setZc(StringUtil.o2s(map.get("ZCM")));
 			
 			
 			bz.setKhnr(StringUtil.o2s(map.get("KHNR")));

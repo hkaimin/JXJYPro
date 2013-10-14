@@ -94,7 +94,7 @@ Ext.Msg.show({
 <body onkeydown="login()">
 	<div class="login_main">
 		<div class="login_top">
-			<div class="login_title1">管理系统登录</div>
+			<div class="login_title1"></div> <!-- 管理系统登录 -->
 			<div class="login_title"></div>
 		</div>
 		<div class="login_middle">
