@@ -62,6 +62,7 @@
 				<b:value>/system/getSelRolesAppUser.do</b:value>
 				<b:value>/system/treePosition.do</b:value>
 				<b:value>/system/findUserPosition.do</b:value>
+				<b:value>/file-upload</b:value>
 			</b:set>
 		</b:property>
 		<b:property name="publicUrls">

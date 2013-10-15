@@ -23,16 +23,40 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/ext3/resources/css/ext-all.css" />
+	
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/ext3/ux/css/Ext.ux.UploadDialog.css" />
+
 		<!-- Ext 核心JS -->
-		<script type="text/javascript" src="<%=basePath%>/ext3/adapter/ext/ext-base.gzjs"></script>
-		<script type="text/javascript" src="<%=basePath%>/ext3/ext-all.gzjs"></script>
-		<script type="text/javascript" src="<%=basePath%>/ext3/ext-basex.js"></script>
-		<script type="text/javascript" src="<%=basePath%>/ext3/ext-lang-zh_CN.js"></script>
+		<script type="text/javascript" src="<%=request.getContextPath()%>/ext3/adapter/ext/ext-base.gzjs"></script>
+		<script type="text/javascript" src="<%=request.getContextPath()%>/ext3/ext-all.gzjs"></script>
+		<script type="text/javascript" src="<%=request.getContextPath()%>/ext3/ext-basex.js"></script>
+		<script type="text/javascript" src="<%=request.getContextPath()%>/ext3/ext-lang-zh_CN.js"></script>
+
+      		<!-- core 工具JS -->
+		<script type="text/javascript" src="<%=request.getContextPath()%>/js/core/ux/HTExt.js"></script>
+		<script type="text/javascript" src="<%=request.getContextPath()%>/js/core/ScriptMgr.js"></script>
+		<script type="text/javascript" src="<%=request.getContextPath()%>/js/core/AppUtil.js"></script>
+		<script type="text/javascript" src="<%=request.getContextPath()%>/js/core/ux/TreePanelEditor.js"></script>
+		<script type="text/javascript" src="<%=request.getContextPath()%>/js/core/ux/TreeXmlLoader.js"></script>
+		<script type="text/javascript" src="<%=request.getContextPath()%>/js/core/ux/WebOffice.js"></script>
+		<script type="text/javascript" src="<%=request.getContextPath()%>/js/core/ux/TreeCombo.js"></script>
+
+		<script type="text/javascript" src="<%=request.getContextPath()%>/ext3/ux/UploadDialog.js"></script>
+		<!-- AppUtil.js中引用附件上传的JS -->
+        <script type="text/javascript" src="<%=request.getContextPath()%>/js/system/FileUploadManager.js"></script>
+        <script type="text/javascript" src="<%=request.getContextPath()%>/js/system/FileUploadImageDetailForm.js"></script>
+        <script type="text/javascript" src="<%=request.getContextPath()%>/js/fileupload/swfobject.js"></script>
+        <script type="text/javascript" src="<%=request.getContextPath()%>/js/fileupload/FlexUploadDialog.js"></script>
+        <script type="text/javascript" src="<%=request.getContextPath()%>/js/system/GlobalTypeForm.js"></script>
+
+
   		<script type="text/javascript">
 			var __ctxPath="<%=request.getContextPath() %>";
 		</script>
-      <script type="text/javascript" src="<%=basePath%>/js/core/ux/HTExt.js"></script>
-      <script type="text/javascript" src="<%=basePath%>/js/core/ux/TreePanelEditor.js"></script>
+
+
+      
+      
   <script type="text/javascript">   
   Ext.onReady(function(){ 
 
@@ -88,18 +112,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 * 上传图片
 	 */
 	uploadPhoto:function(){
-			var dialog = App.createUploadDialog({
-				file_cat : 'system/appUser',
-				scope:this,
-				callback : function(data){
-					var photo = this.requiredPanel.getCmpByName('appUser.photo');
-					photo.setValue(data[0].filePath);
-					this.photoPanel.body.update('<img src="' + __ctxPath + '/attachFiles/' + data
+	var cp = __ctxPath;
+var callback = this.callback;
+		var dialog = new Ext.ux.UploadDialog.Dialog( {
+			file_cat : 'picview',
+			url : __ctxPath + '/file-upload',
+			scope : this,
+			callback : function(obj) {
+			
+				if (obj != null && obj.length > 0) {
 
-[0].filePath + '"  width="100%" height="100%"/>');
-				},
-				permitted_extensions : ['jpg']
-			}).show();
+					if (callback != null) {
+						callback.call(this, obj);
+					}
+				} else {
+
+					close();
+					return;
+				}
+
+				var photo = Ext.getCmp('appUser.photo');
+				photo.setValue('/attachFiles/' + obj[0].filePath);
+				var view = Ext.getCmp('picView');
+				view.body.update('<img src="' + __ctxPath + '/attachFiles/'
+						+ obj[0].filePath + '"  width="50%" height="50%"/>');
+              
+             // alert('上传成功--');
+			}
+		});
+		dialog.show('queryWindow');
 	},
 	/**
 	 * 删除图片
@@ -127,16 +168,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		this.photoPanel = new Ext.Panel({
 							tbar : [{
 										text : '上传',
-										iconCls : 'btn-upload',
+										iconCls : 'btn-update',
 										scope:this,
 										handler : this.uploadPhoto
-									}, {
-										text : '删除',
-										iconCls : 'btn-delete',
-										handler : this.deletePhoto
-									}],
+									}
+							//		, {
+							//			text : '删除',
+							//			iconCls : 'btn-delete',
+							//			handler : this.deletePhoto
+							//		}
+									],
 							title : '个人照片',
 							width : 230,
+							id : 'picView',
 							height : 380,
 							html:'<img src="'+ __ctxPath+ '/images/default_image_male.jpg"/>'
 		});
@@ -255,6 +299,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								name : 'appUser.zip'
 							}, {
 								xtype : 'hidden',
+								id : 'appUser.photo',
 								name : 'appUser.photo'
 							}
 			]

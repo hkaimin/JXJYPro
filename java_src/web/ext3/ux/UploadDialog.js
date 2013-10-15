@@ -805,7 +805,7 @@ Ext.extend(Ext.ux.UploadDialog.Dialog, Ext.Window, {
 	uploadFile : function(record) {
 		var params=this.base_params || this.baseParams || this.params ;
 		Ext.apply(params,{file_cat:this.file_cat});
-		
+		var u = this.url;
 		Ext.Ajax.request({
 					url : this.url,
 					params : params,
@@ -1052,7 +1052,7 @@ Ext.extend(Ext.ux.UploadDialog.Dialog, Ext.Window, {
 });
 var p = Ext.ux.UploadDialog.Dialog.prototype;
 p.i18n = {
-	title : "上传文件",
+	title : "上传图片，只支持png,jpg,gif格式",
 	state_col_title : "状态",
 	state_col_width : 70,
 	filename_col_title : "文件名",

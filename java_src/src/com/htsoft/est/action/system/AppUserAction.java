@@ -1122,4 +1122,16 @@ public class AppUserAction extends BaseAction {
 		
 		return SUCCESS;
 	}
+	
+	public String getImgUrl(){
+		
+		AppUser au = appUserService.get(userId);
+		String imgUrl = au.getPhoto();
+		if(imgUrl==null){
+			imgUrl="nopic";
+		}
+		jsonString = "{success:true,imgUrl:\""+imgUrl+"\"}";
+		return SUCCESS;
+	}
+	
 }

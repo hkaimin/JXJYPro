@@ -59,7 +59,9 @@ public class FileUploadServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		String flexUserId = req.getParameter("flexUserId"); // flex中获取登录用户的id
-		
+		if(flexUserId==null){
+			flexUserId="1";
+		}
 		//指定保存至某个目录,若提交时，指定了该参数值，则表示保存的操作　
 		String filePath="";
 		String fileId="";
