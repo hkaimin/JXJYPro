@@ -11,6 +11,7 @@ import com.htsoft.est.dao.project.CreditDao;
 import com.htsoft.est.dao.project.ProjectDao;
 import com.htsoft.est.model.jxjy.JxjyXflb;
 import com.htsoft.est.model.jxjy.JxjyXmgl;
+import com.htsoft.est.util.JxjyConstant;
 
 import flex.messaging.io.ArrayList;
 
@@ -29,6 +30,17 @@ public class ProjectDaoImpl extends BaseDaoImpl<JxjyXmgl> implements ProjectDao{
 		// TODO Auto-generated method stub
 		StringBuffer hql= new StringBuffer("from JxjyXmgl vo where vo.zbbwid = ?");
 		Object[] params = new Object[]{new Long(filter.getRequest().getParameter("orgId"))};
+		
+		String rights = filter.getRequest().getParameter("rights");
+		
+		if(rights != null && !rights.isEmpty() && rights.equals("rsj")) { //查看全部
+			
+		} else if(rights != null && !rights.isEmpty() && rights.equals("rsj")) { //人社局
+			hql.append(" and vo.yysh = " + JxjyConstant.PROJECT_YYSH_TONG_GUO);
+			
+		} else if(rights != null && !rights.isEmpty() && rights.equals("yy")) { //医院用户
+			hql.append(" and vo.sfysb= '" + JxjyConstant.YI_SHANG_BAO + "'");
+		}
 		
 		//获取需要排序字段名称
 		String sort = (filter.getRequest().getParameter("sort") == null) ? ""
@@ -95,12 +107,24 @@ public class ProjectDaoImpl extends BaseDaoImpl<JxjyXmgl> implements ProjectDao{
 			hql.append(" and vo.xflb like ?");
 			params.add("%" + xm.getXflb() + "%");
 		}
-		if(xm.getZt() != null && !"".equals(xm.getZt())) {
-			if(!xm.getZt().equals("all")) {
-				hql.append(" and vo.zt = ?");
-				params.add(xm.getZt());
-			}
+		
+		String rights = filter.getRequest().getParameter("rights");
+		
+		if(rights != null && !rights.isEmpty() && rights.equals("rsj")) { //查看全部
+			
+		} else if(rights != null && !rights.isEmpty() && rights.equals("rsj")) { //人社局
+			hql.append(" and vo.yysh = " + JxjyConstant.PROJECT_YYSH_TONG_GUO);
+			
+		} else if(rights != null && !rights.isEmpty() && rights.equals("yy")) { //医院用户
+			hql.append(" and vo.sfysb= '" + JxjyConstant.YI_SHANG_BAO + "'");
 		}
+		
+//		if(xm.getZt() != null && !"".equals(xm.getZt())) {
+//			if(!xm.getZt().equals("all")) {
+//				hql.append(" and vo.zt = ?");
+//				params.add(xm.getZt());
+//			}
+//		}
 		
 		
 		//获取需要排序字段名称

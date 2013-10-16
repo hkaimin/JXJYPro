@@ -8,12 +8,14 @@ public class JxjyDbry implements java.io.Serializable {
 
 	// Fields  
 
-	private Long rybh;
+	private String rybh;
 	private String xm;
 	private String db;
 	private String nf;
 	
 	private Long dbId;
+	
+	private String type;
 
 	// Constructors
 
@@ -21,13 +23,8 @@ public class JxjyDbry implements java.io.Serializable {
 	public JxjyDbry() {
 	}
 
-	/** minimal constructor */
-	public JxjyDbry(Long rybh) {
-		this.rybh = rybh;
-	}
-
 	/** full constructor */
-	public JxjyDbry(Long rybh, String xm, String db, String nf) {
+	public JxjyDbry(String rybh, String xm, String db, String nf) {
 		this.rybh = rybh;
 		this.xm = xm;
 		this.db = db;
@@ -35,17 +32,17 @@ public class JxjyDbry implements java.io.Serializable {
 	}
 
 	// Property accessors
-
-	public Long getRybh() {
-		return this.rybh;
-	}
-
-	public void setRybh(Long rybh) {
-		this.rybh = rybh;
-	}
-
+	
 	public String getXm() {
 		return this.xm;
+	}
+
+	public String getRybh() {
+		return rybh;
+	}
+
+	public void setRybh(String rybh) {
+		this.rybh = rybh;
 	}
 
 	public void setXm(String xm) {
@@ -75,5 +72,14 @@ public class JxjyDbry implements java.io.Serializable {
 	public void setDbId(Long dbId) {
 		this.dbId = dbId;
 	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+	
 	
 }

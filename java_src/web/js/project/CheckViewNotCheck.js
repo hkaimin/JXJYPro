@@ -183,7 +183,7 @@ CheckViewNotCheck = Ext.extend(Ext.Panel,{
 				
 		// 初始化搜索条件Panel
 		this.searchPanel = new Ext.FormPanel( {
-			id:'orgSearchPanel',
+			id:'orgSearchPanel_1',
 			region : 'center',
 			layout : 'hbox',
 			layoutConfig : {
@@ -200,12 +200,12 @@ CheckViewNotCheck = Ext.extend(Ext.Panel,{
 				text : '职称'
 			},{
 				id : 'biaozhun.zc2',
-				name : 'biaozhun.zc2',
+				name : 'biaozhun.zc',
 				xtype : 'combo',
 				editable : false,
 				emptyText:'请选择',
 				triggerAction :'all',
-				hiddenName:'biaozhun.zc2',
+				hiddenName:'biaozhun.zc',
 //				valueField:'zcId',
 //				displayField:'zcm',
 //				model:'remote',
@@ -236,7 +236,7 @@ CheckViewNotCheck = Ext.extend(Ext.Panel,{
 		
 		// 初始化搜索条件Panel
 		this.searchPanel2 = new Ext.FormPanel( {
-			id:'persionPanel',
+			id:'persionPanel_1',
 			region : 'center',
 			layout : 'hbox',
 			layoutConfig : {
@@ -461,7 +461,7 @@ CheckViewNotCheck = Ext.extend(Ext.Panel,{
 		}
 		
 		//修改查询面板中所属单位			
-		var searchPanel = Ext.getCmp("orgSearchPanel");
+		var searchPanel = Ext.getCmp("orgSearchPanel_1");
 		searchPanel.form.findField('orgId').setValue(this._param.orgId);
 		$search( {
 			searchPanel : this.searchPanel,

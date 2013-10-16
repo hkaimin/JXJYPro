@@ -21,8 +21,11 @@
         <property name="nf" type="java.lang.String">
             <column name="NF" length="20" />
         </property>
-        <property name="rybh" type="java.lang.Long">
-            <column name="RYBH" precision="18" scale="0" />
+        <property name="rybh" type="java.lang.String">
+            <column name="RYBH" length="100" />
+        </property>
+        <property name="type" type="java.lang.String">
+            <column name="TYPE" length="2" />
         </property>
     </class>
 </hibernate-mapping>

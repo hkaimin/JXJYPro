@@ -25,6 +25,7 @@ public class JxjyXmgl implements java.io.Serializable {
 	private Long zbbwid;
 	private Long yysh;
 	private String xmbh;
+	private String sfysb;
 	
 	//vo
 	private String xflbName;
@@ -294,6 +295,13 @@ public class JxjyXmgl implements java.io.Serializable {
 	public void setJbsj_end(String jbsjEnd) {
 		jbsj_end = jbsjEnd;
 	}
-	
 
+	public String getSfysb() {
+		return sfysb;
+	}
+
+	public void setSfysb(String sfysb) {
+		this.sfysb = sfysb;
+	}
+	
 }

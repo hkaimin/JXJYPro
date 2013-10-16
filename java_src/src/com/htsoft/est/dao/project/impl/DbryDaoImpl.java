@@ -19,8 +19,8 @@ public class DbryDaoImpl extends BaseDaoImpl<JxjyDbry> implements DbryDao{
 	@Override
 	public JxjyDbry saveOrInsert(JxjyDbry dbry) {
 		// TODO Auto-generated method stub
-		String hql = "select ry from JxjyDbry ry where ry.rybh = ? and ry.nf = ?";
-		List<JxjyDbry> list = this.findByHql(hql, new Object[] { dbry.getRybh(), dbry.getNf()} );
+		String hql = "select ry from JxjyDbry ry where ry.rybh = ? and ry.nf = ? and ry.type = ?";
+		List<JxjyDbry> list = this.findByHql(hql, new Object[] { dbry.getRybh(), dbry.getNf(), dbry.getType()} );
 		//存在则修改d
 		if(list.size() > 0) {
 			JxjyDbry ry = list.get(0);

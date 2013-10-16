@@ -155,10 +155,11 @@ public class DbbzServiceImpl extends BaseServiceImpl<JxjyDbbz> implements DbbzSe
     		//只要有一个不通过则为不同，直接返回，不判断下面的条件了
     		if(isPass == false) {
     			JxjyDbry ryPass = new JxjyDbry();
-    			ryPass.setRybh(user.getUserId());
+    			ryPass.setRybh(user.getFax());
     			ryPass.setDb("不达标");
     			ryPass.setXm(user.getFullname());
     			ryPass.setNf(yearNo);
+    			ryPass.setType(flage);
     			this.dbryDao.saveOrInsert(ryPass);
     			logger.debug(user.getFamilyName() + "不达标");
     			return;
@@ -168,10 +169,11 @@ public class DbbzServiceImpl extends BaseServiceImpl<JxjyDbbz> implements DbbzSe
     	//全部必要条件通过
     	if(isPass == true) {
     		JxjyDbry ryPass = new JxjyDbry();
-			ryPass.setRybh(user.getUserId());
+			ryPass.setRybh(user.getFax());
 			ryPass.setDb("达标");
 			ryPass.setXm(user.getFullname());
 			ryPass.setNf(yearNo);
+			ryPass.setType(flage);
 			this.dbryDao.saveOrInsert(ryPass);
 			logger.debug(user.getFamilyName() + "达标");
     	}

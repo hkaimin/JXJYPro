@@ -24,21 +24,59 @@ ProjectView = Ext.extend(Ext.Panel,{
 	//初始化UI
 	initUI:function(){
 		
-		var edit ='';
-		var sbyy = '';
-		var yysh = '';
-		var wstsh = '';
+		var actionArr = [];
+		
 		if (isGranted('_ProjectEdit')) {
-			edit = '编辑';
+			actionArr.push({
+				text:'<a href="#">编辑</a>',
+				iconCls : 'btn-edit',
+				qtip : '编辑',
+				style : 'margin:0 3px 0 3px'
+			});
 		}
 		if (isGranted('_ProjectSBYY')) {
-			sbyy = '上报';
+			actionArr.push({
+				text:'<a href="#">上报</a>',
+				iconCls : 'btn-report',
+				qtip : '上报医院同意',
+				style : 'margin:0 3px 0 3px'
+			});
 		}
 		if (isGranted('_ProjectYYSH')) {
-			yysh = '医院';
+			actionArr.push({
+				text:'<a href="#">医院</a>',
+				iconCls : 'btn-checkYy',
+				qtip : '医院审核',
+				style : 'margin:0 3px 0 3px'
+			});
 		}
 		if (isGranted('_ProjectWST')) {
-			wstsh = '审核';
+			actionArr.push({
+				text:'<a href="#">审核</a>',
+				iconCls : 'btn-check',
+				qtip : '报卫生局审核',
+				style : 'margin:0 3px 0 3px'
+			});
+		}
+		
+		var toolbarArr = [];
+		if (isGranted('_ProjectAdd')) {
+			toolbarArr.push({
+				iconCls : 'btn-add',
+				text : '添加',
+				xtype : 'button',
+				scope : this,
+				handler : this.createRs
+			});
+		}
+		if (isGranted('_ProjectDelete')) {
+			toolbarArr.push({
+				iconCls : 'btn-del',
+				text : '删除',
+				xtype : 'button',
+				scope : this,
+				handler : this.removeSelRs
+			});
 		}
 		
 		//属性
@@ -171,7 +209,7 @@ ProjectView = Ext.extend(Ext.Panel,{
 				centerPanel.setTitle(node.text + " - 项目信息");
 				
 				//重新加载列表
-				var grid = Ext.getCmp("EmBdzGrid");
+				var grid = Ext.getCmp("ProjectGrid1");
 					if (grid != null) {
 							var store = grid.getStore();
 							var limit = grid.getBottomToolbar().pageSize;
@@ -304,23 +342,25 @@ ProjectView = Ext.extend(Ext.Panel,{
 							['2','科室项目'],
 							['3','申报导入项目']
 								]
-					}, {
-						width : '95%',
-						fieldLabel : '审核状态',
-						name : 'project.zt',
-						xtype : 'combo',
-						editable : false,
-						emptyText:'请选择',
-						triggerAction :'all',
-						hiddenName:'project.zt',
-						value : '',
-						store : [
-							['all','全部'],
-							['2','待审核'],
-							['0','不通过'],
-							['1','通过']
-								]
-					}]
+					}
+//					, {
+//						width : '95%',
+//						fieldLabel : '审核状态',
+//						name : 'project.zt',
+//						xtype : 'combo',
+//						editable : false,
+//						emptyText:'请选择',
+//						triggerAction :'all',
+//						hiddenName:'project.zt',
+//						value : '',
+//						store : [
+//							['all','全部'],
+//							['2','待审核'],
+//							['0','不通过'],
+//							['1','通过']
+//								]
+//					}
+					]
 				}, {
 					columnWidth : .1,
 					xtype : 'container',
@@ -352,51 +392,33 @@ ProjectView = Ext.extend(Ext.Panel,{
 		});// end of searchPanel
 
 		this.topbar = new Ext.Toolbar( {
-			items : [ {
-				iconCls : 'btn-add',
-				text : '添加',
-				xtype : 'button',
-				scope : this,
-				handler : this.createRs
-			}, {
-				iconCls : 'btn-del',
-				text : '删除',
-				xtype : 'button',
-				scope : this,
-				handler : this.removeSelRs
-			}
-//			, {
-//				iconCls : 'menu-sync',
-//				text : '同步GIS',
-//				xtype : 'button',
-//				scope : this,
-//				handler : function(){
-//					new GisBdzSyncWin(function(){						
-//						Ext.getCmp("EmBdzGrid").getStore().reload();
-//					}, {
-//							qjId : this._param.orgId,
-//							qjName : this._param.orgName,
-//							nodePath : this._param.nodePath
-//						}).show();//end of selector
-//				}
-//			}, {
-//				iconCls : 'btn-shared',
-//				text : '共享到',
-//				xtype : 'button',
-//				scope : this,
-//				handler : this.shareSelRs
-//			}
-			]
+			items : toolbarArr
 		});
+		
+		var rights = "";
+		
+		if (isGranted('_SeeCheck') && isGranted('_SeeAll') && isGranted('_SeeReport')) {
+			rights = "all";
+		} else {
+			if(isGranted('_SeeCheck')) {
+				rights = "rsj";
+			}
+			if(isGranted('_SeeReport')) {
+				rights = "yy";
+			}
+			if(isGranted('_SeeAll')) {
+				rights = "all";
+			}
+		}
 
 		this.gridPanel = new HT.GridPanel( {
 			region : 'center',
 			tbar : this.topbar,
 			//使用RowActions
 			rowActions : true,
-			id : 'EmBdzGrid',
-			url : __ctxPath + "/project/listProject.do",
-			fields : [ 'xmId','xflbid', 'mc', 'xmmc', 'hdfs', 'shfs', 'xmlb', 'zxf', 'zxs', 'jbsj', 'tjsj', 'xflb', 'zbdw', 'zt', 'zbbwid', 'yysh', 'xmbh'],
+			id : 'ProjectGrid1',
+			url : __ctxPath + "/project/listProject.do?rights=" + rights,
+			fields : [ 'xmId','xflbid', 'mc', 'xmmc', 'hdfs', 'shfs', 'xmlb', 'zxf', 'zxs', 'jbsj', 'tjsj', 'xflb', 'zbdw', 'zt', 'zbbwid', 'yysh', 'xmbh', 'sfysb'],
 			columns : [ {
 				header : '编号',
 				dataIndex : 'xmbh'
@@ -498,43 +520,30 @@ ProjectView = Ext.extend(Ext.Panel,{
 							return "无状态";
 						}
 					}
-			}, new Ext.ux.grid.RowActions( {
+			},{
+				header : '是否已上报',
+				dataIndex : 'sfysb',
+				sortable: true,
+				renderer : function(value, metadata, record, rowIndex,
+							colIndex) {
+						if(value == '0') {
+							return "未上报";
+						} else if(value == "1") {
+							return "已上报"
+						} else {
+							return "无状态";
+						}
+					}
+			},new Ext.ux.grid.RowActions( {
 				header : '管理',
 				width : 200,
-				actions : [ 
-//				{
-//					text:'<a href="#">删除</a>',
-//					iconCls : 'btn-del',
-//					qtip : '删除变电站',
-//					style : 'margin:0 3px 0 3px'
-//				},
-				{
-					text:'<a href="#">'+edit+'</a>',
-					iconCls : 'btn-editt',
-					qtip : '编辑',
-					style : 'margin:0 3px 0 3px'
-				},
-				{
-					text:'<a href="#">'+sbyy+'</a>',
-					iconCls : 'btn-report',
-					qtip : '上报医院同意',
-					style : 'margin:0 3px 0 3px'
-				},{
-					text:'<a href="#">'+yysh+'</a>',
-					iconCls : 'btn-checkYy',
-					qtip : '医院审核',
-					style : 'margin:0 3px 0 3px'
-				},{
-					text:'<a href="#">'+wstsh+'</a>',
-					iconCls : 'btn-check',
-					qtip : '报卫生局审核',
-					style : 'margin:0 3px 0 3px'
-				}],
+				actions : actionArr,
 				listeners : {
 					scope : this,
 					'action' : this.onRowAction
 				}
-			}) ]
+			}
+			) ]
 		//end of columns
 		});
 
@@ -843,7 +852,7 @@ ProjectView = Ext.extend(Ext.Panel,{
 		case 'btn-del':
 			this.removeRs.call(this, record.data.bdzId);
 			break;
-		case 'btn-editt':
+		case 'btn-edit':
 			this.editRs.call(this, record);
 			break;
 		case 'btn-report':

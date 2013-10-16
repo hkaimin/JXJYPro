@@ -32,6 +32,7 @@ public class ProjectServiceImpl extends BaseServiceImpl<JxjyXmgl> implements Pro
 		if(project.getXmId() == null) {
 			project.setYysh(JxjyConstant.PROJECT_YYSH_DAI_SHEN_HE);
 			project.setZt(JxjyConstant.PROJECT_ZT_DAI_SHEN_HE);
+			project.setSfysb(JxjyConstant.WEI_SHANG_BAO);
 			JxjyXmgl temp = this.dao.save(project);
 			return temp;
 		} else { //修改
@@ -63,7 +64,7 @@ public class ProjectServiceImpl extends BaseServiceImpl<JxjyXmgl> implements Pro
 		// TODO Auto-generated method stub
 		JxjyXmgl project = this.dao.get(xmId);
 		if(project != null) {
-			project.setYysh(JxjyConstant.PROJECT_YYSH_YI_SHANG_CHUAN);
+			project.setSfysb(JxjyConstant.YI_SHANG_BAO);
 			this.dao.save(project);
 		} else {
 			Log.error("获取不到项目");

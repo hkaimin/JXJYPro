@@ -60,5 +60,8 @@
         <property name="xmbh" type="java.lang.String">
             <column name="XMBH" length="200"/>
         </property>
+        <property name="sfysb" type="java.lang.String">
+            <column name="SFYSB" length="2"/>
+        </property>
     </class>
 </hibernate-mapping>

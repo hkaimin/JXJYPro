@@ -12,6 +12,9 @@ public class JxjyConstant {
 	public final static String PROJECT_ZT_TONG_GUO = "1";
 	public final static String PROJECT_ZT_BU_TONG_GUO = "0";
 	
+	public final static String WEI_SHANG_BAO = "0";
+	public final static String YI_SHANG_BAO = "1";
+	
 	
 	//学分
 	public final static Long XUE_FEN_YI_LEI = 0l;

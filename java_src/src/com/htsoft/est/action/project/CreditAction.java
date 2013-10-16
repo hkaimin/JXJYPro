@@ -169,7 +169,6 @@ public class CreditAction extends BaseAction {
 			twoLb.setMc("II类学分");
 			list.add(twoLb);
 			
-			
 			JxjyXflb otherLb = new JxjyXflb();
 			otherLb.setXflbid(2l);
 			otherLb.setMc("其他学分");

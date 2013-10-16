@@ -127,8 +127,8 @@ public class DbbzDaoImpl extends BaseDaoImpl<JxjyDbbz> implements DbbzDao{
 			logger.debug("统计已通过学分");
 			sql.append(" and xf.shzt =1 and xf.rsjsh=1");
 		} else if(isCheck.equals("1")) {
-			sql.append(" and xf.shzt =0 and xf.rsjsh=0");
-			logger.debug("统计包含未通过学分");
+			//sql.append(" and xf.shzt =0 and xf.rsjsh=0");
+			logger.debug("统计全部学分");
 		}
 		
 		logger.debug("sql:" + sql);

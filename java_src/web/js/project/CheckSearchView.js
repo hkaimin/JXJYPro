@@ -81,7 +81,7 @@ CheckSearchView = Ext.extend(Ext.Panel,{
 			rowActions : false,
 			id : 'checkSearch',
 			url : __ctxPath + "/project/listCheckDbbzAction.do",
-			fields : [ 'rybh','xm', 'db', 'nf', 'dbId'],
+			fields : [ 'rybh','xm', 'db', 'nf', 'dbId', 'type'],
 			columns : [ 
 			{
 				header : '人员编号',
@@ -95,6 +95,18 @@ CheckSearchView = Ext.extend(Ext.Panel,{
 				header : '考核年份',
 				dataIndex : 'nf',
 				sortable: true
+			}, {
+				header : '类型',
+				dataIndex : 'type',
+				renderer: function(value) {
+					if(value == "0") {
+						return "正常考核";
+					} else if(value == "1") {
+						return "考核（包含待审核学分）";
+					} else {
+						return "类型有误";
+					}
+				}
 			}, {
 				header : '是否达标',
 				dataIndex : 'db'
