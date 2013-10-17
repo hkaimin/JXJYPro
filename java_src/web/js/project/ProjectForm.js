@@ -245,7 +245,7 @@ ProjectForm = Ext.extend(Ext.Window, {
 			success : function(fp, action) {
 				Ext.ux.Toast.msg('操作信息', '成功信息保存！');
 				
-				var gridPanel = Ext.getCmp('EmBdzGrid');
+				var gridPanel = Ext.getCmp('ProjectGrid1');
 				if (gridPanel != null) {
 					gridPanel.getStore().reload();
 				}

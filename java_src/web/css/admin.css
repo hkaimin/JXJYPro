@@ -354,6 +354,10 @@ div button {
 	background-image: url('../images/menus/flow/tasksign.png') !important;
 }
 
+.btn-report{
+	background-image: url('../images/menus/flow/tasksign.png') !important;
+}
+
 .menu-globalType{
    background: url('../images/menus/system/globalType_menu.png') no-repeat !important;
 }
@@ -896,11 +900,19 @@ li .right {
 	background-image: url('../images/menus/flow/flowWait.png') !important;
 }
 
+.btn-checkYy {
+	background-image: url('../images/menus/flow/flowWait.png') !important;
+}
+
 .mod-credit {
 	background-image: url('../images/menus/flow/flowWait.png') !important;
 }
 
 .menu-flowEnd {
+	background-image: url('../images/menus/flow/flowEnd.png') !important;
+}
+
+.btn-check {
 	background-image: url('../images/menus/flow/flowEnd.png') !important;
 }
 

@@ -65,8 +65,8 @@ public class ProjectDaoImpl extends BaseDaoImpl<JxjyXmgl> implements ProjectDao{
 	@Override
 	public List<JxjyXmgl> getProjectByOrg(Long orgId) {
 		// TODO Auto-generated method stub
-		StringBuffer hql = new StringBuffer("select xm from JxjyXmgl xm where xm.zbbwid = ?");
-		Object[] params = new Object[]{ orgId };
+		StringBuffer hql = new StringBuffer("select xm from JxjyXmgl xm where xm.zbbwid = ? and xm.zt = ?");
+		Object[] params = new Object[]{ orgId , JxjyConstant.PROJECT_ZT_TONG_GUO};
 		logger.debug("hql:" + hql);
 		List<JxjyXmgl> list = this.findByHql(hql.toString(), params);
 		if(list.size() > 0) {

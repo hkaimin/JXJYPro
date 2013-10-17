@@ -485,7 +485,7 @@ ProjectView = Ext.extend(Ext.Panel,{
 				dataIndex : 'zbdw',
 				sortable: true
 			}, {
-				header : '状态',
+				header : '卫生局状态',
 				dataIndex : 'zt',
 				sortable: true,
 				renderer : function(value, metadata, record, rowIndex,
@@ -692,6 +692,11 @@ ProjectView = Ext.extend(Ext.Panel,{
 	},
 	//编辑Rs
 	editRs : function(record) {
+		var sfsb = record.data.sfysb;
+		if(sfsb == "1") {
+			Ext.ux.Toast.msg("提示信息", "此项目已上报，不能修改！");
+			return ;
+		}
 		new ProjectForm({
 //			ssdwId : this._param.orgId,
 //			orgName : this._param.orgName
@@ -736,18 +741,58 @@ ProjectView = Ext.extend(Ext.Panel,{
 	//卫生局审核
 	checkRs : function(record) {
 		var gridPanel = this.gridPanel;
-		Ext.Msg.confirm("信息确认", "此项目是否通过？", function(btn){ 
-			if(btn == "yes") {
-				Ext.MessageBox.prompt('提示信息', '请输入此项目编号。', function(btn, text) {
-		            if (btn == "ok") {
-		            	var xmId = 	record.data.xmId;
+		var zt = record.data.zt;
+		if(zt != "2") {
+			Ext.ux.Toast.msg("提示信息", "只能操作卫生局状态为带审核的记录！");
+			return ;
+		}
+		Ext.Msg.show({
+		   title:'信息确认',
+		   msg: '此项目是否通过？',
+		   buttons: Ext.Msg.YESNOCANCEL,
+		   fn: function(btn) {
+				if(btn == "yes") {
+						Ext.MessageBox.prompt('提示信息', '请输入此项目编号。', function(btn, text) {
+				            if (btn == "ok") {
+				            	var xmId = 	record.data.xmId;
+								Ext.Ajax.request({
+									url : __ctxPath + '/project/checkProProject.do',
+									method : 'POST',
+									params : {
+										xmId : xmId,
+										xmbh : text,
+										isCheck : '1'
+									},
+									success : function(form, action) {
+										
+										var result = Ext.util.JSON.decode(form.responseText);
+										if (result.success == true) {
+											Ext.ux.Toast.msg("操作信息", "信息保存成功！");
+																					
+										} else {
+											Ext.MessageBox.show({
+												title : '操作信息',
+												msg : result.message,
+												buttons : Ext.MessageBox.OK,
+												icon : 'ext-mb-error'
+											});
+										}
+										gridPanel.getStore().reload();
+									},
+									failure : function(response, options) {
+										Ext.ux.Toast.msg("温馨提示", "系统错误，请联系管理员！");
+									}
+							   });
+				            }
+			 			});	
+					} else if(btn == "no") {
+						var xmId = 	record.data.xmId;
 						Ext.Ajax.request({
 							url : __ctxPath + '/project/checkProProject.do',
 							method : 'POST',
 							params : {
 								xmId : xmId,
-								xmbh : text,
-								isCheck : '1'
+								isCheck : '0'
 							},
 							success : function(form, action) {
 								
@@ -769,16 +814,41 @@ ProjectView = Ext.extend(Ext.Panel,{
 								Ext.ux.Toast.msg("温馨提示", "系统错误，请联系管理员！");
 							}
 					   });
-		            }
-	 			});	
-			} else if(btn == "no"){
+					}
+				}
+		   ,
+		   icon: Ext.MessageBox.QUESTION
+		});
+	},
+	//医院审核
+	checkYyRs : function(record) {
+		var gridPanel = this.gridPanel;
+		var yysh = record.data.yysh;
+		if(yysh != "2") {
+			Ext.ux.Toast.msg("提示信息", "只能操作医院状态为带审核的记录！");
+			return ;
+		}
+		Ext.Msg.show({
+		   title:'信息确认',
+		   msg: '此项目是否通过？',
+		   buttons: Ext.Msg.YESNOCANCEL,
+		   fn: function(btn) {
+				if(btn == "cancel") {
+					return;
+				} 
+				var flage = "";
+				if(btn == "yes") {
+					flage = "1";
+				} else if(btn == "no"){
+					flage = "0";
+				}
 				var xmId = 	record.data.xmId;
 				Ext.Ajax.request({
-					url : __ctxPath + '/project/checkProProject.do',
+					url : __ctxPath + '/project/checkProYyProject.do',
 					method : 'POST',
 					params : {
 						xmId : xmId,
-						isCheck : '0'
+						isCheck : flage
 					},
 					success : function(form, action) {
 						
@@ -800,50 +870,9 @@ ProjectView = Ext.extend(Ext.Panel,{
 						Ext.ux.Toast.msg("温馨提示", "系统错误，请联系管理员！");
 					}
 			   });
-			}
-		});
-		
-	},
-	//医院审核
-	checkYyRs : function(record) {
-		var gridPanel = this.gridPanel;
-		Ext.Msg.confirm("信息确认", "此项目是否通过？", function(btn){ 
-			var flage = "";
-			if(btn == "yes") {
-				flage = "1";
-			} else if(btn == "no"){
-				flage = "0";
-			}
-			var xmId = 	record.data.xmId;
-			Ext.Ajax.request({
-				url : __ctxPath + '/project/checkProYyProject.do',
-				method : 'POST',
-				params : {
-					xmId : xmId,
-					isCheck : flage
-				},
-				success : function(form, action) {
-					
-					var result = Ext.util.JSON.decode(form.responseText);
-					if (result.success == true) {
-						Ext.ux.Toast.msg("操作信息", "信息保存成功！");
-																
-					} else {
-						Ext.MessageBox.show({
-							title : '操作信息',
-							msg : result.message,
-							buttons : Ext.MessageBox.OK,
-							icon : 'ext-mb-error'
-						});
-					}
-					gridPanel.getStore().reload();
-				},
-				failure : function(response, options) {
-					Ext.ux.Toast.msg("温馨提示", "系统错误，请联系管理员！");
-				}
-		   });
-		});
-		
+		   },
+		   icon: Ext.MessageBox.QUESTION
+	   });
 	},
 	
 	//行的Action
