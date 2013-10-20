@@ -76,6 +76,10 @@ public class AppUserServiceImpl extends BaseServiceImpl<AppUser> implements AppU
 	public List<AppUser> findByRoleId(Long roleId) {
 		return dao.findByRole(roleId);
 	}
+	
+	public List<AppUser> findByRoleName(String roleName) {
+		return dao.findByRoleName(roleName);
+	}
 
 	@Override
 	public List<AppUser> findSubAppUser(String path, Set<Long> userIds,

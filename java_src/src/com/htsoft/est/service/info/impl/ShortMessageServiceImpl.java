@@ -11,6 +11,7 @@ import javax.annotation.Resource;
 
 import com.htsoft.core.Constants;
 import com.htsoft.core.service.impl.BaseServiceImpl;
+import com.htsoft.core.util.ContextUtil;
 import com.htsoft.core.web.paging.PagingBean;
 import com.htsoft.est.dao.info.InMessageDao;
 import com.htsoft.est.dao.info.ShortMessageDao;
@@ -18,6 +19,7 @@ import com.htsoft.est.dao.system.AppUserDao;
 import com.htsoft.est.model.info.InMessage;
 import com.htsoft.est.model.info.ShortMessage;
 import com.htsoft.est.model.system.AppUser;
+import com.htsoft.est.service.info.InMessageService;
 import com.htsoft.est.service.info.ShortMessageService;
 
 public class ShortMessageServiceImpl extends BaseServiceImpl<ShortMessage>
@@ -27,6 +29,8 @@ public class ShortMessageServiceImpl extends BaseServiceImpl<ShortMessage>
 	private InMessageDao inMessageDao;
 	@Resource
 	private AppUserDao appUserDao;
+	@Resource
+	private InMessageService inMessageService;
 
 	public ShortMessageServiceImpl(ShortMessageDao dao) {
 		super(dao);
@@ -80,6 +84,31 @@ public class ShortMessageServiceImpl extends BaseServiceImpl<ShortMessage>
 		}
 
 		return shortMessage;
+	}
+
+	@Override
+	public void sendMesToUser(List<AppUser> users, String content) {
+		// TODO Auto-generated method stub
+		AppUser appUser = ContextUtil.getCurrentUser();
+		for(AppUser user : users) {
+			
+			ShortMessage message=new ShortMessage();
+			message.setContent(content);
+			message.setMsgType((short)1);
+			message.setSenderId(appUser.getUserId());
+			message.setSender(appUser.getFullname());
+			message.setSendTime(new Date());
+			this.save(message);
+			
+			InMessage in=new InMessage();	
+			in.setUserId(user.getUserId());
+			in.setUserFullname(user.getFullname());
+			in.setDelFlag(InMessage.FLAG_UNREAD);
+			in.setReadFlag((short)0);
+			in.setShortMessage(message);
+			inMessageService.save(in);
+		}
+		
 	}
 
 }

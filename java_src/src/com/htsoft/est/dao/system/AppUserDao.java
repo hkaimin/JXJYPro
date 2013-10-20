@@ -43,6 +43,8 @@ public interface AppUserDao extends BaseDao<AppUser> {
 	public List<AppUser> findByDepartment(Department department);
 
 	public List<AppUser> findByRole(Long roleId);
+	
+	public List<AppUser> findByRoleName(String roleName);
 
 	public List<AppUser> findByRole(Long roleId, PagingBean pb);
 

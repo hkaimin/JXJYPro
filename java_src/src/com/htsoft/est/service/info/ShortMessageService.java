@@ -9,6 +9,7 @@ import java.util.List;
 import com.htsoft.core.service.BaseService;
 import com.htsoft.core.web.paging.PagingBean;
 import com.htsoft.est.model.info.ShortMessage;
+import com.htsoft.est.model.system.AppUser;
 
 public interface ShortMessageService extends BaseService<ShortMessage> {
 
@@ -17,4 +18,11 @@ public interface ShortMessageService extends BaseService<ShortMessage> {
 	public List searchShortMessage(Long userId,ShortMessage shortMessage,Date from,Date to,PagingBean pb,Short readFlag);
 	
 	public ShortMessage save (Long senderId,String receiveIds,String content,Short msgType);
+	
+	/**
+	 * 发送短信息给人员
+	 * @param users
+	 * @param content
+	 */
+	public void sendMesToUser(List<AppUser> users, String content);
 }

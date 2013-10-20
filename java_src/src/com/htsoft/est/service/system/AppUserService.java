@@ -34,6 +34,13 @@ public interface AppUserService extends BaseService<AppUser> {
 	public List<AppUser> findByRole(Long roleId, PagingBean pb);
 
 	public List<AppUser> findByRoleId(Long roleId);
+	
+	/**
+	 * 匹配角色名字找到相应的人员
+	 * @param roleName
+	 * @return
+	 */
+	public List<AppUser> findByRoleName(String roleName);
 
 	/**
 	 * 根据部门查找不是上属的用户

@@ -26,4 +26,8 @@ public class JxjyConstant {
 	public final static String XUE_FEN_SHEN_HE_XIANG_MU_XUE_FEN = "2";
 	public final static String XUE_FEN_BU_SHEN_HE = "3";
 	
+	public final static String XUE_SHENG = "学员";
+	public final static String YI_YUAN = "医院";
+	public final static String WEI_SHEN_TING = "卫生厅";
+	
 }

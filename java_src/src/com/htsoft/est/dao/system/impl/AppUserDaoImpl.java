@@ -149,6 +149,13 @@ public class AppUserDaoImpl extends BaseDaoImpl<AppUser> implements AppUserDao,
 		Object[] objs = { roleId, Constants.FLAG_UNDELETED };
 		return findByHql(hql, objs);
 	}
+	
+	@Override
+	public List findByRoleName(String roleName) {
+		String hql = "select vo from AppUser vo join vo.roles roles where roles.roleName like ? and vo.delFlag = ?";
+		Object[] objs = {"%" + roleName + "%", Constants.FLAG_UNDELETED };
+		return findByHql(hql, objs);
+	}
 
 	@Override
 	public List findByRole(Long roleId, PagingBean pb) {
