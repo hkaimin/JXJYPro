@@ -78,7 +78,7 @@ public class ProjectServiceImpl extends BaseServiceImpl<JxjyXmgl> implements Pro
 			
 			//增加通知人员
 			List<AppUser> userList = this.appUserService.findByRoleName(JxjyConstant.YI_YUAN);
-			String content = "项目名称为：" + project.getXmmc() +" ，科室已上报，请您审核相应的项目！";
+			String content = "项目名称为：" + project.getMc() +" ，科室已上报，请您审核相应的项目！";
 			this.shortMessageService.sendMesToUser(userList, content);
 			
 		} else {
@@ -97,7 +97,12 @@ public class ProjectServiceImpl extends BaseServiceImpl<JxjyXmgl> implements Pro
 			
 			//增加通知人员
 			List<AppUser> userList = this.appUserService.findByRoleName(JxjyConstant.XUE_SHENG);
-			String content = "项目名称为：" + project.getXmmc() +" ，已通过卫生局审核，您可以进入相应项目选择课程！";
+			String content = "项目名称为：" + project.getMc() +" ，已通过卫生局审核，您可以进入相应项目选择课程！";
+			this.shortMessageService.sendMesToUser(userList, content);
+			
+			//增加通知人员
+			userList = this.appUserService.findByRoleName(JxjyConstant.YI_YUAN);
+			content = "项目名称为：" + project.getMc() +" ，已通过卫生局审核，您可以进行课程管理！";
 			this.shortMessageService.sendMesToUser(userList, content);
 			
 		} else if(isCheck.equals(JxjyConstant.PROJECT_ZT_BU_TONG_GUO)) {
@@ -117,7 +122,7 @@ public class ProjectServiceImpl extends BaseServiceImpl<JxjyXmgl> implements Pro
 			
 			//增加通知人员
 			List<AppUser> userList = this.appUserService.findByRoleName(JxjyConstant.WEI_SHEN_TING);
-			String content = "项目名称为：" + project.getXmmc() +" ，已通过医院审核，请您审核此项目！";
+			String content = "项目名称为：" + project.getMc() +" ，已通过医院审核，请您审核此项目！";
 			this.shortMessageService.sendMesToUser(userList, content);
 			
 		} else if(isCheck.equals(JxjyConstant.PROJECT_YYSH_BU_TONG_GUO.toString())) {

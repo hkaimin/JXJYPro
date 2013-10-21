@@ -706,6 +706,11 @@ ProjectView = Ext.extend(Ext.Panel,{
 	//上报医院同意
 	reportRs : function(record) {
 		var gridPanel = this.gridPanel;
+		var sfysb = record.data.sfysb;
+		if(sfysb == "1") {
+			Ext.ux.Toast.msg("提示信息", "此项目已上报，请误重复操作！");
+			return ;
+		}
 		Ext.Msg.confirm("信息确认", "是否上报医院？", function(btn){
             if (btn == "yes") {
             	var xmId = 	record.data.xmId;
