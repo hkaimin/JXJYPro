@@ -136,6 +136,32 @@ AppUserView.prototype.initGridPanel=function(){
 					}
 				}));
 	}
+		if (isGranted('_AppUserActivity')) {
+		this.toolbar.add(new Ext.Button({
+					text : '一键激活',
+					iconCls : 'add-user',
+					handler : function() {
+			
+											Ext.Ajax.request({
+								url : __ctxPath + '/system/yjActivityAppUser.do',
+								method : 'post',
+//								params : {
+//									ids : _ids
+//								},
+								success : function(response) {
+									var result = Ext.util.JSON.decode(response.responseText);
+										Ext.ux.Toast.msg("操作信息", "一键激活成功");
+									
+									Ext.getCmp('AppUserGrid').getStore().reload();
+								},
+								failure : function() {
+									Ext.ux.Toast.msg("操作信息", "一键激活失败");
+								}
+							});
+											
+					}
+				}));
+	}
 		
 		var store = new Ext.data.Store({
 				proxy : new Ext.data.HttpProxy({

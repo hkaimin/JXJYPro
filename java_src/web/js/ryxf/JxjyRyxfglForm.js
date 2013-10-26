@@ -86,7 +86,7 @@ JxjyRyxfglForm = Ext.extend(Ext.Window, {
 					}, {
 						name : 'jxjyRyxfgl.xflx',
 						xtype : 'hidden',
-						value : '2',
+						value : '非项目学分',
 						maxLength : 10
 					}, {
 						fieldLabel : '学分类型',
@@ -148,6 +148,18 @@ JxjyRyxfglForm = Ext.extend(Ext.Window, {
 					{
 						fieldLabel : '备注',
 						name : 'jxjyRyxfgl.bz',
+						maxLength : 100
+					}, 
+//					{
+//						fieldLabel : '卫生厅审核状态',
+//						name : 'jxjyRyxfgl.shzt',
+//						maxLength : 10
+//					}, 
+					{
+						fieldLabel : '是否提交',
+						name : 'jxjyRyxfgl.is_commit',
+						xtype:'hidden',
+						value:'0',
 						maxLength : 100
 					}
 //					, {

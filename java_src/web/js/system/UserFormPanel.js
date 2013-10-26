@@ -300,7 +300,7 @@ UserFormPanel = Ext
 									}));
 							this.requiredPanel.doLayout();
 						}
-
+                        if (this.userId != '') {
 						Ext.Ajax
 								.request( {
 									url : __ctxPath + '/system/getImgUrlAppUser.do',
@@ -330,7 +330,7 @@ UserFormPanel = Ext
 									failure : function() {
 									}
 								});
-
+                        }
 						//alert(Ext.getCmp('appUser.photo')+'sss');
 
 						//可选择的部门树
@@ -680,6 +680,7 @@ UserFormPanel = Ext
 							scope : this,
 							callback : function() {
 								App.getContentPanel().remove(this, true);
+								Ext.getCmp('AppUserGrid').getStore().reload();
 							}
 						});
 

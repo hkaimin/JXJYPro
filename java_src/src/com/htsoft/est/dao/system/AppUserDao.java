@@ -122,5 +122,5 @@ public interface AppUserDao extends BaseDao<AppUser> {
 	 * @return
 	 */
 	public AppUser getByFx(String fx);
-	
+	public void yjActivity();
 }

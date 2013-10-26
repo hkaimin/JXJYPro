@@ -612,4 +612,12 @@ public class AppUserDaoImpl extends BaseDaoImpl<AppUser> implements AppUserDao,
 		return user;
 	}
 
+	@Override
+	public void yjActivity() {
+		String hql = " update AppUser au set au.status='1' ";
+		Object[] params = new Object[]{};
+		update(hql, params);
+		
+	}
+
 }

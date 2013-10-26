@@ -1134,4 +1134,11 @@ public class AppUserAction extends BaseAction {
 		return SUCCESS;
 	}
 	
+	public String yjActivity(){
+		
+		appUserService.yjActivity();
+		return SUCCESS;
+		
+	}
+	
 }

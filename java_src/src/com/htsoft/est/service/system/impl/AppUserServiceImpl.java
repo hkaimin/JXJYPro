@@ -253,4 +253,10 @@ public class AppUserServiceImpl extends BaseServiceImpl<AppUser> implements AppU
 		return dao.getChargeOrgUsers(userOrgs);
 	}
 
+	@Override
+	public void yjActivity() {
+		dao.yjActivity();
+		
+	}
+
 }

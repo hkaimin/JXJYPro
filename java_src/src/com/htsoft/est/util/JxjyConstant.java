@@ -29,5 +29,6 @@ public class JxjyConstant {
 	public final static String XUE_SHENG = "学员";
 	public final static String YI_YUAN = "医院";
 	public final static String WEI_SHEN_TING = "卫生厅";
+	public final static String REN_SHE = "人社";
 	
 }

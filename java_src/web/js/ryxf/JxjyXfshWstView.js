@@ -61,17 +61,18 @@ JxjyXfshWstView = Ext.extend(Ext.Panel, {
 						name : 'Q_kt_S_EQ',
 						flex : 1,
 						xtype : 'textfield'
-					}, {
-						fieldLabel : '学分类型',
-						name : 'Q_xflx_S_EQ',
-						flex : 1,
-						xtype : 'textfield'
-					}, {
-						fieldLabel : '学分类别',
-						name : 'Q_xflb_S_EQ',
-						flex : 1,
-						xtype : 'textfield'
 					},
+//					{
+//						fieldLabel : '学分类型',
+//						name : 'Q_xflx_S_EQ',
+//						flex : 1,
+//						xtype : 'textfield'
+//					}, {
+//						fieldLabel : '学分类别',
+//						name : 'Q_xflb_S_EQ',
+//						flex : 1,
+//						xtype : 'textfield'
+//					},
 					//					{
 					//						fieldLabel : '学科',
 					//						name : 'Q_xk_S_EQ',
@@ -92,31 +93,33 @@ JxjyXfshWstView = Ext.extend(Ext.Panel, {
 					}, {
 						fieldLabel : '学时',
 						name : 'Q_xs_S_EQ',
+						width:300,
 						flex : 1,
 						xtype : 'textfield'
-					}, {
-						fieldLabel : '授分单位',
-						name : 'Q_sfdw_S_EQ',
-						flex : 1,
-						xtype : 'textfield'
-					}, {
-						fieldLabel : '卫生厅审核',
-						name : 'Q_shzt_S_EQ',
-						flex : 1,
-						xtype : 'textfield'
-					},
+					}
+//					, {
+//						fieldLabel : '授分单位',
+//						name : 'Q_sfdw_S_EQ',
+//						flex : 1,
+//						xtype : 'textfield'
+//					}, {
+//						fieldLabel : '卫生厅审核',
+//						name : 'Q_shzt_S_EQ',
+//						flex : 1,
+//						xtype : 'textfield'
+//					},
 					//					{
 					//						fieldLabel : '备注',
 					//						name : 'Q_bz_S_EQ',
 					//						flex : 1,
 					//						xtype : 'textfield'
 					//					},
-					{
-						fieldLabel : '人社局审核',
-						name : 'Q_rsjsh_S_EQ',
-						flex : 1,
-						xtype : 'textfield'
-					}
+//					{
+//						fieldLabel : '人社局审核',
+//						name : 'Q_rsjsh_S_EQ',
+//						flex : 1,
+//						xtype : 'textfield'
+//					}
 			//					, {
 			//						fieldLabel : '职称',
 			//						name : 'Q_zc_S_EQ',

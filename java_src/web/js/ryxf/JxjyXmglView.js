@@ -18,7 +18,7 @@ JxjyXmglView = Ext.extend(Ext.Panel, {
 			title : '课题报名',
 			region : 'center',
 			layout : 'border',
-			items : [ this.searchPanel, this.gridPanel ]
+			items : [  this.gridPanel ]
 		});
 	},// end of constructor
 	// 初始化组件

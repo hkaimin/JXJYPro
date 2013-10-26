@@ -11,6 +11,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 
+import com.htsoft.core.command.QueryFilter;
 import com.htsoft.core.service.impl.CommonServiceImpl;
 import com.htsoft.core.util.ContextUtil;
 import com.htsoft.est.model.jxjy.JxjySfbzmx;
@@ -39,13 +40,16 @@ public class MyJdbcServiceImpl extends CommonServiceImpl implements MyJdbcServic
 		return sjt;
 	}
 	@Override
-	public List<JxjyXmgl> getXmgl() {
-		
+	public List<JxjyXmgl> getXmgl(QueryFilter filter) {
+		Object[] params = new Object[]{};
 		AppUser user = ContextUtil.getCurrentUser();
-		String sql =" select * from jxjy_xmgl t join jxjy_ktgl k on t.xm_id=k.xm_id ";
-		String sql2 = " select t.kt_id from jxjy_ryxfgl t where t.rybh="+user.getUserId();//用户选课记录
-		List<Map<String,Object>> listVo = this.getBasicDao().loadByForTransfReturnListMap(sql);
+		String sql =" select * from jxjy_xmgl t join jxjy_ktgl k on t.xm_id=k.xm_id  ";
+		String sql2 = " select t.kt_id from jxjy_ryxfgl t where t.rybh="+user.getUserId() ;//用户选课记录
+		List<Map<String,Object>> listVo = this.getBasicDao().loadByForTransfReturnListMap(sql, filter.getPagingBean().getFirstResult(), filter.getPagingBean().getPageSize());
 		List<Map<String,Object>> listKtid = this.getBasicDao().loadByForTransfReturnListMap(sql2);
+
+		List<Map<String,Object>> listCount = this.getBasicDao().loadByForTransfReturnListMap(sql);
+		filter.getPagingBean().setTotalItems(listCount.size());
 		List<JxjyXmgl> xmglVo = new ArrayList<JxjyXmgl>();
 		for(Map map : listVo){
 			JxjyXmgl xmgl = new JxjyXmgl();
@@ -87,10 +91,13 @@ public class MyJdbcServiceImpl extends CommonServiceImpl implements MyJdbcServic
 		return this.getBasicDao().loadByForTransfReturnListMap(sql);
 	}
 	@Override
-	public List<JxjySfbzsz> getSfbz() {
+	public List<JxjySfbzsz> getSfbz(QueryFilter filter) {
 		String sql = " select t.id,t.xflbid,t.mx,t.xmmc,l.mc from jxjy_sfbzsz t join jxjy_xflb l on t.xflbid=l.xflbid ";
-		List<Map<String,Object>> list = this.getBasicDao().loadByForTransfReturnListMap(sql);
+		List<Map<String,Object>> list = this.getBasicDao().loadByForTransfReturnListMap(sql, filter.getPagingBean().getFirstResult(), filter.getPagingBean().getPageSize());
 		List<JxjySfbzsz> listSfbz = new ArrayList<JxjySfbzsz>();
+		List<Map<String,Object>> listCount = this.getBasicDao().loadByForTransfReturnListMap(sql);
+		filter.getPagingBean().setTotalItems(listCount.size());
+		
 		for(Map map : list){
 			JxjySfbzsz jxjySfbzsz = new JxjySfbzsz();
 			jxjySfbzsz.setId(new Long((BigDecimal)map.get("ID")+""));

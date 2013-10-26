@@ -21,8 +21,11 @@ import com.htsoft.core.web.action.BaseAction;
 
 import com.htsoft.est.model.jxjy.JxjyRyxfgl;
 import com.htsoft.est.model.system.AppUser;
+import com.htsoft.est.service.info.ShortMessageService;
 import com.htsoft.est.service.ryxf.JxjyRyxfglService;
 import com.htsoft.est.service.ryxf.MyJdbcService;
+import com.htsoft.est.service.system.AppUserService;
+import com.htsoft.est.util.JxjyConstant;
 /**
  * 
  * @author 
@@ -34,6 +37,10 @@ public class JxjyRyxfglAction extends BaseAction{
 	@Resource
 	private MyJdbcService myJdbcService;
 	private JxjyRyxfgl jxjyRyxfgl; 
+	@Resource
+	private AppUserService appUserService;
+	@Resource
+	private ShortMessageService shortMessageService;
 	
 	private Long id;
 	private String ids;
@@ -78,7 +85,6 @@ public class JxjyRyxfglAction extends BaseAction{
 		
 		QueryFilter filter=new QueryFilter(getRequest());
 		List<JxjyRyxfgl> list= jxjyRyxfglService.getAll(filter);
-		
 		Type type=new TypeToken<List<JxjyRyxfgl>>(){}.getType();
 		StringBuffer buff = new StringBuffer("{success:true,'totalCounts':")
 		.append(filter.getPagingBean().getTotalItems()).append(",result:");
@@ -91,6 +97,27 @@ public class JxjyRyxfglAction extends BaseAction{
 		
 		return SUCCESS;
 	}
+	
+	/**
+	 * 显示列表
+	 */
+	public String listBM(){
+		
+		QueryFilter filter=new QueryFilter(getRequest());
+		List<JxjyRyxfgl> list= jxjyRyxfglService.getRyxfBM(filter);
+		Type type=new TypeToken<List<JxjyRyxfgl>>(){}.getType();
+		StringBuffer buff = new StringBuffer("{success:true,'totalCounts':")
+		.append(filter.getPagingBean().getTotalItems()).append(",result:");
+		
+		Gson gson=new Gson();
+		buff.append(gson.toJson(list, type));
+		buff.append("}");
+		
+		jsonString=buff.toString();
+		
+		return SUCCESS;
+	}
+	
 	/**
 	 * 批量删除
 	 * @return
@@ -116,6 +143,10 @@ public class JxjyRyxfglAction extends BaseAction{
 		jxjyRyxfglService.save(jxjyRyxfgl);
 		jsonString="{success:true}";
 		
+		List<AppUser> userList = this.appUserService.findByRoleName(JxjyConstant.WEI_SHEN_TING);
+		String content = "提交学分审核，请您审核！";
+		this.shortMessageService.sendMesToUser(userList, content);
+		
 		return SUCCESS;
 	}
 	
@@ -126,6 +157,11 @@ public class JxjyRyxfglAction extends BaseAction{
 		for(String s:ryxfIdvo){
 			JxjyRyxfgl jxjyRyxfgl=jxjyRyxfglService.get(new Long(s));
 			jxjyRyxfgl.setShzt(shzt);
+			if("0".equals(shzt)){
+				List<AppUser> userList = this.appUserService.findByRoleName(JxjyConstant.REN_SHE);
+				String content = "医院已提交通过的学分审核，请您审核！";
+				this.shortMessageService.sendMesToUser(userList, content);
+			}
 			jxjyRyxfglService.save(jxjyRyxfgl);
 		}
 		

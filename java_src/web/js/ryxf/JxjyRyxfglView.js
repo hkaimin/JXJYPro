@@ -61,17 +61,18 @@ JxjyRyxfglView = Ext.extend(Ext.Panel, {
 						name : 'Q_kt_S_EQ',
 						flex : 1,
 						xtype : 'textfield'
-					}, {
-						fieldLabel : '学分类型',
-						name : 'Q_xflx_S_EQ',
-						flex : 1,
-						xtype : 'textfield'
-					}, {
-						fieldLabel : '学分类别',
-						name : 'Q_xflb_S_EQ',
-						flex : 1,
-						xtype : 'textfield'
 					},
+//					{
+//						fieldLabel : '学分类型',
+//						name : 'Q_xflx_S_EQ',
+//						flex : 1,
+//						xtype : 'textfield'
+//					}, {
+//						fieldLabel : '学分类别',
+//						name : 'Q_xflb_S_EQ',
+//						flex : 1,
+//						xtype : 'textfield'
+//					},
 					//					{
 					//						fieldLabel : '学科',
 					//						name : 'Q_xk_S_EQ',
@@ -92,31 +93,33 @@ JxjyRyxfglView = Ext.extend(Ext.Panel, {
 					}, {
 						fieldLabel : '学时',
 						name : 'Q_xs_S_EQ',
+						width:300,
 						flex : 1,
 						xtype : 'textfield'
-					}, {
-						fieldLabel : '授分单位',
-						name : 'Q_sfdw_S_EQ',
-						flex : 1,
-						xtype : 'textfield'
-					}, {
-						fieldLabel : '卫生厅审核',
-						name : 'Q_shzt_S_EQ',
-						flex : 1,
-						xtype : 'textfield'
-					},
+					}
+//					, {
+//						fieldLabel : '授分单位',
+//						name : 'Q_sfdw_S_EQ',
+//						flex : 1,
+//						xtype : 'textfield'
+//					}, {
+//						fieldLabel : '卫生厅审核',
+//						name : 'Q_shzt_S_EQ',
+//						flex : 1,
+//						xtype : 'textfield'
+//					},
 					//					{
 					//						fieldLabel : '备注',
 					//						name : 'Q_bz_S_EQ',
 					//						flex : 1,
 					//						xtype : 'textfield'
 					//					},
-					{
-						fieldLabel : '人社局审核',
-						name : 'Q_rsjsh_S_EQ',
-						flex : 1,
-						xtype : 'textfield'
-					}
+//					{
+//						fieldLabel : '人社局审核',
+//						name : 'Q_rsjsh_S_EQ',
+//						flex : 1,
+//						xtype : 'textfield'
+//					}
 			//					, {
 			//						fieldLabel : '职称',
 			//						name : 'Q_zc_S_EQ',
@@ -301,6 +304,15 @@ JxjyRyxfglView = Ext.extend(Ext.Panel, {
 	//GridPanel行点击处理事件
 	rowClick : function(grid, rowindex, e) {
 		grid.getSelectionModel().each(function(rec) {
+			var xflx= rec.data.xflx
+			if(xflx.indexOf('非')>=0){
+			new JxjyRyxfglForm( {
+				id : rec.data.id
+			}).show();
+			}else{
+				Ext.ux.Toast.msg("信息", "不能编辑项目学分类型的记录！");
+				return ;
+			}
 			new JxjyRyxfglForm( {
 				id : rec.data.id
 			}).show();
@@ -336,6 +348,10 @@ JxjyRyxfglView = Ext.extend(Ext.Panel, {
 		}
 		if (selectRecord.length > 1) {
 			Ext.ux.Toast.msg("信息", "只能选择一条记录！");
+			return;
+		}
+		if(selectRecord[0].data.is_commit=='1'){
+			Ext.ux.Toast.msg("信息", "已提交审核！");
 			return;
 		}
 

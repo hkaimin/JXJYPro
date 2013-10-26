@@ -122,4 +122,6 @@ public interface AppUserService extends BaseService<AppUser> {
 	 * @return
 	 */
 	public List<AppUser> getChargeOrgUsers(Set userOrgs);
+	
+	public void yjActivity();
 }

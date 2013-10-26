@@ -11,6 +11,8 @@
 				<url>/system/selectedRolesAppUser.do</url>  
 				<url>/system/listDepartment.do</url> 
 			</Function>  
+						<Function id="_AppUserActivity" text="一键激活" iconCls="menu-add"> 
+			</Function>  
 			<Function id="_AppUserEdit" text="编辑账号" iconCls="btn-edit"> 
 				<url>/system/listAppUser.do</url>  
 				<url>/system/chooseRolesAppUser.do</url>  

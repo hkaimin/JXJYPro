@@ -26,10 +26,13 @@ import com.htsoft.est.model.jxjy.JxjyKtgl;
 import com.htsoft.est.model.jxjy.JxjyRyxfgl;
 import com.htsoft.est.model.jxjy.JxjyXmgl;
 import com.htsoft.est.model.system.AppUser;
+import com.htsoft.est.service.info.ShortMessageService;
 import com.htsoft.est.service.project.CourseService;
 import com.htsoft.est.service.ryxf.JxjyRyxfglService;
 import com.htsoft.est.service.ryxf.JxjyXmglService;
 import com.htsoft.est.service.ryxf.MyJdbcService;
+import com.htsoft.est.service.system.AppUserService;
+import com.htsoft.est.util.JxjyConstant;
 /**
  * 
  * @author 
@@ -44,6 +47,8 @@ public class JxjyXmglAction extends BaseAction{
 	private JxjyRyxfglService jxjyRyxfglService;
 	@Resource
 	private CourseService courseService;
+
+	
 	private JxjyXmgl jxjyXmgl;
 	
 	private Long xmId;
@@ -94,11 +99,11 @@ public class JxjyXmglAction extends BaseAction{
 //		StringBuffer buff = new StringBuffer("{success:true,'totalCounts':")
 //		.append(filter.getPagingBean().getTotalItems()).append(",result:");
 		
-		
-		List<JxjyXmgl> list= myJdbcService.getXmgl();
+		QueryFilter filter=new QueryFilter(getRequest());
+		List<JxjyXmgl> list= myJdbcService.getXmgl(filter);
 		Type type=new TypeToken<List<JxjyXmgl>>(){}.getType();
 		StringBuffer buff = new StringBuffer("{success:true,'totalCounts':")
-		.append(list.size()).append(",result:");
+		.append(filter.getPagingBean().getTotalItems()).append(",result:");
 		Gson gson=new Gson();
 		buff.append(gson.toJson(list, type));
 		buff.append("}");
@@ -185,6 +190,7 @@ public class JxjyXmglAction extends BaseAction{
 		ryxf.setRsjsh("2");
 		ryxf.setIs_commit(0L);
 		jxjyRyxfglService.save(ryxf);
+		
 		return SUCCESS;
 		
 	}

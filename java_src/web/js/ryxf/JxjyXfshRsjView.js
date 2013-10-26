@@ -51,83 +51,30 @@ JxjyXfshRsjView = Ext.extend(Ext.Panel, {
 					//					}, 
 					{
 						fieldLabel : '日期',
-						name : 'Q_rq_S_EQ',
+						name : 'rq',
 						xtype : 'datefield',
 						format : 'Y-m-d',
 						flex : 1
 
 					}, {
 						fieldLabel : '课题',
-						name : 'Q_kt_S_EQ',
-						flex : 1,
-						xtype : 'textfield'
-					}, {
-						fieldLabel : '学分类型',
-						name : 'Q_xflx_S_EQ',
-						flex : 1,
-						xtype : 'textfield'
-					}, {
-						fieldLabel : '学分类别',
-						name : 'Q_xflb_S_EQ',
+						name : 'kt',
 						flex : 1,
 						xtype : 'textfield'
 					},
-					//					{
-					//						fieldLabel : '学科',
-					//						name : 'Q_xk_S_EQ',
-					//						flex : 1,
-					//						xtype : 'textfield'
-					//					},
-					//					{
-					//						fieldLabel : '活动形式',
-					//						name : 'Q_hdxs_S_EQ',
-					//						flex : 1,
-					//						xtype : 'textfield'
-					//					},
 					{
 						fieldLabel : '学分',
-						name : 'Q_xf_S_EQ',
+						name : 'xf',
 						flex : 1,
 						xtype : 'textfield'
 					}, {
 						fieldLabel : '学时',
-						name : 'Q_xs_S_EQ',
-						flex : 1,
-						xtype : 'textfield'
-					}, {
-						fieldLabel : '授分单位',
-						name : 'Q_sfdw_S_EQ',
-						flex : 1,
-						xtype : 'textfield'
-					}, {
-						fieldLabel : '卫生厅审核',
-						name : 'Q_shzt_S_EQ',
-						flex : 1,
-						xtype : 'textfield'
-					},
-					//					{
-					//						fieldLabel : '备注',
-					//						name : 'Q_bz_S_EQ',
-					//						flex : 1,
-					//						xtype : 'textfield'
-					//					},
-					{
-						fieldLabel : '人社局审核',
-						name : 'Q_rsjsh_S_EQ',
+						name : 'xs',
+						width:300,
 						flex : 1,
 						xtype : 'textfield'
 					}
-			//					, {
-			//						fieldLabel : '职称',
-			//						name : 'Q_zc_S_EQ',
-			//						flex : 1,
-			//						xtype : 'textfield'
-			//					}, {
-			//						fieldLabel : '学位',
-			//						name : 'Q_xw_S_EQ',
-			//						flex : 1,
-			//						xtype : 'textfield'
-			//					}
+
 			],
 			buttons : [ {
 				text : '查询',
@@ -158,7 +105,7 @@ JxjyXfshRsjView = Ext.extend(Ext.Panel, {
 			//使用RowActions
 			rowActions : true,
 			id : 'JxjyRSJRyxfglGrid',
-			url : __ctxPath + "/ryxf/listJxjyRyxfgl.do",
+			url : __ctxPath + "/ryxf/listBMJxjyRyxfgl.do",
 			fields : [ {
 				name : 'id',
 				type : 'int'

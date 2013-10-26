@@ -18,7 +18,7 @@ JxjySfbzszView = Ext.extend(Ext.Panel, {
 			title : '授分标准设置',
 			region : 'center',
 			layout : 'border',
-			items : [ this.searchPanel, this.gridPanel ]
+			items : [  this.gridPanel ]
 		});
 	},// end of constructor
 	// 初始化组件
@@ -37,11 +37,13 @@ JxjySfbzszView = Ext.extend(Ext.Panel, {
 			}, {
 				fieldLabel : '项目名称',
 				name : 'Q_xmmcVo_S_EQ',
+				width:300,
 				flex : 1,
 				xtype : 'textfield'
 			}, {
 				fieldLabel : '学分类别',
 				name : 'Q_xflbVo_S_EQ',
+				width:300,
 				flex : 1,
 				xtype : 'textfield'
 			}],

@@ -20,7 +20,7 @@ JxjySfbzszForm = Ext.extend(Ext.Window, {
 			height : 400,
 			width : 500,
 			maximizable : true,
-			title : '[JxjySfbzsz]详细信息',
+			title : '标准设置信息',
 			buttonAlign : 'center',
 			buttons : [ {
 				text : '保存',
@@ -76,9 +76,9 @@ JxjySfbzszForm = Ext.extend(Ext.Window, {
 									fields : ['id', 'xflbmc']
 								}),
 						displayField : 'xflbmc',
-						valueField : 'id',
-						hiddenValue:'1',
-						value:'国家级'
+						valueField : 'id'
+						//hiddenValue:'1',
+						//value:'国家级'
 							},
 			{
 				fieldLabel : '描述',

@@ -65,11 +65,12 @@ public class JxjySfbzszAction extends BaseAction{
 //		StringBuffer buff = new StringBuffer("{success:true,'totalCounts':")
 //		.append(filter.getPagingBean().getTotalItems()).append(",result:");
 		
-		List<JxjySfbzsz> list= myJdbcService.getSfbz();
+		QueryFilter filter=new QueryFilter(getRequest());
+		List<JxjySfbzsz> list= myJdbcService.getSfbz(filter);
 		
 		Type type=new TypeToken<List<JxjySfbzsz>>(){}.getType();
 		StringBuffer buff = new StringBuffer("{success:true,'totalCounts':")
-		.append(list.size()).append(",result:");
+		.append(filter.getPagingBean().getTotalItems()).append(",result:");
 		
 		Gson gson=new Gson();
 		buff.append(gson.toJson(list, type));
